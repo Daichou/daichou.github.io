@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,47 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">C/C&#43;&#43;中避免unused variable造成報錯的方法(void cast of argc/argv)</h1>
+    
+    <time>July 13, 2017</time>
+    
+    <div>
+        <p>
+        <p>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。</p>
+<p>當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。</p>
+<p>這時有兩個解法。</p>
+<p>1.void cast</p>
+<p>例如:</p>
+<p>void f(void * argc)<br>
+{<br>
+         (void) argc;<br>
+}</p>
+<p>這會無害的去用到這個變數。</p>
+<p>2.自己等於自己</p>
+<p>例如:</p>
+<p>void f(void * argc)<br>
+{<br>
+         argc = argc;<br>
+}</p>
+<p>這兩招就是欺騙compiler這些變數已經被使用。</p>
+<p>我第一次看到這寫法真的嚇到了。</p>
+<p>以下是stackoverflow的討論。<br>
+<a href="https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do">https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do</a><br>
+<a href="https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1">https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1</a></p>
 
-<h1>Tags</h1>
-<ul>
+        </p>
+    </div>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/tricks">#tricks</a>
+        
+      
+    </div>
+
 
         
         </div>

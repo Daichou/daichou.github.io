@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+	<meta name="generator" content="Hugo 0.68.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/index.xml" title="gattaca-ngin" />
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<div class = "article-content">
+        
+        
+        
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/stm32cubemx/">
+                    STM32CubeMX初探
+                </a>
+            </h2>
+            <div><p>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&quot;工程化&rdquo;，產生的專案會更有組織。
+一、安裝與更新 安裝網址如下:http://www.st.com/en/development-tools/stm32cubemx.html
+下載完成後，桌面會產生兩個icon，一個是STM32CubeMX，一個是STM32CubeUpdater。
+開啟STM32CubeUpdater，選擇所需的STM32系列library，即可完成相依library建設。更新也是透過此工具。
+二、基本使用(以STM32F469NI_Discovery為範例) 開啟STM32CubeMX，選擇New Project-&gt;選擇晶片或是開發版即可進入。如下圖畫面。
+
+# pinout 左邊為周邊模組(peripheral)綠色為已經啟用。左邊為腳位設定(綠色為已規劃，橘色為開發版已經硬體連接的腳位但未啟用)。左鍵點選腳位可以開啟小選單選擇所需腳位定義。
+透過上方tab進入進階規劃。
+
+#Clock Configuration 
+這個tab將STM32的所有時序和PLL、prescaler列出整理成流。
+幾乎所有設定都可以修改。後方藍色框框中可以直接鍵入所需Clock值，系統會幫你調整整個流。當然有硬體限制，STM32cubeMX會提醒你，當你出現錯誤設定會有警示。
+ #Configuration
+
+這個tab將前面所開啟的周邊模組列出，每個都可點選以進階設定。更詳細的設定之後文章會介紹。 #power consumption calculator 
+這個tab可以幫助計算能源消耗，還可以計算各個環境下的情況(就是把datasheet後面的數據列出)，不過無法計算開發版的能源消耗，僅限晶片本身。
+# project Settings 點選上方menu-&gt;Project-&gt;Project Settings，開啟以下專案設定。
+
+基本上就按照環境選了。不過這裏特別提一個選項，我覺得對後續開發很以幫助。
+
+紅框中選項可以將周邊裝置的初始化函式(以MX_為前綴的函式)產生成獨立的.c/.h配對，避免全部Init函式都在main中，造成main function很肥大，而且當你有多個source檔(並非主要程序都集中在main.c)時，可以讓其他函式更方便引用這些初始程序。
+ #產生Project與報告
+
+紅框中這兩個東西可以產生Project 與報告。
+#結果與檔案樹(以ARM MDK keil為例) 
+User裡面是初始化函式和main.c。可以發現main.c中有一堆USER code begin和USER code end的註解，這些註解是希望user將自己的code加入其中，因為如果要重新使用STM32CubeMX產生code到同一專案時，可以確保user code不會被覆蓋。
+Drivers/STM32F_4xx_HAL_Driver是STM官方在推的HAL函式庫，現在的主流，這部分引用都是由STM32CubeMX完成，其中若是想要自行開啟周邊模組，可以在這個資料夾中的stm32f4xx_hal_conf.h中解除註解或新增註解(外面檔案樹的Inc中)。若有新增模組需要手動將該周邊的HAL的.c新增進專案中。
+# 小結 STM32CubeMX的有點是可以讓開發工程化，開發速度加快，可以用高層級的方式思考整個系統架構，而且不用去一直翻閱datasheet(最好還是要了解整個周邊的架構與使用)。
+缺點是一些官方套件，例如:STemWin和BSP要自行新增進入專案中，有點可惜。</p></div>
+            <div class="post-footer">
+            <time>September 4, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/stm">#STM</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/ccunused-variablevoid-cast-of-argcargv/">
+                    C/C&#43;&#43;中避免unused variable造成報錯的方法(void cast of argc/argv)
+                </a>
+            </h2>
+            <div><p>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
+當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。
+這時有兩個解法。
+1.void cast
+例如:
+void f(void * argc)
+{
+(void) argc;
+}
+這會無害的去用到這個變數。
+2.自己等於自己
+例如:
+void f(void * argc)
+{
+argc = argc;
+}
+這兩招就是欺騙compiler這些變數已經被使用。
+我第一次看到這寫法真的嚇到了。
+以下是stackoverflow的討論。
+https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do
+https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1</p></div>
+            <div class="post-footer">
+            <time>July 13, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/tricks">#tricks</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/a-narrative-history-of-bsd/">
+                    A Narrative History of BSD 心得
+                </a>
+            </h2>
+            <div><p>A Narrative History of BSD 這篇文為我修課時做的心得,由於原文是用hackmd寫的,在這裡版型會有差異(原文)
+  什麼是BSD
+ 全名：Berkeley Software Distribution(柏克萊軟體套件) 類型：作業系統(UNIX-like) 創立者；Bill Joy 程式語言：C license：BSD license 描述：常用於工作站與伺服器 下圖為UNIX譜系
+    全片大綱
+以下是以影片中Dr. Kirk McKusick的解說分段。
+ Bill Joy Era  在柏克萊大學建立 Bill Joy時期(1BSD,2BSD)納入的軟體套件：EX(vi),pascal interpreter,C Shell   TCP create  BSD 4以後的TCP/IP建立 BNN與柏克萊團隊的衝突   lawsuit of license  與AT&amp;T的著作權問題      BSD歷史與提及的對照
+以下是BSD的歷史與影片中的內容相互參照。
+  1BSD
+  釋出：1978年
+  由Bill Joy創立，從早期貝爾實驗室的UNIX改寫而來</p></div>
+            <div class="post-footer">
+            <time>July 9, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97">#讀書心得</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/the-unix-system-making-computers-easier/">
+                    The Unix System: Making Computers Easier to Use 心得
+                </a>
+            </h2>
+            <div><p>The Unix System: Making Computers Easier to Use 這篇文為我修課時作的心得
+ 摘要
+這部影片主要在介紹UNIX的功能與UNIX的好   創造緣由:為了處理電話轉接工作還有解決問題
+  UNIX作業系統系統特色
+ time-sharing portable multi-tasking hierachical file system IPC pipes    UNIX作業系統架構
+分層
+描述
+kernel
+｜底層與硬體溝通 、管理資源
+shell
+｜與kernel溝通的界面
+utility program ｜上層的應用程式
+  utility program範例
+ sort 拼字檢查(超炫的) 編輯器…等     考古
+我有點好奇當時的電腦等級是如何，所以稍微找了一下youtube底下所說的DEC PDP-7規格。   圖片來源:wikipedia PDP-7
+ 規格：
+參數
+數值
+記憶體
+4K words 可加到 64K words</p></div>
+            <div class="post-footer">
+            <time>July 9, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97">#讀書心得</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/revolution-os/">
+                    Revolution OS 心得
+                </a>
+            </h2>
+            <div><p>Revolution OS 這篇文為我修課時做的心得
+  摘要
+內容與The Code有所重疊，但對於Linux,GNU,Free software,Open Source的成長其著墨較深，還有各期開發者與使用者加入Linux的情況有所描述。還有開源陣營與Microsft閉源陣營的對抗。主要內容涵蓋：
+ GNU、BSD、Linux等社群體系的建立 Linux成長與網路的關聯(apache project) 開源社群的成長與所被業界接受(cisco採用,Oracle,Sybase等企業的貢獻) 運用開源的商業模式(服務:Redhat、VALinux、Cygnus) Linux Torvalds對於用Linux賺錢的看法 Netscape開源與Mozilla Richard Stallman對於Copyleft與自由軟體理念 開源與自由軟體運動的影響  ex:消費者可以購買不含Windows的電腦,Microsoft對於開源態度的改觀(這部影片當時Microsoft仍有點抗拒，到了Satya Nadella當任CEO時期才正式投入)      Note
+片中Debian社群提到的Open Source定義原文link
+ Free Redistribution Source Code Derived Works Integrity of The Author’s Source Code No Discrimination Against Persons or Groups No Discrimination Against Fields of Endeavor Distribution of License License Must Not Be Specific to a Product License Must Not Restrict Other Software License Must Be Technology-Neutral    心得</p></div>
+            <div class="post-footer">
+            <time>July 9, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97">#讀書心得</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/the-code/">
+                    The Code心得
+                </a>
+            </h2>
+            <div><p>The Code * 系列為我修課時留下的心得
+* 摘要   Linus Torvarlds 的生平與Linux創作背景
+包括家庭背景與當時的社經環境(ex:蘇聯解體)。
+因為Minix僅限教育用途，加上當時其他的作業系統過於昂貴(SCO Unix要20000馬克)，還有just hobby等因素，開始著手開發Linux。
+  open source精神
+這裡直接節錄 Richard Mathhew Stallman 於片頭所說的話『開放原始碼就像是食譜，當有好的食譜，我們可以與他人分享，其他人可以對食譜加入自己的元素與口味，並將食譜回饋給原本的人或是繼續開放食譜下去。』，除此之外，open source不只是將程式原始碼開放下去這個動作，其背後可能同時創造了一個社群。
+  Free Software VS Open Source
+由 Richard Mathhew Stallman 提出的Free Software觀念與Free Software運動，還有Free Software Foundation對於自由軟體的推廣，讓人們認識到Free Software的意含，但是由於 Richard Mathhew Stallman 與 Free Software Foundation的言論通常較激進，導致齊備一些商人貶低，但是那群人們卻擁抱Open Source觀念(其實包括的軟體多有重疊)，所以Eric S.Raymond認為應該倡導Open Source讓人們接受。
+  GNU/Linux對世界的影響
+GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中國家的中國與印度的開發人員也對Linux有許多貢獻。Dot com風暴後影響開源軟體的發展與關注度，但是Linux作業系統卻開始進入小型裝置，如：電子鐘、手機等裝置，使一般使用者開始接觸到Linux。
+  * 心得 由於在高中時有在接觸Linux作業系統加上現在主要都以Linux作為我的筆電預設作業系統，對對於Linux的歷史本身就有一些了解，不過對於Linux創立前的歷史不甚熟悉，不知道有Richard Mathhew Stallman這位在Linux開發出來前就已經開始宣揚自由軟體理念的靈魂人物，還有BSD本身對於開源觀念的殿基，讓我們可以在現今不受拘束的宣揚Open Source與使用Open Source的軟體，而且由於這些Open Source軟體的出現，讓我們這些後人可以研究這些軟體的技術，還可以貢獻所學於這些軟體中，並讓世界更美好。
+* Qustion  Linus常說Linux kernel的開發人員的組織架構是十分扁平的，大家可以自由的提出意見，但是如果開發出Code，想要commit到Linux kernel中，到底是誰負責審理的？ 為什麼Linux社群最蓬勃發展？同樣是開源的BSD系統還有Minix等專案的能見度卻沒這麼高？ Linus說印度的基礎溝通較不好，所以可能會衍生出在地版的Linux，不知有沒有出現?</p></div>
+            <div class="post-footer">
+            <time>July 9, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97">#讀書心得</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/i2c-microchip-plib/">
+                    I2C 使用Microchip plib
+                </a>
+            </h2>
+            <div><p>I2C 使用Microchip plib 本篇以dsPIC30F為主。
+plib 安裝 到Legacy PIC24 MCU &amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。
+函式概覽 安裝後文件會在xc16 complier的docs/periph_libs下。
+其中plib提供以下函式。
+ AckI2C
+CloseI2C
+ConfigIntI2C
+DataRdyI2C
+IdleI2C
+MastergetsI2C
+MasterputsI2C
+MasterReadI2C
+MasterWriteI2C
+NotAckI2C
+OpenI2C
+RestartI2C
+SlavegetsI2C
+SlaveputsI2C
+SlaveReadI2C
+SlaveWriteI2C
+StartI2C
+StopI2C
+ 還有一些MARCO
+ EnableIntMI2C
+DiableIntMI2C
+SetPriorityIntMI2C
+EnableIntSI2C
+DisableIntSI2C
+SetPriorityIntSI2C
+ 這份文件16 bit language tools第191頁開始有詳述這些函式的介面。所以本文主要會面向如何運用這些函式達成master與slave溝通。
+I2C (dsPIC30F as Master with 7bit address) reception 以下圖片來自於http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf
+
+對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。
+請先透過ConfigIntI2C和OpenI2C設定好硬體參數。
+值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。
+transmission transmission只要全部都由Master端給資料即可。</p></div>
+            <div class="post-footer">
+            <time>April 29, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/hardware">#hardware</a>
+                
+                    <a class="tag" href="/tags/pic">#PIC</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/mpu6050-gyroscopeaccelerometer/">
+                    MPU6050 Gyroscope/Accelerometer 使用筆記
+                </a>
+            </h2>
+            <div><p>MPU6050 Gyroscope/Accelerometer 使用筆記 特性與參數  用途：量測姿態 精度：  Gyro : 250/500/1000/2000 dps (degree per second) Accel : +-2/4/6/16 g   輸出資料：為angular rate(角速度) ，16bit , LSB/g 原始感應器電壓VDD(僅有晶片)：2.375V-3.46V 原始晶片通訊電氣參數：  Vlogic = 1.8V (+-5%) OR VDD VIH(Voltage high level) : 必須超過0.7*Vlogic(MPU6050) VIL(Voltage low level):必須低於0.3*Vlogic(MPU6050) Ci(Input Capacitance): &lt;5pF I2C address: 1101000(when AD0 = 0),1101001(when AD0 = 1) I2C最快頻率：400KHZ   模組(GY521)電壓：3~5V 其他特色：  有內建low pass filter可供程式選擇 中斷信號選擇 Auxiliary I2C port可與其他模組串接 可作自我校正 可透過FSYNC pin與外部模組做synchronization (Gyro) On-chip DIgital motion processor 有內建FIFO   通信方式：I2C(MPU6050,MPU6000)/SPI(MPU6000) 晶片datasheet:連結在此  資料單位換算 Gyroscope 首先先看下表為MPU6050 datasheet。</p></div>
+            <div class="post-footer">
+            <time>April 27, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/note">#Note</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/note-gdb/">
+                    [Note] GDB 一些指令功能速查
+                </a>
+            </h2>
+            <div><p>[Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。
+常用功能  backtrace breakpoint watchpoint stopwatch dump register dump variable continue and stop disasmmebly return  指令速查  backtrace  bt   breakpoint  b br   watchpoint  watch variable_name or watch variable_address   stopwatch  maint link   dump register  info r   dump variable  print variable_name print &amp;variable_name =&gt; get address print *variable_address =&gt; get address contents info display   continue and stop  c =&gt; continue r= &gt; run stop =&gt; Ctrl+c   disasmmebly  disassemble (func…) link layout asm layout src   return  return (return this stack)     Written with StackEdit.</p></div>
+            <div class="post-footer">
+            <time>March 3, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/tricks">#tricks</a>
+                
+                    <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+                    <a class="tag" href="/tags/note">#Note</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/l3g4200-gyroscope/">
+                    L3G4200 gyroscope使用筆記
+                </a>
+            </h2>
+            <div><p>L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.4V ~3.6V 模組(GY50)電壓：3~5V 其他特色：有內建high pass filter和low pass filter可供程式選擇，還有中斷信號選擇 通信方式：I2C/SPIs 晶片datasheet:連結在此 模組(GY50)購買網頁：連結在此  用此模組量測當前姿態方式 軟體部份 Ardunio先安裝wire library和L3G4200D
+用這個網站上的code和library即可。
+角速度轉成角度 由於該感測器輸出為角速度(離散資料)，所以我們須將角速度做離散積分得到角度。
+ 角度 ＝ 初始角度 + (角速度*取樣時間的總和)
+ 下圖為利用QT自製的視覺化工具。其中若要得到角度責須得到線與0軸的面積。
+
+下圖為L3G4200 datasheet p.10 一小部份，其中Sensitivity代表精度，以FS=200dps為例，代表從感測器輸出的數字1代表8.75mdps，如果輸出為兩千時，當前角速度為2000*8.75/1000000dps = 0.0175 dps。
+
+應用限制與誤差處理 由於是作離散積分所以會有誤差，最好使用濾波器(有內建)。
+另外由於它需要一直取樣，對Master CPU來說是很大的負擔。
+ Written with StackEdit.
+ </p></div>
+            <div class="post-footer">
+            <time>February 18, 2017</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/hardware">#hardware</a>
+                
+                    <a class="tag" href="/tags/note">#Note</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+    </div>
+        
+        <div class="paginator">
+        
+        
+        <p>Page 3 of 5</p>
+        <div class="paginator-group">
+            
+            <a class="color-link" href="/page/2/">
+                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
+                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
+                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
+                        </g>
+                </svg>  
+                Newer          
+            </a>
+            
+            
+                <a class="color-link older" href="/page/4/">
+                    Older
+                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
+                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
+                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
+                            </g>
+                    </svg>
+                        
+                </a>
+            
+        </div>
+        
+    </div>
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

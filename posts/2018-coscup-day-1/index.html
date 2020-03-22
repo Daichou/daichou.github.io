@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">2018 COSCUP day 1</h1>
+    
+    <time>August 19, 2018</time>
+    
+    <div>
+        <p>
+        <ul>
+<li>
+<h3 id="introduction-to-julia-308"><strong>Introduction to Julia 308</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-julia/%2Fcoscup18-julia-introduction-to-julia">https://hackmd.io/c/coscup18-julia/%2Fcoscup18-julia-introduction-to-julia</a></li>
+<li><a href="https://www.slideshare.net/ssuserd6984b/coscup-introduction-to-julia">https://www.slideshare.net/ssuserd6984b/coscup-introduction-to-julia</a></li>
+<li>『Write like Python, run like C.』沒什麼比這句或更有吸引力了，這個語言一本上是語法融合R+Python的動態型別語言，不過她速度實測上接近C和Lua，不過按照講者說法Julia需要在宣告時給定變數型別才可獲得最佳效能。</li>
+<li>pass by sharing，function內變數指向原本的參數位置</li>
+<li>語法上有趣的部份是他的陣列Index是從1開始的，陣列支援comprehension展開，此外支援複數型別和有理數型別，而且在有UTF-8，可以輕易的打出希臘字母，對於學術界來說時的親切。也因此金融界，和科學運算界用這個語言比較多。我覺得她可以取代Scipy和Numpy在這些領域的地位。</li>
+<li>有內建的profile tool，不用像C/C++需要prof或是valgrind。可以用@time產生火焰圖。</li>
+<li>有平行語法@parallel修飾字，基本上就是openmp的#pragma parallel for之類的包裝。</li>
+<li>@code_native與@code_llvm的修飾字可以方便了解當時程式的組語以及LLVM IR。</li>
+<li>Machine Learning,Deep Learning和web full stack均有套件，還也史上最強大微分方程套件。</li>
+</ul>
+</li>
+<li>
+<h3 id="小鴨城-duckietown一個基於-raspberry-pi-和-ros-的開源無人小車專案介紹"><strong>小鴨城 (Duckietown)，一個基於 Raspberry Pi 和 ROS 的開源無人小車專案介紹</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc307-duckietown">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc307-duckietown</a></li>
+<li>Ubutu + ROS + OpenCV + Raspberry Pi用來訓練學生對於無人車的設計基本了解。</li>
+<li>主要注重車子與雙黃線的距離估計，圖像與真實世界的投影轉換，光影的補完與校正。</li>
+<li>交大也有開課歐(軟體創意專題)。</li>
+<li>Puyuma</li>
+</ul>
+</li>
+<li>
+<h3 id="在-risc-v-上的-ftrace-及-perf-工具移植經驗"><strong>在 RISC-V 上的 ftrace 及 perf 工具移植經驗</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-risc-v-ftrace-perf">https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-risc-v-ftrace-perf</a></li>
+<li>kernel是黑盒子，需要透過ftrace和perf來了解kernel效能。</li>
+<li>流程:開發者使用效能監控工具-&gt;改變kernel設定，進入開發模式-&gt;產生監控資料-&gt;離開監控模式-&gt;開發者存取資料</li>
+<li>Ftrace:以 function 為等級的監控，進入每個函數，綁架正流執行流程，產生執行與離開的時間戳記，使用者透過透過 tracefs 檔案系統取的 trace 內容。</li>
+<li>Perf ： 以 process 為等級的監控，排程器在排入形成時啟動、形成離開時移除 perf 機制，產生包括軟體組態，以及硬體counter，甚至cache miss資料。透過一些gui tool 或是 CLI 獲得perf解碼資料。</li>
+<li>均須在compile時加入 -pg flag，插入_mcount</li>
+<li>_mcount 如何運作，透過更改call stack中當前的return address，讓其進入_mcount產生資料進行計算。<a href="https://github.com/lattera/glibc/blob/master/sysdeps/sh/_mcount.S">https://github.com/lattera/glibc/blob/master/sysdeps/sh/_mcount.S</a></li>
+<li>patch重點-&gt;硬體counter。</li>
+</ul>
+</li>
+<li>
+<h3 id="快快樂樂-simd"><strong>快快樂樂 SIMD</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-simd">https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-simd</a></li>
+<li><a href="https://www.slideshare.net/WeiTaWang/simd-109492525">https://www.slideshare.net/WeiTaWang/simd-109492525</a></li>
+<li>SIMD算是現代CPU特色，Intel每幾年會double一次SIMD大小。SIMD是一些特殊組語，在C語言使用時通常用一些函式包裝，Vector register也會用typedef重新定義。</li>
+<li>使用SIMD前一定要會算指令cycle，最好還要有計算機組織的基礎，才有辦法trade off。</li>
+<li>SIMD除了指令以外，還要了解記憶體與cache。唯有讓運算停留在register中進行愈久愈好。為了避免cache miss，array可以在function中宣告，用O3讓參數穿透(inline)，interrupt避免，以免cahce被洗出去。計算cache size，避免在存圖片時cache滿出來。由於編譯器對於指標較難優化。所以避免直接使用間接取址操作，不然會編出大量load/store與cache miss。應該用中繼變數取代。少用陣列多用pointer可以避免編出大量load / store</li>
+<li>algin很重要，滿出vector size不會得到好的增益。可用align指令包裝。</li>
+<li>必須記得當前CPU的register數量，避免滿出vector register的大小。</li>
+<li>使用shuffle指令ex: vtrnq(<a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0489e/CIHDJAEA.html">arm</a>)重新排列資料在vector的位置</li>
+<li>盡量一口氣load store達到pipeline</li>
+<li>使用新版gcc / clang</li>
+<li>-fvectorize 需要讓編譯器知道迴圈大小裁可以達到最佳優化。</li>
+<li>這個議程強調速度，所以會忽略一些可讀性。</li>
+</ul>
+</li>
+<li>
+<h3 id="lpwan-物聯網通訊技術"><strong>LPWAN 物聯網通訊技術</strong></h3>
+<ul>
+<li><a href="https://drive.google.com/drive/folders/1GR3W2X19IqdDYMlClVn_RunnBntS2R6X">https://drive.google.com/drive/folders/1GR3W2X19IqdDYMlClVn_RunnBntS2R6X</a></li>
+<li>基本上就是介紹LORA、NB IOT和SigFox</li>
+</ul>
+</li>
+<li>
+<h3 id="web-可用的組合語言---webassembly--自幹-webassembly-虛擬機器"><strong>Web 可用的組合語言 - WebAssembly &amp; 自幹 WebAssembly 虛擬機器</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-webassembly">https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-webassembly</a></li>
+<li>WebAssembly:提供更高安全性與速度，同時減少資料傳輸。</li>
+<li>Stack based</li>
+<li>變數記憶體帶有型態與一般組語不同</li>
+</ul>
+</li>
+<li>
+<h3 id="the-bright-future-of-suse-and-opensuse"><strong>The bright future of SUSE and openSUSE</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-the-bright-future-of-suse-and-opensuse">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-the-bright-future-of-suse-and-opensuse</a></li>
+<li>suse公司被買了</li>
+</ul>
+</li>
+<li>
+<h3 id="the-dexon-network---the-infrastructure-of-the-internets-decentralized-future"><strong>The DEXON Network - The Infrastructure of the Internet’s Decentralized Future</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-the-dexon-network">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-the-dexon-network</a></li>
+</ul>
+</li>
+<li>
+<h3 id="lightning-talk"><strong>Lightning Talk</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-lightning-talk">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-lightning-talk</a></li>
+<li>中國人很喜歡講哲學XD</li>
+</ul>
+</li>
+</ul>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97">#活動心得</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

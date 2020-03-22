@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">Maker常用開發板</h1>
+    
+    <time>May 1, 2016</time>
+    
+    <div>
+        <p>
+        <p>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。</p>
+<p><strong>入門款</strong><br>
+**    Ardunio系列：**</p>
+<ul>
+<li><strong>基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO</strong></li>
+</ul>
+<p>&gt;&raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。</p>
+<p>&gt;&raquo; 適合入門玩家學習操作I/O(DigitalWrtie),PWM(AnalogWrite),ADC(analogRead)。適合小專案與空間較小之專案。</p>
+<ul>
+<li><strong>進階板(Enhanced feature):Ardunio MEGA,Ardunio ZERO,Ardunio DUE</strong></li>
+</ul>
+<p>&gt;&raquo; Ardunio MEGA腳位很多，PWM腳多達15隻，對於需要大量馬達或servo的專案來說十分適合，而且其UART多達四組，還有一組SPI和一組I2C可方便擴充。</p>
+<p>&gt;&raquo; Ardunio ZERO是小型低電壓板Ardunio。</p>
+<p>&gt;&raquo; Ardunio DUE 是ARM-based的Ardunio，腳位很多，同時還有兩個DAC，和USB-OTG，為MEGA板所沒有的。</p>
+<ul>
+<li><strong>IOT板：Ardunio YUN</strong></li>
+</ul>
+<p>&gt;&raquo;Ardunio YUN是一塊同時擁有MCU(Ardunio)和SOC(OS為linux)的開發板，基本連網功能透過linux部份，其餘操作在Ardunio部份上，可支援wifi(IEEE 802.11b/g/n)和ethernet(IEEE 802.11b/g/n)，想當然爾，當然是一塊面向物連網的開發板。</p>
+<ul>
+<li><strong>其他module</strong></li>
+</ul>
+<p>很多，去找吧，我把他們全都放在那了。對於入門者來說，最重要的是有library和API支援，不然自己看datasheet來刻是很困難的。</p>
+<ul>
+<li><strong>其他類Ardunio開發板</strong></li>
+</ul>
+<p>這裏指得是支援Ardunio語法(library)的開發板，常見的如Picdunio,linkit Smart 7688和linkit 7688 DUO系列等。</p>
+<p><strong>進階款</strong></p>
+<p>**     Raspberry Pi**</p>
+<ul>
+<li><strong>Pi 1,Pi 2 Pi3 , Pi zero:</strong></li>
+</ul>
+<p>基本上都是使用Broadcom的單板電腦，都是ARM以處理器為核心，當然ARM系列的優點都有(如省電)，支援USB、ethernet、RCA、I2S、SD卡、相機模組。</p>
+<p>作業系統有Raspbian(Debian系，論壇資源最多，問題易找到解答)、Arch Linux Arm(Arch linux十分輕量，而且十分先進，其套件管理佳，但難度叫高)、OpenELEC、Pidora(Fedora)等。</p>
+<p>使用上需要有linux基礎，而其GPIO操作方式有python與C/C++的方法，其中python較簡單，而C/C++法需要閱讀datasheet才有辦法。</p>
+<p>作業系統的優點就是易於擴充，與排程容易，缺點就是操作IO速度容易慢於MCU(但還是有辦法加速的，望向kernel)。</p>
+<p>**      Banana PI**</p>
+<p>台灣自行製作，採用中國全志公司的Allwinner A20(ARM Cortex-A7)，基本可視為有SATA的Raspberry PI，該有的都有，支援OpenCL。</p>
+<p>        <strong>Intel 開發板</strong></p>
+<p>主要有Intel Galileo和Intel Edison，基於X86，支援Windows,Mac OS X,Linux，為支援度最廣的，功能強大，有網路和USB支援，效能極高，對於運算較大之程式較能負擔(當然不能和PC和Server比啦)，板主有看過運用其做Machine Learning和雲端運算操作。</p>
+<p>      <strong>其他公司開發板推出之開發板</strong></p>
+<p>大多數系統廠如技嘉等公司都有推出開發板供顧客使用，這些開發板官方資源通常充足，但缺乏論壇，開發上遇到問題較麻煩。</p>
+<p>      <strong>MCU(單晶片)</strong></p>
+<p>單晶片放在開發板區其實不好，因為你需要自己做開發板，但使用MCU可使你的開發彈性更高。其實Ardunio就是一種由單晶片衍生出的開發板，若要達到更好的程式效率與操作，可透過直接對MCU的暫存器進行操作，程式碼簡潔，但需要閱讀datasheet，所以Ardunio官方提供了一些方法來加速操作，如bitset()和bit()函式之方法。</p>
+<p>常見的MCU廠商有：</p>
+<ul>
+<li>PIC系列的Microchip公司，產品線從8bit到32bit都有，還有dsp和一些模組晶片可使用，其toolchain有免費板且跨平台的(MPLAB X IDE , XC8 ,XC16 ,XC32)。</li>
+<li>AVR系列的Atmel公司(已被Microchip購併)，Ardunio就是使用AVR系列的晶片。也是有免費的free toolchain，同樣也是跨平台。</li>
+<li>8051系列：經典的MCU系列由Intel開發，同時由於IP過期，使得現今有許多公司生產，如Microchip、Atmel、STC等。</li>
+<li>德州儀器：Msp430系列等。</li>
+<li>freescale(NXP):Arm Cortex_M系列。</li>
+<li>還有很多&hellip;..</li>
+</ul>
+<p>MCU的產品線多元容易找到適合的晶片。</p>
+<p>      ** SOC(system on chip)**</p>
+<p>同樣很多產品線，有MIPS架構的，有ARM-A架構的，有X86的，這部份的難度最高，通常要有很多作業系統基礎。</p>
+<p><strong>參考資料</strong></p>
+<p><strong><a href="https://www.raspberrypi.org/">https://www.raspberrypi.org/</a></strong></p>
+<p><strong><a href="https://www.arduino.cc/">https://www.arduino.cc/</a></strong></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE">https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE</a></p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/maker">#Maker</a>
+        
+            <a class="tag" href="/tags/hardware">#hardware</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

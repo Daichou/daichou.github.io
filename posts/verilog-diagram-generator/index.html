@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,58 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">Verilog Diagram generator</h1>
+    
+    <time>March 6, 2020</time>
+    
+    <div>
+        <p>
+        <h2 id="verilog-diagram-generator">Verilog Diagram generator</h2>
+<p>最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。</p>
+<p>用法先去clone該專案，進行安裝。</p>
+<pre><code>$ git clone https://github.com/YosysHQ/yosys  
 
-<h1>Tags</h1>
+</code></pre><p>安裝相依工具：</p>
+<pre><code>$ sudo apt-get install build-essential clang bison flex \  
+ libreadline-dev gawk tcl-dev libffi-dev git \  
+ graphviz xdot pkg-config python3 libboost-system-dev \  
+ libboost-python-dev libboost-filesystem-dev zlib1g-dev  
+
+</code></pre><p>進去yosys資料夾後，選擇compiler:</p>
+<pre><code>$ make config-clang  
+$ make config-gcc  
+
+</code></pre><p>然後make &amp;&amp; make install</p>
+<pre><code>$ make  
+$ sudo make install  
+
+</code></pre><p>這些步驟都跟readme寫的一樣。</p>
+<p>這工具的command和vcs蠻相似的，執行yosys會進到command shell，透過read_verilog載入verilog module，或是read -sv載入verilog module同時elaborate。之後指定top module。她會產生檔案的AST。</p>
+<pre><code>yosys&gt; read -sv folder/*.v  
+yosys&gt; hierarchy -top top_module  
+
+</code></pre><p>接下來可以用show指令顯示diagram。</p>
+<pre><code>yosys&gt; show  
+
+</code></pre><p>如果多個module，需要指定顯示程式。(gv是一個程式，可以透過apt-get安裝，ps是postscript的縮寫)</p>
+<pre><code>yosys&gt; show -format ps -viewer gv  
+
+</code></pre><p>多個檔案會顯示多組diagram。不過看起來不會寫入合併成一個diagram。他也會在家目錄產生<code>.yosys_show.dot</code>dot檔。可以透過dot程式轉成png或是svg。</p>
+<p>其他像xilinx的tool可以產生RTL schematic也可以產生類似功能。而一些商用工具也有這些功能如Synopsys Synplify Pro看起來很完整。</p>
+<h6 id="httpshackmdiomgboylq8s7arxpvwvoaflaref-refref"><a href="https://hackmd.io/MGBOylQ8S7arXpvWVOAFLA#ref" title="ref"></a>ref</h6>
 <ul>
-    
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
+<li><a href="https://www.chisel-lang.org/diagrammer/">https://www.chisel-lang.org/diagrammer/</a></li>
+<li><a href="https://github.com/YosysHQ/yosys">https://github.com/YosysHQ/yosys</a></li>
 </ul>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+    </div>
+
 
         
         </div>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PIC on gattaca-ngin</title>
+    <link>https://daichou.github.io/tags/pic/</link>
+    <description>Recent content in PIC on gattaca-ngin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 18 Jul 2018 07:25:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://daichou.github.io/tags/pic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>對MPLAB X IDE產生之專案導入git</title>
+      <link>https://daichou.github.io/posts/mplab-x-idegit/</link>
+      <pubDate>Wed, 18 Jul 2018 07:25:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/mplab-x-idegit/</guid>
+      <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
+.
+├── build
+│ └── default
+│ └── production
+│ ├── main.o
+│ └── main.o.d
+├── debug
+│ └── default
+├── dist
+│ └── default
+│ └── production
+│ ├── 4013_test.X.production.elf
+│ ├── 4013_test.X.production.hex
+│ └── 4013_test.X.production.map
+├── main.c
+├── Makefile
+└── nbproject
+ ├── configurations.xml
+ ├── Makefile-default.mk
+ ├── Makefile-genesis.properties
+ ├── Makefile-impl.mk
+ ├── Makefile-local-default.mk
+ ├── Makefile-variables.mk
+ ├── Package-default.bash</description>
+    </item>
+    
+    <item>
+      <title>I2C 使用Microchip plib</title>
+      <link>https://daichou.github.io/posts/i2c-microchip-plib/</link>
+      <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/i2c-microchip-plib/</guid>
+      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
+plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。
+函式概覽 安裝後文件會在xc16 complier的docs/periph_libs下。
+其中plib提供以下函式。
+ AckI2C
+CloseI2C
+ConfigIntI2C
+DataRdyI2C
+IdleI2C
+MastergetsI2C
+MasterputsI2C
+MasterReadI2C
+MasterWriteI2C
+NotAckI2C
+OpenI2C
+RestartI2C
+SlavegetsI2C
+SlaveputsI2C
+SlaveReadI2C
+SlaveWriteI2C
+StartI2C
+StopI2C
+ 還有一些MARCO
+ EnableIntMI2C
+DiableIntMI2C
+SetPriorityIntMI2C
+EnableIntSI2C
+DisableIntSI2C
+SetPriorityIntSI2C
+ 這份文件16 bit language tools第191頁開始有詳述這些函式的介面。所以本文主要會面向如何運用這些函式達成master與slave溝通。
+I2C (dsPIC30F as Master with 7bit address) reception 以下圖片來自於http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf
+
+對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。
+請先透過ConfigIntI2C和OpenI2C設定好硬體參數。
+值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。
+transmission transmission只要全部都由Master端給資料即可。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,43 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">使用SW4STM32建置STM32 HAL專案</h1>
+    
+    <time>February 3, 2018</time>
+    
+    <div>
+        <p>
+        <h2 id="使用sw4stm32建置stm32-hal專案">使用SW4STM32建置STM32 HAL專案</h2>
+<p>上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。</p>
+<h3 id="步驟">步驟</h3>
+<p>其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</p>
+<p><a href="https://3.bp.blogspot.com/-ayWCA5ivB8M/WnV4WuRXBgI/AAAAAAAACHQ/JFYjB8vvFQcLKb-Grnu4StikTJfUgX3tQCLcBGAs/s1600/Screenshot%2Bfrom%2B2018-02-03%2B16-52-27.png"><img src="https://3.bp.blogspot.com/-ayWCA5ivB8M/WnV4WuRXBgI/AAAAAAAACHQ/JFYjB8vvFQcLKb-Grnu4StikTJfUgX3tQCLcBGAs/s640/Screenshot%2Bfrom%2B2018-02-03%2B16-52-27.png" alt=""></a></p>
+<p>當選擇完板子時不要急著案完成，繼續按下一步。</p>
+<p><a href="https://1.bp.blogspot.com/-fdfWFeMTqd0/WnV4wvCirJI/AAAAAAAACHU/dybtZkAOIX8CAWhfVbJh6KGLCyUenaxpwCLcBGAs/s1600/Screenshot%2Bfrom%2B2018-02-03%2B16-50-49.png"><img src="https://1.bp.blogspot.com/-fdfWFeMTqd0/WnV4wvCirJI/AAAAAAAACHU/dybtZkAOIX8CAWhfVbJh6KGLCyUenaxpwCLcBGAs/s640/Screenshot%2Bfrom%2B2018-02-03%2B16-50-49.png" alt=""></a></p>
+<p>下一步後，勾選Hardware Abstraction Layer(HAL)，即可導入ST官方提供之HAL library。其他還有一些第三方library如FreeRTOS等，也可在這裡新增。</p>
+<h3 id="結果">結果</h3>
+<p>SW4STM32會建立如下專案：</p>
+<p><a href="https://4.bp.blogspot.com/-Axj7TL49JU0/WnV5rd-W3oI/AAAAAAAACHg/5pVkzPHH7bcRgfpxxKDdVoU0DezUwgRLQCLcBGAs/s1600/filetree.png"><img src="https://4.bp.blogspot.com/-Axj7TL49JU0/WnV5rd-W3oI/AAAAAAAACHg/5pVkzPHH7bcRgfpxxKDdVoU0DezUwgRLQCLcBGAs/s640/filetree.png" alt=""></a></p>
+<p>其中HAL會獨立在HAL_Driver下。有幾個檔案要特別注意。</p>
+<p>src/stm32l4xx_it.c和inc/stm32l4xx_it.h這兩個檔案為放置Interrupt handler用的檔案，如有新增的Interrupt handler最好是放在這裡。</p>
+<p>src/system_stm32l4xx.c：這個檔案放置系統開機時的初始化(clock和RCC)。</p>
+<p>src/syscalls.c：這個檔案放置syscall，如果需要將printf的輸出導到UART，就需要在這個檔案動手腳。如下重新定義_io_putchar(int ch)</p>
+<h3 id="其他">其他</h3>
+<p>若要將其他的STM32CubeMX產生出的檔案放入SW4STM32產生之HAL專案，編譯時可能會遇到一些問題。如：void HAL_MspInit(void) redefination。原因是HAL_Driver/Src/stm32l4xx_hal_msp_template.c這個檔案會有衝突，處理方法即是刪除此檔。</p>
 
-<h1>Tags</h1>
-<ul>
+        </p>
+    </div>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/stm">#STM</a>
+        
+      
+    </div>
+
 
         
         </div>

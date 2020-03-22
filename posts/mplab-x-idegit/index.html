@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">對MPLAB X IDE產生之專案導入git</h1>
+    
+    <time>July 18, 2018</time>
+    
+    <div>
+        <p>
+        <h3 id="mplab-x-ide產生之專案架構">MPLAB X IDE產生之專案架構</h3>
+<p>MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：</p>
+<p>.</p>
+<p>├── build</p>
+<p>│   └── default</p>
+<p>│       └── production</p>
+<p>│           ├── main.o</p>
+<p>│           └── main.o.d</p>
+<p>├── debug</p>
+<p>│   └── default</p>
+<p>├── dist</p>
+<p>│   └── default</p>
+<p>│       └── production</p>
+<p>│           ├── 4013_test.X.production.elf</p>
+<p>│           ├── 4013_test.X.production.hex</p>
+<p>│           └── 4013_test.X.production.map</p>
+<p>├── main.c</p>
+<p>├── Makefile</p>
+<p>└── nbproject</p>
+<p>    ├── configurations.xml</p>
+<p>    ├── Makefile-default.mk</p>
+<p>    ├── Makefile-genesis.properties</p>
+<p>    ├── Makefile-impl.mk</p>
+<p>    ├── Makefile-local-default.mk</p>
+<p>    ├── Makefile-variables.mk</p>
+<p>    ├── Package-default.bash</p>
+<p>    ├── private</p>
+<p>    │   ├── configurations.xml</p>
+<p>    │   └── private.xml</p>
+<p>    └── project.xml</p>
+<p>可以發現build/default、debug/default、dist/default/底下存有編譯時期產生之檔案，而nbproject/private則存有當前專案於當前系統中實際之相依toolchain路徑。</p>
+<h3 id="git-ignore">Git Ignore</h3>
+<p>有了前面的事實，我們git ignore應該寫成如下：</p>
+<pre><code>\*/nbproject/private/  
+\*/dist/default  
+\*/build/default  
+\*/debug/default  
+
+</code></pre><p>至少需拔掉編譯時期會產生檔案。此外nbproject下的Makefile相依檔案，如Makefile*, XXX.mk等一定要進入git。</p>
+<h3 id="跨os-issue">跨OS issue</h3>
+<p>雖然MPLAB X IDE產生的專案可以輕易在LINUX上與Windows上運行，不過為了紀錄OS資訊，MPLAB X IDE會在Makefile-genesis.properties這些properties檔案中存入作業系統資訊。因此git在這些區域容易出現問題(confilct)。比較好的辦法就是不要跨平台。然而若是仍須跨平台，Makefile-genesis.properties5這檔案可能會造成MPLAB X IDE找不到compiler或是toolchain。因此可以透過MPLAB X IDE  GUI界面，選擇project properties，重新創立properties。</p>
+<p><a href="https://3.bp.blogspot.com/-oFXfrc6qf6U/W09Nyn2DFhI/AAAAAAAACoY/pnrX-2-Pwjg8uIS6Avwo-DLAy9NIJIT2wCLcBGAs/s1600/Screenshot%2Bfrom%2B2018-07-18%2B22-18-51.png"><img src="https://3.bp.blogspot.com/-oFXfrc6qf6U/W09Nyn2DFhI/AAAAAAAACoY/pnrX-2-Pwjg8uIS6Avwo-DLAy9NIJIT2wCLcBGAs/s320/Screenshot%2Bfrom%2B2018-07-18%2B22-18-51.png" alt=""></a></p>
+<h3 id="netbeans-git-plugin">NetBeans git plugin</h3>
+<p>MPLAB X IDE是以NetBeans為基礎，所以也可以使用NetBeans的git plugin。</p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/pic">#PIC</a>
+        
+            <a class="tag" href="/tags/note">#Note</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

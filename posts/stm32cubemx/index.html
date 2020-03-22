@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">STM32CubeMX初探</h1>
+    
+    <time>September 4, 2017</time>
+    
+    <div>
+        <p>
+        <h2 id="stm32cubemx初探">STM32CubeMX初探</h2>
+<p>STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&quot;工程化&rdquo;，產生的專案會更有組織。</p>
+<h3 id="一安裝與更新">一、安裝與更新</h3>
+<p>安裝網址如下:http://www.st.com/en/development-tools/stm32cubemx.html</p>
+<p>下載完成後，桌面會產生兩個icon，一個是STM32CubeMX，一個是STM32CubeUpdater。</p>
+<p>開啟STM32CubeUpdater，選擇所需的STM32系列library，即可完成相依library建設。更新也是透過此工具。</p>
+<h3 id="二基本使用以stm32f469ni_discovery為範例">二、基本使用(以STM32F469NI_Discovery為範例)</h3>
+<p>開啟STM32CubeMX，選擇New Project-&gt;選擇晶片或是開發版即可進入。如下圖畫面。</p>
+<p><a href="https://1.bp.blogspot.com/-DJNGQoeI7tM/Wa1TDjCEuHI/AAAAAAAAB8A/-HYHnYSh4mcdNLdCOBKw6_FG_4xAih7wgCLcBGAs/s1600/STM32CubeInit.png"><img src="https://1.bp.blogspot.com/-DJNGQoeI7tM/Wa1TDjCEuHI/AAAAAAAAB8A/-HYHnYSh4mcdNLdCOBKw6_FG_4xAih7wgCLcBGAs/s640/STM32CubeInit.png" alt=""></a></p>
+<h4 id="-pinout"># pinout</h4>
+<p>左邊為周邊模組(peripheral)綠色為已經啟用。左邊為腳位設定(綠色為已規劃，橘色為開發版已經硬體連接的腳位但未啟用)。左鍵點選腳位可以開啟小選單選擇所需腳位定義。</p>
+<p>透過上方tab進入進階規劃。</p>
+<p><a href="https://3.bp.blogspot.com/-aexvKfVOFfA/Wa1VAF2ZmqI/AAAAAAAAB8M/-CIaNLYfyrEZzJ4FHn058KZimr7B4CgdQCLcBGAs/s1600/STM32Cubetab.png"><img src="https://3.bp.blogspot.com/-aexvKfVOFfA/Wa1VAF2ZmqI/AAAAAAAAB8M/-CIaNLYfyrEZzJ4FHn058KZimr7B4CgdQCLcBGAs/s640/STM32Cubetab.png" alt=""></a></p>
+<h4 id="clock-configuration">#Clock Configuration</h4>
+<p><a href="https://2.bp.blogspot.com/-g2Ig8l1paEs/Wa1VqblbGOI/AAAAAAAAB8U/yEZTyvkFAao5GRDx78boCgrKA51KijafgCLcBGAs/s1600/STM32CubeClockConfiguration.png"><img src="https://2.bp.blogspot.com/-g2Ig8l1paEs/Wa1VqblbGOI/AAAAAAAAB8U/yEZTyvkFAao5GRDx78boCgrKA51KijafgCLcBGAs/s640/STM32CubeClockConfiguration.png" alt=""></a></p>
+<p>這個tab將STM32的所有時序和PLL、prescaler列出整理成流。</p>
+<p>幾乎所有設定都可以修改。後方藍色框框中可以直接鍵入所需Clock值，系統會幫你調整整個流。當然有硬體限制，STM32cubeMX會提醒你，當你出現錯誤設定會有警示。</p>
+<h4 id="heading"></h4>
+<p>#Configuration</p>
+<p><a href="https://2.bp.blogspot.com/-FWQWhajhwIQ/Wa1XiVC54hI/AAAAAAAAB8g/hq_nWsBAUckZBL47T4JbDu-9Ao7xXbHQwCLcBGAs/s1600/STM32CubeAdvancedconfiguration.png"><img src="https://2.bp.blogspot.com/-FWQWhajhwIQ/Wa1XiVC54hI/AAAAAAAAB8g/hq_nWsBAUckZBL47T4JbDu-9Ao7xXbHQwCLcBGAs/s640/STM32CubeAdvancedconfiguration.png" alt=""></a></p>
+<h4 id="這個tab將前面所開啟的周邊模組列出每個都可點選以進階設定更詳細的設定之後文章會介紹">這個tab將前面所開啟的周邊模組列出，每個都可點選以進階設定。更詳細的設定之後文章會介紹。</h4>
+<h4 id="power-consumption-calculator">#power consumption calculator</h4>
+<p><a href="https://3.bp.blogspot.com/-VcAqzTMGb0k/Wa1YeZuyYAI/AAAAAAAAB8o/-_6Y0QvHlBE1jdqtJkIdAcq5Z1P751ebgCLcBGAs/s1600/STM32CubePower.png"><img src="https://3.bp.blogspot.com/-VcAqzTMGb0k/Wa1YeZuyYAI/AAAAAAAAB8o/-_6Y0QvHlBE1jdqtJkIdAcq5Z1P751ebgCLcBGAs/s640/STM32CubePower.png" alt=""></a></p>
+<p>這個tab可以幫助計算能源消耗，還可以計算各個環境下的情況(就是把datasheet後面的數據列出)，不過無法計算開發版的能源消耗，僅限晶片本身。</p>
+<h4 id="-project-settings"># project Settings</h4>
+<p>點選上方menu-&gt;Project-&gt;Project Settings，開啟以下專案設定。</p>
+<p><a href="https://2.bp.blogspot.com/-SOQeua9RUfA/Wa1aRq1SP4I/AAAAAAAAB80/A8et3sQxVTgRf0bZfVOZZq-mUgfh9C_rACLcBGAs/s1600/STM32ProjectSettings.png"><img src="https://2.bp.blogspot.com/-SOQeua9RUfA/Wa1aRq1SP4I/AAAAAAAAB80/A8et3sQxVTgRf0bZfVOZZq-mUgfh9C_rACLcBGAs/s320/STM32ProjectSettings.png" alt=""></a></p>
+<p>基本上就按照環境選了。不過這裏特別提一個選項，我覺得對後續開發很以幫助。</p>
+<p><a href="https://1.bp.blogspot.com/-Al4yFBMKc84/Wa1a9eYAkUI/AAAAAAAAB88/oqFTkVKwEoYxYR5egfDrlDA4lZVQDTTDACLcBGAs/s1600/STM32CubeGeneration%2Bperipheral%2Binitialization.png"><img src="https://1.bp.blogspot.com/-Al4yFBMKc84/Wa1a9eYAkUI/AAAAAAAAB88/oqFTkVKwEoYxYR5egfDrlDA4lZVQDTTDACLcBGAs/s320/STM32CubeGeneration%2Bperipheral%2Binitialization.png" alt=""></a></p>
+<p>紅框中選項可以將周邊裝置的初始化函式(以MX_為前綴的函式)產生成獨立的.c/.h配對，避免全部Init函式都在main中，造成main function很肥大，而且當你有多個source檔(並非主要程序都集中在main.c)時，可以讓其他函式更方便引用這些初始程序。</p>
+<h4 id="heading-1"></h4>
+<p>#產生Project與報告</p>
+<p><a href="https://1.bp.blogspot.com/-AaOvtI-G3xc/Wa1cIqDKwjI/AAAAAAAAB9E/OWYDhxRU1Xgu7NRJHoZcLoyUw-BFBUdpwCLcBGAs/s1600/generator.png"><img src="https://1.bp.blogspot.com/-AaOvtI-G3xc/Wa1cIqDKwjI/AAAAAAAAB9E/OWYDhxRU1Xgu7NRJHoZcLoyUw-BFBUdpwCLcBGAs/s320/generator.png" alt=""></a></p>
+<p>紅框中這兩個東西可以產生Project 與報告。</p>
+<h4 id="結果與檔案樹以arm-mdk-keil為例">#結果與檔案樹(以ARM MDK keil為例)</h4>
+<p><a href="https://3.bp.blogspot.com/-spFXh3cHQqs/Wa1dzZVYzGI/AAAAAAAAB9Q/d8v1OpVfrgodwnVcq7YHPWQ4lkpP_jsbgCLcBGAs/s1600/keil_final.png"><img src="https://3.bp.blogspot.com/-spFXh3cHQqs/Wa1dzZVYzGI/AAAAAAAAB9Q/d8v1OpVfrgodwnVcq7YHPWQ4lkpP_jsbgCLcBGAs/s640/keil_final.png" alt=""></a></p>
+<p>User裡面是初始化函式和main.c。可以發現main.c中有一堆USER code begin和USER code end的註解，這些註解是希望user將自己的code加入其中，因為如果要重新使用STM32CubeMX產生code到同一專案時，可以確保user code不會被覆蓋。</p>
+<p>Drivers/STM32F_4xx_HAL_Driver是STM官方在推的HAL函式庫，現在的主流，這部分引用都是由STM32CubeMX完成，其中若是想要自行開啟周邊模組，可以在這個資料夾中的stm32f4xx_hal_conf.h中解除註解或新增註解(外面檔案樹的Inc中)。若有新增模組需要手動將該周邊的HAL的.c新增進專案中。</p>
+<h3 id="-小結"># 小結</h3>
+<p>STM32CubeMX的有點是可以讓開發工程化，開發速度加快，可以用高層級的方式思考整個系統架構，而且不用去一直翻閱datasheet(最好還是要了解整個周邊的架構與使用)。</p>
+<p>缺點是一些官方套件，例如:STemWin和BSP要自行新增進入專案中，有點可惜。</p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/stm">#STM</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

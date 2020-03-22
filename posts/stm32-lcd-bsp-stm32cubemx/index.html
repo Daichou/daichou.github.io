@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">STM32 LCD 使用 BSP 與STM32CubeMX</h1>
+    
+    <time>September 7, 2017</time>
+    
+    <div>
+        <p>
+        <h2 id="stm32-lcd-使用-bsp-與stm32cubemx">STM32 LCD 使用 BSP 與STM32CubeMX</h2>
+<p>本文以STM32F469NI Discovery為範例。目標是以STM32F469的BSP lib操作STM32F469 Discovery的TFT-LCD。</p>
+<h3 id="stm32cubemx-configuration">STM32CubeMX configuration</h3>
+<p>先將周邊開啟如以下設定。</p>
+<p><a href="https://2.bp.blogspot.com/-57DsxLqsifo/WbD5ZMPMgsI/AAAAAAAAB9s/FLVCA-O-U5sItfPneUEbIvVuGgiBZZvqgCLcBGAs/s1600/BSP_LCD_Config1.png"><img src="https://2.bp.blogspot.com/-57DsxLqsifo/WbD5ZMPMgsI/AAAAAAAAB9s/FLVCA-O-U5sItfPneUEbIvVuGgiBZZvqgCLcBGAs/s640/BSP_LCD_Config1.png" alt=""></a><a href="https://2.bp.blogspot.com/-JazLmVPBGiA/WbD5ZEbH1lI/AAAAAAAAB9w/3NBXe_CirSIh1OKiNBLmUxgVhmt_HorPACLcBGAs/s1600/BSP_LCD_Config2.png"><img src="https://2.bp.blogspot.com/-JazLmVPBGiA/WbD5ZEbH1lI/AAAAAAAAB9w/3NBXe_CirSIh1OKiNBLmUxgVhmt_HorPACLcBGAs/s640/BSP_LCD_Config2.png" alt=""></a></p>
+<p>LTDC : LCD-TFT Display Controller，硬體優化的LCD控制介面。</p>
+<p>DSIHOST: Display Serial Interface Host，由MIPI alliance建立的行動顯示protocol。提供高速的LCD framrate。</p>
+<p>DMA2D : Chrom-Art Accelerator™ 用來做圖像操作的DMA，可以做出限定範圍的填滿等記憶體操作。適用AHB bus，可以將結果導入AHB slave端(DSI HOST)。</p>
+<p>RCC : LTDC , DSI HOST需要時序。</p>
+<p>I2C : 觸控需要。(stm32f469_discovery.c需要I2C)。</p>
+<p>FMC : 用BSP時可以選擇使用SDRAM存儲資料。</p>
+<p><a href="https://4.bp.blogspot.com/-QU_cEnaZveM/WbEK5n7-rxI/AAAAAAAAB-A/lOvfTtzy_BUC5NtsuX7L8Ld9UxyLR4i4ACLcBGAs/s1600/BSP_LCD_clk_config.png"><img src="https://4.bp.blogspot.com/-QU_cEnaZveM/WbEK5n7-rxI/AAAAAAAAB-A/lOvfTtzy_BUC5NtsuX7L8Ld9UxyLR4i4ACLcBGAs/s640/BSP_LCD_clk_config.png" alt=""></a></p>
+<p>時脈控制，由於開啟HSE，所以DSI有了clock source。(這部分要注意STM32CubeMX產生出來的程式碼是否會讓clock超過硬體限制)。</p>
+<p><a href="https://2.bp.blogspot.com/-AhJ_XpGjB54/WbELgJ8ECVI/AAAAAAAAB-I/CGlsOBujnmoGFlIpQANEe8iieo4mO2r3QCLcBGAs/s1600/BSP_LCD_DMA2D_CONFIG.png"><img src="https://2.bp.blogspot.com/-AhJ_XpGjB54/WbELgJ8ECVI/AAAAAAAAB-I/CGlsOBujnmoGFlIpQANEe8iieo4mO2r3QCLcBGAs/s640/BSP_LCD_DMA2D_CONFIG.png" alt=""></a></p>
+<p>選擇RGB565為color mode。</p>
+<p><a href="https://2.bp.blogspot.com/-AU3S0vrSCoY/WbELyqrFt7I/AAAAAAAAB-M/2GAp6YDTq_0cvtKnRZVSTYejtcSVC7DCwCLcBGAs/s1600/BSP_LCD_LTDC_CONFIG.png"><img src="https://2.bp.blogspot.com/-AU3S0vrSCoY/WbELyqrFt7I/AAAAAAAAB-M/2GAp6YDTq_0cvtKnRZVSTYejtcSVC7DCwCLcBGAs/s640/BSP_LCD_LTDC_CONFIG.png" alt=""></a></p>
+<p>Pixel format選用ARGB8888。</p>
+<h3 id="heading"></h3>
+<p>引入Driver</p>
+<p>在專案資料夾下的Drivers/BSP/Components/otm8009a 中，將該路徑下的otm8009a.c 加入keil專案。otm8009a為STM32F469_Discovery上的觸控顯示螢幕。</p>
+<p>在專案資料夾下的Drivers/BSP/STM32469I_Discovey中，將該路徑下的stm32469i_discovery.c、stm32469i_discovery_lcd.c、stm32469i_sdram.c加入keil專案中。<br>
+去下載STM32CubeMX STM32F4 firmware link: <a href="http://www.st.com/content/st_com/en/products/embedded-software/mcus-embedded-software/stm32-embedded-software/stm32cube-embedded-software/stm32cubef4.html">http://www.st.com/content/st_com/en/products/embedded-software/mcus-embedded-software/stm32-embedded-software/stm32cube-embedded-software/stm32cubef4.html</a><br>
+解開來，將Utilities資料夾放入project根目錄。</p>
+<p>新增好的檔案架構如下。</p>
+<p><a href="https://3.bp.blogspot.com/-G-CUEFg7rkQ/WbENhbQzRLI/AAAAAAAAB-Y/UvG0PgsmoIsAbecaU0detiljslkeoN0KwCLcBGAs/s1600/BSP_LCD_fs.png"><img src="https://3.bp.blogspot.com/-G-CUEFg7rkQ/WbENhbQzRLI/AAAAAAAAB-Y/UvG0PgsmoIsAbecaU0detiljslkeoN0KwCLcBGAs/s400/BSP_LCD_fs.png" alt=""></a></p>
+<p>在options for target -&gt; C/C++ -&gt; include path中加入那兩個資料夾。如下:</p>
+<p><a href="https://2.bp.blogspot.com/-TqX8I7iiGiw/WbEODtuxhbI/AAAAAAAAB-g/7fFOae8z_Hcmz3rmCKWpfuni0adPLz0rACLcBGAs/s1600/BSP_LCD_includepath.png"><img src="https://2.bp.blogspot.com/-TqX8I7iiGiw/WbEODtuxhbI/AAAAAAAAB-g/7fFOae8z_Hcmz3rmCKWpfuni0adPLz0rACLcBGAs/s400/BSP_LCD_includepath.png" alt=""></a></p>
+<h3 id="程式撰寫">程式撰寫</h3>
+<p>main.c中include &ldquo;stm32469i_discovery_lcd.h&rdquo;<br>
+其中的初始流程為:</p>
+<ol>
+<li>初始化LCD =&gt;以BSP_LCD_Init()</li>
+<li>選擇LCD layer =&gt; BSP_LCD_SelectLayer()</li>
+<li>啟動LCD =&gt; BSP_LCD_DisplayOn()</li>
+</ol>
+<p>剩下繪製部分所提供的函式都在stm32469_discovery_lcd.h中。</p>
+<p>不過功能僅有基本。</p>
+<h3 id="成果">成果</h3>
+<p><a href="https://3.bp.blogspot.com/-4giNEAvGJdE/WbFfliaamYI/AAAAAAAAB-w/K5I7P233mbE0tyVgEM7YxG4k7-1RFbH5gCLcBGAs/s1600/DSC_0879.JPG"><img src="https://3.bp.blogspot.com/-4giNEAvGJdE/WbFfliaamYI/AAAAAAAAB-w/K5I7P233mbE0tyVgEM7YxG4k7-1RFbH5gCLcBGAs/s640/DSC_0879.JPG" alt=""></a></p>
+<p>上面印的文字是宅梗，歡迎探究XD</p>
+<p>延伸閱讀: <a href="http://www.st.com/content/ccc/resource/technical/document/application_note/85/ad/ef/0f/a3/a6/49/9a/CD00201397.pdf/files/CD00201397.pdf/jcr:content/translations/en.CD00201397.pdf">http://www.st.com/content/ccc/resource/technical/document/application_note/85/ad/ef/0f/a3/a6/49/9a/CD00201397.pdf/files/CD00201397.pdf/jcr:content/translations/en.CD00201397.pdf</a></p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/stm">#STM</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

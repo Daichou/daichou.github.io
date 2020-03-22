@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">PWM產生方式</h1>
+    
+    <time>July 31, 2016</time>
+    
+    <div>
+        <p>
+        <h2 id="pwm簡述">PWM簡述</h2>
+<p>PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</p>
+<p><a href="https://4.bp.blogspot.com/-ttPaWLzauvs/V522Kci1JvI/AAAAAAAABas/zjzq5WZFsHc5uJ-jfJzE5n-NTmXL9cviwCLcB/s1600/PWM.png"><img src="https://4.bp.blogspot.com/-ttPaWLzauvs/V522Kci1JvI/AAAAAAAABas/zjzq5WZFsHc5uJ-jfJzE5n-NTmXL9cviwCLcB/s640/PWM.png" alt=""></a></p>
+<p>duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</p>
+<h2 id="pwm產生方式">PWM產生方式</h2>
+<p>PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。</p>
+<h3 id="硬體內建pwm模組">硬體內建PWM模組</h3>
+<p>MCU內常內建PWM模組，以PIC系列為例，有CCP(Capture/Compare/PWM)模組、Output Compare模組和PWM模組。透過設定timer和暫存去達成PWM輸出。以下以dsPIC30F4013的Output Compare做示範。</p>
+<p>由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。<br>
+dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為&rsquo;110'或&rsquo;111&rsquo;。設定順序為:<br>
+1.設定PRy(Period register)表示PWM的週期。<br>
+2.再來設定OCxRS暫存器表示duty cycle。<br>
+3.設定OCM。<br>
+4.設定timer，並開啟timer。</p>
+<p>PWM 週期 ＝ [(PRy+1)]*Tcy*(TMRx presclaer value)。 (Tcy為振盪器頻率*PLL/4)<br>
+PWM 頻率為週期倒數。<br>
+詳細設定在<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/70157C.pdf">http://ww1.microchip.com/downloads/en/DeviceDoc/70157C.pdf</a>中有詳細描述。</p>
+<h3 id="中斷產生pwm">中斷產生PWM</h3>
+<p>利用Timer中斷來切換PWM進入duty cycle，有兩種方法。</p>
+<p>一、用一個或兩個timer，先輸出high，計算PWM在high所需時間，設定好Timer 週期(中斷條件)，當Timer發生中斷，將輸出切為low，並在計算PWM在low所需時間，同樣設定好Timer週期，當Timer發生中斷回到一開始重頭來過。也可用兩個Timer一個設為high所需時間，一個為period，當high的timer 中斷發生，關閉其中斷與timer，並將輸出設為low，等待period 的Timer發生中斷，在開啟high 的timer中斷。</p>
+<p>二、用一個timer中斷，當其中斷將counter加一，一旦couner的值大於duty cycle則切為low，當counter的值大於period則歸零。以下為範例(使用PIC18F452)。</p>
+<p>此方法缺點為PWM頻率難以調整，不過對於本身PWM模組缺乏或過少之MCU，此法十分有效。</p>
+<h3 id="迴圈產生pwm">迴圈產生PWM</h3>
+<p>以迴圈直接產生PWM，可以用一個counter當作現在情況，當迴圈執行次數超過duty cycle的值時，調整high low，這方法十分簡單，但如果要有準確的頻率需要將程式編成組語計算其所需時間，並用NOP指令挑整週期。這方法會佔走整個CPU，十分無效率，但其可以結合輪詢等固定時間需要執行的功能，對於低階，簡單的系統有其應用空間。</p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/hardware">#hardware</a>
+        
+            <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

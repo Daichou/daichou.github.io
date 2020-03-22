@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,50 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
-
-<h1>Tags</h1>
-<ul>
+<h1 class="post-title">libpqxx - postgresql c&#43;&#43; library 基本教學</h1>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
+    <time>May 1, 2016</time>
     
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
+    <div>
+        <p>
+        <ul>
+<li>簡介</li>
 </ul>
+<p>libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。<br>
+libpqxx官網：<a href="http://pqxx.org/">http://pqxx.org/</a></p>
+<ul>
+<li>linux上安裝方式</li>
+</ul>
+<p>請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。<br>
+link:<a href="https://wiki.archlinux.org/index.php/PostgreSQL">https://wiki.archlinux.org/index.php/PostgreSQL</a><br>
+libray link:<a href="http://pqxx.org/download/software/libpqxx/">http://pqxx.org/download/software/libpqxx/</a></p>
+<p>arch linux上安裝方式，libpqxx為Extra package。<!-- raw HTML omitted --> link:<a href="https://www.archlinux.org/packages/extra/i686/libpqxx/">https://www.archlinux.org/packages/extra/i686/libpqxx/</a><br>
+安裝完成後，於postgresql安裝目錄下。<br>
+於pg_hba.conf新增<br>
+啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理</p>
+<ul>
+<li>基本用法</li>
+</ul>
+<p>libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例</p>
+<p>這個範例使用了三種parse資料的方法，分別是使用pqxx::tuple的方式、使用內建iterator的方式與使用類似C++ STL map的key-value方式。<br>
+編譯方式：<br>
+參考資料:<a href="http://www.yiibai.com/html/postgresql/2013/080894.html">http://www.yiibai.com/html/postgresql/2013/080894.html</a></p>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+        
+            <a class="tag" href="/tags/postgresql">#postgresql</a>
+        
+      
+    </div>
+
 
         
         </div>

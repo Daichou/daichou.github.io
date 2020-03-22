@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">2018 COSCUP Day2</h1>
+    
+    <time>August 19, 2018</time>
+    
+    <div>
+        <p>
+        <ul>
+<li>
+<h3 id="flatpak-vs-snap"><strong>flatpak vs. snap</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-gnome/%2Fcoscup18-gnome301-flatpak-snap">https://hackmd.io/c/coscup18-gnome/%2Fcoscup18-gnome301-flatpak-snap</a></li>
+<li>按照官網說法，flatpak就是一種container，透過OCI format和cgroups等科技達成sandbox，snap也是類似的東西。<a href="https://flatpak.org/faq/">https://flatpak.org/faq/</a></li>
+<li>flatpak的app比較多，但是也比較雜，不過其支援ROS打包未來應可以應用。</li>
+</ul>
+</li>
+<li>
+<h3 id="回望踏入-linux-内核之旅"><strong>回望踏入 Linux 内核之旅</strong></h3>
+<ul>
+<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-linux-kernel">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-linux-kernel</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Dgq35AUIBy5nMUKPBwR5ag">https://mp.weixin.qq.com/s/Dgq35AUIBy5nMUKPBwR5ag</a></li>
+<li>中國人很喜歡哲學again XD</li>
+<li>我覺得對岸的OS教得比較深入(西安交大)，教授會要求學生進去看sub module。同時也會與學生組織讀書會一起討論。</li>
+<li>Understanding the Linux Kernel(ULK)難，深入屬於進階</li>
+<li>Linux kernel development(LKD)簡單，適合入門。</li>
+<li>Linux device driver屬於實做型</li>
+</ul>
+</li>
+<li>
+<h3 id="utensor-ai-on-microcontroller"><strong>uTensor: AI on Microcontroller</strong></h3>
+</li>
+<li>
+<p><a href="https://hackmd.io/c/coscup18-data/%2Fcoscup18-data-utensor">https://hackmd.io/c/coscup18-data/%2Fcoscup18-data-utensor</a></p>
+</li>
+<li>
+<p><a href="https://github.com/uTensor/uTensor">https://github.com/uTensor/uTensor</a></p>
+</li>
+<li>
+<p>在MCU上跑Tensor，由於MCU功耗極低，而且超便宜，若能將部份機器學習推論部份搬至MCU上會在應用上更有幫助。然而MCU有其限制，例如code size,ram size小，而且又很慢，因此僅適合做推論。為了克服ram太小問題，可以將資料存於SD卡中(SDTensor)或是ROM（ROMTensor），其中ROM tensor可以不需要SD卡。在編譯期的優化需要判斷哪個Tensor最常被Reference，讓其停留於MCU的data memory中。至於應用，可以用在Sensor Fusion，對資料做前處理，減少傳遞的資料量。也可以做輸入辨識。</p>
+</li>
+<li>
+<p>uTensor建立在ARM mbed平台上。即便如此，程式碼須撰寫的數量仍多，因此有了utensor_cgen的專案，將python tensor轉為uTensor。</p>
+</li>
+<li>
+<p>uTensor專案下方有對於edge computing做介紹。</p>
+</li>
+<li>
+<h3 id="其他同場加映-山嵐拉麵"><strong>其他：同場加映-山嵐拉麵</strong></h3>
+</li>
+</ul>
+<p><a href="https://1.bp.blogspot.com/-GtAysHgXtqw/W3k35yh5vUI/AAAAAAAACxw/biyZNTDHoascpAxASwNAvtlWbviMcV29wCEwYBhgL/s1600/39442681_1547109432059578_6309615834692059136_n.jpg"><img src="https://1.bp.blogspot.com/-GtAysHgXtqw/W3k35yh5vUI/AAAAAAAACxw/biyZNTDHoascpAxASwNAvtlWbviMcV29wCEwYBhgL/s320/39442681_1547109432059578_6309615834692059136_n.jpg" alt=""></a></p>
+<p>湯濃，但是略油，料豐，但是略貴</p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97">#活動心得</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

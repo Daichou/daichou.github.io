@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,60 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
-
-<h1>Tags</h1>
+<h1 class="post-title">L3G4200 gyroscope使用筆記</h1>
+    
+    <time>February 18, 2017</time>
+    
+    <div>
+        <p>
+        <h1 id="l3g4200-gyroscope使用筆記"><strong>L3G4200 gyroscope使用筆記</strong></h1>
+<h3 id="特性與參數">特性與參數</h3>
 <ul>
-    
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
+<li>用途：量測姿態</li>
+<li>精度：250/500/2000 dps (degree per second)</li>
+<li>輸出資料：為angular rate(角速度) ，16bit</li>
+<li>原始感應器電壓(僅有晶片)：2.4V ~3.6V</li>
+<li>模組(GY50)電壓：3~5V</li>
+<li>其他特色：有內建high pass filter和low pass filter可供程式選擇，還有中斷信號選擇</li>
+<li>通信方式：I2C/SPIs</li>
+<li>晶片datasheet:<a href="http://www.st.com/content/ccc/resource/technical/document/datasheet/04/46/d6/00/be/d9/46/ae/CD00265057.pdf/files/CD00265057.pdf/jcr:content/translations/en.CD00265057.pdf">連結在此</a></li>
+<li>模組(GY50)購買網頁：<a href="http://shop.cpu.com.tw/html/2533/ADIO-GY50.html">連結在此</a></li>
 </ul>
+<h3 id="用此模組量測當前姿態方式">用此模組量測當前姿態方式</h3>
+<h4 id="軟體部份">軟體部份</h4>
+<p>Ardunio先安裝wire library和<a href="http://morf.lv/modules.php?name=tutorials&amp;lasit=32">L3G4200D</a><br>
+用這個網站上的code和library即可。</p>
+<h4 id="角速度轉成角度">角速度轉成角度</h4>
+<p>由於該感測器輸出為角速度(離散資料)，所以我們須將角速度做離散積分得到角度。</p>
+<blockquote>
+<p>角度 ＝ 初始角度 + (角速度*取樣時間的總和)</p>
+</blockquote>
+<p>下圖為利用QT自製的視覺化工具。其中若要得到角度責須得到線與0軸的面積。</p>
+<p><a href="https://1.bp.blogspot.com/-bFhzBiIPFHE/WKj6REt9n_I/AAAAAAAABhE/q3o4XofWnJUhe_Y9R_j3EwewchZw9GpAwCLcB/s1600/Screenshot%2Bfrom%2B2017-02-18%2B19-31-11.png"><img src="https://1.bp.blogspot.com/-bFhzBiIPFHE/WKj6REt9n_I/AAAAAAAABhE/q3o4XofWnJUhe_Y9R_j3EwewchZw9GpAwCLcB/s640/Screenshot%2Bfrom%2B2017-02-18%2B19-31-11.png" alt=""></a></p>
+<p>下圖為L3G4200 datasheet p.10 一小部份，其中Sensitivity代表精度，以FS=200dps為例，代表從感測器輸出的數字1代表8.75mdps，如果輸出為兩千時，當前角速度為2000*8.75/1000000dps = 0.0175 dps。</p>
+<p><a href="https://3.bp.blogspot.com/-wul7j4iiesk/WKj7CKsqmHI/AAAAAAAABhM/Xc65pNMPf44WJHwGR0M4WidKcclgpYZVwCLcB/s1600/dps.png"><img src="https://3.bp.blogspot.com/-wul7j4iiesk/WKj7CKsqmHI/AAAAAAAABhM/Xc65pNMPf44WJHwGR0M4WidKcclgpYZVwCLcB/s640/dps.png" alt=""></a></p>
+<h4 id="應用限制與誤差處理">應用限制與誤差處理</h4>
+<p>由於是作離散積分所以會有誤差，最好使用濾波器(有內建)。<br>
+另外由於它需要一直取樣，對Master CPU來說是很大的負擔。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/hardware">#hardware</a>
+        
+            <a class="tag" href="/tags/note">#Note</a>
+        
+      
+    </div>
+
 
         
         </div>

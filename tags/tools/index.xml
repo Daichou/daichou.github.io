@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on gattaca-ngin</title>
+    <link>https://daichou.github.io/tags/tools/</link>
+    <description>Recent content in tools on gattaca-ngin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 14 Dec 2016 00:49:00 -0800</lastBuildDate>
+    
+	<atom:link href="https://daichou.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>方便的網站：stackedit</title>
+      <link>https://daichou.github.io/posts/stackedit/</link>
+      <pubDate>Wed, 14 Dec 2016 00:49:00 -0800</pubDate>
+      
+      <guid>https://daichou.github.io/posts/stackedit/</guid>
+      <description>**
+方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。
+ Written with StackEdit.
+ </description>
+    </item>
+    
+    <item>
+      <title>[tools]GNU 開發工具：nm</title>
+      <link>https://daichou.github.io/posts/toolsgnu-nm/</link>
+      <pubDate>Tue, 16 Aug 2016 07:46:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/toolsgnu-nm/</guid>
+      <description>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。
+以下我打了一個範例。
+接下來是對其編譯出來的a.out下nm指令的結果。
+第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。
+這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。
+nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,data)。
+相關連結:1.http://www.wuzesheng.com/?p=1595
+2.http://sp1.wikidot.com/elfobjfile
+3.http://enginechang.logdown.com/posts/248172-linker-loader-library
+4.https://github.com/torvalds/linux/blob/9256d5a308c95a50c6e85d682492ae1f86a70f9b/arch/powerpc/boot/elf.h</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on gattaca-ngin</title>
+    <link>https://daichou.github.io/tags/postgresql/</link>
+    <description>Recent content in postgresql on gattaca-ngin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 08 May 2016 09:16:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://daichou.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[筆記] libpqxx - prepare statements</title>
+      <link>https://daichou.github.io/posts/libpqxx-prepare-statements/</link>
+      <pubDate>Sun, 08 May 2016 09:16:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/libpqxx-prepare-statements/</guid>
+      <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+再來是傳遞變數進入prepare的框架。
+其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。</description>
+    </item>
+    
+    <item>
+      <title>libpqxx - postgresql c&#43;&#43; library 基本教學</title>
+      <link>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</link>
+      <pubDate>Sun, 01 May 2016 02:33:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</guid>
+      <description>簡介  libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。
+libpqxx官網：http://pqxx.org/
+ linux上安裝方式  請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。
+link:https://wiki.archlinux.org/index.php/PostgreSQL
+libray link:http://pqxx.org/download/software/libpqxx/
+arch linux上安裝方式，libpqxx為Extra package。link:https://www.archlinux.org/packages/extra/i686/libpqxx/
+安裝完成後，於postgresql安裝目錄下。
+於pg_hba.conf新增
+啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理
+ 基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例
+這個範例使用了三種parse資料的方法，分別是使用pqxx::tuple的方式、使用內建iterator的方式與使用類似C++ STL map的key-value方式。
+編譯方式：
+參考資料:http://www.yiibai.com/html/postgresql/2013/080894.html</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,104 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
-
-<h1>Tags</h1>
+<h1 class="post-title">[Note] GDB 一些指令功能速查</h1>
+    
+    <time>March 3, 2017</time>
+    
+    <div>
+        <p>
+        <h1 id="note-gdb-一些指令功能速查"><strong>[Note] GDB 一些指令功能速查</strong></h1>
+<h2 id="前情提要">前情提要</h2>
+<p>這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。</p>
+<h2 id="常用功能">常用功能</h2>
 <ul>
-    
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
+<li>backtrace</li>
+<li>breakpoint</li>
+<li>watchpoint</li>
+<li>stopwatch</li>
+<li>dump register</li>
+<li>dump variable</li>
+<li>continue and stop</li>
+<li>disasmmebly</li>
+<li>return</li>
 </ul>
+<h2 id="指令速查">指令速查</h2>
+<ul>
+<li>backtrace
+<ul>
+<li>bt</li>
+</ul>
+</li>
+<li>breakpoint
+<ul>
+<li>b</li>
+<li>br</li>
+</ul>
+</li>
+<li>watchpoint
+<ul>
+<li>watch variable_name or watch variable_address</li>
+</ul>
+</li>
+<li>stopwatch
+<ul>
+<li>maint <a href="https://sourceware.org/gdb/onlinedocs/gdb/Maintenance-Commands.html">link</a></li>
+</ul>
+</li>
+<li>dump register
+<ul>
+<li>info r</li>
+</ul>
+</li>
+<li>dump variable
+<ul>
+<li>print variable_name</li>
+<li>print &amp;variable_name =&gt; get address</li>
+<li>print *variable_address =&gt; get address contents</li>
+<li>info display</li>
+</ul>
+</li>
+<li>continue and stop
+<ul>
+<li>c =&gt; continue</li>
+<li>r= &gt; run</li>
+<li>stop =&gt; Ctrl+c</li>
+</ul>
+</li>
+<li>disasmmebly
+<ul>
+<li>disassemble (func…) <a href="http://visualgdb.com/gdbreference/commands/disassemble">link</a></li>
+<li>layout asm</li>
+<li>layout src</li>
+</ul>
+</li>
+<li>return
+<ul>
+<li>return (return this stack)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/tricks">#tricks</a>
+        
+            <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+        
+            <a class="tag" href="/tags/note">#Note</a>
+        
+      
+    </div>
+
 
         
         </div>

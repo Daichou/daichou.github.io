@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,58 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">C99 fast data type</h1>
+    
+    <time>December 6, 2016</time>
+    
+    <div>
+        <p>
+        <h2 id="c99-fast-data-type">C99 fast data type</h2>
+<p>這個主題是我在看完<a href="http://embeddedgurus.com/stack-overflow/2011/02/efficient-c-tip-13-use-the-modulus-operator-with-caution/">Efficient C Tip #13 – use the modulus (%) operator with caution</a>這篇文章發現的C99在stdint.h新規範的一些資料型態，所作的小小理解。</p>
+<p>C99 fast data type，為一種針對硬體CPU架構所提出的資料型態。主要有這下列八種型態：</p>
+<p><strong><code>uint_fast8_t        </code><br>
+<code>uint_fast16_t</code><br>
+<code>uint_fast32_t</code><br>
+<code>uint_fast64_t</code></strong></p>
+<p><strong><code>int_fast8_t        </code><br>
+<code>int_fast16_t</code><br>
+<code>int_fast32_t</code><br>
+<code>int_fast64_t</code></strong></p>
+<p>在C99 7.18.1.3是這樣做定義的：</p>
+<p>1 Each of the following types designates an integer type that is usually fastest 219) to operate</p>
+<p>with among all integer types that have at least the specified width.</p>
+<p>2 The typedef name int_fastN_t designates the fastest signed integer type with a width</p>
+<p>of at least N . The typedef name uint_fastN_t designates the fastest unsigned integer</p>
+<p>type with a width of at least N .</p>
+<p>也就是說，這些fast data type確保，你的型態至少為N bit以上(uint_fast8_t至少有8bit width)，所以有可能你</p>
+<p>宣告一個uint_fast8_t的型態，編出來可能是用16bit裝。</p>
+<p>這個型態最重要的用意是aliginment(對齊)，一般來說16bitCPU在處理16bit的資料運算有可能8bit的快，這是因為</p>
+<p>對齊的因素，因此，這些fast data type在這個例子中直接將uint_fast8_t 定義為uint16_t，來方便CPU運算。</p>
+<p>以下這是給16bit MCU的compiler microvhip XC16，在stdint.h中的定義</p>
+<p>**#ifndef uint_fast8_t **</p>
+<p>**typedef unsigned int uint_fast8_t; **</p>
+<p>**#define uint_fast8_t uint_fast8_t   **</p>
+<p>**#define UINT_FAST8_MAX (65535UL)   **</p>
+<p>**#endif  **</p>
+<p>很明顯可以看到她將uint_fast8_t用unsigned int(16bit)來使用。</p>
+<p>在<a href="http://embeddedgurus.com/stack-overflow/2011/02/efficient-c-tip-13-use-the-modulus-operator-with-caution/">Efficient C Tip #13 – use the modulus (%) operator with caution</a>中在16bit的MSP430，作者僅將型態改成，</p>
+<p>fast data type，就得到了大幅的加速。在MCU等小型硬體中，在適當的地方使用C99 fast data type可以得到很好的效果。</p>
 
-<h1>Tags</h1>
-<ul>
+        </p>
+    </div>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+        
+            <a class="tag" href="/tags/note">#Note</a>
+        
+      
+    </div>
+
 
         
         </div>

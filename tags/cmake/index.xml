@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CMake on gattaca-ngin</title>
+    <link>https://daichou.github.io/tags/cmake/</link>
+    <description>Recent content in CMake on gattaca-ngin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 14 Jul 2018 02:06:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://daichou.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CMake: find_package and custom find cmake (findXXX.cmake)</title>
+      <link>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</link>
+      <pubDate>Sat, 14 Jul 2018 02:06:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</guid>
+      <description>CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
+https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
+find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
+ cmake &amp;ndash;help-module-lists
+ 查詢。
+在CMake中使用find_package通常會使用類似下列參數。
+ find_package(OpenCV 3.4.1 REQUIRED)
+  find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
+ find_package(OpenMP)
+if (OPENMP_FOUND)
+set (CMAKE_C_FLAGS &amp;ldquo;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&amp;quot;)
+set (CMAKE_CXX_FLAGS &amp;ldquo;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&amp;quot;)
+endif()
+ 透過find_package 定義的-FOUND判斷是否存在。
+find_package通常會定義下列四種變數：
+  _FOUND : 是否找到
+  _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
+  _LIBRARIES or _LIBRARIES or _LIBS : link library 類似 gcc -L/path -l library</description>
+    </item>
+    
+    <item>
+      <title>CMake Tricks: 一些小技巧</title>
+      <link>https://daichou.github.io/posts/cmake-tricks/</link>
+      <pubDate>Fri, 13 Jul 2018 23:19:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/posts/cmake-tricks/</guid>
+      <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
+追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：
+ cmake -DCMAKE_BUILD_TYPE=value
+ 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
+ SET(CMAKE_CONFIGURATION_TYPES &amp;ldquo;Release&amp;rdquo;)
+ 來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE__FLAGS_&amp;lt;BUILD_TYPE&amp;gt;被加入CMAKE__FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
+若要自行追加flags也可以透過新增或是修改flags到CMAKE__FLAGS中。例如：
+ SET(GCC_COVERAGE_COMPILE_FLAGS &amp;ldquo;-g&amp;rdquo;)
+SET( CMAKE_CXX_FLAGS &amp;ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&amp;rdquo; )
+ 我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&amp;rdquo;-g&amp;rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
+此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
+ CMAKE_C_FLAGS -&amp;gt; CFLAGS CMAKE_CXX_FLAGS -&amp;gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&amp;gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&amp;gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
+
+Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
+下在command line，只要用-D就好，ex：
+ cmake -DCMAKE_BUILD_TYPE=value
+ 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
+ cmake -L
+ 得到所有選項以及當前選擇。
+另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。</description>
+    </item>
+    
+  </channel>
+</rss>

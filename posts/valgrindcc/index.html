@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>gattaca-ngin</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-161437179-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">gattaca-ngin</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">Valgrind:C/C&#43;&#43;分析工具</h1>
+    
+    <time>January 13, 2017</time>
+    
+    <div>
+        <p>
+        <h1 id="valgrindcc分析工具"><strong>Valgrind:C/C++分析工具</strong></h1>
+<p>Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。</p>
+<h2 id="安裝"><strong>安裝</strong></h2>
+<p><code>sudo pacman -Sy valgrind</code></p>
+<h2 id="基本用法"><strong>基本用法</strong></h2>
+<p><code>$ valgrind 程式名稱 args</code></p>
+<h5 id="預設會是用memcheck工具分析在這個工具下她會匯出heap使用memory-leak還有記憶體使用錯誤的部份backtrace">預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。</h5>
+<h2 id="進階用法"><strong>進階用法</strong></h2>
+<p><code>$ valgrind --tool=toolname 程式名稱 args</code></p>
+<h5 id="這是valgrind最有方便的地方valgrind旗下有九個使用者端的工具和幾個開發者工具">這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。</h5>
+<h4 id="1-memcheck記憶體錯誤分析工具">1. <strong>Memcheck</strong>:記憶體錯誤分析工具。</h4>
+<h4 id="2cachegrind預測你的cache使用">2.<strong>Cachegrind</strong>:預測你的cache使用。</h4>
+<h4 id="3callgrind分析程式的function-call次數還有call-graph可以幫助快取分析">3.<strong>Callgrind</strong>:分析程式的function call次數，還有call graph，可以幫助快取分析。</h4>
+<h4 id="4helgrind多執行序錯誤分析工具有race-condition檢測功能">4.<strong>Helgrind</strong>:多執行序錯誤分析工具，有race condition檢測功能。</h4>
+<h4 id="5drd另一個多執行序分析工具">5.<strong>DRD</strong>:另一個多執行序分析工具。</h4>
+<h4 id="6massif分析heap的使用在一個程式執行中她會測量多次">6.<strong>Massif</strong>:分析heap的使用，在一個程式執行中她會測量多次。</h4>
+<h4 id="7dhat另一種heap分析工具">7.<strong>DHAT</strong>:另一種heap分析工具。</h4>
+<h4 id="8sgcheck實驗性的全域變數與stack分析工具">8.<strong>SGcheck</strong>:實驗性的全域變數與stack分析工具。</h4>
+<h4 id="9bbv實驗性simpoint相關工具">9.<strong>BBV</strong>:實驗性SimPoint相關工具。</h4>
+<h5 id="這些工具比較常用的是前七個接下來看一下個別的使用">這些工具比較常用的是前七個。接下來看一下個別的使用。</h5>
+<h3 id="memcheck"><strong>memcheck</strong></h3>
+<p><code>$ valgrind --tool=memcheck 程式名稱 args</code><br>
+首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。</p>
+<pre><code>#include&lt;iostream&gt;  
+using namespace std;  
+int main()  
+{  
+    int *ptr;  
+    ptr = new int;  
+    *ptr = 2;  
+    cout &lt;&lt; *ptr &lt;&lt; endl;  
+}  
+
+```然後我們來看一下分析結果。  
+`==12313== Memcheck, a memory error detector  
+==12313== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.  
+==12313== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
+==12313== Command: ./garbage  
+==12313==  
+2  
+==12313==  
+==12313== HEAP SUMMARY:  
+==12313== in use at exit: 4 bytes in 1 blocks  
+==12313== total heap usage: 3 allocs, 2 frees, 73,732 bytes allocated  
+==12313==  
+==12313== LEAK SUMMARY:  
+==12313== definitely lost: 4 bytes in 1 blocks  
+==12313== indirectly lost: 0 bytes in 0 blocks  
+==12313== possibly lost: 0 bytes in 0 blocks  
+==12313== still reachable: 0 bytes in 0 blocks  
+==12313== suppressed: 0 bytes in 0 blocks  
+==12313== Rerun with --leak-check=full to see details of leaked memory  
+==12313==  
+==12313== For counts of detected and suppressed errors, rerun with: -v  
+==12313== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)`  
+她寫了`definitely lost: 4 bytes in 1 blocks`，int是4 byte，我new完之後沒有回收所以memory leak了4 byte，不過由於這程式很間單所以很好找到錯誤來源，當程式變得複雜時我們可以加上`--leak-check=full`來找到源頭，來看一加完的結果。  
+`==14268== Memcheck, a memory error detector  
+==14268== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.  
+==14268== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
+==14268== Command: ./garbage  
+==14268==  
+2  
+==14268==  
+==14268== HEAP SUMMARY:  
+==14268== in use at exit: 4 bytes in 1 blocks  
+==14268== total heap usage: 3 allocs, 2 frees, 73,732 bytes allocated  
+==14268==  
+==14268== 4 bytes in 1 blocks are definitely lost in loss record 1 of 1  
+==14268== at 0x4C2B1EC: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)  
+==14268== by 0x4007C7: main (in /home/tommycc/garbage)  
+==14268==  
+==14268== LEAK SUMMARY:  
+==14268== definitely lost: 4 bytes in 1 blocks  
+==14268== indirectly lost: 0 bytes in 0 blocks  
+==14268== possibly lost: 0 bytes in 0 blocks  
+==14268== still reachable: 0 bytes in 0 blocks  
+==14268== suppressed: 0 bytes in 0 blocks  
+==14268==  
+==14268== For counts of detected and suppressed errors, rerun with: -v  
+==14268== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)  
+可以發現這兩行，指出了錯誤點。  
+==14268== at 0x4C2B1EC: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)  
+==14268== by 0x4007C7: main (in /home/tommycc/garbage)  
+`  
+
+### **Cachegrind**
+
+`$valgrind --tool=cachegrind`  
+它可以分析你程式的快取優化程度。它的結果總共有以下類別。以下擷取至valgrind manual  
+
+*   I cache reads (Ir, which equals the number of instructions executed), I1 cache read misses (I1mr) and LL cache instruction read misses (ILmr).
+*   D cache reads (Dr, which equals the number of memory reads), D1 cache read misses (D1mr), and LL cache data read misses (DLmr).
+*   D cache writes (Dw, which equals the number of memory writes), D1 cache write misses (D1mw), and LL cache data write misses (DLmw).
+*   Conditional branches executed (Bc) and conditional branches mispredicted (Bcm).
+*   Indirect branches executed (Bi) and indirect branches mispredicted (Bim).
+
+一般來說I和D是首要分析的部份。以下的範例是二維陣列存取，我們都知道二維陣列在記憶體上其實是一維的，所以(row major)先row在column會比(column major)先column在row快。我們先執行row major的code如以下。  
+</code></pre><p>for (int i = 0 ; i &lt; 1000 ; i++ ){                                                                   <br>
+for (int j = 0 ; j &lt; 1000 ; j++ ){                                     <br>
+a[i][j] = i+j;                                                     <br>
+}                                                                      <br>
+}</p>
+<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><p>==11719== Cachegrind, a cache and branch-prediction profiler<br>
+==11719== Copyright (C) 2002-2015, and GNU GPL&rsquo;d, by Nicholas Nethercote et al.<br>
+==11719== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
+==11719== Command: ./tt<br>
+==11719==<br>
+&ndash;11719&ndash; warning: L3 cache found, using its data for the LL simulation.<br>
+==11719==<br>
+==11719== I   refs:      16,204,946<br>
+==11719== I1  misses:         1,401<br>
+==11719== LLi misses:         1,357<br>
+==11719== I1  miss rate:       0.01%<br>
+==11719== LLi miss rate:       0.01%<br>
+==11719==<br>
+==11719== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)<br>
+==11719== D1  misses:        78,407  (   13,698 rd   +    64,709 wr)<br>
+==11719== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)<br>
+==11719== D1  miss rate:        1.0% (      0.2%     +       5.4%  )<br>
+==11719== LLd miss rate:        0.9% (      0.1%     +       5.4%  )<br>
+==11719==<br>
+==11719== LL refs:           79,808  (   15,099 rd   +    64,709 wr)<br>
+==11719== LL misses:         72,974  (    9,091 rd   +    63,883 wr)<br>
+==11719== LL miss rate:         0.3% (      0.0%     +       5.4%  )</p>
+<pre><code class="language-特別注意D1" data-lang="特別注意D1"></code></pre><p>for (int i = 0 ; i &lt; 1000 ; i++ ){                                                           <br>
+for (int j = 0 ; j &lt; 1000 ; j++ ){                                                             <br>
+a[j][i] = i+j;                                                                       <br>
+}                                                                                              <br>
+}</p>
+<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><p>==11522== Cachegrind, a cache and branch-prediction profiler<br>
+==11522== Copyright (C) 2002-2015, and GNU GPL&rsquo;d, by Nicholas Nethercote et al.<br>
+==11522== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
+==11522== Command: ./tt<br>
+==11522==<br>
+&ndash;11522&ndash; warning: L3 cache found, using its data for the LL simulation.<br>
+==11522==<br>
+==11522== I   refs:      16,204,946<br>
+==11522== I1  misses:         1,401<br>
+==11522== LLi misses:         1,357<br>
+==11522== I1  miss rate:       0.01%<br>
+==11522== LLi miss rate:       0.01%<br>
+==11522==<br>
+==11522== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)<br>
+==11522== D1  misses:     1,015,906  (   13,698 rd   + 1,002,208 wr)<br>
+==11522== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)<br>
+==11522== D1  miss rate:       13.1% (      0.2%     +      84.0%  )<br>
+==11522== LLd miss rate:        0.9% (      0.1%     +       5.4%  )<br>
+==11522==<br>
+==11522== LL refs:        1,017,307  (   15,099 rd   + 1,002,208 wr)<br>
+==11522== LL misses:         72,974  (    9,091 rd   +    63,883 wr)<br>
+==11522== LL miss rate:         0.3% (      0.0%     +       5.4%  )</p>
+<pre><code class="language-可以發現D1" data-lang="可以發現D1">  
+
+### **Callgrind**
+
+用來分析整個程式的function call數目。  
+`$valgrind --tool=callgrind 程式名稱`  
+這會開始執行你的程式，通常會執行的比較慢。在執行過程中，你可以透過`$callgrind_control -e -b`或是`$callgrind_control -b` 來看程式當下執行的function call backtrace。以下是費氏數列遞迴版結果。  
+</code></pre><p>PID 6989: ./fb<br>
+sending command status internal to pid 6989</p>
+<p>Totals:           Ir<br>
+Th 1  2,560,275,485</p>
+<p>Frame:             Ir Backtrace for Thread 1<br>
+[ 0]  23,685,553,356 fb(long long) (58138276 x)<br>
+[ 1]  41,379,358,433 fb(long long) (58138297 x)<br>
+[ 2]  41,379,358,449 fb(long long) (58138297 x)<br>
+[ 3]  41,379,358,465 fb(long long) (58138297 x)<br>
+[ 4]  41,379,358,481 fb(long long) (58138297 x)<br>
+[ 5]  41,379,358,497 fb(long long) (58138297 x)<br>
+[ 6]  41,379,358,513 fb(long long) (58138297 x)<br>
+[ 7]  41,379,358,529 fb(long long) (58138297 x)<br>
+[ 8]  41,379,358,545 fb(long long) (58138297 x)<br>
+[ 9]  23,685,553,523 fb(long long) (58138276 x)<br>
+[10]  41,379,364,892 fb(long long) (58138297 x)<br>
+[11]  41,379,364,908 fb(long long) (58138297 x)<br>
+[12]  41,379,364,924 fb(long long) (58138297 x)<br>
+[13]  23,685,559,902 fb(long long) (58138276 x)<br>
+[14]  23,685,630,165 fb(long long) (58138276 x)<br>
+[15]  41,379,619,162 fb(long long) (58138297 x)<br>
+[16]  41,379,619,178 fb(long long) (58138297 x)<br>
+[17]  41,379,619,194 fb(long long) (58138297 x)<br>
+[18]  41,379,619,210 fb(long long) (58138297 x)<br>
+[19]  23,685,814,188 fb(long long) (58138276 x)<br>
+[20]  41,382,920,321 fb(long long) (58138297 x)<br>
+[21]  41,382,920,337 fb(long long) (58138297 x)<br>
+[22]  23,689,115,315 fb(long long) (58138276 x)<br>
+[23]  41,405,546,424 fb(long long) (58138297 x)<br>
+[24]  41,405,546,440 fb(long long) (58138297 x)<br>
+[25]  23,711,741,418 fb(long long) (58138276 x)<br>
+[26]  41,560,627,883 fb(long long) (58138297 x)<br>
+[27]  23,866,822,861 fb(long long) (58138276 x)<br>
+[28]  24,523,758,344 fb(long long) (58138276 x)<br>
+[29]  43,937,442,813 fb(long long) (58138297 x)<br>
+[30]   2,558,084,449 fb(long long) (1 x)<br>
+[31]   2,558,084,465 fb(long long) (1 x)<br>
+[32]   2,558,084,472 main (1 x)<br>
+[33]   2,558,187,428 (below main) (1 x)<br>
+[34]   2,558,187,439 _start (1 x)<br>
+[35]               . 0x0000000000000d70
+```可以看到執行當下的遞迴到哪裡，不過由於費氏數列浮動快，這用callgrind_control -e -b的深度會不同。要看到整個function的呼叫次數，可以透過callgrind執行完產生的calgrind.out.pid檔案，這時有兩種分析這個檔案的方式，一是透過<code>callgrind_annotate callgrind.out.pid</code> 來看結果，另一是用KCachegrind (KDE應用程式)。以下是KCachegrind結果，可以看到左下角的框框，fb被call了1+331160280次(第一層call+第二層以上call)。</p>
+<p><a href="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s1600/Kcachegrind.png"><img src="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s640/Kcachegrind.png" alt=""></a></p>
+<h3 id="heading"></h3>
+<h3 id="helgrind"><strong>helgrind</strong></h3>
+<p><code>$valgrind --tool=helgrind</code><br>
+這次我們使用官方範例。</p>
+<pre><code>#include &lt;pthread.h&gt;  
+  
+int var = 0;  
+  
+void* child_fn ( void* arg ) {  
+   var++; /* Unprotected relative to parent */ /* this is line 6 */  
+   return NULL;  
+}  
+  
+int main ( void ) {  
+   pthread_t child;  
+   pthread_create(&amp;child, NULL, child_fn, NULL);  
+   var++; /* Unprotected relative to child */ /* this is line 13 */  
+   pthread_join(child, NULL);  
+   return 0;  
+}  
+
+```很明顯的var沒有做mutex lock，會有race。結果如下。  
+</code></pre><p>==19156== Helgrind, a thread error detector<br>
+==19156== Copyright (C) 2007-2015, and GNU GPL&rsquo;d, by OpenWorks LLP et al.<br>
+==19156== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
+==19156== Command: ./race<br>
+==19156==<br>
+==19156== &mdash;Thread-Announcement&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;<br>
+==19156==<br>
+==19156== Thread #1 is the program&rsquo;s root thread<br>
+==19156==<br>
+==19156== &mdash;Thread-Announcement&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;<br>
+==19156==<br>
+==19156== Thread #2 was created<br>
+==19156==    at 0x51427AE: clone (in /usr/lib/libc-2.24.so)<br>
+==19156==    by 0x4E431A9: create_thread (in /usr/lib/libpthread-2.24.so)<br>
+==19156==    by 0x4E44C12: pthread_create@@GLIBC_2.2.5 (in /usr/lib/libpthread-2.24.so)<br>
+==19156==    by 0x4C31810: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
+==19156==    by 0x4C328FD: pthread_create@* (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
+==19156==    by 0x4005C6: main (in /home/tommycc/race)<br>
+==19156==<br>
+==19156== &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-<br>
+==19156==<br>
+==19156== Possible data race during read of size 4 at 0x60103C by thread #1<br>
+==19156== Locks held: none<br>
+==19156==    at 0x4005C7: main (in /home/tommycc/race)<br>
+==19156==<br>
+==19156== This conflicts with a previous write of size 4 by thread #2<br>
+==19156== Locks held: none<br>
+==19156==    at 0x400597: child_fn (in /home/tommycc/race)<br>
+==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
+==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)<br>
+==19156==  Address 0x60103c is 0 bytes inside data symbol &ldquo;var&rdquo;<br>
+==19156==<br>
+==19156== &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-<br>
+==19156==<br>
+==19156== Possible data race during write of size 4 at 0x60103C by thread #1<br>
+==19156== Locks held: none<br>
+==19156==    at 0x4005D0: main (in /home/tommycc/race)<br>
+==19156==<br>
+==19156== This conflicts with a previous write of size 4 by thread #2<br>
+==19156== Locks held: none<br>
+==19156==    at 0x400597: child_fn (in /home/tommycc/race)<br>
+==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
+==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)<br>
+==19156==  Address 0x60103c is 0 bytes inside data symbol &ldquo;var&rdquo;<br>
+==19156==<br>
+==19156==<br>
+==19156== For counts of detected and suppressed errors, rerun with: -v<br>
+==19156== Use &ndash;history-level=approx or =none to gain increased speed, at<br>
+==19156== the cost of reduced accuracy of conflicting-access information<br>
+==19156== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</p>
+<pre><code class="language-她很明確得告訴我們有可能的race問題。而且名稱叫做var。結果十分直觀。" data-lang="她很明確得告訴我們有可能的race問題。而且名稱叫做var。結果十分直觀。">
+### **Massif**
+
+`valgrind --tool=massif 程式名稱`  
+他是用來分析data segement 中heap使用。  
+heap在data sgment通常是由malloc等函式創造的，是適當的優化減少heap可以paging和盡量避開使用swap space。  
+在執行完massif後會有一個massif.out.pid檔，可以透過ms\_print來印出。不過一般高速運行的程式，他的malloc和free執行很快，在輸出圖形的時候看起來是一條線，所以可以透過`valgrind --tool=massif --time-unit=B 程式名稱` 讓massif透過allocate與deallcoate記憶體大小作圖。範例程式如下。  
+</code></pre><p>#include&lt;stdio.h&gt;<br>
+#include&lt;stdlib.h&gt;</p>
+<p>int main()<br>
+{<br>
+malloc(1000);<br>
+int* a[10];<br>
+for (int i = 0 ; i &lt; 10 ; i++ )<br>
+a[i] = malloc(1000);<br>
+for (int i = 0 ; i &lt; 10 ; i++ )<br>
+free(a[i]);<br>
+}</p>
+<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><hr>
+<h2 id="ms_print-arguments-massifout2213">Command:            ./heap<br>
+Massif arguments:   &ndash;time-unit=B<br>
+ms_print arguments: massif.out.2213</h2>
+<pre><code>KB  
+</code></pre>
+<p>10.91^                                     ####                              <br>
+|                                     #                                 <br>
+|                                  :::#   :::                           <br>
+|                                  :  #   :                             <br>
+|                              @@@@:  #   :  ::::                       <br>
+|                              @   :  #   :  :                          <br>
+|                           :::@   :  #   :  :   :::                    <br>
+|                           :  @   :  #   :  :   :                      <br>
+|                        ::::  @   :  #   :  :   :  :::                 <br>
+|                        :  :  @   :  #   :  :   :  :                   <br>
+|                    :::::  :  @   :  #   :  :   :  :  ::::             <br>
+|                 ::::   :  :  @   :  #   :  :   :  :  :   :::          <br>
+|                 :  :   :  :  @   :  #   :  :   :  :  :   :            <br>
+|             :::::  :   :  :  @   :  #   :  :   :  :  :   :  ::::      <br>
+|             :   :  :   :  :  @   :  #   :  :   :  :  :   :  :         <br>
+|          ::::   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :::   <br>
+|          :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :     <br>
+|      :::::  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :::<br>
+|      :   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :  <br>
+|   ::::   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :  @<br>
+0 +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;KB<br>
+0                                                                   20.84</p>
+<p>Number of snapshots: 23<br>
+Detailed snapshots: [9, 12 (peak), 22]</p>
+<hr>
+<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
+<p>0              0                0                0             0            0<br>
+1          1,016            1,016            1,000            16            0<br>
+2          2,032            2,032            2,000            32            0<br>
+3          3,048            3,048            3,000            48            0<br>
+4          4,064            4,064            4,000            64            0<br>
+5          5,080            5,080            5,000            80            0<br>
+6          6,096            6,096            6,000            96            0<br>
+7          7,112            7,112            7,000           112            0<br>
+8          8,128            8,128            8,000           128            0<br>
+9          9,144            9,144            9,000           144            0<br>
+98.43% (9,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
+-&gt;87.49% (8,000B) 0x400569: main (in /home/tommycc/heap)<br>
+|<br>
+-&gt;10.94% (1,000B) 0x400556: main (in /home/tommycc/heap)</p>
+<hr>
+<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb-1">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
+<p>10         10,160           10,160           10,000           160            0<br>
+11         11,176           11,176           11,000           176            0<br>
+12         11,176           11,176           11,000           176            0<br>
+98.43% (11,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
+-&gt;89.48% (10,000B) 0x400569: main (in /home/tommycc/heap)<br>
+|<br>
+-&gt;08.95% (1,000B) 0x400556: main (in /home/tommycc/heap)</p>
+<hr>
+<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb-2">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
+<p>13         12,192           10,160           10,000           160            0<br>
+14         13,208            9,144            9,000           144            0<br>
+15         14,224            8,128            8,000           128            0<br>
+16         15,240            7,112            7,000           112            0<br>
+17         16,256            6,096            6,000            96            0<br>
+18         17,272            5,080            5,000            80            0<br>
+19         18,288            4,064            4,000            64            0<br>
+20         19,304            3,048            3,000            48            0<br>
+21         20,320            2,032            2,000            32            0<br>
+22         21,336            1,016            1,000            16            0<br>
+98.43% (1,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
+-&gt;98.43% (1,000B) 0x400556: main (in /home/tommycc/heap)<br>
+|<br>
+-&gt;00.00% (0B) in 1+ places, all below ms_print&rsquo;s threshold (01.00%</p>
+<pre><code class="language-可以看到malloc和free的作用。" data-lang="可以看到malloc和free的作用。">
+### **其他工具**
+
+有些是valgrind的開發工具所以就跳過了。  
+ref:[http://valgrind.org/docs/manual/manual.html](http://valgrind.org/docs/manual/manual.html)  
+ㄧ  
+ㄧ  
+ㄧ  
+
+&gt; Written with [StackEdit](https://stackedit.io/).</code></pre>
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/note">#Note</a>
+        
+      
+    </div>
+
+
+        
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

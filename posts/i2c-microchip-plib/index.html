@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,79 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">I2C 使用Microchip plib</h1>
+    
+    <time>April 29, 2017</time>
+    
+    <div>
+        <p>
+        <h1 id="i2c-使用microchip-plib"><strong>I2C 使用Microchip plib</strong></h1>
+<p>本篇以dsPIC30F為主。</p>
+<h2 id="plib-安裝">plib 安裝</h2>
+<p>到<a href="http://www.microchip.com/SWLibraryWeb/product.aspx?product=PIC24%20MCU%20dsPIC%20Peripheral%20Lib">Legacy PIC24 MCU &amp; dsPIC DSC Peripheral Library</a>下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</p>
+<h2 id="函式概覽">函式概覽</h2>
+<p>安裝後文件會在xc16 complier的docs/periph_libs下。<br>
+其中plib提供以下函式。</p>
+<blockquote>
+<p>AckI2C<br>
+CloseI2C<br>
+ConfigIntI2C<br>
+DataRdyI2C<br>
+IdleI2C<br>
+MastergetsI2C<br>
+MasterputsI2C<br>
+MasterReadI2C<br>
+MasterWriteI2C<br>
+NotAckI2C<br>
+OpenI2C<br>
+RestartI2C<br>
+SlavegetsI2C<br>
+SlaveputsI2C<br>
+SlaveReadI2C<br>
+SlaveWriteI2C<br>
+StartI2C<br>
+StopI2C</p>
+</blockquote>
+<p>還有一些MARCO</p>
+<blockquote>
+<p>EnableIntMI2C<br>
+DiableIntMI2C<br>
+SetPriorityIntMI2C<br>
+EnableIntSI2C<br>
+DisableIntSI2C<br>
+SetPriorityIntSI2C</p>
+</blockquote>
+<p>這份文件<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/16bit_Language_Tool_Libraries_51456c.pdf#utm_source=MicroSolutions&amp;utm_medium=Link&amp;utm_term=FY16Q4&amp;utm_content=MCU16&amp;utm_campaign=Article">16 bit language tools</a>第191頁開始有詳述這些函式的介面。所以本文主要會面向如何運用這些函式達成master與slave溝通。</p>
+<h2 id="i2c-dspic30f-as-master-with-7bit-address">I2C (dsPIC30F as Master with 7bit address)</h2>
+<h3 id="reception">reception</h3>
+<p>以下圖片來自於<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf">http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf</a></p>
+<p><a href="https://3.bp.blogspot.com/-cCko4X7GsZ8/WQVktiCsF7I/AAAAAAAABjU/Fh6xDmef530WpFugTpTOqdcjlJK4wDUtACLcB/s1600/dsPIC30F_7bit_I2C.png"><img src="https://3.bp.blogspot.com/-cCko4X7GsZ8/WQVktiCsF7I/AAAAAAAABjU/Fh6xDmef530WpFugTpTOqdcjlJK4wDUtACLcB/s640/dsPIC30F_7bit_I2C.png" alt=""></a></p>
+<p>對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。</p>
+<p>請先透過ConfigIntI2C和OpenI2C設定好硬體參數。<br>
+值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。</p>
+<h3 id="transmission">transmission</h3>
+<p>transmission只要全部都由Master端給資料即可。<br>
+對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次寫多個bytes)。<br>
+請先透過ConfigIntI2C和OpenI2C設定好硬體參數。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
 
-<h1>Tags</h1>
-<ul>
+        </p>
+    </div>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/hardware">#hardware</a>
+        
+            <a class="tag" href="/tags/pic">#PIC</a>
+        
+      
+    </div>
+
 
         
         </div>

@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="gattaca-ngin" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -125,47 +123,38 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">[tools]GNU 開發工具：nm</h1>
+    
+    <time>August 16, 2016</time>
+    
+    <div>
+        <p>
+        <h2 id="toolsgnu-開發工具nm">[tools]GNU 開發工具：nm</h2>
+<h3 id="nm">nm</h3>
+<p>nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。</p>
+<p>以下我打了一個範例。</p>
+<p>接下來是對其編譯出來的a.out下nm指令的結果。</p>
+<p>第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。</p>
+<p>這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。</p>
+<p>nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,data)。</p>
+<p>相關連結:1.<a href="http://www.wuzesheng.com/?p=1595">http://www.wuzesheng.com/?p=1595</a><br>
+                 2.<a href="http://sp1.wikidot.com/elfobjfile">http://sp1.wikidot.com/elfobjfile</a><br>
+                 3.<a href="http://enginechang.logdown.com/posts/248172-linker-loader-library">http://enginechang.logdown.com/posts/248172-linker-loader-library</a><br>
+            4.<a href="https://github.com/torvalds/linux/blob/9256d5a308c95a50c6e85d682492ae1f86a70f9b/arch/powerpc/boot/elf.h">https://github.com/torvalds/linux/blob/9256d5a308c95a50c6e85d682492ae1f86a70f9b/arch/powerpc/boot/elf.h</a></p>
 
-<h1>Tags</h1>
-<ul>
+        </p>
+    </div>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 14</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/tools">#tools</a>
+        
+      
+    </div>
+
 
         
         </div>
