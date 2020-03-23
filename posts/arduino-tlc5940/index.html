@@ -145,30 +145,60 @@ if (!doNotTrack) {
 <h3 id="tlc5940電路接法">TLC5940電路接法</h3>
 <p>以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2560。</p>
 <p><a href="https://1.bp.blogspot.com/-tNt2_thWPuk/WbNzdbvEA4I/AAAAAAAAB_E/oZ43EKsQTlEy1jWRx82K05wAB30ykPUiQCLcBGAs/s1600/TLC5940-PWM-driver-pinout.png"><img src="https://1.bp.blogspot.com/-tNt2_thWPuk/WbNzdbvEA4I/AAAAAAAAB_E/oZ43EKsQTlEy1jWRx82K05wAB30ykPUiQCLcBGAs/s320/TLC5940-PWM-driver-pinout.png" alt=""></a></p>
-<p>TLC5940</p>
-<p>Ardunio Mega2560</p>
-<p>SIN(pin 26)</p>
-<p>MOSI(pin 51)</p>
-<p>SCK(pin 25)</p>
-<p>SCLK(pin 52)</p>
-<p>XLAT(pin 24)</p>
-<p>OC1A(pin 11)</p>
-<p>BLANK(pin 23)</p>
-<p>OC1B(pin 12) + 1K ohm上拉電阻</p>
-<p>GSCLK(pin 18)</p>
-<p>OC2B(pin 9)</p>
-<p>VPRG(pin 27)</p>
-<p>VPRG(pin 50) or GND</p>
-<p>XERR(pin 16)</p>
-<p>XERR(pin 10) or GND</p>
-<p>SIN(pin 26)</p>
-<p>SIN(pin 51)</p>
-<p>IREF(pin 20)</p>
-<p>1K ohm下拉電阻</p>
-<p>VCC(pin 21)</p>
-<p>5V</p>
-<p>GND(pin 22)</p>
-<p>GND</p>
+<table>
+<thead>
+<tr>
+<th>TLC5940</th>
+<th>Arduino Mega2560</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIN(pin 26)</td>
+<td>MOSI(pin 51)</td>
+</tr>
+<tr>
+<td>SCK(pin 25)</td>
+<td>SCLK(pin 52)</td>
+</tr>
+<tr>
+<td>XLAT(pin 24)</td>
+<td>OC1A(pin 11)</td>
+</tr>
+<tr>
+<td>BLANK(pin 23)</td>
+<td>OC1B(pin 12) + 1K ohm上拉電阻</td>
+</tr>
+<tr>
+<td>GSCLK(pin 18)</td>
+<td>OC2B(pin 9)</td>
+</tr>
+<tr>
+<td>VPRG(pin 27)</td>
+<td>VPRG(pin 50) or GND</td>
+</tr>
+<tr>
+<td>XERR(pin 16)</td>
+<td>XERR(pin 10) or GND</td>
+</tr>
+<tr>
+<td>SIN(pin 26)</td>
+<td>SIN(pin 51)</td>
+</tr>
+<tr>
+<td>IREF(pin 20)</td>
+<td>1K ohm下拉電阻</td>
+</tr>
+<tr>
+<td>VCC(pin 21)</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>GND(pin 22)</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
 <p>至於out0到out15的接法比較特別。</p>
 <p><a href="https://3.bp.blogspot.com/-FLjVuT-U9SQ/WbN60R0ThVI/AAAAAAAAB_U/UvbM4zD6SlY9f0XHHeR_9UbkbzWx9tEuQCLcBGAs/s1600/tlc5940_signal.png"><img src="https://3.bp.blogspot.com/-FLjVuT-U9SQ/WbN60R0ThVI/AAAAAAAAB_U/UvbM4zD6SlY9f0XHHeR_9UbkbzWx9tEuQCLcBGAs/s640/tlc5940_signal.png" alt=""></a></p>
 <p>這樣即可完成Servo與TLC5940的電路。</p>

@@ -161,30 +161,7 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
             <div>
                 <p>
                 MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-.
-├── build
-│ └── default
-│ └── production
-│ ├── main.o
-│ └── main.o.d
-├── debug
-│ └── default
-├── dist
-│ └── default
-│ └── production
-│ ├── 4013_test.X.production.elf
-│ ├── 4013_test.X.production.hex
-│ └── 4013_test.X.production.map
-├── main.c
-├── Makefile
-└── nbproject
- ├── configurations.xml
- ├── Makefile-default.mk
- ├── Makefile-genesis.properties
- ├── Makefile-impl.mk
- ├── Makefile-local-default.mk
- ├── Makefile-variables.mk
- ├── Package-default.bash
+. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.
                 </p>
             </div>
             <div class="post-footer">
@@ -205,17 +182,10 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
                 CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
 https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
 find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
- cmake &ndash;help-module-lists
- 查詢。
+cmake --help-module-lists 查詢。
 在CMake中使用find_package通常會使用類似下列參數。
- find_package(OpenCV 3.4.1 REQUIRED)
-  find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
- find_package(OpenMP)
-if (OPENMP_FOUND)
-set (CMAKE_C_FLAGS &ldquo;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&quot;)
-set (CMAKE_CXX_FLAGS &ldquo;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&quot;)
-endif()
- 透過find_package 定義的-FOUND判斷是否存在。
+find_package(OpenCV 3.4.1 REQUIRED) find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
+find_package(OpenMP) if (OPENMP_FOUND)  set (CMAKE_C_FLAGS &#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&#34;)  set (CMAKE_CXX_FLAGS &#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&#34;) endif()透過find_package 定義的-FOUND判斷是否存在。
 find_package通常會定義下列四種變數：
   _FOUND : 是否找到
   _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
@@ -239,24 +209,20 @@ find_package通常會定義下列四種變數：
                 <p>
                 CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &hellip;&hellip;等。可以透過在產生Makefile時下：
- cmake -DCMAKE_BUILD_TYPE=value
- 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
- SET(CMAKE_CONFIGURATION_TYPES &ldquo;Release&rdquo;)
- 來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE__FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE__FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
-若要自行追加flags也可以透過新增或是修改flags到CMAKE__FLAGS中。例如：
- SET(GCC_COVERAGE_COMPILE_FLAGS &ldquo;-g&rdquo;)
-SET( CMAKE_CXX_FLAGS &ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&rdquo; )
- 我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
+$ cmake -DCMAKE_BUILD_TYPE=value 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
+SET(CMAKE_CONFIGURATION_TYPES  &#34;Release&#34;)來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&lt;LANG&gt;_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_&lt;LANG&gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
+若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：
+SET(GCC_COVERAGE_COMPILE_FLAGS &#34;-g&#34;) SET( CMAKE_CXX_FLAGS  &#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34; )我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
 此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
  CMAKE_C_FLAGS -&gt; CFLAGS CMAKE_CXX_FLAGS -&gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
 
 Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
 下在command line，只要用-D就好，ex：
- cmake -DCMAKE_BUILD_TYPE=value
- 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
- cmake -L
- 得到所有選項以及當前選擇。
+$ cmake -DCMAKE_BUILD_TYPE=value 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
+$ cmake -L 得到所有選項以及當前選擇。
 另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。
+當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt
+CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，經過運行後會變什麼。可以透過查看CMakeCache.txt或是下cmake -LAH來查看值。
                 </p>
             </div>
             <div class="post-footer">
@@ -278,8 +244,8 @@ Option 下選項分為兩種，一是直接下在command line中，另一種則�
  http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js
  會因為是http而造成瀏覽器報錯，而且載入的code通常會失敗。因此這裡提供一個新的解法。
 改用以下cdn由cloudflare提供的。就可以讓你的code在https下漂漂亮亮的。
-打開blogger-&gt;theme-&gt;編輯HTML，在中新增以下code。
- &lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPython.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushRuby.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.
+打開blogger-&gt;theme-&gt;編輯HTML，在&lt;head&gt;&lt;/head&gt;中新增以下code。
+&lt;link href=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt; &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js&#34; type=&#34;text/javascript&#34;&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.
                 </p>
             </div>
             <div class="post-footer">
@@ -292,20 +258,17 @@ Option 下選項分為兩種，一是直接下在command line中，另一種則�
     <article>
             <h2>
                 <a href="https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/">
-                    使用LXC建立USB以及X-forward環境
+                    使用LXC建立USB以及X-forward環境(deprecated)
                 </a>
             </h2>
             <div>
                 <p>
-                使用LXC建立USB以及X forward環境 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
+                使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
 環境  OS: Arch Linux (4.15.7-1-ARCH) LXC ubuntu on LXC  步驟 LXC準備 安裝 LXC $ sudo pacman -Sy lxc arch-install-scripts debootstap 建立 Host Network (NAT bridge) (Arch Wiki寫得很好看Arch Wiki) 建立/etc/default/lxc-net(詳情見Arch Wiki)
- USE\_LXC\_BRIDGE=&quot;true&quot; LXC\_BRIDGE=&quot;lxcbr0&quot; LXC\_ADDR=&quot;10.0.3.1&quot; LXC\_NETMASK=&quot;255.255.255.0&quot; LXC\_NETWORK=&quot;10.0.3.0/24&quot; LXC\_DHCP\_RANGE=&quot;10.0.3.2,10.0.3.254&quot; LXC\_DHCP\_MAX=&quot;253&quot; ```修改lxc template conf，在/etc/lxc/default.conf新增 lxc.net.0.type = veth
-lxc.net.0.link = lxcbr0
-lxc.net.0.flags = up
-lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
-$ sudo pacman -Sy dnsmasq
-sudo systemctl start lxc-net
-sudo systemctl enable lxc-net
+USE_LXC_BRIDGE=&#34;true&#34; LXC_BRIDGE=&#34;lxcbr0&#34; LXC_ADDR=&#34;10.0.3.1&#34; LXC_NETMASK=&#34;255.255.255.0&#34; LXC_NETWORK=&#34;10.0.3.0/24&#34; LXC_DHCP_RANGE=&#34;10.0.3.2,10.0.3.254&#34; LXC_DHCP_MAX=&#34;253&#34; 修改lxc template conf，在/etc/lxc/default.conf新增
+lxc.net.0.type = veth lxc.net.0.link = lxcbr0 lxc.net.0.flags = up lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx 安裝dnsmasq
+$ sudo pacman -Sy dnsmasq 開啟以及設定開機啟動：
+sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubuntu) 建previleged的container
                 </p>
             </div>
             <div class="post-footer">
@@ -335,18 +298,7 @@ TLC5940 Ardunio library 在Ardunio IDE中可以透過library manager找到。而
 https://github.com/PaulStoffregen/Tlc5940
 TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2560。
 
-TLC5940
-Ardunio Mega2560
-SIN(pin 26)
-MOSI(pin 51)
-SCK(pin 25)
-SCLK(pin 52)
-XLAT(pin 24)
-OC1A(pin 11)
-BLANK(pin 23)
-OC1B(pin 12) + 1K ohm上拉電阻
-GSCLK(pin 18)
-OC2B(pin 9)
+   TLC5940 Arduino Mega2560     SIN(pin 26) MOSI(pin 51)   SCK(pin 25) SCLK(pin 52)   XLAT(pin 24) OC1A(pin 11)   BLANK(pin 23) OC1B(pin 12) + 1K ohm上拉電阻   GSCLK(pin 18) OC2B(pin 9)   VPRG(pin 27) VPRG(pin 50) or GND   XERR(pin 16) XERR(pin 10) or GND   SIN(pin 26) SIN(pin 51)   IREF(pin 20) 1K ohm下拉電阻   VCC(pin 21) 5V   GND(pin 22) GND    至於out0到out15的接法比較特別。
                 </p>
             </div>
             <div class="post-footer">
@@ -431,12 +383,9 @@ OC2B(pin 9)
             <div>
                 <p>
                 Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
-安裝 sudo pacman -Sy valgrind
-基本用法 $ valgrind 程式名稱 args
-預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args
-這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args
-首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
-#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } ```然後我們來看一下分析結果。 `==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args 首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
+#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } 然後我們來看一下分析結果。
+==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.
                 </p>
             </div>
             <div class="post-footer">
@@ -519,7 +468,7 @@ with among all integer types that have at least the specified width.
                 『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
 https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec '!python '.shellescape('%') autocmd filetype c nnoremap :w exec '!clear&amp;&amp;gcc '.shellescape('%').' -o '.shellescape('%:r').'&amp;&amp;./'.shellescape('%:r') autocmd filetype cpp nnoremap :w exec '!clear;echo -n &quot;====================&quot;;TEMP=\`mktemp\`;script $TEMP -e -q -c &quot;g++ '.
+  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &#39;!python &#39;.shellescape(&#39;%&#39;) autocmd filetype c nnoremap :w exec &#39;!clear&amp;&amp;gcc &#39;.shellescape(&#39;%&#39;).&#39; -o &#39;.shellescape(&#39;%:r&#39;).&#39;&amp;&amp;./&#39;.shellescape(&#39;%:r&#39;) autocmd filetype cpp nnoremap :w exec &#39;!clear;echo -n &#34;====================&#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &#34;g++ &#39;.
                 </p>
             </div>
             <div class="post-footer">

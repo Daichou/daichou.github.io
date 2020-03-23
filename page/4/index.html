@@ -138,12 +138,9 @@ if (!doNotTrack) {
                 </a>
             </h2>
             <div><p>Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
-安裝 sudo pacman -Sy valgrind
-基本用法 $ valgrind 程式名稱 args
-預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args
-這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args
-首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
-#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } ```然後我們來看一下分析結果。 `==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.</p></div>
+安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args 首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
+#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } 然後我們來看一下分析結果。
+==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.</p></div>
             <div class="post-footer">
             <time>January 13, 2017</time>
 
@@ -259,7 +256,7 @@ with among all integer types that have at least the specified width.
             <div><p>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
 https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec '!python '.shellescape('%') autocmd filetype c nnoremap :w exec '!clear&amp;&amp;gcc '.shellescape('%').' -o '.shellescape('%:r').'&amp;&amp;./'.shellescape('%:r') autocmd filetype cpp nnoremap :w exec '!clear;echo -n &quot;====================&quot;;TEMP=\`mktemp\`;script $TEMP -e -q -c &quot;g++ '.</p></div>
+  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &#39;!python &#39;.shellescape(&#39;%&#39;) autocmd filetype c nnoremap :w exec &#39;!clear&amp;&amp;gcc &#39;.shellescape(&#39;%&#39;).&#39; -o &#39;.shellescape(&#39;%:r&#39;).&#39;&amp;&amp;./&#39;.shellescape(&#39;%:r&#39;) autocmd filetype cpp nnoremap :w exec &#39;!clear;echo -n &#34;====================&#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &#34;g++ &#39;.</p></div>
             <div class="post-footer">
             <time>September 28, 2016</time>
 
@@ -330,11 +327,9 @@ https://github.com/Daichou/environment/blob/master/.vimrc
             </h2>
             <div><p>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
 首先，以arch linux 為例，winusb是在aur裡，所以只要下：
-yaourt -Sy winusb
-即可安裝。
+$ yaourt -Sy winusb 即可安裝。
 接著開始製作live usb，先找到win10 ISO 檔的路徑，還有你的隨身碟隨身碟掛載路徑，下以下指令：
-winusb &ndash;install 
-記得要用root or sudo來做。即可完成。</p></div>
+$ winusb --install &lt;iso path&gt; &lt;partition&gt; 記得要用root or sudo來做。即可完成。</p></div>
             <div class="post-footer">
             <time>September 10, 2016</time>
 
@@ -383,24 +378,16 @@ winusb &ndash;install
                 </a>
             </h2>
             <div><p>用github架Jekyll 一些問題解法 當一開始使用
-的時候，可能會遇到一些問題(其實是我遇到的啦)
+$ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
 jekyll serve not found 這是一個很好處理的問題，因爲你的~/.gem/ruby/{version}/bin資料夾沒有在$PATH路徑下。加上去就可解決了。
 缺少bundler
-大概的error如上。處理方式很簡單，就是安裝bundler。
-這樣就解決了。
+kernel_require.rb:55:in `require&#39;: cannot load such file -- bundler (LoadError) 大概的error如上。處理方式很簡單，就是安裝bundler。
+$ gem install bundler 這樣就解決了。
 如果還有以下錯誤：
 resolver.rb:356:in `block in verify_gemfile_dependencies_are_found!': Could not find gem &lsquo;jekyll-sitemap&rsquo; in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
 則多下一行指令：
-$ bundle install &ndash;path vendor/bundle
-invalid date &hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
-處理方法稍微麻煩一點。找到repo底下的_config.yml檔案，在約第五行
-&hellip;
-&hellip;
-&hellip;exclude:[&hellip;&hellip;,&ldquo;vendor&rdquo;&hellip;]
-的exclude中加入vendor。
-一些asset link出錯 我自己在架的時候他的一些bootstrap的css和js檔案link不到，原因是它要link的連結在
-assets/themes/bootstrap-3下，但其原本目錄並沒有這個子目錄，所以在assets/themes下建立bootstrap-3，並將原本的bootstrap移到底下。
-###</p></div>
+$ bundle install --path vendor/bundle invalid date &hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
+Invalid date &#39;&lt;%= Time.now.strftime(&#39;%Y-%m-%d %H:%M:%S %z&#39;) %&gt;&#39;: Document &#39;vendor/bundle/ruby/2.</p></div>
             <div class="post-footer">
             <time>August 31, 2016</time>
 

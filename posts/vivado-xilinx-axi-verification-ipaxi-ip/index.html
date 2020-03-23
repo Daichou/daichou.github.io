@@ -174,141 +174,141 @@ if (!doNotTrack) {
 <p>完成後會產生如下block diagram</p>
 <p><a href="https://1.bp.blogspot.com/-MZp2HKmVa70/XncwfFkLuCI/AAAAAAAAHZ0/Yo-2q44Dw00e27fycWn_IC9geJbDul5kACLcBGAsYHQ/s1600/DeepinScreenshot_select-area_20200319173604.png"><img src="https://1.bp.blogspot.com/-MZp2HKmVa70/XncwfFkLuCI/AAAAAAAAHZ0/Yo-2q44Dw00e27fycWn_IC9geJbDul5kACLcBGAsYHQ/s640/DeepinScreenshot_select-area_20200319173604.png" alt=""></a></p>
 <p>並且產生以下範例testbench，註解為程式區段用途。</p>
-<pre><code>\`timescale 1ns / 1ps  
-\`include &quot;my\_dma\_v1\_0\_tb\_include.svh&quot;  
-// 以下為必要package  
-import axi\_vip\_pkg::\*;  
-import my\_dma\_v1\_0\_bfm\_1\_slave\_0\_0\_pkg::\*;  
-import my\_dma\_v1\_0\_bfm\_1\_master\_0\_0\_pkg::\*;  
-  
-module my\_dma\_v1\_0\_tb();  
-  
-// AXI slave VIP 參數宣告(以下省略部份程式碼)  
-xil\_axi\_uint                            error\_cnt = 0;  
-xil\_axi\_uint                            comparison\_cnt = 0;  
-axi\_transaction                         wr\_transaction;     
-.......  
-xil\_axi\_uint                           mst\_agent\_verbosity = 0;    
-xil\_axi\_uint                           slv\_agent\_verbosity = 0;    
-// AXI Slave VIP with memory model (如果你的ip為AXI master full會自動產生對應VIP)  
-my\_dma\_v1\_0\_bfm\_1\_slave\_0\_0\_slv\_mem\_t          slv\_agent\_0;  
-  
-integer result\_slave;    
-bit \[31:0\] S00\_AXI\_test\_data\[3:0\];   
- localparam LC\_AXI\_BURST\_LENGTH = 8;   
- localparam LC\_AXI\_DATA\_WIDTH = 32;   
-  
-// AXI master VIP 參數參數宣告  
-integer                                 i;   
-integer                                 j;    
-xil\_axi\_uint                            trans\_cnt\_before\_switch = 48;    
-xil\_axi\_uint                            passthrough\_cmd\_switch\_cnt = 0;    
-......  
-axi\_ready\_gen                           arready\_gen2;    
-xil\_axi\_payload\_byte                    data\_mem\[xil\_axi\_ulong\];    
-//AXI master VIP  
-my\_dma\_v1\_0\_bfm\_1\_master\_0\_0\_mst\_t          mst\_agent\_0;  
-// Design under test  
-  \`BD\_WRAPPER DUT(  
-      .ARESETN(reset),   
-      .ACLK(clock)   
-    );   
-    
-initial begin  
-    //基本AXI VIP agent初始設定  
- slv\_agent\_0 = new(&quot;slave vip agent&quot;,DUT.\`BD\_INST\_NAME.slave\_0.inst.IF);  
-       slv\_agent\_0.set\_agent\_tag(&quot;Slave VIP&quot;);  
-    slv\_agent\_0.set\_verbosity(slv\_agent\_verbosity);  
-    slv\_agent\_0.start\_slave();  
-    mst\_agent\_0 = new(&quot;master vip agent&quot;,DUT.\`BD\_INST\_NAME.master\_0.inst.IF);//ms    
-        mst\_agent\_0.set\_agent\_tag(&quot;Master VIP&quot;);   
-    mst\_agent\_0.set\_verbosity(mst\_agent\_verbosity);   
-    mst\_agent\_0.start\_master();   
-     $timeformat (-12, 1, &quot; ps&quot;, 1);  
-  end  
-  initial begin  
-    reset &lt;= 1'b0;  
-    #100ns;  
-    reset &lt;= 1'b1;  
-    repeat (5) @(negedge clock);   
-  end  
-  always #5 clock &lt;= ~clock;  
-  initial begin  
-      S\_AXI\_TEST ( );  
-  
-    init\_0 = 0;  
-    #200ns;  
-    init\_0 =1'b1;  
-    #20ns;  
-    init\_0 = 1'b0;  
-      
-      #1ns;  
-      $finish;  
-  end  
-  initial begin  
-  #1;  
-    forever begin  
-      slv\_agent\_0.monitor.item\_collected\_port.get(slv\_monitor\_transaction);  
-      slave\_moniter\_transaction\_queue.push\_back(slv\_monitor\_transaction);  
-      slave\_moniter\_transaction\_queue\_size++;  
-    end  
-  end  
-//測試task範例  
-task automatic S\_AXI\_TEST;    
-begin     
-#1;   
-   $display(&quot;Sequential write transfers example similar to  AXI BFM WRITE\_BURST method starts&quot;);   
-   mtestID = 0;   
-   mtestADDR = 64'h00000000;   
-   mtestBurstLength = 0;   
-   mtestDataSize = xil\_axi\_size\_t'(xil\_clog2(32/8));   
-   mtestBurstType = XIL\_AXI\_BURST\_TYPE\_INCR;    
-   mtestLOCK = XIL\_AXI\_ALOCK\_NOLOCK;    
-   mtestCacheType = 0;    
-   mtestProtectionType = 0;    
-   mtestRegion = 0;   
-   mtestQOS = 0;   
-   result\_slave = 1;   
-  mtestWDataL\[31:0\] = 32'h00000001;   
-  for(int i = 0; i &lt; 4;i++) begin   
-     S00\_AXI\_test\_data\[i\] &lt;= mtestWDataL\[31:0\];     
-   //AXI master write transaction  
-   mst\_agent\_0.AXI4LITE\_WRITE\_BURST(   
-   mtestADDR,   
-   mtestProtectionType,   
-   mtestWDataL,   
-   mtestBresp   
-   );     
-   mtestWDataL\[31:0\] = mtestWDataL\[31:0\] + 1;   
-   mtestADDR = mtestADDR + 64'h4;   
-  end   
- $display(&quot;Sequential write transfers example similar to  AXI BFM WRITE\_BURST method completes&quot;);   
- $display(&quot;Sequential read transfers example similar to  AXI BFM READ\_BURST method starts&quot;);   
- mtestID = 0;   
- mtestADDR = 64'h00000000;   
- mtestBurstLength = 0;   
- mtestDataSize = xil\_axi\_size\_t'(xil\_clog2(32/8));   
- mtestBurstType = XIL\_AXI\_BURST\_TYPE\_INCR;    
- mtestLOCK = XIL\_AXI\_ALOCK\_NOLOCK;    
- mtestCacheType = 0;    
- mtestProtectionType = 0;    
- mtestRegion = 0;   
- mtestQOS = 0;   
- for(int i = 0; i &lt; 4;i++) begin   
-   //AXI master產生read transaction  
-   mst\_agent\_0.AXI4LITE\_READ\_BURST(   
-        mtestADDR,   
-        mtestProtectionType,   
-        mtestRDataL,   
-        mtestRresp   
-      );   
-  
-  end   
-endtask    
-  
-endmodule  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-verilog" data-lang="verilog"><span style="color:#66d9ef">`timescale</span> <span style="color:#ae81ff">1</span>ns <span style="color:#f92672">/</span> <span style="color:#ae81ff">1</span>ps
+<span style="color:#66d9ef">`include</span> <span style="color:#e6db74">&#34;my_dma_v1_0_tb_include.svh&#34;</span>
+<span style="color:#75715e">// 以下為必要package
+</span><span style="color:#75715e"></span><span style="color:#f92672">import</span> axi_vip_pkg::*;
+<span style="color:#f92672">import</span> my_dma_v1_0_bfm_1_slave_0_0_pkg::*;
+<span style="color:#f92672">import</span> my_dma_v1_0_bfm_1_master_0_0_pkg::*;
+ 
+<span style="color:#66d9ef">module</span> my_dma_v1_0_tb();
+ 
+<span style="color:#75715e">// AXI slave VIP 參數宣告(以下省略部份程式碼)
+</span><span style="color:#75715e"></span>xil_axi_uint                            error_cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+xil_axi_uint                            comparison_cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+axi_transaction                         wr_transaction;   
+.......
+xil_axi_uint                           mst_agent_verbosity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+xil_axi_uint                           slv_agent_verbosity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+<span style="color:#75715e">// AXI Slave VIP with memory model (如果你的ip為AXI master full會自動產生對應VIP)
+</span><span style="color:#75715e"></span>my_dma_v1_0_bfm_1_slave_0_0_slv_mem_t          slv_agent_0;
+ 
+<span style="color:#66d9ef">integer</span> result_slave;  
+<span style="color:#66d9ef">bit</span> [<span style="color:#ae81ff">31</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] S00_AXI_test_data[<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]; 
+ <span style="color:#66d9ef">localparam</span> LC_AXI_BURST_LENGTH <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>; 
+ <span style="color:#66d9ef">localparam</span> LC_AXI_DATA_WIDTH <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>; 
+ 
+<span style="color:#75715e">// AXI master VIP 參數參數宣告
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">integer</span>                                 i; 
+<span style="color:#66d9ef">integer</span>                                 j;  
+xil_axi_uint                            trans_cnt_before_switch <span style="color:#f92672">=</span> <span style="color:#ae81ff">48</span>;  
+xil_axi_uint                            passthrough_cmd_switch_cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+......
+axi_ready_gen                           arready_gen2;  
+xil_axi_payload_byte                    data_mem[xil_axi_ulong];  
+<span style="color:#75715e">//AXI master VIP
+</span><span style="color:#75715e"></span>my_dma_v1_0_bfm_1_master_0_0_mst_t          mst_agent_0;
+<span style="color:#75715e">// Design under test
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">`BD_WRAPPER</span> DUT(
+      .ARESETN(reset), 
+      .ACLK(clock) 
+    ); 
+   
+<span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+    <span style="color:#75715e">//基本AXI VIP agent初始設定
+</span><span style="color:#75715e"></span> slv_agent_0 <span style="color:#f92672">=</span> new(<span style="color:#e6db74">&#34;slave vip agent&#34;</span>,DUT.<span style="color:#66d9ef">`BD_INST_NAME</span>.slave_0.inst.IF);
+       slv_agent_0.set_agent_tag(<span style="color:#e6db74">&#34;Slave VIP&#34;</span>);
+    slv_agent_0.set_verbosity(slv_agent_verbosity);
+    slv_agent_0.start_slave();
+    mst_agent_0 <span style="color:#f92672">=</span> new(<span style="color:#e6db74">&#34;master vip agent&#34;</span>,DUT.<span style="color:#66d9ef">`BD_INST_NAME</span>.master_0.inst.IF);<span style="color:#75715e">//ms  
+</span><span style="color:#75715e"></span>        mst_agent_0.set_agent_tag(<span style="color:#e6db74">&#34;Master VIP&#34;</span>); 
+    mst_agent_0.set_verbosity(mst_agent_verbosity); 
+    mst_agent_0.start_master(); 
+     $timeformat (<span style="color:#f92672">-</span><span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34; ps&#34;</span>, <span style="color:#ae81ff">1</span>);
+  <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+    reset <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+    #<span style="color:#ae81ff">100</span>ns;
+    reset <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>;
+    <span style="color:#66d9ef">repeat</span> (<span style="color:#ae81ff">5</span>) @(<span style="color:#66d9ef">negedge</span> clock); 
+  <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">always</span> #<span style="color:#ae81ff">5</span> clock <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">~</span>clock;
+  <span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+      S_AXI_TEST ( );
+ 
+    init_0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    #<span style="color:#ae81ff">200</span>ns;
+    init_0 <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>;
+    #<span style="color:#ae81ff">20</span>ns;
+    init_0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+     
+      #<span style="color:#ae81ff">1</span>ns;
+      $finish;
+  <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+  #<span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">forever</span> <span style="color:#66d9ef">begin</span>
+      slv_agent_0.monitor.item_collected_port.get(slv_monitor_transaction);
+      slave_moniter_transaction_queue.push_back(slv_monitor_transaction);
+      slave_moniter_transaction_queue_size<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#75715e">//測試task範例
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">task</span> <span style="color:#66d9ef">automatic</span> S_AXI_TEST;  
+<span style="color:#66d9ef">begin</span>   
+#<span style="color:#ae81ff">1</span>; 
+   $display(<span style="color:#e6db74">&#34;Sequential write transfers example similar to  AXI BFM WRITE_BURST method starts&#34;</span>); 
+   mtestID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+   mtestADDR <span style="color:#f92672">=</span> <span style="color:#ae81ff">64&#39;h00000000</span>; 
+   mtestBurstLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+   mtestDataSize <span style="color:#f92672">=</span> xil_axi_size_t&#39;(xil_clog2(<span style="color:#ae81ff">32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>)); 
+   mtestBurstType <span style="color:#f92672">=</span> XIL_AXI_BURST_TYPE_INCR;  
+   mtestLOCK <span style="color:#f92672">=</span> XIL_AXI_ALOCK_NOLOCK;  
+   mtestCacheType <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+   mtestProtectionType <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+   mtestRegion <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+   mtestQOS <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+   result_slave <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; 
+  mtestWDataL[<span style="color:#ae81ff">31</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">32&#39;h00000001</span>; 
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>) <span style="color:#66d9ef">begin</span> 
+     S00_AXI_test_data[i] <span style="color:#f92672">&lt;=</span> mtestWDataL[<span style="color:#ae81ff">31</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>];   
+   <span style="color:#75715e">//AXI master write transaction
+</span><span style="color:#75715e"></span>   mst_agent_0.AXI4LITE_WRITE_BURST( 
+   mtestADDR, 
+   mtestProtectionType, 
+   mtestWDataL, 
+   mtestBresp 
+   );   
+   mtestWDataL[<span style="color:#ae81ff">31</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> mtestWDataL[<span style="color:#ae81ff">31</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; 
+   mtestADDR <span style="color:#f92672">=</span> mtestADDR <span style="color:#f92672">+</span> <span style="color:#ae81ff">64&#39;h4</span>; 
+  <span style="color:#66d9ef">end</span> 
+ $display(<span style="color:#e6db74">&#34;Sequential write transfers example similar to  AXI BFM WRITE_BURST method completes&#34;</span>); 
+ $display(<span style="color:#e6db74">&#34;Sequential read transfers example similar to  AXI BFM READ_BURST method starts&#34;</span>); 
+ mtestID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+ mtestADDR <span style="color:#f92672">=</span> <span style="color:#ae81ff">64&#39;h00000000</span>; 
+ mtestBurstLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+ mtestDataSize <span style="color:#f92672">=</span> xil_axi_size_t&#39;(xil_clog2(<span style="color:#ae81ff">32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>)); 
+ mtestBurstType <span style="color:#f92672">=</span> XIL_AXI_BURST_TYPE_INCR;  
+ mtestLOCK <span style="color:#f92672">=</span> XIL_AXI_ALOCK_NOLOCK;  
+ mtestCacheType <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+ mtestProtectionType <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+ mtestRegion <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+ mtestQOS <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+ <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>) <span style="color:#66d9ef">begin</span> 
+   <span style="color:#75715e">//AXI master產生read transaction
+</span><span style="color:#75715e"></span>   mst_agent_0.AXI4LITE_READ_BURST( 
+        mtestADDR, 
+        mtestProtectionType, 
+        mtestRDataL, 
+        mtestRresp 
+      ); 
+ 
+  <span style="color:#66d9ef">end</span> 
+<span style="color:#66d9ef">endtask</span>  
+ 
+<span style="color:#66d9ef">endmodule</span>
 
-</code></pre><ul>
+</code></pre></div><ul>
 <li>
 <p>對於slave agent有兩種model，分別是：</p>
 </li>
@@ -337,51 +337,47 @@ endmodule
 <p>以此架構產生的目標測試環境如上所示。其中由於AXI VIP slave是使用memory mode，所以Slave write/read driver不需要user自己在testbench中補上處理程序。</p>
 <p>在使用memory model版本的AXI VIP，可以透過blackdoor_memory_write與blackdoor_memory_read存取模擬出的data memory，而AXI master則可透過一般AXI transaction進行讀寫。memory model大小取決於AXI data width的定址空間大小。</p>
 <p>blackdoor memory read範例:</p>
-<pre><code>xil\_axi\_ulong mem\_rd\_addr = 32'h00000000;  
-bit \[32-1:0\] mem\_rd\_data;  
-mem\_rd\_data = slv\_agent\_0.mem\_model.backdoor\_memory\_read(mem\_rd\_addr);
-```blackdoor memory write範例：  
-</code></pre><p>bit [32-1:0] wr_data = 0;<br>
-xil_axi_ulong wr_addr = 0;<br>
-bit [(32/8)-1:0] wr_strb = 4&rsquo;hf; //byte select<br>
-slv_agent_0.mem_model.backdoor_memory_write(wr_addr,wr_data,wr_strb);</p>
-<pre><code>memory model使用上可以透過以下code將memory給入預設值方便debug:  
-</code></pre><p>slv_agent_0.mem_model.set_memory_fill_policy(XIL_AXI_MEMORY_FILL_FIXED);<br>
-slv_agent_0.mem_model.set_default_memory_value(32&rsquo;hdeadbeef);</p>
-<pre><code>AXI master VIP進行AXI4 lite read/write的讀寫方式可透過:  
-</code></pre><p>xil_axi_ulong                           mtestADDR;<br>
-xil_axi_prot_t                          mtestProtectionType = 3&rsquo;b000;<br>
-bit [63:0]                              mtestWDataL;<br>
-bit [63:0]                              mtestRDataL;<br>
-xil_axi_resp_t                          mtestBresp;<br>
-xil_axi_resp_t[255:0]                   mtestRresp;<br>
-mst_agent_0.AXI4LITE_WRITE_BURST(<br>
-mtestADDR,<br>
-mtestProtectionType,<br>
-mtestWDataL,<br>
-mtestBresp);<br>
-mst_agent_0.AXI4LITE_READ_BURST(<br>
-mtestADDR,<br>
-mtestProtectionType,<br>
-mtestRDataL,<br>
-mtestRresp);</p>
-<pre><code>
-#### 示範testbench code
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-verilog" data-lang="verilog">xil_axi_ulong mem_rd_addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">32&#39;h00000000</span>;  
+<span style="color:#66d9ef">bit</span> [<span style="color:#ae81ff">32</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] mem_rd_data;  
+mem_rd_data <span style="color:#f92672">=</span> slv_agent_0.mem_model.backdoor_memory_read(mem_rd_addr);
+</code></pre></div><p>blackdoor memory write範例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-verilog" data-lang="verilog"><span style="color:#66d9ef">bit</span> [<span style="color:#ae81ff">32</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] wr_data <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+xil_axi_ulong wr_addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+<span style="color:#66d9ef">bit</span> [(<span style="color:#ae81ff">32</span><span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] wr_strb <span style="color:#f92672">=</span> <span style="color:#ae81ff">4&#39;hf</span>; <span style="color:#75715e">//byte select  
+</span><span style="color:#75715e"></span>slv_agent_0.mem_model.backdoor_memory_write(wr_addr,wr_data,wr_strb);
+</code></pre></div><p>memory model使用上可以透過以下code將memory給入預設值方便debug:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-verilog" data-lang="verilog">slv_agent_0.mem_model.set_memory_fill_policy(XIL_AXI_MEMORY_FILL_FIXED);  
+slv_agent_0.mem_model.set_default_memory_value(<span style="color:#ae81ff">32&#39;hdeadbeef</span>);
+</code></pre></div><p>AXI master VIP進行AXI4 lite read/write的讀寫方式可透過:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-verilog" data-lang="verilog">  
+xil_axi_ulong                           mtestADDR;  
+xil_axi_prot_t                          mtestProtectionType <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#ae81ff">&#39;b000</span>;  
+<span style="color:#66d9ef">bit</span> [<span style="color:#ae81ff">63</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]                              mtestWDataL;  
+<span style="color:#66d9ef">bit</span> [<span style="color:#ae81ff">63</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]                              mtestRDataL;  
+xil_axi_resp_t                          mtestBresp;  
+xil_axi_resp_t[<span style="color:#ae81ff">255</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]                   mtestRresp;  
+mst_agent_0.AXI4LITE_WRITE_BURST(  
+        mtestADDR,  
+        mtestProtectionType,  
+        mtestWDataL,  
+        mtestBresp);  
+mst_agent_0.AXI4LITE_READ_BURST(  
+        mtestADDR,  
+        mtestProtectionType,  
+        mtestRDataL,  
+        mtestRresp);          
 
-在gist連結中：[https://gist.github.com/Daichou/6b2e0a62bfc4eeb338e7f82fe40f0cc8](https://gist.github.com/Daichou/6b2e0a62bfc4eeb338e7f82fe40f0cc8)  
+</code></pre></div><h4 id="示範testbench-code">示範testbench code</h4>
+<p>在gist連結中：<a href="https://gist.github.com/Daichou/6b2e0a62bfc4eeb338e7f82fe40f0cc8">https://gist.github.com/Daichou/6b2e0a62bfc4eeb338e7f82fe40f0cc8</a></p>
+<h4 id="其他資源">其他資源</h4>
+<p>Xilinx AXI VIP很多資訊只能透過從範例code看註解學習，開啟範例的方法為，先建立一個AXI VIP block design，在block diagram中點擊AXI VIP按右鍵然後會跳出選單，選取open IP example design。在該專案根目錄底下的imports就會含有所有範例testbench。</p>
+<h4 id="reference">Reference</h4>
+<ul>
+<li><a href="https://www.xilinx.com/support/documentation/ip_documentation/axi_vip/v1_0/pg267-axi-vip.pdf">AXI Verification IP v1.0</a></li>
+<li><a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841614/Validating+a+master+AXI4+interface+using+the+Verification+IP+as+a+slave">Validating a master AXI4 interface using the Verification IP as a slave</a></li>
+<li><a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841951/Validating+a+master+AXI4+interface+using+the+Verification+IP+as+a+slave+part+2">Validating a master AXI4 interface using the Verification IP as a slave (part 2)</a></li>
+</ul>
 
-#### 其他資源
-
-Xilinx AXI VIP很多資訊只能透過從範例code看註解學習，開啟範例的方法為，先建立一個AXI VIP block design，在block diagram中點擊AXI VIP按右鍵然後會跳出選單，選取open IP example design。在該專案根目錄底下的imports就會含有所有範例testbench。  
-  
-
-#### Reference
-
-  
-
-*   [AXI Verification IP v1.0](https://www.xilinx.com/support/documentation/ip_documentation/axi_vip/v1_0/pg267-axi-vip.pdf)
-*   [Validating a master AXI4 interface using the Verification IP as a slave](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841614/Validating+a+master+AXI4+interface+using+the+Verification+IP+as+a+slave)
-*   [Validating a master AXI4 interface using the Verification IP as a slave (part 2)](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841951/Validating+a+master+AXI4+interface+using+the+Verification+IP+as+a+slave+part+2)</code></pre>
         </p>
     </div>
     

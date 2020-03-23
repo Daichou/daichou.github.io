@@ -141,27 +141,27 @@ if (!doNotTrack) {
 <h3 id="arduino-pwm-frequency-library"> arduino-pwm-frequency-library</h3>
 <p>這裡介紹一個第三方library &ldquo;arduino-pwm-frequency-library&rdquo;，可以在這個網址找到：<a href="https://code.google.com/archive/p/arduino-pwm-frequency-library/downloads">https://code.google.com/archive/p/arduino-pwm-frequency-library/downloads</a></p>
 <p>，這個libaray的範例中可以提供你在給定的frequency下，PWM resolution的上限。而程式用起來十分簡單如下：</p>
-<pre><code>// Arduino Mega,pins 2 - 13 and 44 - 46.  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Arduino Mega,pins 2 - 13 and 44 - 46.  
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pwm.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> duty <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;   
   
-#include &lt;pwm.h&gt;  
+<span style="color:#75715e">//use pin 11 on the mega for this example to work  
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">int</span> led <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>; <span style="color:#75715e">// the pin that the LED is attached to  
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {  
   
-unsigned int duty = 1;   
+  <span style="color:#75715e">// put your setup code here, to run once:  
+</span><span style="color:#75715e"></span>  
+  Serial.begin(<span style="color:#ae81ff">57600</span>);  
   
-//use pin 11 on the mega for this example to work  
-  
-int led = 11; // the pin that the LED is attached to  
-  
-void setup() {  
-  
-  // put your setup code here, to run once:  
-  
-  Serial.begin(57600);  
-  
-  InitTimersSafe(); //initialize all timers except for 0, to save time keeping functions  
-  
+  InitTimersSafe(); <span style="color:#75715e">//initialize all timers except for 0, to save time keeping functions  
+</span><span style="color:#75715e"></span>  
   pinMode( led, OUTPUT);  
   
-  SetPinFrequency(led, 10);  
+  SetPinFrequency(led, <span style="color:#ae81ff">10</span>);  
   
     
   
@@ -169,21 +169,21 @@ void setup() {
   
   
   
-void loop() {  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {  
   
-  // put your main code here, to run repeatedly:  
-  
+  <span style="color:#75715e">// put your main code here, to run repeatedly:  
+</span><span style="color:#75715e"></span>  
     
   
-  while(1){  
+  <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){  
   
     pwmWriteHR(led,duty);  
   
-    duty+=10;  
+    duty<span style="color:#f92672">+=</span><span style="color:#ae81ff">10</span>;  
   
-    delay(100);  
+    delay(<span style="color:#ae81ff">100</span>);  
   
-    Serial.print(&quot;duty = &quot;);  
+    Serial.print(<span style="color:#e6db74">&#34;duty = &#34;</span>);  
   
     Serial.println(duty);  
   
@@ -192,7 +192,7 @@ void loop() {
 }  
   
 
-</code></pre><p>然而這個library的function會有一些副作用，由於前面提過要改resolution和frequency需要更改Timer的一些設定，其中Arduino使用Timer0作為delay() 這個函是的時序。所以可能會有影響，另外她同時會更改所有Timer的設定，若有使用其他Timer的話要小心。</p>
+</code></pre></div><p>然而這個library的function會有一些副作用，由於前面提過要改resolution和frequency需要更改Timer的一些設定，其中Arduino使用Timer0作為delay() 這個函是的時序。所以可能會有影響，另外她同時會更改所有Timer的設定，若有使用其他Timer的話要小心。</p>
 <h3 id="arduino-framework裡的digitalpintotimer-macro">Arduino Framework裡的digitalPinToTimer Macro</h3>
 <p>在Trace arduino-pwm-frequency-library時，我發現其呼叫了這個Marco digitalPinToTimer，其實在Arduino Core[<a href="https://github.com/arduino/ArduinoCore-avr">github</a>]中還有多類似的Macro像是 digitalPinToInterrupt等(<a href="https://github.com/arduino/ArduinoCore-avr/blob/3f63f2975e7183c3254b6794bfcc8f19ca0301c9/variants/standard/pins">https://github.com/arduino/ArduinoCore-avr/blob/3f63f2975e7183c3254b6794bfcc8f19ca0301c9/variants/standard/pins</a>_arduino.h)這些Macro實做方式為，在同一個header中使用PROGMEM(program space)建表，可知Arduino framework其實裡面可能使用了些program space存放這些表，即便你沒用到這些函式或marco。若是哪天你不小心寫滿了program space可能就是這個問題。(補充：大部分Arduino cpu如ATmega 2560為哈佛架構的RISC cpu，其有獨立的program memory存放code指令和一些const，還有獨立的data memory存放變數。而我們一般的桌機為拆分快取的哈佛架構，到L1或是L2 cache變為哈佛架構。而8051為Von Neumann，data space和program space共用memory (bus))。</p>
 

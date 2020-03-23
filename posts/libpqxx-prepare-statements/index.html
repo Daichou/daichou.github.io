@@ -131,8 +131,17 @@ if (!doNotTrack) {
         <p>
         <p>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：<a href="http://www.postgresql.org/docs/9.1/static/sql-prepare.html">http://www.postgresql.org/docs/9.1/static/sql-prepare.html</a></p>
 <p>而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</p>
-<p>再來是傳遞變數進入prepare的框架。</p>
-<p>其中傳變數方法還有其他寫法，請見：<a href="http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c">http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">connection <span style="color:#a6e22e">C</span>(<span style="color:#75715e">/*user parameter*/</span>);
+
+C.prepare(<span style="color:#e6db74">&#34;prepare_name&#34;</span>,<span style="color:#e6db74">&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;</span>);
+</code></pre></div><p>再來是傳遞變數進入prepare的框架。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
+connection <span style="color:#a6e22e">C</span>(<span style="color:#75715e">/*user parameter*/</span>);
+pqxx<span style="color:#f92672">::</span>work W(C);
+C.prepare(<span style="color:#e6db74">&#34;prepare_name&#34;</span>,<span style="color:#e6db74">&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;</span>);
+pqxx<span style="color:#f92672">::</span>result r <span style="color:#f92672">=</span> W.prepared(<span style="color:#e6db74">&#34;prepare_name&#34;</span>)(ID).exec();
+W.commit();
+</code></pre></div><p>其中傳變數方法還有其他寫法，請見：<a href="http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c">http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c</a></p>
 <p>prepare方法有時會降低效率，其他細節都在官方paper中。</p>
 
         </p>

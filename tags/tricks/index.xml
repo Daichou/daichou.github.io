@@ -20,20 +20,11 @@
       <description>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
 當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。
 這時有兩個解法。
-1.void cast
-例如:
-void f(void * argc)
-{
-(void) argc;
-}
-這會無害的去用到這個變數。
+ void cast  例如:
+void f(void * argc) { (void) argc; } 這會無害的去用到這個變數。
 2.自己等於自己
 例如:
-void f(void * argc)
-{
-argc = argc;
-}
-這兩招就是欺騙compiler這些變數已經被使用。
+void f(void * argc) { argc = argc; } 這兩招就是欺騙compiler這些變數已經被使用。
 我第一次看到這寫法真的嚇到了。
 以下是stackoverflow的討論。
 https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do
@@ -58,11 +49,9 @@ https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1</des
       <guid>https://daichou.github.io/posts/linuxwin10-live-usb/</guid>
       <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
 首先，以arch linux 為例，winusb是在aur裡，所以只要下：
-yaourt -Sy winusb
-即可安裝。
+$ yaourt -Sy winusb 即可安裝。
 接著開始製作live usb，先找到win10 ISO 檔的路徑，還有你的隨身碟隨身碟掛載路徑，下以下指令：
-winusb &amp;ndash;install 
-記得要用root or sudo來做。即可完成。</description>
+$ winusb --install &amp;lt;iso path&amp;gt; &amp;lt;partition&amp;gt; 記得要用root or sudo來做。即可完成。</description>
     </item>
     
     <item>
@@ -72,24 +61,16 @@ winusb &amp;ndash;install
       
       <guid>https://daichou.github.io/posts/jekyll/</guid>
       <description>用github架Jekyll 一些問題解法 當一開始使用
-的時候，可能會遇到一些問題(其實是我遇到的啦)
+$ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
 jekyll serve not found 這是一個很好處理的問題，因爲你的~/.gem/ruby/{version}/bin資料夾沒有在$PATH路徑下。加上去就可解決了。
 缺少bundler
-大概的error如上。處理方式很簡單，就是安裝bundler。
-這樣就解決了。
+kernel_require.rb:55:in `require&amp;#39;: cannot load such file -- bundler (LoadError) 大概的error如上。處理方式很簡單，就是安裝bundler。
+$ gem install bundler 這樣就解決了。
 如果還有以下錯誤：
 resolver.rb:356:in `block in verify_gemfile_dependencies_are_found!&#39;: Could not find gem &amp;lsquo;jekyll-sitemap&amp;rsquo; in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
 則多下一行指令：
-$ bundle install &amp;ndash;path vendor/bundle
-invalid date &amp;hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
-處理方法稍微麻煩一點。找到repo底下的_config.yml檔案，在約第五行
-&amp;hellip;
-&amp;hellip;
-&amp;hellip;exclude:[&amp;hellip;&amp;hellip;,&amp;ldquo;vendor&amp;rdquo;&amp;hellip;]
-的exclude中加入vendor。
-一些asset link出錯 我自己在架的時候他的一些bootstrap的css和js檔案link不到，原因是它要link的連結在
-assets/themes/bootstrap-3下，但其原本目錄並沒有這個子目錄，所以在assets/themes下建立bootstrap-3，並將原本的bootstrap移到底下。
-###</description>
+$ bundle install --path vendor/bundle invalid date &amp;hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
+Invalid date &amp;#39;&amp;lt;%= Time.now.strftime(&amp;#39;%Y-%m-%d %H:%M:%S %z&amp;#39;) %&amp;gt;&amp;#39;: Document &amp;#39;vendor/bundle/ruby/2.</description>
     </item>
     
   </channel>

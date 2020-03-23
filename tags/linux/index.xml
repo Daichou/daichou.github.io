@@ -46,7 +46,11 @@ $ git clone git://git.qemu.org/qemu.git qemu.git $ cd qemu.git $ ./configure --t
 Arch Linux的package預設包含aarch64-softmmu這個target。
 四、建立rootfs 其實有很多方法可以建立(busybox)，而這裡用buildroot來做。
 首先取得buildroot。
-git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig ```在target option中選擇架構與CPU。 以下為範例： [![](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png)](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png) 在System configuration ---&amp;gt; 點選\[\*\]Run a getty (login prompt) after boot ---&amp;gt;並將TTY port設成ttyAMA0。 在Target Packages ---&amp;gt;選取busybox與\[\*\] Show packages that are also provided by busybox 。 在Filesystem images中選擇\[\*\] cpio the root filesystem (for use as an initial RAM filesystem)。 在toolchain option中選擇外部toolchain如下： [!</description>
+git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig 在target option中選擇架構與CPU。
+以下為範例：
+
+在System configuration &amp;mdash;&amp;gt; 點選[*]Run a getty (login prompt) after boot &amp;mdash;&amp;gt;並將TTY port設成ttyAMA0。
+在Target Packages &amp;mdash;&amp;gt;選取busybox與[*] Show packages that are also provided by busybox 。</description>
     </item>
     
   </channel>

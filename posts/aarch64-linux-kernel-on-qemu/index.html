@@ -140,81 +140,66 @@ if (!doNotTrack) {
 <p>在linaro官網的下載區<a href="https://www.linaro.org/downloads/">https://www.linaro.org/downloads/</a>，進行下載。以最新第七版為例<a href="https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/">https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/</a>，下載linux版本即可，然後找個地方解壓縮。</p>
 <h3 id="三下載或編譯qemu">三、下載或編譯Qemu</h3>
 <p>在arch linux中用pacman安裝qemu。</p>
-<pre><code>$sudo pacman -Sy qemu  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$sudo pacman -Sy qemu  
 
-</code></pre><p>或是去<a href="https://www.qemu.org/">https://www.qemu.org/</a>下載qemu，或是用git clone。</p>
-<pre><code>$ git clone git://git.qemu.org/qemu.git qemu.git  
+</code></pre></div><p>或是去<a href="https://www.qemu.org/">https://www.qemu.org/</a>下載qemu，或是用git clone。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone git://git.qemu.org/qemu.git qemu.git  
 $ cd qemu.git  
-$ ./configure --target-list=aarch64-softmmu  
+$ ./configure --target-list<span style="color:#f92672">=</span>aarch64-softmmu  
 $ make  
 
-</code></pre><p>之後執行檔會放在qemu.git/aarch64-softmmu/qemu-system-aarch64。</p>
+</code></pre></div><p>之後執行檔會放在qemu.git/aarch64-softmmu/qemu-system-aarch64。</p>
 <p>Arch Linux的package預設包含aarch64-softmmu這個target。</p>
 <h3 id="四建立rootfs">四、建立rootfs</h3>
 <p>其實有很多方法可以建立(busybox)，而這裡用buildroot來做。<br>
 首先取得buildroot。</p>
-<pre><code>git clone git://git.buildroot.net/buildroot buildroot.git  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone git://git.buildroot.net/buildroot buildroot.git  
 $ cd buildroot.git  
 $ make menuconfig  
 
-```在target option中選擇架構與CPU。  
-以下為範例：  
+</code></pre></div><p>在target option中選擇架構與CPU。<br>
+以下為範例：</p>
+<p><a href="https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png"><img src="https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png" alt=""></a></p>
+<p>在System configuration  &mdash;&gt; 點選[*]Run a getty (login prompt) after boot  &mdash;&gt;並將TTY port設成ttyAMA0。<br>
+在Target Packages &mdash;&gt;選取busybox與[*]   Show packages that are also provided by busybox 。<br>
+在Filesystem images中選擇[*] cpio the root filesystem (for use as an initial RAM filesystem)。<br>
+在toolchain option中選擇外部toolchain如下：</p>
+<p><a href="https://1.bp.blogspot.com/-ntsOaVR5HNM/XQeDtREU-OI/AAAAAAAAEe0/ez4ZMjD5kKshFNDnafYFykbbeogWucn_wCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-11-25.png"><img src="https://1.bp.blogspot.com/-ntsOaVR5HNM/XQeDtREU-OI/AAAAAAAAEe0/ez4ZMjD5kKshFNDnafYFykbbeogWucn_wCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-11-25.png" alt=""></a></p>
+<p>設好外部toolchain路徑gcc版本與linux header版本，必將SSP和RPC開啟。可以檢查.config中是否有：<br>
+BR2_TOOLCHAIN_EXTERNAL_HAS_SSP=y<br>
+BR2_TOOLCHAIN_EXTERNAL_INET_RPC=y</p>
+<p>最後:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make   
+</code></pre></div><h3 id="四下載編譯kernel">四、下載編譯kernel</h3>
+<p>去<a href="https://www.kernel.org/">https://www.kernel.org/</a>下載最新kernel。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$cd linux-5.x.x  
+$mkdir out<span style="color:#ae81ff">\_</span>AArch64  
+$make ARCH<span style="color:#f92672">=</span>arm64 ARCH<span style="color:#f92672">=</span>arm64 CROSS<span style="color:#ae81ff">\_</span>COMPILE<span style="color:#f92672">=</span>aarch64-linux-gnu- O<span style="color:#f92672">=</span>./out<span style="color:#ae81ff">\_</span>AARCH64 defconfig  
+$make ARCH<span style="color:#f92672">=</span>arm64 ARCH<span style="color:#f92672">=</span>arm64 CROSS<span style="color:#ae81ff">\_</span>COMPILE<span style="color:#f92672">=</span>aarch64-linux-gnu- O<span style="color:#f92672">=</span>./out<span style="color:#ae81ff">\_</span>AARCH64 menuconfig  
 
-[![](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png)](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png)
+</code></pre></div><p>在.config中修改以下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">CONFIG_CROSS_COMPILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aarch64-linux-gnu-&#34;</span>                  <span style="color:#75715e"># needs to match your cross-compiler prefix</span>  
+CONFIG_INITRAMFS_SOURCE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;path/to/buildroot.git/output/images/rootfs.cpio&#34;</span>          <span style="color:#75715e"># points at your buildroot image</span>  
 
-在System configuration  ---&gt; 點選\[\*\]Run a getty (login prompt) after boot  ---&gt;並將TTY port設成ttyAMA0。  
-在Target Packages ---&gt;選取busybox與\[\*\]   Show packages that are also provided by busybox 。  
-在Filesystem images中選擇\[\*\] cpio the root filesystem (for use as an initial RAM filesystem)。  
-在toolchain option中選擇外部toolchain如下：  
+</code></pre></div><p>最後編譯：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$make ARCH<span style="color:#f92672">=</span>arm64 ARCH<span style="color:#f92672">=</span>arm64 CROSS_COMPILE<span style="color:#f92672">=</span>aarch64-linux-gnu- O<span style="color:#f92672">=</span>./out_AARCH64 Image -j8  
 
-[![](https://1.bp.blogspot.com/-ntsOaVR5HNM/XQeDtREU-OI/AAAAAAAAEe0/ez4ZMjD5kKshFNDnafYFykbbeogWucn_wCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-11-25.png)](https://1.bp.blogspot.com/-ntsOaVR5HNM/XQeDtREU-OI/AAAAAAAAEe0/ez4ZMjD5kKshFNDnafYFykbbeogWucn_wCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-11-25.png)
+</code></pre></div><h3 id="五qemu執行">五、Qemu執行</h3>
+<p>在out_AArch64資料夾中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$qemu-system-aarch64 -kernel arch/arm64/boot/Image -machine virt -cpu cortex-a57 -machine type<span style="color:#f92672">=</span>virt -smp <span style="color:#ae81ff">4</span> -append <span style="color:#e6db74">&#34;console=ttyAMA0&#34;</span> -nographic  
 
-設好外部toolchain路徑gcc版本與linux header版本，必將SSP和RPC開啟。可以檢查.config中是否有：  
-BR2\_TOOLCHAIN\_EXTERNAL\_HAS\_SSP=y  
-BR2\_TOOLCHAIN\_EXTERNAL\_INET\_RPC=y  
-  
-最後:  
-$ make   
+</code></pre></div><p>單步執行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$qemu-system-aarch64 -kernel arch/arm64/boot/Image -machine virt -cpu cortex-a57 -machine type<span style="color:#f92672">=</span>virt -smp <span style="color:#ae81ff">4</span> -append <span style="color:#e6db74">&#34;console=ttyAMA0&#34;</span> -nographic -S -s  
 
-### 四、下載編譯kernel
+</code></pre></div><p>在另一個視窗。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$aarch64-linux-gnu-gdb vmlinux  
 
-去[https://www.kernel.org/](https://www.kernel.org/)下載最新kernel。
+</code></pre></div><p>預設登入帳密：root無密碼。</p>
+<h3 id="六其他">六、其他</h3>
+<p>無法開機時請先確認toolchain正確與否。</p>
+<h3 id="七參考">七、參考 </h3>
+<p><a href="http://gogojesseco.blogspot.com/2014/05/arm64.html">http://gogojesseco.blogspot.com/2014/05/arm64.html</a></p>
 
-  
-
-</code></pre><p>$cd linux-5.x.x<br>
-$mkdir out_AArch64<br>
-$make ARCH=arm64 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=./out_AARCH64 defconfig<br>
-$make ARCH=arm64 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=./out_AARCH64 menuconfig</p>
-<pre><code>
-在.config中修改以下：
-
-</code></pre><p> CONFIG_CROSS_COMPILE=&quot;aarch64-linux-gnu-&rdquo;                  # needs to match your cross-compiler prefix<br>
-CONFIG_INITRAMFS_SOURCE=&quot;path/to/buildroot.git/output/images/rootfs.cpio&rdquo;          # points at your buildroot image</p>
-<pre><code>
-最後編譯：
-
-</code></pre><p>$make ARCH=arm64 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=./out_AARCH64 Image -j8</p>
-<pre><code>
-  
-
-### 五、Qemu執行
-
-在out\_AArch64資料夾中。  
-</code></pre><p>$qemu-system-aarch64 -kernel arch/arm64/boot/Image -machine virt -cpu cortex-a57 -machine type=virt -smp 4 -append &ldquo;console=ttyAMA0&rdquo; -nographic</p>
-<pre><code class="language-單步執行。" data-lang="單步執行。">  
-</code></pre><p>$qemu-system-aarch64 -kernel arch/arm64/boot/Image -machine virt -cpu cortex-a57 -machine type=virt -smp 4 -append &ldquo;console=ttyAMA0&rdquo; -nographic -S -s</p>
-<pre><code>在另一個視窗。  
-</code></pre><p>$aarch64-linux-gnu-gdb vmlinux</p>
-<pre><code>預設登入帳密：root無密碼。  
-
-### 六、其他
-
-無法開機時請先確認toolchain正確與否。
-
-### 七、參考 
-
-[http://gogojesseco.blogspot.com/2014/05/arm64.html](http://gogojesseco.blogspot.com/2014/05/arm64.html)</code></pre>
         </p>
     </div>
     

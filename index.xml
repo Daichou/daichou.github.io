@@ -36,12 +36,11 @@ AXI Verification IP 簡介 Xilinx AXI Verification IP主要提供的功能為:
       <description>Verilog Diagram generator 最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。
 用法先去clone該專案，進行安裝。
 $ git clone https://github.com/YosysHQ/yosys 安裝相依工具：
-$ sudo apt-get install build-essential clang bison flex \ libreadline-dev gawk tcl-dev libffi-dev git \ graphviz xdot pkg-config python3 libboost-system-dev \ libboost-python-dev libboost-filesystem-dev zlib1g-dev 進去yosys資料夾後，選擇compiler:
+$ sudo apt-get install build-essential clang bison flex \  libreadline-dev gawk tcl-dev libffi-dev git \  graphviz xdot pkg-config python3 libboost-system-dev \  libboost-python-dev libboost-filesystem-dev zlib1g-dev 進去yosys資料夾後，選擇compiler:
 $ make config-clang $ make config-gcc 然後make &amp;amp;&amp;amp; make install
 $ make $ sudo make install 這些步驟都跟readme寫的一樣。
 這工具的command和vcs蠻相似的，執行yosys會進到command shell，透過read_verilog載入verilog module，或是read -sv載入verilog module同時elaborate。之後指定top module。她會產生檔案的AST。
-yosys&amp;gt; read -sv folder/*.v yosys&amp;gt; hierarchy -top top_module 接下來可以用show指令顯示diagram。
-yosys&amp;gt; show 如果多個module，需要指定顯示程式。(gv是一個程式，可以透過apt-get安裝，ps是postscript的縮寫)</description>
+yosys&amp;gt; read -sv folder/*.v yosys&amp;gt; hierarchy -top top_module 接下來可以用show指令顯示diagram。</description>
     </item>
     
     <item>
@@ -79,7 +78,11 @@ $ git clone git://git.qemu.org/qemu.git qemu.git $ cd qemu.git $ ./configure --t
 Arch Linux的package預設包含aarch64-softmmu這個target。
 四、建立rootfs 其實有很多方法可以建立(busybox)，而這裡用buildroot來做。
 首先取得buildroot。
-git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig ```在target option中選擇架構與CPU。 以下為範例： [![](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png)](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png) 在System configuration ---&amp;gt; 點選\[\*\]Run a getty (login prompt) after boot ---&amp;gt;並將TTY port設成ttyAMA0。 在Target Packages ---&amp;gt;選取busybox與\[\*\] Show packages that are also provided by busybox 。 在Filesystem images中選擇\[\*\] cpio the root filesystem (for use as an initial RAM filesystem)。 在toolchain option中選擇外部toolchain如下： [!</description>
+git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig 在target option中選擇架構與CPU。
+以下為範例：
+
+在System configuration &amp;mdash;&amp;gt; 點選[*]Run a getty (login prompt) after boot &amp;mdash;&amp;gt;並將TTY port設成ttyAMA0。
+在Target Packages &amp;mdash;&amp;gt;選取busybox與[*] Show packages that are also provided by busybox 。</description>
     </item>
     
     <item>
@@ -137,7 +140,7 @@ Perlman / Film Music - Cinema Serenade
 
 The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)
  二、心得感想
-這張基本上有名到我都不想寫什麼介紹了XD，不過秉持著紀錄所有我買過得專輯，所以還是隨手打一篇。這片在買之前裡面的音樂幾乎都已經在各個角落聽過了，即使電影只看過一次，在音樂課，在其他專輯(Yo-Yo Ma Plays Ennio Morricone)或多或少經典曲目包括、、還是有名又有梗的鬥琴有在接觸電影配樂的朋友都聽過。其中最喜歡的是、、，至於鬥琴那首我到覺得還好。其他也有一些較為不有名曲目如帶有爵士風情的等，還有&amp;lt;Tarantella In 3rd Class&amp;gt;也都十分動聽。我覺得這張真的必收。
+這張基本上有名到我都不想寫什麼介紹了XD，不過秉持著紀錄所有我買過得專輯，所以還是隨手打一篇。這片在買之前裡面的音樂幾乎都已經在各個角落聽過了，即使電影只看過一次，在音樂課，在其他專輯(Yo-Yo Ma Plays Ennio Morricone)或多或少經典曲目包括&amp;lt;Playing Love&amp;gt;、&amp;lt;Magic Waltz&amp;gt;、&amp;lt;A Mozart Reincarnated&amp;gt;還是有名又有梗的鬥琴&amp;lt;Enduring Movement&amp;gt;有在接觸電影配樂的朋友都聽過。其中最喜歡的是&amp;lt;Playing Love&amp;gt;、&amp;lt;Magic Waltz&amp;gt;、&amp;lt;A Mozart Reincarnated&amp;gt;，至於鬥琴那首我到覺得還好。其他也有一些較為不有名曲目如帶有爵士風情的&amp;lt;A Goodbye To Friends&amp;gt;等，還有&amp;lt;Tarantella In 3rd Class&amp;gt;也都十分動聽。我覺得這張真的必收。
 三、曲目  Playing Love The Legend Of The Pianist On The Ocean The Crisis Peacherine Rag A Goodbye To Friends Study For Three Hands Tarantella In 3rd Class Enduring Movement Police Trailer Thanks Danny A Mozart Reincarnated Child Magic Waltz The Goodbye Between 1990 And Max Goodbye Duet Nineteen Hundred’s Madness N.</description>
     </item>
     
@@ -161,30 +164,7 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
       
       <guid>https://daichou.github.io/posts/mplab-x-idegit/</guid>
       <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-.
-├── build
-│ └── default
-│ └── production
-│ ├── main.o
-│ └── main.o.d
-├── debug
-│ └── default
-├── dist
-│ └── default
-│ └── production
-│ ├── 4013_test.X.production.elf
-│ ├── 4013_test.X.production.hex
-│ └── 4013_test.X.production.map
-├── main.c
-├── Makefile
-└── nbproject
- ├── configurations.xml
- ├── Makefile-default.mk
- ├── Makefile-genesis.properties
- ├── Makefile-impl.mk
- ├── Makefile-local-default.mk
- ├── Makefile-variables.mk
- ├── Package-default.bash</description>
+. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.</description>
     </item>
     
     <item>
@@ -196,17 +176,10 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
       <description>CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
 https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
 find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
- cmake &amp;ndash;help-module-lists
- 查詢。
+cmake --help-module-lists 查詢。
 在CMake中使用find_package通常會使用類似下列參數。
- find_package(OpenCV 3.4.1 REQUIRED)
-  find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
- find_package(OpenMP)
-if (OPENMP_FOUND)
-set (CMAKE_C_FLAGS &amp;ldquo;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&amp;quot;)
-set (CMAKE_CXX_FLAGS &amp;ldquo;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&amp;quot;)
-endif()
- 透過find_package 定義的-FOUND判斷是否存在。
+find_package(OpenCV 3.4.1 REQUIRED) find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
+find_package(OpenMP) if (OPENMP_FOUND)  set (CMAKE_C_FLAGS &amp;#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&amp;#34;)  set (CMAKE_CXX_FLAGS &amp;#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&amp;#34;) endif()透過find_package 定義的-FOUND判斷是否存在。
 find_package通常會定義下列四種變數：
   _FOUND : 是否找到
   _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
@@ -221,24 +194,20 @@ find_package通常會定義下列四種變數：
       <guid>https://daichou.github.io/posts/cmake-tricks/</guid>
       <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：
- cmake -DCMAKE_BUILD_TYPE=value
- 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
- SET(CMAKE_CONFIGURATION_TYPES &amp;ldquo;Release&amp;rdquo;)
- 來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE__FLAGS_&amp;lt;BUILD_TYPE&amp;gt;被加入CMAKE__FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
-若要自行追加flags也可以透過新增或是修改flags到CMAKE__FLAGS中。例如：
- SET(GCC_COVERAGE_COMPILE_FLAGS &amp;ldquo;-g&amp;rdquo;)
-SET( CMAKE_CXX_FLAGS &amp;ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&amp;rdquo; )
- 我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&amp;rdquo;-g&amp;rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
+$ cmake -DCMAKE_BUILD_TYPE=value 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
+SET(CMAKE_CONFIGURATION_TYPES  &amp;#34;Release&amp;#34;)來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&amp;lt;LANG&amp;gt;_FLAGS_&amp;lt;BUILD_TYPE&amp;gt;被加入CMAKE_&amp;lt;LANG&amp;gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
+若要自行追加flags也可以透過新增或是修改flags到CMAKE_&amp;lt;LANG&amp;gt;_FLAGS中。例如：
+SET(GCC_COVERAGE_COMPILE_FLAGS &amp;#34;-g&amp;#34;) SET( CMAKE_CXX_FLAGS  &amp;#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&amp;#34; )我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&amp;rdquo;-g&amp;rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
 此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
  CMAKE_C_FLAGS -&amp;gt; CFLAGS CMAKE_CXX_FLAGS -&amp;gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&amp;gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&amp;gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
 
 Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
 下在command line，只要用-D就好，ex：
- cmake -DCMAKE_BUILD_TYPE=value
- 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
- cmake -L
- 得到所有選項以及當前選擇。
-另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。</description>
+$ cmake -DCMAKE_BUILD_TYPE=value 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
+$ cmake -L 得到所有選項以及當前選擇。
+另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。
+當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt
+CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，經過運行後會變什麼。可以透過查看CMakeCache.txt或是下cmake -LAH來查看值。</description>
     </item>
     
     <item>
@@ -251,25 +220,22 @@ Option 下選項分為兩種，一是直接下在command line中，另一種則�
  http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js
  會因為是http而造成瀏覽器報錯，而且載入的code通常會失敗。因此這裡提供一個新的解法。
 改用以下cdn由cloudflare提供的。就可以讓你的code在https下漂漂亮亮的。
-打開blogger-&amp;gt;theme-&amp;gt;編輯HTML，在中新增以下code。
- &amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPython.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushRuby.js&#39; type=&#39;text/javascript&#39;/&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;script src=&#39;https://cdnjs.</description>
+打開blogger-&amp;gt;theme-&amp;gt;編輯HTML，在&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;中新增以下code。
+&amp;lt;link href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34; type=&amp;#34;text/css&amp;#34;&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js&amp;#34; type=&amp;#34;text/javascript&amp;#34;&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&amp;#39; type=&amp;#39;text/javascript&amp;#39;/&amp;gt; &amp;lt;script src=&amp;#39;https://cdnjs.</description>
     </item>
     
     <item>
-      <title>使用LXC建立USB以及X-forward環境</title>
+      <title>使用LXC建立USB以及X-forward環境(deprecated)</title>
       <link>https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/</link>
       <pubDate>Fri, 09 Mar 2018 18:51:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/</guid>
-      <description>使用LXC建立USB以及X forward環境 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
+      <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
 環境  OS: Arch Linux (4.15.7-1-ARCH) LXC ubuntu on LXC  步驟 LXC準備 安裝 LXC $ sudo pacman -Sy lxc arch-install-scripts debootstap 建立 Host Network (NAT bridge) (Arch Wiki寫得很好看Arch Wiki) 建立/etc/default/lxc-net(詳情見Arch Wiki)
- USE\_LXC\_BRIDGE=&amp;quot;true&amp;quot; LXC\_BRIDGE=&amp;quot;lxcbr0&amp;quot; LXC\_ADDR=&amp;quot;10.0.3.1&amp;quot; LXC\_NETMASK=&amp;quot;255.255.255.0&amp;quot; LXC\_NETWORK=&amp;quot;10.0.3.0/24&amp;quot; LXC\_DHCP\_RANGE=&amp;quot;10.0.3.2,10.0.3.254&amp;quot; LXC\_DHCP\_MAX=&amp;quot;253&amp;quot; ```修改lxc template conf，在/etc/lxc/default.conf新增 lxc.net.0.type = veth
-lxc.net.0.link = lxcbr0
-lxc.net.0.flags = up
-lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
-$ sudo pacman -Sy dnsmasq
-sudo systemctl start lxc-net
-sudo systemctl enable lxc-net</description>
+USE_LXC_BRIDGE=&amp;#34;true&amp;#34; LXC_BRIDGE=&amp;#34;lxcbr0&amp;#34; LXC_ADDR=&amp;#34;10.0.3.1&amp;#34; LXC_NETMASK=&amp;#34;255.255.255.0&amp;#34; LXC_NETWORK=&amp;#34;10.0.3.0/24&amp;#34; LXC_DHCP_RANGE=&amp;#34;10.0.3.2,10.0.3.254&amp;#34; LXC_DHCP_MAX=&amp;#34;253&amp;#34; 修改lxc template conf，在/etc/lxc/default.conf新增
+lxc.net.0.type = veth lxc.net.0.link = lxcbr0 lxc.net.0.flags = up lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx 安裝dnsmasq
+$ sudo pacman -Sy dnsmasq 開啟以及設定開機啟動：
+sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubuntu) 建previleged的container</description>
     </item>
     
     <item>
@@ -321,8 +287,8 @@ Michael Nyman最有名的配樂作品當屬&amp;lt;鋼琴師與她的情人&amp;
 發行：Sony Music
 
 CLOUD ATLAS ORIGINAL MOTION SOUNDTRACK
-二、心得感想 這部電影其實我沒看過，我當初是因為偶然聽到了這部電影的配樂和&amp;lt;Prelude: The Atlas March&amp;gt;後跑去找了這部電影的原著小說來看。這部電影小說的敘事手法十分有趣。她其實六段故事以A-B-C-D-E-F-F-E-D-C-B-A的方式敘述的，而且每段故事時間相差很久，但是前段的故事會有部份連結到下一段，表現出&amp;quot;輪迴&amp;quot;的感覺。當然這種敘事方式拍成電影爆炸機率相當高的，而電影得票房也真的炸了。
-如同敘事手法，配樂本身也是有A-B-C-D-E-F-F-E-D-C-B-A的曲目編排。有多首配樂的風格式成對的。不過其中最引人注目的仍是書中提到的&amp;lt;雲圖六重奏&amp;gt;，這首貫串整個故事的曲子。也就是&amp;lt;Prelude: The Atlas March&amp;gt;，之後包括、、和，我覺得光片尾幾首曲子的編排與交響編曲，這張專輯就很有收藏的價值了。當然片中的和也是我喜歡的曲子。不過剩下幾段的風格我不是很喜歡。
+二、心得感想 這部電影其實我沒看過，我當初是因為偶然聽到了這部電影的配樂&amp;lt;Cloud Atlas Sextet&amp;gt;和&amp;lt;Prelude: The Atlas March&amp;gt;後跑去找了這部電影的原著小說來看。這部電影小說的敘事手法十分有趣。她其實六段故事以A-B-C-D-E-F-F-E-D-C-B-A的方式敘述的，而且每段故事時間相差很久，但是前段的故事會有部份連結到下一段，表現出&amp;quot;輪迴&amp;quot;的感覺。當然這種敘事方式拍成電影爆炸機率相當高的，而電影得票房也真的炸了。
+如同敘事手法，配樂本身也是有A-B-C-D-E-F-F-E-D-C-B-A的曲目編排。有多首配樂的風格式成對的。不過其中最引人注目的仍是書中提到的&amp;lt;雲圖六重奏&amp;gt;，這首貫串整個故事的曲子。也就是&amp;lt;Prelude: The Atlas March&amp;gt;，之後包括&amp;lt;Cloud Atlas Opening Title&amp;gt;、&amp;lt;Cloud Atlas Finale&amp;gt;、&amp;lt;The Cloud Atlas Sextet for Orchestra&amp;gt;和&amp;lt;Cloud Atlas End Title&amp;gt;，我覺得光片尾幾首曲子的編排與交響編曲，這張專輯就很有收藏的價值了。當然片中的&amp;lt;Templa of Sacrifice&amp;gt;和&amp;lt;All Boundaries Are Conventions&amp;gt;也是我喜歡的曲子。不過剩下幾段的風格我不是很喜歡。
 不過這張專輯聽的時候有發現一個問題，最後幾首有時會有不名聲響，我不確定是不是錄音失誤，還是刻意的。
 三、曲目  Prelude: The Atlas March Cloud Atlas Opening Title Travel to Edinburgh Luisa’s Birthmark Cavendish In Distress Papa Song Sloosha’s Hollow Sonmi-451 Meets Chang Won’t Let Go Kesselring The Escape Temple Of Sacrifice Catacombs Adieu New Direction All Boundaries Are Conventions The Message Chasing Luisa Rey Sonmi’s Discovery Death Is Only A Door Cloud Atlas Finale The Cloud Atlas Sextet for Orchestra Cloud Atlas End Title  </description>
     </item>
@@ -339,7 +305,7 @@ CLOUD ATLAS ORIGINAL MOTION SOUNDTRACK
 
 THE IMITATION GAME
 二、心得感想 這部電影我本身蠻喜歡的，因為我是資訊背景，這故事本身就有親切感(讀過資工系的或多或少聽過圖零機吧)，雖然劇情魔改了Alan Turing的故事，但是改的還算流暢。唯一需要吐嘈的應該就是把發現德軍密碼會有固定內容，而這些內容可以用來剪枝(替除不可能發生的組合)部份改的太戲劇化了。
-音樂部份為了呈現Alan Turing數學家的特質，讓音符很離散，很像一群數字在舞動。尤其在、、會有一種問題被拆解被處理的感覺。當然主題旋律和&amp;lt;Alan Turing&amp;rsquo;s Legacy&amp;gt;寫的很有味道。我當初在戲院看到這部電影時有被這兩首曲子觸動。、是片中圖靈生命最悲情的時刻，這些悲傷讓我們對圖靈，還有對同性戀的迫害起了反思。
+音樂部份為了呈現Alan Turing數學家的特質，讓音符很離散，很像一群數字在舞動。尤其在、、會有一種問題被拆解被處理的感覺。當然主題旋律&amp;lt;The Imitation Game&amp;gt;和&amp;lt;Alan Turing&#39;s Legacy&amp;gt;寫的很有味道。我當初在戲院看到這部電影時有被這兩首曲子觸動。&amp;lt;The Apple&amp;gt;、&amp;lt;Farewell To Christopher&amp;gt;是片中圖靈生命最悲情的時刻，這些悲傷讓我們對圖靈，還有對同性戀的迫害起了反思。
 由於我仍是學生，財力不是十分充足，當初看完這部電影後一直去spotify反覆聽這片原聲帶，最後才決定買實體的，以更好的音質品味這張專輯。
 三、曲目  The Imitation Game Enigma Alan U-Boats Carrots And Peas Mission Crosswords Night Research Joan Alone With Numbers The Machine Christopher Running Christopher Is Dead Decrypting A Different Equation Becoming A Spy The Apple Farewell To Christopher End Of War Because Of You Alan Turing’s Legacy  </description>
     </item>
@@ -362,18 +328,7 @@ TLC5940 Ardunio library 在Ardunio IDE中可以透過library manager找到。而
 https://github.com/PaulStoffregen/Tlc5940
 TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2560。
 
-TLC5940
-Ardunio Mega2560
-SIN(pin 26)
-MOSI(pin 51)
-SCK(pin 25)
-SCLK(pin 52)
-XLAT(pin 24)
-OC1A(pin 11)
-BLANK(pin 23)
-OC1B(pin 12) + 1K ohm上拉電阻
-GSCLK(pin 18)
-OC2B(pin 9)</description>
+   TLC5940 Arduino Mega2560     SIN(pin 26) MOSI(pin 51)   SCK(pin 25) SCLK(pin 52)   XLAT(pin 24) OC1A(pin 11)   BLANK(pin 23) OC1B(pin 12) + 1K ohm上拉電阻   GSCLK(pin 18) OC2B(pin 9)   VPRG(pin 27) VPRG(pin 50) or GND   XERR(pin 16) XERR(pin 10) or GND   SIN(pin 26) SIN(pin 51)   IREF(pin 20) 1K ohm下拉電阻   VCC(pin 21) 5V   GND(pin 22) GND    至於out0到out15的接法比較特別。</description>
     </item>
     
     <item>
@@ -453,20 +408,11 @@ Drivers/STM32F_4xx_HAL_Driver是STM官方在推的HAL函式庫，現在的主流
       <description>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
 當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。
 這時有兩個解法。
-1.void cast
-例如:
-void f(void * argc)
-{
-(void) argc;
-}
-這會無害的去用到這個變數。
+ void cast  例如:
+void f(void * argc) { (void) argc; } 這會無害的去用到這個變數。
 2.自己等於自己
 例如:
-void f(void * argc)
-{
-argc = argc;
-}
-這兩招就是欺騙compiler這些變數已經被使用。
+void f(void * argc) { argc = argc; } 這兩招就是欺騙compiler這些變數已經被使用。
 我第一次看到這寫法真的嚇到了。
 以下是stackoverflow的討論。
 https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do
@@ -643,12 +589,9 @@ transmission transmission只要全部都由Master端給資料即可。</descript
       
       <guid>https://daichou.github.io/posts/valgrindcc/</guid>
       <description>Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
-安裝 sudo pacman -Sy valgrind
-基本用法 $ valgrind 程式名稱 args
-預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args
-這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args
-首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
-#include&amp;lt;iostream&amp;gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &amp;lt;&amp;lt; *ptr &amp;lt;&amp;lt; endl; } ```然後我們來看一下分析結果。 `==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.</description>
+安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args 首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
+#include&amp;lt;iostream&amp;gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &amp;lt;&amp;lt; *ptr &amp;lt;&amp;lt; endl; } 然後我們來看一下分析結果。
+==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&amp;#39;d, by Julian Seward et al.</description>
     </item>
     
     <item>
@@ -716,7 +659,7 @@ with among all integer types that have at least the specified width.
       <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
 https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &#39;!python &#39;.shellescape(&#39;%&#39;) autocmd filetype c nnoremap :w exec &#39;!clear&amp;amp;&amp;amp;gcc &#39;.shellescape(&#39;%&#39;).&#39; -o &#39;.shellescape(&#39;%:r&#39;).&#39;&amp;amp;&amp;amp;./&#39;.shellescape(&#39;%:r&#39;) autocmd filetype cpp nnoremap :w exec &#39;!clear;echo -n &amp;quot;====================&amp;quot;;TEMP=\`mktemp\`;script $TEMP -e -q -c &amp;quot;g++ &#39;.</description>
+  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &amp;#39;!python &amp;#39;.shellescape(&amp;#39;%&amp;#39;) autocmd filetype c nnoremap :w exec &amp;#39;!clear&amp;amp;&amp;amp;gcc &amp;#39;.shellescape(&amp;#39;%&amp;#39;).&amp;#39; -o &amp;#39;.shellescape(&amp;#39;%:r&amp;#39;).&amp;#39;&amp;amp;&amp;amp;./&amp;#39;.shellescape(&amp;#39;%:r&amp;#39;) autocmd filetype cpp nnoremap :w exec &amp;#39;!clear;echo -n &amp;#34;====================&amp;#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &amp;#34;g++ &amp;#39;.</description>
     </item>
     
     <item>
@@ -752,11 +695,9 @@ https://github.com/Daichou/environment/blob/master/.vimrc
       <guid>https://daichou.github.io/posts/linuxwin10-live-usb/</guid>
       <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
 首先，以arch linux 為例，winusb是在aur裡，所以只要下：
-yaourt -Sy winusb
-即可安裝。
+$ yaourt -Sy winusb 即可安裝。
 接著開始製作live usb，先找到win10 ISO 檔的路徑，還有你的隨身碟隨身碟掛載路徑，下以下指令：
-winusb &amp;ndash;install 
-記得要用root or sudo來做。即可完成。</description>
+$ winusb --install &amp;lt;iso path&amp;gt; &amp;lt;partition&amp;gt; 記得要用root or sudo來做。即可完成。</description>
     </item>
     
     <item>
@@ -783,24 +724,16 @@ winusb &amp;ndash;install
       
       <guid>https://daichou.github.io/posts/jekyll/</guid>
       <description>用github架Jekyll 一些問題解法 當一開始使用
-的時候，可能會遇到一些問題(其實是我遇到的啦)
+$ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
 jekyll serve not found 這是一個很好處理的問題，因爲你的~/.gem/ruby/{version}/bin資料夾沒有在$PATH路徑下。加上去就可解決了。
 缺少bundler
-大概的error如上。處理方式很簡單，就是安裝bundler。
-這樣就解決了。
+kernel_require.rb:55:in `require&amp;#39;: cannot load such file -- bundler (LoadError) 大概的error如上。處理方式很簡單，就是安裝bundler。
+$ gem install bundler 這樣就解決了。
 如果還有以下錯誤：
 resolver.rb:356:in `block in verify_gemfile_dependencies_are_found!&#39;: Could not find gem &amp;lsquo;jekyll-sitemap&amp;rsquo; in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
 則多下一行指令：
-$ bundle install &amp;ndash;path vendor/bundle
-invalid date &amp;hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
-處理方法稍微麻煩一點。找到repo底下的_config.yml檔案，在約第五行
-&amp;hellip;
-&amp;hellip;
-&amp;hellip;exclude:[&amp;hellip;&amp;hellip;,&amp;ldquo;vendor&amp;rdquo;&amp;hellip;]
-的exclude中加入vendor。
-一些asset link出錯 我自己在架的時候他的一些bootstrap的css和js檔案link不到，原因是它要link的連結在
-assets/themes/bootstrap-3下，但其原本目錄並沒有這個子目錄，所以在assets/themes下建立bootstrap-3，並將原本的bootstrap移到底下。
-###</description>
+$ bundle install --path vendor/bundle invalid date &amp;hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
+Invalid date &amp;#39;&amp;lt;%= Time.now.strftime(&amp;#39;%Y-%m-%d %H:%M:%S %z&amp;#39;) %&amp;gt;&amp;#39;: Document &amp;#39;vendor/bundle/ruby/2.</description>
     </item>
     
     <item>
@@ -822,14 +755,8 @@ assets/themes/bootstrap-3下，但其原本目錄並沒有這個子目錄，所�
       <guid>https://daichou.github.io/posts/toolsgnu-nm/</guid>
       <description>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。
 以下我打了一個範例。
-接下來是對其編譯出來的a.out下nm指令的結果。
-第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。
-這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。
-nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,data)。
-相關連結:1.http://www.wuzesheng.com/?p=1595
-2.http://sp1.wikidot.com/elfobjfile
-3.http://enginechang.logdown.com/posts/248172-linker-loader-library
-4.https://github.com/torvalds/linux/blob/9256d5a308c95a50c6e85d682492ae1f86a70f9b/arch/powerpc/boot/elf.h</description>
+#include&amp;lt;stdio.h&amp;gt; void foo(){ printf(&amp;#34;bar&amp;#34;); } int Global_var; int Global_var_init = 0; int main() { int local_var; int local_var_init = 0; int a = local_var_init + Global_var_init; foo(); } 接下來是對其編譯出來的a.out下nm指令的結果。
+0000000000601030 B __bss_start 0000000000601030 b completed.6916 0000000000601020 D __data_start 0000000000601020 W data_start 0000000000400430 t deregister_tm_clones 00000000004004b0 t __do_global_dtors_aux 0000000000600e10 t __do_global_dtors_aux_fini_array_entry 0000000000601028 D __dso_handle 0000000000600e20 d _DYNAMIC 0000000000601030 D _edata 0000000000601040 B _end 00000000004005b4 T _fini 00000000004004f6 T foo 00000000004004d0 t frame_dummy 0000000000600e08 t __frame_dummy_init_array_entry 0000000000400718 r __FRAME_END__ 0000000000601000 d _GLOBAL_OFFSET_TABLE_ 0000000000601038 B Global_var 0000000000601034 B Global_var_init w __gmon_start__ 00000000004005c8 r __GNU_EH_FRAME_HDR 00000000004003c8 T _init 0000000000600e10 t __init_array_end 0000000000600e08 t __init_array_start 00000000004005c0 R _IO_stdin_used 0000000000600e18 d __JCR_END__ 0000000000600e18 d __JCR_LIST__ 00000000004005b0 T __libc_csu_fini 0000000000400540 T __libc_csu_init U __libc_start_main@@GLIBC_2.</description>
     </item>
     
     <item>
@@ -854,22 +781,18 @@ nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,dat
 mega2560連接nRF24L01 以下是nRF24L01 模組的照片與pinout。
 
 從左上開始，右下結束。
-1.GND
-2.VDD(3.6V以下)
-3.CE
-4.CSN
-5.SCLK
-6.MOSI
-7.MISO
-8.IRQ
-Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。
+         1.GND 2.VDD(3.6V以下)   3.CE 4.CSN   5.SCLK 6.MOSI   7.MISO 8.IRQ    Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。
 Mega2560的部份需要其上頭內建的SPI BUS，才能使用這個函式庫(TMRh20的library有提供Software SPI應用)。以下是Mega2560的SPI接腳對應。
 
 SCK要接nRF24L01的SCLK，MOSI接MOSI，MISO接MISO，CE和CSN可自行定義腳位。
 程式碼部份直接利用官往提供的example來做測試。
 http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html
 原始碼中RF24物件建構子這行
-[RF24](http://maniacbug.github.io/RF24/classRF24.html &amp;quot;Driver for nRF24L01(+) 2.4GHz Wireless Transceiver.&amp;quot;) radio(9,10); ```9表示CE接腳，10表示CSN接腳。 程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX\_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。 ### 連不上的一些解法 #### 地址錯誤 兩邊的地址要可對到，一邊RX\_ADDR要為另一邊TX\_ADDR，這樣才可收到。 #### 雜訊 有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。 #### 傳輸速率過快 example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</description>
+RF24 radio(9,10); 9表示CE接腳，10表示CSN接腳。
+程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。
+連不上的一些解法 地址錯誤 兩邊的地址要可對到，一邊RX_ADDR要為另一邊TX_ADDR，這樣才可收到。
+雜訊 有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。
+傳輸速率過快 example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</description>
     </item>
     
     <item>
@@ -883,20 +806,7 @@ http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html
 duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。
 PWM產生方式 PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。
 硬體內建PWM模組 MCU內常內建PWM模組，以PIC系列為例，有CCP(Capture/Compare/PWM)模組、Output Compare模組和PWM模組。透過設定timer和暫存去達成PWM輸出。以下以dsPIC30F4013的Output Compare做示範。
-由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。
-dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為&amp;rsquo;110&#39;或&amp;rsquo;111&amp;rsquo;。設定順序為:
-1.設定PRy(Period register)表示PWM的週期。
-2.再來設定OCxRS暫存器表示duty cycle。
-3.設定OCM。
-4.設定timer，並開啟timer。
-PWM 週期 ＝ [(PRy+1)]*Tcy*(TMRx presclaer value)。 (Tcy為振盪器頻率*PLL/4)
-PWM 頻率為週期倒數。
-詳細設定在http://ww1.microchip.com/downloads/en/DeviceDoc/70157C.pdf中有詳細描述。
-中斷產生PWM 利用Timer中斷來切換PWM進入duty cycle，有兩種方法。
-一、用一個或兩個timer，先輸出high，計算PWM在high所需時間，設定好Timer 週期(中斷條件)，當Timer發生中斷，將輸出切為low，並在計算PWM在low所需時間，同樣設定好Timer週期，當Timer發生中斷回到一開始重頭來過。也可用兩個Timer一個設為high所需時間，一個為period，當high的timer 中斷發生，關閉其中斷與timer，並將輸出設為low，等待period 的Timer發生中斷，在開啟high 的timer中斷。
-二、用一個timer中斷，當其中斷將counter加一，一旦couner的值大於duty cycle則切為low，當counter的值大於period則歸零。以下為範例(使用PIC18F452)。
-此方法缺點為PWM頻率難以調整，不過對於本身PWM模組缺乏或過少之MCU，此法十分有效。
-迴圈產生PWM 以迴圈直接產生PWM，可以用一個counter當作現在情況，當迴圈執行次數超過duty cycle的值時，調整high low，這方法十分簡單，但如果要有準確的頻率需要將程式編成組語計算其所需時間，並用NOP指令挑整週期。這方法會佔走整個CPU，十分無效率，但其可以結合輪詢等固定時間需要執行的功能，對於低階，簡單的系統有其應用空間。</description>
+#include &amp;lt;xc.h&amp;gt;  // FOSC #pragma config FOSFPR = XT_PLL4 // Oscillator (XT w/PLL 4x) #pragma config FCKSMEN = CSW_FSCM_OFF // Clock Switching and Monitor (Sw Disabled, Mon Disabled)  // FWDT #pragma config FWPSB = WDTPSB_16 // WDT Prescaler B (1:16) #pragma config FWPSA = WDTPSA_512 // WDT Prescaler A (1:512) #pragma config WDT = WDT_OFF // Watchdog Timer (Disabled)  // FBORPOR #pragma config FPWRT = PWRT_64 // POR Timer Value (64ms) #pragma config BODENV = BORV20 // Brown Out Voltage (Reserved) #pragma config BOREN = PBOR_ON // PBOR Enable (Enabled) #pragma config MCLRE = MCLR_EN // Master Clear Enable (Enabled)  // FGS #pragma config GWRP = GWRP_OFF // General Code Segment Write Protect (Disabled) #pragma config GCP = CODE_PROT_OFF // General Segment Code Protection (Disabled)  // FICD #pragma config ICS = ICS_PGD // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)  #define Tcy 10000000 //10MHz oscillator with 4xPLL -&amp;gt; 10&amp;#39;000&amp;#39;000MIPS  //------------------------------------------------------------------------------ // main routine //------------------------------------------------------------------------------ int main(int argc, char** argv) { //------------------------------------------------------------------------------ // IO Plan  TRISA = 0x0000; TRISB = 0x0000; TRISC = 0x0000; TRISD = 0x0000; //RD1,RD2,RD3,RD4 -&amp;gt; PWM OC pin  TRISF = 0x0000; ADPCFG = 0xFFFF; //------------------------------------------------------------------------------ // initialize PWM  //PR2 = 50000; 1:256-&amp;gt; 200 HZ  PR2 = 25000; OC1RS = 1875; OC1CON = 0x0006; //Set PWM mode on OC1,Fault pin disable,Timer2 is source  OC2RS = 1875; OC2CON = 0x0006; //Set PWM mode on OC2,Fault pin disable,Timer2 is source  OC3RS = 1875; OC3CON = 0x0006; //Set PWM mode on OC3,Fault pin disable,Timer2 is source  OC4RS = 1875; OC4CON = 0x0006; //Set PWM mode on OC4,Fault pin disable,Timer2 is source  //IEC0bits.</description>
     </item>
     
     <item>
@@ -907,8 +817,8 @@ PWM 頻率為週期倒數。
       <guid>https://daichou.github.io/posts/libpqxx-prepare-statements/</guid>
       <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
 而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
-再來是傳遞變數進入prepare的框架。
-其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+connection C(/*user parameter*/); C.prepare(&amp;#34;prepare_name&amp;#34;,&amp;#34;SELECT NAME FROM TESTTABLE WHERE id = $1&amp;#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&amp;#34;prepare_name&amp;#34;,&amp;#34;SELECT NAME FROM TESTTABLE WHERE id = $1&amp;#34;); pqxx::result r = W.prepared(&amp;#34;prepare_name&amp;#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
 prepare方法有時會降低效率，其他細節都在官方paper中。</description>
     </item>
     
@@ -946,14 +856,12 @@ libpqxx官網：http://pqxx.org/
  linux上安裝方式  請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。
 link:https://wiki.archlinux.org/index.php/PostgreSQL
 libray link:http://pqxx.org/download/software/libpqxx/
-arch linux上安裝方式，libpqxx為Extra package。link:https://www.archlinux.org/packages/extra/i686/libpqxx/
-安裝完成後，於postgresql安裝目錄下。
-於pg_hba.conf新增
-啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理
- 基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例
-這個範例使用了三種parse資料的方法，分別是使用pqxx::tuple的方式、使用內建iterator的方式與使用類似C++ STL map的key-value方式。
-編譯方式：
-參考資料:http://www.yiibai.com/html/postgresql/2013/080894.html</description>
+$ wget http://pqxx.org/download/software/libpqxx/libpqxx-4.0.tar.gz $ tar -zxvf libpqxx-4.0-tar.gz $ cd libpqxx-4.0 $ ./configure $ make $ make install arch linux上安裝方式，libpqxx為Extra package。link:https://www.archlinux.org/packages/extra/i686/libpqxx/
+$ sudo pacman -Sy libpqxx 安裝完成後，於postgresql安裝目錄下。
+$ cp pg_hba.conf.sample pg_hba.conf 於pg_hba.conf新增
+# IPv4 local connections: host all all 127.0.0.1/32 md5 啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理
+$ sudo systemctl start postgresql.service $ sudo systemctl stop postgresql.service  基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例
+#include&amp;lt;iostream&amp;gt;#include&amp;lt;pqxx/pqxx&amp;gt;#include&amp;lt;string&amp;gt; using namespace std; using namespace pqxx; int main() { string sql; try{ connection C(&amp;#34;dbname=testdb user=postgres password=pqsswd \ hostaddr=127.</description>
     </item>
     
   </channel>

@@ -140,17 +140,91 @@ libpqxx官網：<a href="http://pqxx.org/">http://pqxx.org/</a></p>
 <p>請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。<br>
 link:<a href="https://wiki.archlinux.org/index.php/PostgreSQL">https://wiki.archlinux.org/index.php/PostgreSQL</a><br>
 libray link:<a href="http://pqxx.org/download/software/libpqxx/">http://pqxx.org/download/software/libpqxx/</a></p>
-<p>arch linux上安裝方式，libpqxx為Extra package。<!-- raw HTML omitted --> link:<a href="https://www.archlinux.org/packages/extra/i686/libpqxx/">https://www.archlinux.org/packages/extra/i686/libpqxx/</a><br>
-安裝完成後，於postgresql安裝目錄下。<br>
-於pg_hba.conf新增<br>
-啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理</p>
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wget http://pqxx.org/download/software/libpqxx/libpqxx-4.0.tar.gz
+$ tar -zxvf libpqxx-4.0-tar.gz
+$ cd libpqxx-4.0
+$ ./configure
+$ make
+$ make install
+</code></pre></div><p>arch linux上安裝方式，libpqxx為Extra package。<!-- raw HTML omitted --> link:<a href="https://www.archlinux.org/packages/extra/i686/libpqxx/">https://www.archlinux.org/packages/extra/i686/libpqxx/</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo pacman -Sy libpqxx
+</code></pre></div><p>安裝完成後，於postgresql安裝目錄下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cp pg_hba.conf.sample pg_hba.conf
+</code></pre></div><p>於pg_hba.conf新增</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"># IPv4 local connections:
+host    all         all         127.0.0.1/32          md5 
+</code></pre></div><p>啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo systemctl start postgresql.service
+$ sudo systemctl stop postgresql.service
+</code></pre></div><ul>
 <li>基本用法</li>
 </ul>
 <p>libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例</p>
-<p>這個範例使用了三種parse資料的方法，分別是使用pqxx::tuple的方式、使用內建iterator的方式與使用類似C++ STL map的key-value方式。<br>
-編譯方式：<br>
-參考資料:<a href="http://www.yiibai.com/html/postgresql/2013/080894.html">http://www.yiibai.com/html/postgresql/2013/080894.html</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;pqxx/pqxx&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> pqxx;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+	string sql;
+   
+   	<span style="color:#66d9ef">try</span>{
+		connection C(<span style="color:#e6db74">&#34;dbname=testdb user=postgres password=pqsswd \
+</span><span style="color:#e6db74">		hostaddr=127.0.0.1 port=5432&#34;</span>);
+		<span style="color:#66d9ef">if</span> (C.is_open()) {
+		 cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Opened database successfully: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> C.dbname() <span style="color:#f92672">&lt;&lt;</span> endl;
+		} <span style="color:#66d9ef">else</span> {
+		 cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Can&#39;t open database&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+		 <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+		}
+ 
+		<span style="color:#75715e">/* Create SQL statement */</span>
+		sql  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT * FROM USERTEST&#34;</span>;
+		<span style="color:#75715e">/* Create a transactional object. */</span>
+		work W(C);
+
+		<span style="color:#75715e">/* Execute SQL query */</span>
+		pqxx<span style="color:#f92672">::</span>result r <span style="color:#f92672">=</span> W.exec( sql );
+		W.commit();
+	
+		<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> num_rows <span style="color:#f92672">=</span> r.size();
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> rownum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; rownum <span style="color:#f92672">&lt;</span> num_rows; <span style="color:#f92672">++</span>rownum)
+		{
+  			<span style="color:#66d9ef">const</span> pqxx<span style="color:#f92672">::</span>tuple row <span style="color:#f92672">=</span> r[rownum];
+  			<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> num_cols <span style="color:#f92672">=</span> row.size();
+  			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> colnum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; colnum <span style="color:#f92672">&lt;</span> num_cols; <span style="color:#f92672">++</span>colnum)
+  			{
+    			<span style="color:#66d9ef">const</span> pqxx<span style="color:#f92672">::</span>field field <span style="color:#f92672">=</span> row[colnum];
+    			std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> field.c_str() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\t&#39;</span>;
+  			}
+  			std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+		}
+        
+        	<span style="color:#66d9ef">for</span> (pqxx<span style="color:#f92672">::</span>result<span style="color:#f92672">::</span>const_iterator row <span style="color:#f92672">=</span> r.begin();row <span style="color:#f92672">!=</span> r.end();<span style="color:#f92672">++</span>row)
+        	{
+            		<span style="color:#66d9ef">for</span> (pqxx<span style="color:#f92672">::</span>tuple<span style="color:#f92672">::</span>const_iterator field <span style="color:#f92672">=</span> row<span style="color:#f92672">-&gt;</span>begin();field <span style="color:#f92672">!=</span> row<span style="color:#f92672">-&gt;</span>end();<span style="color:#f92672">++</span>field)
+                 		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> field<span style="color:#f92672">-&gt;</span>c_str() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\t&#39;</span>;
+           		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+        	}
+
+		cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;table&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+        	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> rownum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; rownum <span style="color:#f92672">&lt;</span> num_rows ; rownum<span style="color:#f92672">++</span>){
+            		cout <span style="color:#f92672">&lt;&lt;</span> r[rownum][<span style="color:#e6db74">&#34;UID&#34;</span>].c_str() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;  &#34;</span> <span style="color:#f92672">&lt;&lt;</span> r[rownum][<span style="color:#e6db74">&#34;TRUE_NAME&#34;</span>].c_str() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;  &#34;</span> <span style="color:#f92672">&lt;&lt;</span> r[rownum][<span style="color:#e6db74">&#34;GENDER&#34;</span>].c_str() 
+                 	<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;  &#34;</span><span style="color:#f92672">&lt;&lt;</span> r[rownum][<span style="color:#e6db74">&#34;NICK_NAME&#34;</span>].c_str() <span style="color:#f92672">&lt;&lt;</span>endl;
+        	}
+		C.disconnect ();
+	}<span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>exception <span style="color:#f92672">&amp;</span>e){
+		cerr <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	}
+}
+</code></pre></div><p>這個範例使用了三種parse資料的方法，分別是使用pqxx::tuple的方式、使用內建iterator的方式與使用類似C++ STL map的key-value方式。<br>
+編譯方式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ g++ -o test filename.cpp -lpqxx -lpq
+</code></pre></div><p>參考資料:<a href="http://www.yiibai.com/html/postgresql/2013/080894.html">http://www.yiibai.com/html/postgresql/2013/080894.html</a></p>
 
         </p>
     </div>

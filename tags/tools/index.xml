@@ -31,14 +31,8 @@
       <guid>https://daichou.github.io/posts/toolsgnu-nm/</guid>
       <description>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。
 以下我打了一個範例。
-接下來是對其編譯出來的a.out下nm指令的結果。
-第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。
-這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。
-nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,data)。
-相關連結:1.http://www.wuzesheng.com/?p=1595
-2.http://sp1.wikidot.com/elfobjfile
-3.http://enginechang.logdown.com/posts/248172-linker-loader-library
-4.https://github.com/torvalds/linux/blob/9256d5a308c95a50c6e85d682492ae1f86a70f9b/arch/powerpc/boot/elf.h</description>
+#include&amp;lt;stdio.h&amp;gt; void foo(){ printf(&amp;#34;bar&amp;#34;); } int Global_var; int Global_var_init = 0; int main() { int local_var; int local_var_init = 0; int a = local_var_init + Global_var_init; foo(); } 接下來是對其編譯出來的a.out下nm指令的結果。
+0000000000601030 B __bss_start 0000000000601030 b completed.6916 0000000000601020 D __data_start 0000000000601020 W data_start 0000000000400430 t deregister_tm_clones 00000000004004b0 t __do_global_dtors_aux 0000000000600e10 t __do_global_dtors_aux_fini_array_entry 0000000000601028 D __dso_handle 0000000000600e20 d _DYNAMIC 0000000000601030 D _edata 0000000000601040 B _end 00000000004005b4 T _fini 00000000004004f6 T foo 00000000004004d0 t frame_dummy 0000000000600e08 t __frame_dummy_init_array_entry 0000000000400718 r __FRAME_END__ 0000000000601000 d _GLOBAL_OFFSET_TABLE_ 0000000000601038 B Global_var 0000000000601034 B Global_var_init w __gmon_start__ 00000000004005c8 r __GNU_EH_FRAME_HDR 00000000004003c8 T _init 0000000000600e10 t __init_array_end 0000000000600e08 t __init_array_start 00000000004005c0 R _IO_stdin_used 0000000000600e18 d __JCR_END__ 0000000000600e18 d __JCR_LIST__ 00000000004005b0 T __libc_csu_fini 0000000000400540 T __libc_csu_init U __libc_start_main@@GLIBC_2.</description>
     </item>
     
   </channel>

@@ -132,20 +132,22 @@ if (!doNotTrack) {
         <p>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。</p>
 <p>當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。</p>
 <p>這時有兩個解法。</p>
-<p>1.void cast</p>
+<ol>
+<li>void cast</li>
+</ol>
 <p>例如:</p>
-<p>void f(void * argc)<br>
-{<br>
-         (void) argc;<br>
-}</p>
-<p>這會無害的去用到這個變數。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> argc)  
+{  
+         (<span style="color:#66d9ef">void</span>) argc;  
+}  
+</code></pre></div><p>這會無害的去用到這個變數。</p>
 <p>2.自己等於自己</p>
 <p>例如:</p>
-<p>void f(void * argc)<br>
-{<br>
-         argc = argc;<br>
-}</p>
-<p>這兩招就是欺騙compiler這些變數已經被使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> argc)  
+{  
+         argc <span style="color:#f92672">=</span> argc;  
+}  
+</code></pre></div><p>這兩招就是欺騙compiler這些變數已經被使用。</p>
 <p>我第一次看到這寫法真的嚇到了。</p>
 <p>以下是stackoverflow的討論。<br>
 <a href="https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do">https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do</a><br>

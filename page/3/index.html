@@ -188,20 +188,11 @@ Drivers/STM32F_4xx_HAL_Driver是STM官方在推的HAL函式庫，現在的主流
             <div><p>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
 當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。
 這時有兩個解法。
-1.void cast
-例如:
-void f(void * argc)
-{
-(void) argc;
-}
-這會無害的去用到這個變數。
+ void cast  例如:
+void f(void * argc) { (void) argc; } 這會無害的去用到這個變數。
 2.自己等於自己
 例如:
-void f(void * argc)
-{
-argc = argc;
-}
-這兩招就是欺騙compiler這些變數已經被使用。
+void f(void * argc) { argc = argc; } 這兩招就是欺騙compiler這些變數已經被使用。
 我第一次看到這寫法真的嚇到了。
 以下是stackoverflow的討論。
 https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do

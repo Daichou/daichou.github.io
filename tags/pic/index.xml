@@ -18,30 +18,7 @@
       
       <guid>https://daichou.github.io/posts/mplab-x-idegit/</guid>
       <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-.
-├── build
-│ └── default
-│ └── production
-│ ├── main.o
-│ └── main.o.d
-├── debug
-│ └── default
-├── dist
-│ └── default
-│ └── production
-│ ├── 4013_test.X.production.elf
-│ ├── 4013_test.X.production.hex
-│ └── 4013_test.X.production.map
-├── main.c
-├── Makefile
-└── nbproject
- ├── configurations.xml
- ├── Makefile-default.mk
- ├── Makefile-genesis.properties
- ├── Makefile-impl.mk
- ├── Makefile-local-default.mk
- ├── Makefile-variables.mk
- ├── Package-default.bash</description>
+. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.</description>
     </item>
     
     <item>

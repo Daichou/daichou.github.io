@@ -131,42 +131,42 @@ if (!doNotTrack) {
         <p>
         <h3 id="mplab-x-ide產生之專案架構">MPLAB X IDE產生之專案架構</h3>
 <p>MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：</p>
-<p>.</p>
-<p>├── build</p>
-<p>│   └── default</p>
-<p>│       └── production</p>
-<p>│           ├── main.o</p>
-<p>│           └── main.o.d</p>
-<p>├── debug</p>
-<p>│   └── default</p>
-<p>├── dist</p>
-<p>│   └── default</p>
-<p>│       └── production</p>
-<p>│           ├── 4013_test.X.production.elf</p>
-<p>│           ├── 4013_test.X.production.hex</p>
-<p>│           └── 4013_test.X.production.map</p>
-<p>├── main.c</p>
-<p>├── Makefile</p>
-<p>└── nbproject</p>
-<p>    ├── configurations.xml</p>
-<p>    ├── Makefile-default.mk</p>
-<p>    ├── Makefile-genesis.properties</p>
-<p>    ├── Makefile-impl.mk</p>
-<p>    ├── Makefile-local-default.mk</p>
-<p>    ├── Makefile-variables.mk</p>
-<p>    ├── Package-default.bash</p>
-<p>    ├── private</p>
-<p>    │   ├── configurations.xml</p>
-<p>    │   └── private.xml</p>
-<p>    └── project.xml</p>
-<p>可以發現build/default、debug/default、dist/default/底下存有編譯時期產生之檔案，而nbproject/private則存有當前專案於當前系統中實際之相依toolchain路徑。</p>
+<pre><code>.
+
+├── build
+│   └── default
+│       └── production
+│           ├── main.o
+│           └── main.o.d
+├── debug
+│   └── default
+├── dist
+│   └── default
+│       └── production
+│           ├── 4013_test.X.production.elf
+│           ├── 4013_test.X.production.hex
+│           └── 4013_test.X.production.map
+├── main.c
+├── Makefile
+└── nbproject
+    ├── configurations.xml
+    ├── Makefile-default.mk
+    ├── Makefile-genesis.properties
+    ├── Makefile-impl.mk
+    ├── Makefile-local-default.mk
+    ├── Makefile-variables.mk
+    ├── Package-default.bash
+    ├── private
+    │   ├── configurations.xml
+    │   └── private.xml
+    └── project.xml
+</code></pre><p>可以發現build/default、debug/default、dist/default/底下存有編譯時期產生之檔案，而nbproject/private則存有當前專案於當前系統中實際之相依toolchain路徑。</p>
 <h3 id="git-ignore">Git Ignore</h3>
 <p>有了前面的事實，我們git ignore應該寫成如下：</p>
-<pre><code>\*/nbproject/private/  
-\*/dist/default  
-\*/build/default  
-\*/debug/default  
-
+<pre><code class="language-gitignore" data-lang="gitignore">*/nbproject/private/  
+*/dist/default  
+*/build/default  
+*/debug/default  
 </code></pre><p>至少需拔掉編譯時期會產生檔案。此外nbproject下的Makefile相依檔案，如Makefile*, XXX.mk等一定要進入git。</p>
 <h3 id="跨os-issue">跨OS issue</h3>
 <p>雖然MPLAB X IDE產生的專案可以輕易在LINUX上與Windows上運行，不過為了紀錄OS資訊，MPLAB X IDE會在Makefile-genesis.properties這些properties檔案中存入作業系統資訊。因此git在這些區域容易出現問題(confilct)。比較好的辦法就是不要跨平台。然而若是仍須跨平台，Makefile-genesis.properties5這檔案可能會造成MPLAB X IDE找不到compiler或是toolchain。因此可以透過MPLAB X IDE  GUI界面，選擇project properties，重新創立properties。</p>

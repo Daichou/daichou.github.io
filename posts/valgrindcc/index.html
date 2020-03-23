@@ -132,13 +132,13 @@ if (!doNotTrack) {
         <h1 id="valgrindcc分析工具"><strong>Valgrind:C/C++分析工具</strong></h1>
 <p>Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。</p>
 <h2 id="安裝"><strong>安裝</strong></h2>
-<p><code>sudo pacman -Sy valgrind</code></p>
-<h2 id="基本用法"><strong>基本用法</strong></h2>
-<p><code>$ valgrind 程式名稱 args</code></p>
-<h5 id="預設會是用memcheck工具分析在這個工具下她會匯出heap使用memory-leak還有記憶體使用錯誤的部份backtrace">預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo pacman -Sy valgrind
+</code></pre></div><h2 id="基本用法"><strong>基本用法</strong></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ valgrind 程式名稱 args
+</code></pre></div><h5 id="預設會是用memcheck工具分析在這個工具下她會匯出heap使用memory-leak還有記憶體使用錯誤的部份backtrace">預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。</h5>
 <h2 id="進階用法"><strong>進階用法</strong></h2>
-<p><code>$ valgrind --tool=toolname 程式名稱 args</code></p>
-<h5 id="這是valgrind最有方便的地方valgrind旗下有九個使用者端的工具和幾個開發者工具">這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ valgrind --tool<span style="color:#f92672">=</span>toolname 程式名稱 args
+</code></pre></div><h5 id="這是valgrind最有方便的地方valgrind旗下有九個使用者端的工具和幾個開發者工具">這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。</h5>
 <h4 id="1-memcheck記憶體錯誤分析工具">1. <strong>Memcheck</strong>:記憶體錯誤分析工具。</h4>
 <h4 id="2cachegrind預測你的cache使用">2.<strong>Cachegrind</strong>:預測你的cache使用。</h4>
 <h4 id="3callgrind分析程式的function-call次數還有call-graph可以幫助快取分析">3.<strong>Callgrind</strong>:分析程式的function call次數，還有call graph，可以幫助快取分析。</h4>
@@ -150,21 +150,21 @@ if (!doNotTrack) {
 <h4 id="9bbv實驗性simpoint相關工具">9.<strong>BBV</strong>:實驗性SimPoint相關工具。</h4>
 <h5 id="這些工具比較常用的是前七個接下來看一下個別的使用">這些工具比較常用的是前七個。接下來看一下個別的使用。</h5>
 <h3 id="memcheck"><strong>memcheck</strong></h3>
-<p><code>$ valgrind --tool=memcheck 程式名稱 args</code><br>
-首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。</p>
-<pre><code>#include&lt;iostream&gt;  
-using namespace std;  
-int main()  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ valgrind --tool<span style="color:#f92672">=</span>memcheck 程式名稱 args
+</code></pre></div><p>首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
 {  
-    int *ptr;  
-    ptr = new int;  
-    *ptr = 2;  
-    cout &lt;&lt; *ptr &lt;&lt; endl;  
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>ptr;  
+    ptr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;  
+    <span style="color:#f92672">*</span>ptr <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;  
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>ptr <span style="color:#f92672">&lt;&lt;</span> endl;  
 }  
 
-```然後我們來看一下分析結果。  
-`==12313== Memcheck, a memory error detector  
-==12313== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.  
+</code></pre></div><p>然後我們來看一下分析結果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==12313== Memcheck, a memory error detector  
+==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.  
 ==12313== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
 ==12313== Command: ./garbage  
 ==12313==  
@@ -183,10 +183,10 @@ int main()
 ==12313== Rerun with --leak-check=full to see details of leaked memory  
 ==12313==  
 ==12313== For counts of detected and suppressed errors, rerun with: -v  
-==12313== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)`  
-她寫了`definitely lost: 4 bytes in 1 blocks`，int是4 byte，我new完之後沒有回收所以memory leak了4 byte，不過由於這程式很間單所以很好找到錯誤來源，當程式變得複雜時我們可以加上`--leak-check=full`來找到源頭，來看一加完的結果。  
-`==14268== Memcheck, a memory error detector  
-==14268== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.  
+==12313== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+</code></pre></div><p>她寫了<code>definitely lost: 4 bytes in 1 blocks</code>，int是4 byte，我new完之後沒有回收所以memory leak了4 byte，不過由於這程式很間單所以很好找到錯誤來源，當程式變得複雜時我們可以加上<code>--leak-check=full</code>來找到源頭，來看一加完的結果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==14268== Memcheck, a memory error detector  
+==14268== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.  
 ==14268== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
 ==14268== Command: ./garbage  
 ==14268==  
@@ -209,298 +209,314 @@ int main()
 ==14268==  
 ==14268== For counts of detected and suppressed errors, rerun with: -v  
 ==14268== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)  
-可以發現這兩行，指出了錯誤點。  
-==14268== at 0x4C2B1EC: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)  
+</code></pre></div><p>可以發現這兩行，指出了錯誤點。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==14268== at 0x4C2B1EC: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)  
 ==14268== by 0x4007C7: main (in /home/tommycc/garbage)  
-`  
+</code></pre></div><h3 id="cachegrind"><strong>Cachegrind</strong></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$valgrind --tool<span style="color:#f92672">=</span>cachegrind
+</code></pre></div><p>它可以分析你程式的快取優化程度。它的結果總共有以下類別。以下擷取至valgrind manual</p>
+<ul>
+<li>I cache reads (Ir, which equals the number of instructions executed), I1 cache read misses (I1mr) and LL cache instruction read misses (ILmr).</li>
+<li>D cache reads (Dr, which equals the number of memory reads), D1 cache read misses (D1mr), and LL cache data read misses (DLmr).</li>
+<li>D cache writes (Dw, which equals the number of memory writes), D1 cache write misses (D1mw), and LL cache data write misses (DLmw).</li>
+<li>Conditional branches executed (Bc) and conditional branches mispredicted (Bcm).</li>
+<li>Indirect branches executed (Bi) and indirect branches mispredicted (Bim).</li>
+</ul>
+<p>一般來說I和D是首要分析的部份。以下的範例是二維陣列存取，我們都知道二維陣列在記憶體上其實是一維的，所以(row major)先row在column會比(column major)先column在row快。我們先執行row major的code如以下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"> <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span> ; i<span style="color:#f92672">++</span> ){                                                                      
+     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span> ; j<span style="color:#f92672">++</span> ){                                        
+         a[i][j] <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span>j;                                                        
+     }                                                                         
+ } 
+</code></pre></div><p>結果如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==11719== Cachegrind, a cache and branch-prediction profiler  
+==11719== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Nicholas Nethercote et al.  
+==11719== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
+==11719== Command: ./tt  
+==11719==   
+--11719-- warning: L3 cache found, using its data for the LL simulation.  
+==11719==   
+==11719== I   refs:      16,204,946  
+==11719== I1  misses:         1,401  
+==11719== LLi misses:         1,357  
+==11719== I1  miss rate:       0.01%  
+==11719== LLi miss rate:       0.01%  
+==11719==   
+==11719== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)  
+==11719== D1  misses:        78,407  (   13,698 rd   +    64,709 wr)  
+==11719== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)  
+==11719== D1  miss rate:        1.0% (      0.2%     +       5.4%  )  
+==11719== LLd miss rate:        0.9% (      0.1%     +       5.4%  )  
+==11719==   
+==11719== LL refs:           79,808  (   15,099 rd   +    64,709 wr)  
+==11719== LL misses:         72,974  (    9,091 rd   +    63,883 wr)  
+==11719== LL miss rate:         0.3% (      0.0%     +       5.4%  )  
 
-### **Cachegrind**
+</code></pre></div><p>特別注意D1 miss rate是1.0%。接下來是column major的code，如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span> ; i<span style="color:#f92672">++</span> ){                                                              
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span> ; j<span style="color:#f92672">++</span> ){                                                                
+        a[j][i] <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span>j;                                                                          
+    }                                                                                                 
+} 
+</code></pre></div><p>結果如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==11522== Cachegrind, a cache and branch-prediction profiler  
+==11522== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Nicholas Nethercote et al.  
+==11522== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
+==11522== Command: ./tt  
+==11522==   
+--11522-- warning: L3 cache found, using its data for the LL simulation.  
+==11522==   
+==11522== I   refs:      16,204,946  
+==11522== I1  misses:         1,401  
+==11522== LLi misses:         1,357  
+==11522== I1  miss rate:       0.01%  
+==11522== LLi miss rate:       0.01%  
+==11522==   
+==11522== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)  
+==11522== D1  misses:     1,015,906  (   13,698 rd   + 1,002,208 wr)  
+==11522== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)  
+==11522== D1  miss rate:       13.1% (      0.2%     +      84.0%  )  
+==11522== LLd miss rate:        0.9% (      0.1%     +       5.4%  )  
+==11522==   
+==11522== LL refs:        1,017,307  (   15,099 rd   + 1,002,208 wr)  
+==11522== LL misses:         72,974  (    9,091 rd   +    63,883 wr)  
+==11522== LL miss rate:         0.3% (      0.0%     +       5.4%  )  
 
-`$valgrind --tool=cachegrind`  
-它可以分析你程式的快取優化程度。它的結果總共有以下類別。以下擷取至valgrind manual  
-
-*   I cache reads (Ir, which equals the number of instructions executed), I1 cache read misses (I1mr) and LL cache instruction read misses (ILmr).
-*   D cache reads (Dr, which equals the number of memory reads), D1 cache read misses (D1mr), and LL cache data read misses (DLmr).
-*   D cache writes (Dw, which equals the number of memory writes), D1 cache write misses (D1mw), and LL cache data write misses (DLmw).
-*   Conditional branches executed (Bc) and conditional branches mispredicted (Bcm).
-*   Indirect branches executed (Bi) and indirect branches mispredicted (Bim).
-
-一般來說I和D是首要分析的部份。以下的範例是二維陣列存取，我們都知道二維陣列在記憶體上其實是一維的，所以(row major)先row在column會比(column major)先column在row快。我們先執行row major的code如以下。  
-</code></pre><p>for (int i = 0 ; i &lt; 1000 ; i++ ){                                                                   <br>
-for (int j = 0 ; j &lt; 1000 ; j++ ){                                     <br>
-a[i][j] = i+j;                                                     <br>
-}                                                                      <br>
-}</p>
-<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><p>==11719== Cachegrind, a cache and branch-prediction profiler<br>
-==11719== Copyright (C) 2002-2015, and GNU GPL&rsquo;d, by Nicholas Nethercote et al.<br>
-==11719== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
-==11719== Command: ./tt<br>
-==11719==<br>
-&ndash;11719&ndash; warning: L3 cache found, using its data for the LL simulation.<br>
-==11719==<br>
-==11719== I   refs:      16,204,946<br>
-==11719== I1  misses:         1,401<br>
-==11719== LLi misses:         1,357<br>
-==11719== I1  miss rate:       0.01%<br>
-==11719== LLi miss rate:       0.01%<br>
-==11719==<br>
-==11719== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)<br>
-==11719== D1  misses:        78,407  (   13,698 rd   +    64,709 wr)<br>
-==11719== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)<br>
-==11719== D1  miss rate:        1.0% (      0.2%     +       5.4%  )<br>
-==11719== LLd miss rate:        0.9% (      0.1%     +       5.4%  )<br>
-==11719==<br>
-==11719== LL refs:           79,808  (   15,099 rd   +    64,709 wr)<br>
-==11719== LL misses:         72,974  (    9,091 rd   +    63,883 wr)<br>
-==11719== LL miss rate:         0.3% (      0.0%     +       5.4%  )</p>
-<pre><code class="language-特別注意D1" data-lang="特別注意D1"></code></pre><p>for (int i = 0 ; i &lt; 1000 ; i++ ){                                                           <br>
-for (int j = 0 ; j &lt; 1000 ; j++ ){                                                             <br>
-a[j][i] = i+j;                                                                       <br>
-}                                                                                              <br>
-}</p>
-<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><p>==11522== Cachegrind, a cache and branch-prediction profiler<br>
-==11522== Copyright (C) 2002-2015, and GNU GPL&rsquo;d, by Nicholas Nethercote et al.<br>
-==11522== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
-==11522== Command: ./tt<br>
-==11522==<br>
-&ndash;11522&ndash; warning: L3 cache found, using its data for the LL simulation.<br>
-==11522==<br>
-==11522== I   refs:      16,204,946<br>
-==11522== I1  misses:         1,401<br>
-==11522== LLi misses:         1,357<br>
-==11522== I1  miss rate:       0.01%<br>
-==11522== LLi miss rate:       0.01%<br>
-==11522==<br>
-==11522== D   refs:       7,729,575  (6,536,262 rd   + 1,193,313 wr)<br>
-==11522== D1  misses:     1,015,906  (   13,698 rd   + 1,002,208 wr)<br>
-==11522== LLd misses:        71,617  (    7,734 rd   +    63,883 wr)<br>
-==11522== D1  miss rate:       13.1% (      0.2%     +      84.0%  )<br>
-==11522== LLd miss rate:        0.9% (      0.1%     +       5.4%  )<br>
-==11522==<br>
-==11522== LL refs:        1,017,307  (   15,099 rd   + 1,002,208 wr)<br>
-==11522== LL misses:         72,974  (    9,091 rd   +    63,883 wr)<br>
-==11522== LL miss rate:         0.3% (      0.0%     +       5.4%  )</p>
-<pre><code class="language-可以發現D1" data-lang="可以發現D1">  
-
-### **Callgrind**
-
-用來分析整個程式的function call數目。  
-`$valgrind --tool=callgrind 程式名稱`  
-這會開始執行你的程式，通常會執行的比較慢。在執行過程中，你可以透過`$callgrind_control -e -b`或是`$callgrind_control -b` 來看程式當下執行的function call backtrace。以下是費氏數列遞迴版結果。  
-</code></pre><p>PID 6989: ./fb<br>
-sending command status internal to pid 6989</p>
-<p>Totals:           Ir<br>
-Th 1  2,560,275,485</p>
-<p>Frame:             Ir Backtrace for Thread 1<br>
-[ 0]  23,685,553,356 fb(long long) (58138276 x)<br>
-[ 1]  41,379,358,433 fb(long long) (58138297 x)<br>
-[ 2]  41,379,358,449 fb(long long) (58138297 x)<br>
-[ 3]  41,379,358,465 fb(long long) (58138297 x)<br>
-[ 4]  41,379,358,481 fb(long long) (58138297 x)<br>
-[ 5]  41,379,358,497 fb(long long) (58138297 x)<br>
-[ 6]  41,379,358,513 fb(long long) (58138297 x)<br>
-[ 7]  41,379,358,529 fb(long long) (58138297 x)<br>
-[ 8]  41,379,358,545 fb(long long) (58138297 x)<br>
-[ 9]  23,685,553,523 fb(long long) (58138276 x)<br>
-[10]  41,379,364,892 fb(long long) (58138297 x)<br>
-[11]  41,379,364,908 fb(long long) (58138297 x)<br>
-[12]  41,379,364,924 fb(long long) (58138297 x)<br>
-[13]  23,685,559,902 fb(long long) (58138276 x)<br>
-[14]  23,685,630,165 fb(long long) (58138276 x)<br>
-[15]  41,379,619,162 fb(long long) (58138297 x)<br>
-[16]  41,379,619,178 fb(long long) (58138297 x)<br>
-[17]  41,379,619,194 fb(long long) (58138297 x)<br>
-[18]  41,379,619,210 fb(long long) (58138297 x)<br>
-[19]  23,685,814,188 fb(long long) (58138276 x)<br>
-[20]  41,382,920,321 fb(long long) (58138297 x)<br>
-[21]  41,382,920,337 fb(long long) (58138297 x)<br>
-[22]  23,689,115,315 fb(long long) (58138276 x)<br>
-[23]  41,405,546,424 fb(long long) (58138297 x)<br>
-[24]  41,405,546,440 fb(long long) (58138297 x)<br>
-[25]  23,711,741,418 fb(long long) (58138276 x)<br>
-[26]  41,560,627,883 fb(long long) (58138297 x)<br>
-[27]  23,866,822,861 fb(long long) (58138276 x)<br>
-[28]  24,523,758,344 fb(long long) (58138276 x)<br>
-[29]  43,937,442,813 fb(long long) (58138297 x)<br>
-[30]   2,558,084,449 fb(long long) (1 x)<br>
-[31]   2,558,084,465 fb(long long) (1 x)<br>
-[32]   2,558,084,472 main (1 x)<br>
-[33]   2,558,187,428 (below main) (1 x)<br>
-[34]   2,558,187,439 _start (1 x)<br>
-[35]               . 0x0000000000000d70
-```可以看到執行當下的遞迴到哪裡，不過由於費氏數列浮動快，這用callgrind_control -e -b的深度會不同。要看到整個function的呼叫次數，可以透過callgrind執行完產生的calgrind.out.pid檔案，這時有兩種分析這個檔案的方式，一是透過<code>callgrind_annotate callgrind.out.pid</code> 來看結果，另一是用KCachegrind (KDE應用程式)。以下是KCachegrind結果，可以看到左下角的框框，fb被call了1+331160280次(第一層call+第二層以上call)。</p>
+</code></pre></div><p>可以發現D1 miss rate大幅上升至13.1%。另外cachegrind一樣會產生output file，可以透過cg_annotate分析，或是用Kcahcegrind分析。</p>
+<h3 id="callgrind"><strong>Callgrind</strong></h3>
+<p>用來分析整個程式的function call數目。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$valgrind --tool<span style="color:#f92672">=</span>callgrind 程式名稱
+</code></pre></div><p>這會開始執行你的程式，通常會執行的比較慢。在執行過程中，你可以透過<code>$callgrind_control -e -b</code>或是<code>$callgrind_control -b</code> 來看程式當下執行的function call backtrace。以下是費氏數列遞迴版結果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"> PID 6989: ./fb  
+sending command status internal to pid 6989  
+  
+  Totals:           Ir   
+   Th 1  2,560,275,485   
+  
+  Frame:             Ir Backtrace for Thread 1  
+   [ 0]  23,685,553,356 fb(long long) (58138276 x)  
+   [ 1]  41,379,358,433 fb(long long) (58138297 x)  
+   [ 2]  41,379,358,449 fb(long long) (58138297 x)  
+   [ 3]  41,379,358,465 fb(long long) (58138297 x)  
+   [ 4]  41,379,358,481 fb(long long) (58138297 x)  
+   [ 5]  41,379,358,497 fb(long long) (58138297 x)  
+   [ 6]  41,379,358,513 fb(long long) (58138297 x)  
+   [ 7]  41,379,358,529 fb(long long) (58138297 x)  
+   [ 8]  41,379,358,545 fb(long long) (58138297 x)  
+   [ 9]  23,685,553,523 fb(long long) (58138276 x)  
+   [10]  41,379,364,892 fb(long long) (58138297 x)  
+   [11]  41,379,364,908 fb(long long) (58138297 x)  
+   [12]  41,379,364,924 fb(long long) (58138297 x)  
+   [13]  23,685,559,902 fb(long long) (58138276 x)  
+   [14]  23,685,630,165 fb(long long) (58138276 x)  
+   [15]  41,379,619,162 fb(long long) (58138297 x)  
+   [16]  41,379,619,178 fb(long long) (58138297 x)  
+   [17]  41,379,619,194 fb(long long) (58138297 x)  
+   [18]  41,379,619,210 fb(long long) (58138297 x)  
+   [19]  23,685,814,188 fb(long long) (58138276 x)  
+   [20]  41,382,920,321 fb(long long) (58138297 x)  
+   [21]  41,382,920,337 fb(long long) (58138297 x)  
+   [22]  23,689,115,315 fb(long long) (58138276 x)  
+   [23]  41,405,546,424 fb(long long) (58138297 x)  
+   [24]  41,405,546,440 fb(long long) (58138297 x)  
+   [25]  23,711,741,418 fb(long long) (58138276 x)  
+   [26]  41,560,627,883 fb(long long) (58138297 x)  
+   [27]  23,866,822,861 fb(long long) (58138276 x)  
+   [28]  24,523,758,344 fb(long long) (58138276 x)  
+   [29]  43,937,442,813 fb(long long) (58138297 x)  
+   [30]   2,558,084,449 fb(long long) (1 x)  
+   [31]   2,558,084,465 fb(long long) (1 x)  
+   [32]   2,558,084,472 main (1 x)  
+   [33]   2,558,187,428 (below main) (1 x)  
+   [34]   2,558,187,439 _start (1 x)  
+   [35]               . 0x0000000000000d70 
+</code></pre></div><p>可以看到執行當下的遞迴到哪裡，不過由於費氏數列浮動快，這用callgrind_control -e -b的深度會不同。要看到整個function的呼叫次數，可以透過callgrind執行完產生的calgrind.out.pid檔案，這時有兩種分析這個檔案的方式，一是透過<code>callgrind_annotate callgrind.out.pid</code> 來看結果，另一是用KCachegrind (KDE應用程式)。以下是KCachegrind結果，可以看到左下角的框框，fb被call了1+331160280次(第一層call+第二層以上call)。</p>
 <p><a href="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s1600/Kcachegrind.png"><img src="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s640/Kcachegrind.png" alt=""></a></p>
 <h3 id="heading"></h3>
 <h3 id="helgrind"><strong>helgrind</strong></h3>
-<p><code>$valgrind --tool=helgrind</code><br>
-這次我們使用官方範例。</p>
-<pre><code>#include &lt;pthread.h&gt;  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$valgrind --tool<span style="color:#f92672">=</span>helgrind
+</code></pre></div><p>這次我們使用官方範例。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">int</span> var <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
   
-int var = 0;  
-  
-void* child_fn ( void* arg ) {  
-   var++; /* Unprotected relative to parent */ /* this is line 6 */  
-   return NULL;  
+<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">child_fn</span> ( <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> arg ) {  
+   var<span style="color:#f92672">++</span>; <span style="color:#75715e">/* Unprotected relative to parent */</span> <span style="color:#75715e">/* this is line 6 */</span>  
+   <span style="color:#66d9ef">return</span> NULL;  
 }  
   
-int main ( void ) {  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ( <span style="color:#66d9ef">void</span> ) {  
    pthread_t child;  
-   pthread_create(&amp;child, NULL, child_fn, NULL);  
-   var++; /* Unprotected relative to child */ /* this is line 13 */  
+   pthread_create(<span style="color:#f92672">&amp;</span>child, NULL, child_fn, NULL);  
+   var<span style="color:#f92672">++</span>; <span style="color:#75715e">/* Unprotected relative to child */</span> <span style="color:#75715e">/* this is line 13 */</span>  
    pthread_join(child, NULL);  
-   return 0;  
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
 }  
 
-```很明顯的var沒有做mutex lock，會有race。結果如下。  
-</code></pre><p>==19156== Helgrind, a thread error detector<br>
-==19156== Copyright (C) 2007-2015, and GNU GPL&rsquo;d, by OpenWorks LLP et al.<br>
-==19156== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info<br>
-==19156== Command: ./race<br>
-==19156==<br>
-==19156== &mdash;Thread-Announcement&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;<br>
-==19156==<br>
-==19156== Thread #1 is the program&rsquo;s root thread<br>
-==19156==<br>
-==19156== &mdash;Thread-Announcement&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;<br>
-==19156==<br>
-==19156== Thread #2 was created<br>
-==19156==    at 0x51427AE: clone (in /usr/lib/libc-2.24.so)<br>
-==19156==    by 0x4E431A9: create_thread (in /usr/lib/libpthread-2.24.so)<br>
-==19156==    by 0x4E44C12: pthread_create@@GLIBC_2.2.5 (in /usr/lib/libpthread-2.24.so)<br>
-==19156==    by 0x4C31810: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
-==19156==    by 0x4C328FD: pthread_create@* (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
-==19156==    by 0x4005C6: main (in /home/tommycc/race)<br>
-==19156==<br>
-==19156== &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-<br>
-==19156==<br>
-==19156== Possible data race during read of size 4 at 0x60103C by thread #1<br>
-==19156== Locks held: none<br>
-==19156==    at 0x4005C7: main (in /home/tommycc/race)<br>
-==19156==<br>
-==19156== This conflicts with a previous write of size 4 by thread #2<br>
-==19156== Locks held: none<br>
-==19156==    at 0x400597: child_fn (in /home/tommycc/race)<br>
-==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
-==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)<br>
-==19156==  Address 0x60103c is 0 bytes inside data symbol &ldquo;var&rdquo;<br>
-==19156==<br>
-==19156== &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-<br>
-==19156==<br>
-==19156== Possible data race during write of size 4 at 0x60103C by thread #1<br>
-==19156== Locks held: none<br>
-==19156==    at 0x4005D0: main (in /home/tommycc/race)<br>
-==19156==<br>
-==19156== This conflicts with a previous write of size 4 by thread #2<br>
-==19156== Locks held: none<br>
-==19156==    at 0x400597: child_fn (in /home/tommycc/race)<br>
-==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)<br>
-==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)<br>
-==19156==  Address 0x60103c is 0 bytes inside data symbol &ldquo;var&rdquo;<br>
-==19156==<br>
-==19156==<br>
-==19156== For counts of detected and suppressed errors, rerun with: -v<br>
-==19156== Use &ndash;history-level=approx or =none to gain increased speed, at<br>
-==19156== the cost of reduced accuracy of conflicting-access information<br>
-==19156== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</p>
-<pre><code class="language-她很明確得告訴我們有可能的race問題。而且名稱叫做var。結果十分直觀。" data-lang="她很明確得告訴我們有可能的race問題。而且名稱叫做var。結果十分直觀。">
-### **Massif**
+</code></pre></div><p>很明顯的var沒有做mutex lock，會有race。結果如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">==19156== Helgrind, a thread error detector  
+==19156== Copyright (C) 2007-2015, and GNU GPL&#39;d, by OpenWorks LLP et al.  
+==19156== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info  
+==19156== Command: ./race  
+==19156==   
+==19156== ---Thread-Announcement------------------------------------------  
+==19156==   
+==19156== Thread #1 is the program&#39;s root thread  
+==19156==   
+==19156== ---Thread-Announcement------------------------------------------  
+==19156==   
+==19156== Thread #2 was created  
+==19156==    at 0x51427AE: clone (in /usr/lib/libc-2.24.so)  
+==19156==    by 0x4E431A9: create_thread (in /usr/lib/libpthread-2.24.so)  
+==19156==    by 0x4E44C12: pthread_create@@GLIBC_2.2.5 (in /usr/lib/libpthread-2.24.so)  
+==19156==    by 0x4C31810: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)  
+==19156==    by 0x4C328FD: pthread_create@* (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)  
+==19156==    by 0x4005C6: main (in /home/tommycc/race)  
+==19156==   
+==19156== ----------------------------------------------------------------  
+==19156==   
+==19156== Possible data race during read of size 4 at 0x60103C by thread #1  
+==19156== Locks held: none  
+==19156==    at 0x4005C7: main (in /home/tommycc/race)  
+==19156==   
+==19156== This conflicts with a previous write of size 4 by thread #2  
+==19156== Locks held: none  
+==19156==    at 0x400597: child_fn (in /home/tommycc/race)  
+==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)  
+==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)  
+==19156==  Address 0x60103c is 0 bytes inside data symbol &#34;var&#34;  
+==19156==   
+==19156== ----------------------------------------------------------------  
+==19156==   
+==19156== Possible data race during write of size 4 at 0x60103C by thread #1  
+==19156== Locks held: none  
+==19156==    at 0x4005D0: main (in /home/tommycc/race)  
+==19156==   
+==19156== This conflicts with a previous write of size 4 by thread #2  
+==19156== Locks held: none  
+==19156==    at 0x400597: child_fn (in /home/tommycc/race)  
+==19156==    by 0x4C31A04: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)  
+==19156==    by 0x4E44453: start_thread (in /usr/lib/libpthread-2.24.so)  
+==19156==  Address 0x60103c is 0 bytes inside data symbol &#34;var&#34;  
+==19156==   
+==19156==   
+==19156== For counts of detected and suppressed errors, rerun with: -v  
+==19156== Use --history-level=approx or =none to gain increased speed, at  
+==19156== the cost of reduced accuracy of conflicting-access information  
+==19156== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)  
 
-`valgrind --tool=massif 程式名稱`  
-他是用來分析data segement 中heap使用。  
-heap在data sgment通常是由malloc等函式創造的，是適當的優化減少heap可以paging和盡量避開使用swap space。  
-在執行完massif後會有一個massif.out.pid檔，可以透過ms\_print來印出。不過一般高速運行的程式，他的malloc和free執行很快，在輸出圖形的時候看起來是一條線，所以可以透過`valgrind --tool=massif --time-unit=B 程式名稱` 讓massif透過allocate與deallcoate記憶體大小作圖。範例程式如下。  
-</code></pre><p>#include&lt;stdio.h&gt;<br>
-#include&lt;stdlib.h&gt;</p>
-<p>int main()<br>
-{<br>
-malloc(1000);<br>
-int* a[10];<br>
-for (int i = 0 ; i &lt; 10 ; i++ )<br>
-a[i] = malloc(1000);<br>
-for (int i = 0 ; i &lt; 10 ; i++ )<br>
-free(a[i]);<br>
-}</p>
-<pre><code class="language-結果如下。" data-lang="結果如下。"></code></pre><hr>
-<h2 id="ms_print-arguments-massifout2213">Command:            ./heap<br>
-Massif arguments:   &ndash;time-unit=B<br>
-ms_print arguments: massif.out.2213</h2>
-<pre><code>KB  
-</code></pre>
-<p>10.91^                                     ####                              <br>
-|                                     #                                 <br>
-|                                  :::#   :::                           <br>
-|                                  :  #   :                             <br>
-|                              @@@@:  #   :  ::::                       <br>
-|                              @   :  #   :  :                          <br>
-|                           :::@   :  #   :  :   :::                    <br>
-|                           :  @   :  #   :  :   :                      <br>
-|                        ::::  @   :  #   :  :   :  :::                 <br>
-|                        :  :  @   :  #   :  :   :  :                   <br>
-|                    :::::  :  @   :  #   :  :   :  :  ::::             <br>
-|                 ::::   :  :  @   :  #   :  :   :  :  :   :::          <br>
-|                 :  :   :  :  @   :  #   :  :   :  :  :   :            <br>
-|             :::::  :   :  :  @   :  #   :  :   :  :  :   :  ::::      <br>
-|             :   :  :   :  :  @   :  #   :  :   :  :  :   :  :         <br>
-|          ::::   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :::   <br>
-|          :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :     <br>
-|      :::::  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :::<br>
-|      :   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :  <br>
-|   ::::   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :  @<br>
-0 +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;KB<br>
-0                                                                   20.84</p>
-<p>Number of snapshots: 23<br>
-Detailed snapshots: [9, 12 (peak), 22]</p>
-<hr>
-<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
-<p>0              0                0                0             0            0<br>
-1          1,016            1,016            1,000            16            0<br>
-2          2,032            2,032            2,000            32            0<br>
-3          3,048            3,048            3,000            48            0<br>
-4          4,064            4,064            4,000            64            0<br>
-5          5,080            5,080            5,000            80            0<br>
-6          6,096            6,096            6,000            96            0<br>
-7          7,112            7,112            7,000           112            0<br>
-8          8,128            8,128            8,000           128            0<br>
-9          9,144            9,144            9,000           144            0<br>
-98.43% (9,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
--&gt;87.49% (8,000B) 0x400569: main (in /home/tommycc/heap)<br>
-|<br>
--&gt;10.94% (1,000B) 0x400556: main (in /home/tommycc/heap)</p>
-<hr>
-<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb-1">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
-<p>10         10,160           10,160           10,000           160            0<br>
-11         11,176           11,176           11,000           176            0<br>
-12         11,176           11,176           11,000           176            0<br>
-98.43% (11,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
--&gt;89.48% (10,000B) 0x400569: main (in /home/tommycc/heap)<br>
-|<br>
--&gt;08.95% (1,000B) 0x400556: main (in /home/tommycc/heap)</p>
-<hr>
-<h2 id="n--------timeb---------totalb---useful-heapb-extra-heapb----stacksb-2">n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)</h2>
-<p>13         12,192           10,160           10,000           160            0<br>
-14         13,208            9,144            9,000           144            0<br>
-15         14,224            8,128            8,000           128            0<br>
-16         15,240            7,112            7,000           112            0<br>
-17         16,256            6,096            6,000            96            0<br>
-18         17,272            5,080            5,000            80            0<br>
-19         18,288            4,064            4,000            64            0<br>
-20         19,304            3,048            3,000            48            0<br>
-21         20,320            2,032            2,000            32            0<br>
-22         21,336            1,016            1,000            16            0<br>
-98.43% (1,000B) (heap allocation functions) malloc/new/new[], &ndash;alloc-fns, etc.<br>
--&gt;98.43% (1,000B) 0x400556: main (in /home/tommycc/heap)<br>
-|<br>
--&gt;00.00% (0B) in 1+ places, all below ms_print&rsquo;s threshold (01.00%</p>
-<pre><code class="language-可以看到malloc和free的作用。" data-lang="可以看到malloc和free的作用。">
-### **其他工具**
+</code></pre></div><p>她很明確得告訴我們有可能的race問題。而且名稱叫做var。結果十分直觀。</p>
+<h3 id="massif"><strong>Massif</strong></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ valgrind --tool<span style="color:#f92672">=</span>massif 程式名稱<span style="color:#e6db74">`</span>
+</code></pre></div><p>他是用來分析data segement 中heap使用。<br>
+heap在data sgment通常是由malloc等函式創造的，是適當的優化減少heap可以paging和盡量避開使用swap space。<br>
+在執行完massif後會有一個massif.out.pid檔，可以透過ms_print來印出。不過一般高速運行的程式，他的malloc和free執行很快，在輸出圖形的時候看起來是一條線，所以可以透過<code>valgrind --tool=massif --time-unit=B 程式名稱</code> 讓massif透過allocate與deallcoate記憶體大小作圖。範例程式如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdlib.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
+{  
+    malloc(<span style="color:#ae81ff">1000</span>);  
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> a[<span style="color:#ae81ff">10</span>];  
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> ; i<span style="color:#f92672">++</span> )  
+        a[i] <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">1000</span>);  
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> ; i<span style="color:#f92672">++</span> )  
+        free(a[i]);  
+}  
 
-有些是valgrind的開發工具所以就跳過了。  
-ref:[http://valgrind.org/docs/manual/manual.html](http://valgrind.org/docs/manual/manual.html)  
-ㄧ  
-ㄧ  
-ㄧ  
+</code></pre></div><p>結果如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">--------------------------------------------------------------------------------  
+Command:            ./heap  
+Massif arguments:   --time-unit=B  
+ms_print arguments: massif.out.2213  
+--------------------------------------------------------------------------------  
+  
+  
+    KB  
+10.91^                                     ####                                 
+     |                                     #                                    
+     |                                  :::#   :::                              
+     |                                  :  #   :                                
+     |                              @@@@:  #   :  ::::                          
+     |                              @   :  #   :  :                             
+     |                           :::@   :  #   :  :   :::                       
+     |                           :  @   :  #   :  :   :                         
+     |                        ::::  @   :  #   :  :   :  :::                    
+     |                        :  :  @   :  #   :  :   :  :                      
+     |                    :::::  :  @   :  #   :  :   :  :  ::::                
+     |                 ::::   :  :  @   :  #   :  :   :  :  :   :::             
+     |                 :  :   :  :  @   :  #   :  :   :  :  :   :               
+     |             :::::  :   :  :  @   :  #   :  :   :  :  :   :  ::::         
+     |             :   :  :   :  :  @   :  #   :  :   :  :  :   :  :            
+     |          ::::   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :::      
+     |          :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :        
+     |      :::::  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :::   
+     |      :   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :     
+     |   ::::   :  :   :  :   :  :  @   :  #   :  :   :  :  :   :  :   :  :  @  
+   0 +-----------------------------------------------------------------------&gt;KB  
+     0                                                                   20.84  
+  
+Number of snapshots: 23  
+ Detailed snapshots: [9, 12 (peak), 22]  
+  
+--------------------------------------------------------------------------------  
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)  
+--------------------------------------------------------------------------------  
+  0              0                0                0             0            0  
+  1          1,016            1,016            1,000            16            0  
+  2          2,032            2,032            2,000            32            0  
+  3          3,048            3,048            3,000            48            0  
+  4          4,064            4,064            4,000            64            0  
+  5          5,080            5,080            5,000            80            0  
+  6          6,096            6,096            6,000            96            0  
+  7          7,112            7,112            7,000           112            0  
+  8          8,128            8,128            8,000           128            0  
+  9          9,144            9,144            9,000           144            0  
+98.43% (9,000B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.  
+-&gt;87.49% (8,000B) 0x400569: main (in /home/tommycc/heap)  
+|   
+-&gt;10.94% (1,000B) 0x400556: main (in /home/tommycc/heap)  
+  
+--------------------------------------------------------------------------------  
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)  
+--------------------------------------------------------------------------------  
+ 10         10,160           10,160           10,000           160            0  
+ 11         11,176           11,176           11,000           176            0  
+ 12         11,176           11,176           11,000           176            0  
+98.43% (11,000B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.  
+-&gt;89.48% (10,000B) 0x400569: main (in /home/tommycc/heap)  
+|   
+-&gt;08.95% (1,000B) 0x400556: main (in /home/tommycc/heap)  
+  
+--------------------------------------------------------------------------------  
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)  
+--------------------------------------------------------------------------------  
+ 13         12,192           10,160           10,000           160            0  
+ 14         13,208            9,144            9,000           144            0  
+ 15         14,224            8,128            8,000           128            0  
+ 16         15,240            7,112            7,000           112            0  
+ 17         16,256            6,096            6,000            96            0  
+ 18         17,272            5,080            5,000            80            0  
+ 19         18,288            4,064            4,000            64            0  
+ 20         19,304            3,048            3,000            48            0  
+ 21         20,320            2,032            2,000            32            0  
+ 22         21,336            1,016            1,000            16            0  
+98.43% (1,000B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.  
+-&gt;98.43% (1,000B) 0x400556: main (in /home/tommycc/heap)  
+|   
+-&gt;00.00% (0B) in 1+ places, all below ms_print&#39;s threshold (01.00%  
 
-&gt; Written with [StackEdit](https://stackedit.io/).</code></pre>
+</code></pre></div><p>可以看到malloc和free的作用。</p>
+<h3 id="其他工具"><strong>其他工具</strong></h3>
+<p>有些是valgrind的開發工具所以就跳過了。<br>
+ref:<a href="http://valgrind.org/docs/manual/manual.html">http://valgrind.org/docs/manual/manual.html</a><br>
+ㄧ<br>
+ㄧ<br>
+ㄧ</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+
         </p>
     </div>
     

@@ -151,12 +151,16 @@ if (!doNotTrack) {
 <p>這個型態最重要的用意是aliginment(對齊)，一般來說16bitCPU在處理16bit的資料運算有可能8bit的快，這是因為</p>
 <p>對齊的因素，因此，這些fast data type在這個例子中直接將uint_fast8_t 定義為uint16_t，來方便CPU運算。</p>
 <p>以下這是給16bit MCU的compiler microvhip XC16，在stdint.h中的定義</p>
-<p>**#ifndef uint_fast8_t **</p>
-<p>**typedef unsigned int uint_fast8_t; **</p>
-<p>**#define uint_fast8_t uint_fast8_t   **</p>
-<p>**#define UINT_FAST8_MAX (65535UL)   **</p>
-<p>**#endif  **</p>
-<p>很明顯可以看到她將uint_fast8_t用unsigned int(16bit)來使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#ifndef uint_fast8_t
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> uint_fast8_t;
+
+<span style="color:#75715e">#define uint_fast8_t uint_fast8_t 
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define UINT_FAST8_MAX (65535UL) 
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#endif
+</span></code></pre></div><p>很明顯可以看到她將uint_fast8_t用unsigned int(16bit)來使用。</p>
 <p>在<a href="http://embeddedgurus.com/stack-overflow/2011/02/efficient-c-tip-13-use-the-modulus-operator-with-caution/">Efficient C Tip #13 – use the modulus (%) operator with caution</a>中在16bit的MSP430，作者僅將型態改成，</p>
 <p>fast data type，就得到了大幅的加速。在MCU等小型硬體中，在適當的地方使用C99 fast data type可以得到很好的效果。</p>
 

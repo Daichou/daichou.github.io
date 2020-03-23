@@ -108,22 +108,18 @@ Review scheduler(非Real time)與相關技術 有cooperative與preemptive兩大�
 mega2560連接nRF24L01 以下是nRF24L01 模組的照片與pinout。
 
 從左上開始，右下結束。
-1.GND
-2.VDD(3.6V以下)
-3.CE
-4.CSN
-5.SCLK
-6.MOSI
-7.MISO
-8.IRQ
-Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。
+         1.GND 2.VDD(3.6V以下)   3.CE 4.CSN   5.SCLK 6.MOSI   7.MISO 8.IRQ    Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。
 Mega2560的部份需要其上頭內建的SPI BUS，才能使用這個函式庫(TMRh20的library有提供Software SPI應用)。以下是Mega2560的SPI接腳對應。
 
 SCK要接nRF24L01的SCLK，MOSI接MOSI，MISO接MISO，CE和CSN可自行定義腳位。
 程式碼部份直接利用官往提供的example來做測試。
 http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html
 原始碼中RF24物件建構子這行
-[RF24](http://maniacbug.github.io/RF24/classRF24.html &amp;quot;Driver for nRF24L01(+) 2.4GHz Wireless Transceiver.&amp;quot;) radio(9,10); ```9表示CE接腳，10表示CSN接腳。 程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX\_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。 ### 連不上的一些解法 #### 地址錯誤 兩邊的地址要可對到，一邊RX\_ADDR要為另一邊TX\_ADDR，這樣才可收到。 #### 雜訊 有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。 #### 傳輸速率過快 example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</description>
+RF24 radio(9,10); 9表示CE接腳，10表示CSN接腳。
+程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。
+連不上的一些解法 地址錯誤 兩邊的地址要可對到，一邊RX_ADDR要為另一邊TX_ADDR，這樣才可收到。
+雜訊 有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。
+傳輸速率過快 example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</description>
     </item>
     
     <item>
@@ -137,20 +133,7 @@ http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html
 duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。
 PWM產生方式 PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。
 硬體內建PWM模組 MCU內常內建PWM模組，以PIC系列為例，有CCP(Capture/Compare/PWM)模組、Output Compare模組和PWM模組。透過設定timer和暫存去達成PWM輸出。以下以dsPIC30F4013的Output Compare做示範。
-由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。
-dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為&amp;rsquo;110&#39;或&amp;rsquo;111&amp;rsquo;。設定順序為:
-1.設定PRy(Period register)表示PWM的週期。
-2.再來設定OCxRS暫存器表示duty cycle。
-3.設定OCM。
-4.設定timer，並開啟timer。
-PWM 週期 ＝ [(PRy+1)]*Tcy*(TMRx presclaer value)。 (Tcy為振盪器頻率*PLL/4)
-PWM 頻率為週期倒數。
-詳細設定在http://ww1.microchip.com/downloads/en/DeviceDoc/70157C.pdf中有詳細描述。
-中斷產生PWM 利用Timer中斷來切換PWM進入duty cycle，有兩種方法。
-一、用一個或兩個timer，先輸出high，計算PWM在high所需時間，設定好Timer 週期(中斷條件)，當Timer發生中斷，將輸出切為low，並在計算PWM在low所需時間，同樣設定好Timer週期，當Timer發生中斷回到一開始重頭來過。也可用兩個Timer一個設為high所需時間，一個為period，當high的timer 中斷發生，關閉其中斷與timer，並將輸出設為low，等待period 的Timer發生中斷，在開啟high 的timer中斷。
-二、用一個timer中斷，當其中斷將counter加一，一旦couner的值大於duty cycle則切為low，當counter的值大於period則歸零。以下為範例(使用PIC18F452)。
-此方法缺點為PWM頻率難以調整，不過對於本身PWM模組缺乏或過少之MCU，此法十分有效。
-迴圈產生PWM 以迴圈直接產生PWM，可以用一個counter當作現在情況，當迴圈執行次數超過duty cycle的值時，調整high low，這方法十分簡單，但如果要有準確的頻率需要將程式編成組語計算其所需時間，並用NOP指令挑整週期。這方法會佔走整個CPU，十分無效率，但其可以結合輪詢等固定時間需要執行的功能，對於低階，簡單的系統有其應用空間。</description>
+#include &amp;lt;xc.h&amp;gt;  // FOSC #pragma config FOSFPR = XT_PLL4 // Oscillator (XT w/PLL 4x) #pragma config FCKSMEN = CSW_FSCM_OFF // Clock Switching and Monitor (Sw Disabled, Mon Disabled)  // FWDT #pragma config FWPSB = WDTPSB_16 // WDT Prescaler B (1:16) #pragma config FWPSA = WDTPSA_512 // WDT Prescaler A (1:512) #pragma config WDT = WDT_OFF // Watchdog Timer (Disabled)  // FBORPOR #pragma config FPWRT = PWRT_64 // POR Timer Value (64ms) #pragma config BODENV = BORV20 // Brown Out Voltage (Reserved) #pragma config BOREN = PBOR_ON // PBOR Enable (Enabled) #pragma config MCLRE = MCLR_EN // Master Clear Enable (Enabled)  // FGS #pragma config GWRP = GWRP_OFF // General Code Segment Write Protect (Disabled) #pragma config GCP = CODE_PROT_OFF // General Segment Code Protection (Disabled)  // FICD #pragma config ICS = ICS_PGD // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)  #define Tcy 10000000 //10MHz oscillator with 4xPLL -&amp;gt; 10&amp;#39;000&amp;#39;000MIPS  //------------------------------------------------------------------------------ // main routine //------------------------------------------------------------------------------ int main(int argc, char** argv) { //------------------------------------------------------------------------------ // IO Plan  TRISA = 0x0000; TRISB = 0x0000; TRISC = 0x0000; TRISD = 0x0000; //RD1,RD2,RD3,RD4 -&amp;gt; PWM OC pin  TRISF = 0x0000; ADPCFG = 0xFFFF; //------------------------------------------------------------------------------ // initialize PWM  //PR2 = 50000; 1:256-&amp;gt; 200 HZ  PR2 = 25000; OC1RS = 1875; OC1CON = 0x0006; //Set PWM mode on OC1,Fault pin disable,Timer2 is source  OC2RS = 1875; OC2CON = 0x0006; //Set PWM mode on OC2,Fault pin disable,Timer2 is source  OC3RS = 1875; OC3CON = 0x0006; //Set PWM mode on OC3,Fault pin disable,Timer2 is source  OC4RS = 1875; OC4CON = 0x0006; //Set PWM mode on OC4,Fault pin disable,Timer2 is source  //IEC0bits.</description>
     </item>
     
     <item>

@@ -163,12 +163,11 @@ AXI Verification IP 簡介 Xilinx AXI Verification IP主要提供的功能為:
             <div><p>Verilog Diagram generator 最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。
 用法先去clone該專案，進行安裝。
 $ git clone https://github.com/YosysHQ/yosys 安裝相依工具：
-$ sudo apt-get install build-essential clang bison flex \ libreadline-dev gawk tcl-dev libffi-dev git \ graphviz xdot pkg-config python3 libboost-system-dev \ libboost-python-dev libboost-filesystem-dev zlib1g-dev 進去yosys資料夾後，選擇compiler:
+$ sudo apt-get install build-essential clang bison flex \  libreadline-dev gawk tcl-dev libffi-dev git \  graphviz xdot pkg-config python3 libboost-system-dev \  libboost-python-dev libboost-filesystem-dev zlib1g-dev 進去yosys資料夾後，選擇compiler:
 $ make config-clang $ make config-gcc 然後make &amp;&amp; make install
 $ make $ sudo make install 這些步驟都跟readme寫的一樣。
 這工具的command和vcs蠻相似的，執行yosys會進到command shell，透過read_verilog載入verilog module，或是read -sv載入verilog module同時elaborate。之後指定top module。她會產生檔案的AST。
-yosys&gt; read -sv folder/*.v yosys&gt; hierarchy -top top_module 接下來可以用show指令顯示diagram。
-yosys&gt; show 如果多個module，需要指定顯示程式。(gv是一個程式，可以透過apt-get安裝，ps是postscript的縮寫)</p></div>
+yosys&gt; read -sv folder/*.v yosys&gt; hierarchy -top top_module 接下來可以用show指令顯示diagram。</p></div>
             <div class="post-footer">
             <time>March 6, 2020</time>
 
@@ -224,7 +223,11 @@ $ git clone git://git.qemu.org/qemu.git qemu.git $ cd qemu.git $ ./configure --t
 Arch Linux的package預設包含aarch64-softmmu這個target。
 四、建立rootfs 其實有很多方法可以建立(busybox)，而這裡用buildroot來做。
 首先取得buildroot。
-git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig ```在target option中選擇架構與CPU。 以下為範例： [![](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s640/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png)](https://1.bp.blogspot.com/-smHsm_KoAf0/XQeB_aSzLfI/AAAAAAAAEek/jKXNT5XumGYwCn-VTrMGw4T8tAiYGyFrQCLcBGAs/s1600/Screenshot%2Bfrom%2B2019-06-17%2B20-03-53.png) 在System configuration ---&gt; 點選\[\*\]Run a getty (login prompt) after boot ---&gt;並將TTY port設成ttyAMA0。 在Target Packages ---&gt;選取busybox與\[\*\] Show packages that are also provided by busybox 。 在Filesystem images中選擇\[\*\] cpio the root filesystem (for use as an initial RAM filesystem)。 在toolchain option中選擇外部toolchain如下： [!</p></div>
+git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig 在target option中選擇架構與CPU。
+以下為範例：
+
+在System configuration &mdash;&gt; 點選[*]Run a getty (login prompt) after boot &mdash;&gt;並將TTY port設成ttyAMA0。
+在Target Packages &mdash;&gt;選取busybox與[*] Show packages that are also provided by busybox 。</p></div>
             <div class="post-footer">
             <time>June 17, 2019</time>
 
@@ -322,7 +325,7 @@ Perlman / Film Music - Cinema Serenade
 
 The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)
  二、心得感想
-這張基本上有名到我都不想寫什麼介紹了XD，不過秉持著紀錄所有我買過得專輯，所以還是隨手打一篇。這片在買之前裡面的音樂幾乎都已經在各個角落聽過了，即使電影只看過一次，在音樂課，在其他專輯(Yo-Yo Ma Plays Ennio Morricone)或多或少經典曲目包括、、還是有名又有梗的鬥琴有在接觸電影配樂的朋友都聽過。其中最喜歡的是、、，至於鬥琴那首我到覺得還好。其他也有一些較為不有名曲目如帶有爵士風情的等，還有&lt;Tarantella In 3rd Class&gt;也都十分動聽。我覺得這張真的必收。
+這張基本上有名到我都不想寫什麼介紹了XD，不過秉持著紀錄所有我買過得專輯，所以還是隨手打一篇。這片在買之前裡面的音樂幾乎都已經在各個角落聽過了，即使電影只看過一次，在音樂課，在其他專輯(Yo-Yo Ma Plays Ennio Morricone)或多或少經典曲目包括&lt;Playing Love&gt;、&lt;Magic Waltz&gt;、&lt;A Mozart Reincarnated&gt;還是有名又有梗的鬥琴&lt;Enduring Movement&gt;有在接觸電影配樂的朋友都聽過。其中最喜歡的是&lt;Playing Love&gt;、&lt;Magic Waltz&gt;、&lt;A Mozart Reincarnated&gt;，至於鬥琴那首我到覺得還好。其他也有一些較為不有名曲目如帶有爵士風情的&lt;A Goodbye To Friends&gt;等，還有&lt;Tarantella In 3rd Class&gt;也都十分動聽。我覺得這張真的必收。
 三、曲目  Playing Love The Legend Of The Pianist On The Ocean The Crisis Peacherine Rag A Goodbye To Friends Study For Three Hands Tarantella In 3rd Class Enduring Movement Police Trailer Thanks Danny A Mozart Reincarnated Child Magic Waltz The Goodbye Between 1990 And Max Goodbye Duet Nineteen Hundred’s Madness N.</p></div>
             <div class="post-footer">
             <time>July 22, 2018</time>
@@ -366,30 +369,7 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
                 </a>
             </h2>
             <div><p>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-.
-├── build
-│ └── default
-│ └── production
-│ ├── main.o
-│ └── main.o.d
-├── debug
-│ └── default
-├── dist
-│ └── default
-│ └── production
-│ ├── 4013_test.X.production.elf
-│ ├── 4013_test.X.production.hex
-│ └── 4013_test.X.production.map
-├── main.c
-├── Makefile
-└── nbproject
- ├── configurations.xml
- ├── Makefile-default.mk
- ├── Makefile-genesis.properties
- ├── Makefile-impl.mk
- ├── Makefile-local-default.mk
- ├── Makefile-variables.mk
- ├── Package-default.bash</p></div>
+. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.</p></div>
             <div class="post-footer">
             <time>July 18, 2018</time>
 

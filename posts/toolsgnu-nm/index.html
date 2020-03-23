@@ -133,9 +133,128 @@ if (!doNotTrack) {
 <h3 id="nm">nm</h3>
 <p>nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。</p>
 <p>以下我打了一個範例。</p>
-<p>接下來是對其編譯出來的a.out下nm指令的結果。</p>
-<p>第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。</p>
-<p>這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">foo</span>(){
+    printf(<span style="color:#e6db74">&#34;bar&#34;</span>);
+}
+
+<span style="color:#66d9ef">int</span> Global_var;
+<span style="color:#66d9ef">int</span> Global_var_init <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> local_var;
+    <span style="color:#66d9ef">int</span> local_var_init <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> local_var_init <span style="color:#f92672">+</span> Global_var_init;
+    foo();
+}
+</code></pre></div><p>接下來是對其編譯出來的a.out下nm指令的結果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">0000000000601030 B __bss_start
+0000000000601030 b completed.6916
+0000000000601020 D __data_start
+0000000000601020 W data_start
+0000000000400430 t deregister_tm_clones
+00000000004004b0 t __do_global_dtors_aux
+0000000000600e10 t __do_global_dtors_aux_fini_array_entry
+0000000000601028 D __dso_handle
+0000000000600e20 d _DYNAMIC
+0000000000601030 D _edata
+0000000000601040 B _end
+00000000004005b4 T _fini
+00000000004004f6 T foo
+00000000004004d0 t frame_dummy
+0000000000600e08 t __frame_dummy_init_array_entry
+0000000000400718 r __FRAME_END__
+0000000000601000 d _GLOBAL_OFFSET_TABLE_
+0000000000601038 B Global_var
+0000000000601034 B Global_var_init
+                 w __gmon_start__
+00000000004005c8 r __GNU_EH_FRAME_HDR
+00000000004003c8 T _init
+0000000000600e10 t __init_array_end
+0000000000600e08 t __init_array_start
+00000000004005c0 R _IO_stdin_used
+0000000000600e18 d __JCR_END__
+0000000000600e18 d __JCR_LIST__
+00000000004005b0 T __libc_csu_fini
+0000000000400540 T __libc_csu_init
+                 U __libc_start_main@@GLIBC_2.2.5
+000000000040050c T main
+                 U printf@@GLIBC_2.2.5
+0000000000400470 t register_tm_clones
+0000000000400400 T _start
+0000000000601030 D __TMC_END__ 
+</code></pre></div><p>第一列為地址，第二列為類型，第三列為名稱。類型部份可以man一下nm。以下是擷取自man nm。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">DESCRIPTION
+       GNU nm lists the symbols from object files objfile....  If no object files are listed as arguments, nm assumes the file a.out.
+
+       For each symbol, nm shows:
+
+       ·   The symbol value, in the radix selected by options (see below), or hexadecimal by default.
+
+       ·   The symbol type.  At least the following types are used; others are, as well, depending on the object file format.  If lowercase,
+           the symbol is usually local; if uppercase, the symbol is global (external).  There are however a few lowercase symbols that are
+           shown for special global symbols (&#34;u&#34;, &#34;v&#34; and &#34;w&#34;).
+
+           &#34;A&#34; The symbol&#39;s value is absolute, and will not be changed by further linking.
+
+           &#34;B&#34;
+           &#34;b&#34; The symbol is in the uninitialized data section (known as BSS).
+
+           &#34;C&#34; The symbol is common.  Common symbols are uninitialized data.  When linking, multiple common symbols may appear with the same
+               name.  If the symbol is defined anywhere, the common symbols are treated as undefined references.
+
+           &#34;D&#34;
+           &#34;d&#34; The symbol is in the initialized data section.
+
+           &#34;G&#34;
+           &#34;g&#34; The symbol is in an initialized data section for small objects.  Some object file formats permit more efficient access to small
+               data objects, such as a global int variable as opposed to a large global array.
+
+           &#34;i&#34; For PE format files this indicates that the symbol is in a section specific to the implementation of DLLs.  For ELF format
+               files this indicates that the symbol is an indirect function.  This is a GNU extension to the standard set of ELF symbol types.
+               It indicates a symbol which if referenced by a relocation does not evaluate to its address, but instead must be invoked at
+               runtime.  The runtime execution will then return the value to be used in the relocation.
+
+           &#34;I&#34; The symbol is an indirect reference to another symbol.
+
+           &#34;N&#34; The symbol is a debugging symbol.
+
+           &#34;p&#34; The symbols is in a stack unwind section.
+           
+                      &#34;R&#34;
+           &#34;r&#34; The symbol is in a read only data section.
+
+           &#34;S&#34;
+           &#34;s&#34; The symbol is in an uninitialized data section for small objects.
+
+           &#34;T&#34;
+           &#34;t&#34; The symbol is in the text (code) section.
+
+           &#34;U&#34; The symbol is undefined.
+
+           &#34;u&#34; The symbol is a unique global symbol.  This is a GNU extension to the standard set of ELF symbol bindings.  For such a symbol
+               the dynamic linker will make sure that in the entire process there is just one symbol with this name and type in use.
+
+           &#34;V&#34;
+           &#34;v&#34; The symbol is a weak object.  When a weak defined symbol is linked with a normal defined symbol, the normal defined symbol is
+               used with no error.  When a weak undefined symbol is linked and the symbol is not defined, the value of the weak symbol becomes
+               zero with no error.  On some systems, uppercase indicates that a default value has been specified.
+
+           &#34;W&#34;
+           &#34;w&#34; The symbol is a weak symbol that has not been specifically tagged as a weak object symbol.  When a weak defined symbol is
+               linked with a normal defined symbol, the normal defined symbol is used with no error.  When a weak undefined symbol is linked
+               and the symbol is not defined, the value of the symbol is determined in a system-specific manner without error.  On some
+               systems, uppercase indicates that a default value has been specified.
+
+           &#34;-&#34; The symbol is a stabs symbol in an a.out object file.  In this case, the next values printed are the stabs other field, the
+               stabs desc field, and the stab type.  Stabs symbols are used to hold debugging information.
+
+           &#34;?&#34; The symbol type is unknown, or object file format specific.
+
+       ·   The symbol name.
+</code></pre></div><p>這個工具可以幫助我們了解object file的資料layout，函式定義等，對於無source code只有object files的開發者來說十分方便(有source code可用compiler的參數來分析)。</p>
 <p>nm可以幫助我們分析undefined reference狀況與data的分區(bss,text,data)。</p>
 <p>相關連結:1.<a href="http://www.wuzesheng.com/?p=1595">http://www.wuzesheng.com/?p=1595</a><br>
                  2.<a href="http://sp1.wikidot.com/elfobjfile">http://sp1.wikidot.com/elfobjfile</a><br>

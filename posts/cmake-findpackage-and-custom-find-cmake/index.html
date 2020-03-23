@@ -134,23 +134,17 @@ if (!doNotTrack) {
 <a href="https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries">https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries</a></p>
 <h3 id="find_package">find_package</h3>
 <p>find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:</p>
-<blockquote>
-<p>cmake  &ndash;help-module-lists</p>
-</blockquote>
-<p>查詢。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cmake  --help-module-lists
+</code></pre></div><p>查詢。<br>
 在CMake中使用find_package通常會使用類似下列參數。</p>
-<blockquote>
-<p>find_package(OpenCV 3.4.1 REQUIRED)</p>
-</blockquote>
-<p> find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。</p>
-<blockquote>
-<p>find_package(OpenMP)<br>
-if (OPENMP_FOUND)<br>
-    set (CMAKE_C_FLAGS &ldquo;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&quot;)<br>
-    set (CMAKE_CXX_FLAGS &ldquo;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&quot;)<br>
-endif()</p>
-</blockquote>
-<p>透過find_package 定義的-FOUND判斷是否存在。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">find_package(<span style="color:#e6db74">OpenCV</span> <span style="color:#e6db74">3.4.1</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p> find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">find_package(<span style="color:#e6db74">OpenMP</span>)  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>if (<span style="color:#e6db74">OPENMP_FOUND</span>)  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    set (<span style="color:#e6db74">CMAKE_C_FLAGS</span> <span style="color:#e6db74">&#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&#34;</span>)  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    set (<span style="color:#e6db74">CMAKE_CXX_FLAGS</span> <span style="color:#e6db74">&#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&#34;</span>)  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>透過find_package 定義的-FOUND判斷是否存在。<br>
 find_package通常會定義下列四種變數：</p>
 <ul>
 <li>
@@ -167,88 +161,85 @@ find_package通常會定義下列四種變數：</p>
 </li>
 </ul>
 <p>當有這些參數後，即可透過一般CMake include或link方式使用，例如：</p>
-<blockquote>
-<p>include_directories( ${OpenCV_INCLUDE_DIRS} )<br>
-target_link_libraries (main ${PCL_LIBRARIES} ${OpenCV_LIBS})</p>
-</blockquote>
-<p>等方式使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">include_directories( <span style="color:#f92672">${</span>OpenCV_INCLUDE_DIRS<span style="color:#f92672">}</span> )  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries (<span style="color:#e6db74">main</span> <span style="color:#f92672">${</span>PCL_LIBRARIES<span style="color:#f92672">}</span> <span style="color:#f92672">${</span>OpenCV_LIBS<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>等方式使用。</p>
 <h3 id="custom-find-cmake-findxxxcmake-find-modules"> custom find cmake (findXXX.cmake) find modules</h3>
 <p>若是CMake沒提供modules就要自己寫find modules啦。</p>
 <p>依照前面的敘述，可以知道Find modules最重要的就是取得那四種變數的值。下面以我寫的FindRealsense2.cmake為例。</p>
-<pre><code>find\_package(PkgConfig)  
-find\_package(PkgConfig)  
-if(${CMAKE\_VERSION} VERSION\_LESS 2.8.2)  
-    pkg\_check\_modules(PC\_REALSENSE2 librealsense2-dev)  
-else()  
-    pkg\_check\_modules(PC\_REALSENSE2 QUIET librealsense2-dev)  
-endif()  
-  
-set(REALSENSE2\_DEFINITIONS ${PC\_REALSENSE2\_CFLAGS\_OTHER})  
-  
-#add a hint so that it can find it without the pkg-config  
-find\_path(REALSENSE2\_INCLUDE\_DIR rs.hpp  
-          HINTS  
-          ${PC\_REALSENSE2\_INCLUDEDIR}  
-          ${PC\_REALSENSE2\_INCLUDE\_DIRS}  
-          PATHS  
-            &quot;${PROGRAM\_FILES}/librealsense2/Include&quot;  
-            /usr/include  
-            /usr/include/librealsense2  
-            /user/include  
-            /user/include/librealsense2  
-          PATH\_SUFFIXES librealsense2  
-)  
-  
-if(${CMAKE\_CL\_64})  
-    set(REALSENSE2\_PATH\_SUFFIXES lib64)  
-else()  
-    set(REALSENSE2\_PATH\_SUFFIXES lib)  
-endif()  
-  
-#add a hint so that it can find it without the pkg-config  
-find\_library(REALSENSE2\_LIBRARY  
-             NAMES librealsense2.so  
-             HINTS  
-             ${PC\_REALSENSE2\_LIBDIR}  
-             ${PC\_REALSENSE2\_LIBRARY\_DIRS}  
-             PATHS  
-               &quot;${PROGRAM\_FILES}/librealsense2&quot;  
-               /usr/lib  
-               /usr/lib/x86\_64-linux-gnu  
-               /user/lib  
-)  
-  
-set(REALSENSE2\_INCLUDE\_DIRS ${REALSENSE2\_INCLUDE\_DIR})  
-set(REALSENSE2\_LIBRARIES ${REALSENSE2\_LIBRARY})  
-  
-include(FindPackageHandleStandardArgs)  
-find\_package\_handle\_standard\_args(librealsense2 DEFAULT\_MSG  
-    REALSENSE2\_LIBRARY REALSENSE2\_INCLUDE\_DIR)  
-  
-mark\_as\_advanced(REALSENSE2\_LIBRARY REALSENSE2\_INCLUDE\_DIR)  
-
-</code></pre><p>其中最值得關注的是find_path和find_library這兩個command。顧名思義，find_path是拿來找include path的，而find_library則是拿來找shared library location的。find_path主要格式如下(詳情見<a href="https://cmake.org/cmake/help/latest/command/find_path.html">find_path</a>)：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">find_package(<span style="color:#e6db74">PkgConfig</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>find_package(<span style="color:#e6db74">PkgConfig</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>if(<span style="color:#f92672">${</span>CMAKE_VERSION<span style="color:#f92672">}</span> <span style="color:#e6db74">VERSION_LESS</span> <span style="color:#e6db74">2.8.2</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    pkg_check_modules(<span style="color:#e6db74">PC_REALSENSE2</span> <span style="color:#e6db74">librealsense2-dev</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>else()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    pkg_check_modules(<span style="color:#e6db74">PC_REALSENSE2</span> <span style="color:#e6db74">QUIET</span> <span style="color:#e6db74">librealsense2-dev</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>set(<span style="color:#e6db74">REALSENSE2_DEFINITIONS</span> <span style="color:#f92672">${</span>PC_REALSENSE2_CFLAGS_OTHER<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">#add a hint so that it can find it without the pkg-config
+</span><span style="color:#75715e"></span>find_path(<span style="color:#e6db74">REALSENSE2_INCLUDE_DIR</span> <span style="color:#e6db74">rs.hpp</span>
+          <span style="color:#e6db74">HINTS</span>
+          <span style="color:#f92672">${</span>PC_REALSENSE2_INCLUDEDIR<span style="color:#f92672">}</span>
+          <span style="color:#f92672">${</span>PC_REALSENSE2_INCLUDE_DIRS<span style="color:#f92672">}</span>
+          <span style="color:#e6db74">PATHS</span>
+            <span style="color:#e6db74">&#34;${PROGRAM_FILES}/librealsense2/Include&#34;</span>
+            <span style="color:#e6db74">/usr/include</span>
+            <span style="color:#e6db74">/usr/include/librealsense2</span>
+            <span style="color:#e6db74">/user/include</span>
+            <span style="color:#e6db74">/user/include/librealsense2</span>
+          <span style="color:#e6db74">PATH_SUFFIXES</span> <span style="color:#e6db74">librealsense2</span>
+)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>if(<span style="color:#f92672">${</span>CMAKE_CL_64<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    set(<span style="color:#e6db74">REALSENSE2_PATH_SUFFIXES</span> <span style="color:#e6db74">lib64</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>else()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    set(<span style="color:#e6db74">REALSENSE2_PATH_SUFFIXES</span> <span style="color:#e6db74">lib</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">#add a hint so that it can find it without the pkg-config
+</span><span style="color:#75715e"></span>find_library(<span style="color:#e6db74">REALSENSE2_LIBRARY</span>
+             <span style="color:#e6db74">NAMES</span> <span style="color:#e6db74">librealsense2.so</span>
+             <span style="color:#e6db74">HINTS</span>
+             <span style="color:#f92672">${</span>PC_REALSENSE2_LIBDIR<span style="color:#f92672">}</span>
+             <span style="color:#f92672">${</span>PC_REALSENSE2_LIBRARY_DIRS<span style="color:#f92672">}</span>
+             <span style="color:#e6db74">PATHS</span>
+               <span style="color:#e6db74">&#34;${PROGRAM_FILES}/librealsense2&#34;</span>
+               <span style="color:#e6db74">/usr/lib</span>
+               <span style="color:#e6db74">/usr/lib/x86_64-linux-gnu</span>
+               <span style="color:#e6db74">/user/lib</span>
+)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>set(<span style="color:#e6db74">REALSENSE2_INCLUDE_DIRS</span> <span style="color:#f92672">${</span>REALSENSE2_INCLUDE_DIR<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>set(<span style="color:#e6db74">REALSENSE2_LIBRARIES</span> <span style="color:#f92672">${</span>REALSENSE2_LIBRARY<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>include(<span style="color:#e6db74">FindPackageHandleStandardArgs</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>find_package_handle_standard_args(<span style="color:#e6db74">librealsense2</span> <span style="color:#e6db74">DEFAULT_MSG</span>
+    <span style="color:#e6db74">REALSENSE2_LIBRARY</span> <span style="color:#e6db74">REALSENSE2_INCLUDE_DIR</span>)<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>mark_as_advanced(<span style="color:#e6db74">REALSENSE2_LIBRARY</span> <span style="color:#e6db74">REALSENSE2_INCLUDE_DIR</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>其中最值得關注的是find_path和find_library這兩個command。顧名思義，find_path是拿來找include path的，而find_library則是拿來找shared library location的。find_path主要格式如下(詳情見<a href="https://cmake.org/cmake/help/latest/command/find_path.html">find_path</a>)：</p>
 <blockquote>
 <p>find_path(<br>
-<!-- raw HTML omitted --><br>
+&lt;VAR&gt;<br>
 name | NAMES include_folder_or_file_name<br>
 [HINTS path1 path2 &hellip;]<br>
 [PATHS path1 path2 &hellip;]<br>
 [PATH_SUFFIXS suffix1 suffix2]<br>
 )</p>
 </blockquote>
-<p>其中<!-- raw HTML omitted -->即為XXX-INCLUDE_DIR，name可以是header name，比較特殊的是HINTS和PATHS，HINTS與PATHS最大差別是，HINTS會依照系統現有的變數去推測路徑，PATHS則是直接寫死路徑。PATH_SUFFIXS是路徑後綴，例如說rs.hpp實際上在Ubuntu 16.04的路徑是/usr/include/x86_64-linux-gnu/librealsense2/rs.hpp，而前面我們寫的路徑只有/usr/include/x86_64-linux-gnu，這時她會自動加上librealsense2這後綴到路徑中。PATH_SUFFIXS可以用來處理不同Linux distribution路徑放置的習慣問題(有些會像這個例子一樣把librealsense2的東西放入librealsense2中)，若有多個cmake 會都try try看。<br>
+<p>其中&lt;VAR&gt;即為XXX-INCLUDE_DIR，name可以是header name，比較特殊的是HINTS和PATHS，HINTS與PATHS最大差別是，HINTS會依照系統現有的變數去推測路徑，PATHS則是直接寫死路徑。PATH_SUFFIXS是路徑後綴，例如說rs.hpp實際上在Ubuntu 16.04的路徑是/usr/include/x86_64-linux-gnu/librealsense2/rs.hpp，而前面我們寫的路徑只有/usr/include/x86_64-linux-gnu，這時她會自動加上librealsense2這後綴到路徑中。PATH_SUFFIXS可以用來處理不同Linux distribution路徑放置的習慣問題(有些會像這個例子一樣把librealsense2的東西放入librealsense2中)，若有多個cmake 會都try try看。<br>
 另一個類似的command是find_library(詳細在這<a href="https://cmake.org/cmake/help/latest/command/find_library.html">find_library</a>)：</p>
 <blockquote>
 <p>find_library(<br>
-<!-- raw HTML omitted --><br>
+&lt;VAR&gt;<br>
 name | NAMES libraries_name<br>
 [HINTS path1 path2 &hellip;]<br>
 [PATHS path1 path2 &hellip;]<br>
 [PATH_SUFFIXS suffix1 suffix2]<br>
 )</p>
 </blockquote>
-<p>其中<!-- raw HTML omitted -->即為XXX-LIBRARIES，其他欄位都和find_path一樣。而XXX-FOUND，則當find_path或是find_library都找不到東西實設為NOT-FOUND。</p>
+<p>其中&lt;VAR&gt;即為XXX-LIBRARIES，其他欄位都和find_path一樣。而XXX-FOUND，則當find_path或是find_library都找不到東西實設為NOT-FOUND。</p>
 <p>這個範例裡還有兩個好用東西值得一提，一是pkg_check_modules，這其實是pkg-config的再包裝，以前找opencv的library的時候很常用：</p>
 <blockquote>
 <p>$ pkg-config opencv &ndash;libs<br>

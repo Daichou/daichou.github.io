@@ -136,16 +136,33 @@ if (!doNotTrack) {
 <h3 id="mega2560連接nrf24l01">mega2560連接nRF24L01</h3>
 <p>以下是nRF24L01 模組的照片與pinout。</p>
 <p><a href="https://2.bp.blogspot.com/-gDtlnsIDTFE/V6SJ0u_PZ8I/AAAAAAAABbY/9whZxrb_jNY-zBKucgED5gKy4GnEjNd8gCLcB/s1600/13898668_876557445781450_1058279310_o.jpg"><img src="https://2.bp.blogspot.com/-gDtlnsIDTFE/V6SJ0u_PZ8I/AAAAAAAABbY/9whZxrb_jNY-zBKucgED5gKy4GnEjNd8gCLcB/s320/13898668_876557445781450_1058279310_o.jpg" alt=""></a></p>
-<p>從左上開始，右下結束。<br>
-　 　 　 　 　 　 　 　 　 　 　 　 　 　</p>
-<p>1.GND</p>
-<p>2.VDD(3.6V以下)</p>
-<p>3.CE</p>
-<p>4.CSN</p>
-<p>5.SCLK</p>
-<p>6.MOSI</p>
-<p>7.MISO</p>
-<p>8.IRQ</p>
+<p>從左上開始，右下結束。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.GND</td>
+<td>2.VDD(3.6V以下)</td>
+</tr>
+<tr>
+<td>3.CE</td>
+<td>4.CSN</td>
+</tr>
+<tr>
+<td>5.SCLK</td>
+<td>6.MOSI</td>
+</tr>
+<tr>
+<td>7.MISO</td>
+<td>8.IRQ</td>
+</tr>
+</tbody>
+</table>
 <p>Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。</p>
 <p>Mega2560的部份需要其上頭內建的SPI BUS，才能使用這個函式庫(TMRh20的library有提供Software SPI應用)。以下是Mega2560的SPI接腳對應。</p>
 <p><a href="https://3.bp.blogspot.com/-kREZ2eXZ8EY/V6SQbAv4vJI/AAAAAAAABbs/pz_-f2VjW7kpGTKRfpiVOJNRMV3-fjWEwCLcB/s1600/Screenshot%2Bfrom%2B2016-08-05%2B21-08-32.png"><img src="https://3.bp.blogspot.com/-kREZ2eXZ8EY/V6SQbAv4vJI/AAAAAAAABbs/pz_-f2VjW7kpGTKRfpiVOJNRMV3-fjWEwCLcB/s640/Screenshot%2Bfrom%2B2016-08-05%2B21-08-32.png" alt=""></a></p>
@@ -153,29 +170,17 @@ if (!doNotTrack) {
 <p>程式碼部份直接利用官往提供的example來做測試。<br>
 <a href="http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html">http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html</a><br>
 原始碼中RF24物件建構子這行</p>
-<pre><code>[RF24](http://maniacbug.github.io/RF24/classRF24.html &quot;Driver for nRF24L01(+) 2.4GHz Wireless Transceiver.&quot;) radio(9,10);
-```9表示CE接腳，10表示CSN接腳。  
-  
-程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX\_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。  
-  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>);
+</code></pre></div><p>9表示CE接腳，10表示CSN接腳。</p>
+<p>程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。</p>
+<h3 id="連不上的一些解法">連不上的一些解法</h3>
+<h4 id="地址錯誤">地址錯誤</h4>
+<p>兩邊的地址要可對到，一邊RX_ADDR要為另一邊TX_ADDR，這樣才可收到。</p>
+<h4 id="雜訊">雜訊</h4>
+<p>有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。</p>
+<h4 id="傳輸速率過快">傳輸速率過快</h4>
+<p>example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</p>
 
-### 連不上的一些解法
-
-#### 地址錯誤
-
-兩邊的地址要可對到，一邊RX\_ADDR要為另一邊TX\_ADDR，這樣才可收到。
-
-  
-
-#### 雜訊
-
-有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。
-
-  
-
-#### 傳輸速率過快
-
-example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</code></pre>
         </p>
     </div>
     

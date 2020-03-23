@@ -132,11 +132,11 @@ if (!doNotTrack) {
         <h2 id="在linux上製作win10-live-usb">在linux上製作win10 live USB</h2>
 <p>這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。</p>
 <p>首先，以arch linux 為例，winusb是在aur裡，所以只要下：</p>
-<p><strong><em>yaourt -Sy winusb</em></strong></p>
-<p>即可安裝。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ yaourt -Sy winusb
+</code></pre></div><p>即可安裝。</p>
 <p>接著開始製作live usb，先找到win10 ISO 檔的路徑，還有你的隨身碟隨身碟掛載路徑，下以下指令：</p>
-<p><strong><em>winusb &ndash;install <!-- raw HTML omitted --> <!-- raw HTML omitted --></em></strong></p>
-<p>記得要用root or sudo來做。即可完成。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ winusb --install &lt;iso path&gt; &lt;partition&gt;
+</code></pre></div><p>記得要用root or sudo來做。即可完成。</p>
 
         </p>
     </div>

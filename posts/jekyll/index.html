@@ -131,19 +131,23 @@ if (!doNotTrack) {
         <p>
         <h2 id="用github架jekyll-一些問題解法">用github架Jekyll 一些問題解法</h2>
 <p>當一開始使用</p>
-<p>的時候，可能會遇到一些問題(其實是我遇到的啦)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ jekyll serve
+</code></pre></div><p>的時候，可能會遇到一些問題(其實是我遇到的啦)</p>
 <h3 id="jekyll-serve-not-found">jekyll serve not found</h3>
 <p>這是一個很好處理的問題，因爲你的~/.gem/ruby/{version}/bin資料夾沒有在$PATH路徑下。加上去就可解決了。</p>
 <p>缺少bundler</p>
-<p>大概的error如上。處理方式很簡單，就是安裝bundler。</p>
-<p>這樣就解決了。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">kernel_require.rb:55:in `require&#39;: cannot load such file -- bundler (LoadError)
+</code></pre></div><p>大概的error如上。處理方式很簡單，就是安裝bundler。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gem install bundler
+</code></pre></div><p>這樣就解決了。<br>
 如果還有以下錯誤：<br>
 resolver.rb:356:in `block in verify_gemfile_dependencies_are_found!': Could not find gem &lsquo;jekyll-sitemap&rsquo; in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)<br>
-則多下一行指令：<br>
-$ bundle install &ndash;path vendor/bundle</p>
-<h3 id="invalid-date-yaml">invalid date &hellip;YAML..</h3>
+則多下一行指令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle install --path vendor/bundle  
+</code></pre></div><h3 id="invalid-date-yaml">invalid date &hellip;YAML..</h3>
 <p>跑jekyll serve的時候可能會有噴出一堆如下的錯誤。</p>
-<p>處理方法稍微麻煩一點。找到repo底下的_config.yml檔案，在約第五行<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">Invalid date &#39;&lt;%= Time.now.strftime(&#39;%Y-%m-%d %H:%M:%S %z&#39;) %&gt;&#39;: Document &#39;vendor/bundle/ruby/2.3.0/gems/jekyll-3.2.1/lib/site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb&#39; does not have a valid date in the YAML front matter.
+</code></pre></div><p>處理方法稍微麻煩一點。找到repo底下的_config.yml檔案，在約第五行<br>
 &hellip;<br>
 &hellip;<br>
 &hellip;exclude:[&hellip;&hellip;,&ldquo;vendor&rdquo;&hellip;]<br>
@@ -151,7 +155,7 @@ $ bundle install &ndash;path vendor/bundle</p>
 <h3 id="一些asset-link出錯">一些asset link出錯</h3>
 <p>我自己在架的時候他的一些bootstrap的css和js檔案link不到，原因是它要link的連結在<br>
 assets/themes/bootstrap-3下，但其原本目錄並沒有這個子目錄，所以在assets/themes下建立bootstrap-3，並將原本的bootstrap移到底下。</p>
-<p>###</p>
+<h3 id="heading"></h3>
 
         </p>
     </div>

@@ -140,17 +140,10 @@ if (!doNotTrack) {
             <div><p>CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
 https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
 find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
- cmake &ndash;help-module-lists
- 查詢。
+cmake --help-module-lists 查詢。
 在CMake中使用find_package通常會使用類似下列參數。
- find_package(OpenCV 3.4.1 REQUIRED)
-  find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
- find_package(OpenMP)
-if (OPENMP_FOUND)
-set (CMAKE_C_FLAGS &ldquo;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&quot;)
-set (CMAKE_CXX_FLAGS &ldquo;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&quot;)
-endif()
- 透過find_package 定義的-FOUND判斷是否存在。
+find_package(OpenCV 3.4.1 REQUIRED) find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
+find_package(OpenMP) if (OPENMP_FOUND)  set (CMAKE_C_FLAGS &#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&#34;)  set (CMAKE_CXX_FLAGS &#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&#34;) endif()透過find_package 定義的-FOUND判斷是否存在。
 find_package通常會定義下列四種變數：
   _FOUND : 是否找到
   _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
@@ -178,24 +171,20 @@ find_package通常會定義下列四種變數：
             </h2>
             <div><p>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &hellip;&hellip;等。可以透過在產生Makefile時下：
- cmake -DCMAKE_BUILD_TYPE=value
- 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
- SET(CMAKE_CONFIGURATION_TYPES &ldquo;Release&rdquo;)
- 來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE__FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE__FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
-若要自行追加flags也可以透過新增或是修改flags到CMAKE__FLAGS中。例如：
- SET(GCC_COVERAGE_COMPILE_FLAGS &ldquo;-g&rdquo;)
-SET( CMAKE_CXX_FLAGS &ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&rdquo; )
- 我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
+$ cmake -DCMAKE_BUILD_TYPE=value 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
+SET(CMAKE_CONFIGURATION_TYPES  &#34;Release&#34;)來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&lt;LANG&gt;_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_&lt;LANG&gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
+若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：
+SET(GCC_COVERAGE_COMPILE_FLAGS &#34;-g&#34;) SET( CMAKE_CXX_FLAGS  &#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34; )我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
 此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
  CMAKE_C_FLAGS -&gt; CFLAGS CMAKE_CXX_FLAGS -&gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
 
 Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
 下在command line，只要用-D就好，ex：
- cmake -DCMAKE_BUILD_TYPE=value
- 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
- cmake -L
- 得到所有選項以及當前選擇。
-另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。</p></div>
+$ cmake -DCMAKE_BUILD_TYPE=value 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
+$ cmake -L 得到所有選項以及當前選擇。
+另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。
+當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt
+CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，經過運行後會變什麼。可以透過查看CMakeCache.txt或是下cmake -LAH來查看值。</p></div>
             <div class="post-footer">
             <time>July 13, 2018</time>
 
@@ -221,8 +210,8 @@ Option 下選項分為兩種，一是直接下在command line中，另一種則�
  http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js
  會因為是http而造成瀏覽器報錯，而且載入的code通常會失敗。因此這裡提供一個新的解法。
 改用以下cdn由cloudflare提供的。就可以讓你的code在https下漂漂亮亮的。
-打開blogger-&gt;theme-&gt;編輯HTML，在中新增以下code。
- &lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPython.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushRuby.js' type='text/javascript'/&gt;&lt;br /&gt;&lt;script src='https://cdnjs.</p></div>
+打開blogger-&gt;theme-&gt;編輯HTML，在&lt;head&gt;&lt;/head&gt;中新增以下code。
+&lt;link href=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt; &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js&#34; type=&#34;text/javascript&#34;&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.</p></div>
             <div class="post-footer">
             <time>July 13, 2018</time>
 
@@ -239,18 +228,15 @@ Option 下選項分為兩種，一是直接下在command line中，另一種則�
         <article>
             <h2>
                 <a href="https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/">
-                    使用LXC建立USB以及X-forward環境
+                    使用LXC建立USB以及X-forward環境(deprecated)
                 </a>
             </h2>
-            <div><p>使用LXC建立USB以及X forward環境 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
+            <div><p>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
 環境  OS: Arch Linux (4.15.7-1-ARCH) LXC ubuntu on LXC  步驟 LXC準備 安裝 LXC $ sudo pacman -Sy lxc arch-install-scripts debootstap 建立 Host Network (NAT bridge) (Arch Wiki寫得很好看Arch Wiki) 建立/etc/default/lxc-net(詳情見Arch Wiki)
- USE\_LXC\_BRIDGE=&quot;true&quot; LXC\_BRIDGE=&quot;lxcbr0&quot; LXC\_ADDR=&quot;10.0.3.1&quot; LXC\_NETMASK=&quot;255.255.255.0&quot; LXC\_NETWORK=&quot;10.0.3.0/24&quot; LXC\_DHCP\_RANGE=&quot;10.0.3.2,10.0.3.254&quot; LXC\_DHCP\_MAX=&quot;253&quot; ```修改lxc template conf，在/etc/lxc/default.conf新增 lxc.net.0.type = veth
-lxc.net.0.link = lxcbr0
-lxc.net.0.flags = up
-lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
-$ sudo pacman -Sy dnsmasq
-sudo systemctl start lxc-net
-sudo systemctl enable lxc-net</p></div>
+USE_LXC_BRIDGE=&#34;true&#34; LXC_BRIDGE=&#34;lxcbr0&#34; LXC_ADDR=&#34;10.0.3.1&#34; LXC_NETMASK=&#34;255.255.255.0&#34; LXC_NETWORK=&#34;10.0.3.0/24&#34; LXC_DHCP_RANGE=&#34;10.0.3.2,10.0.3.254&#34; LXC_DHCP_MAX=&#34;253&#34; 修改lxc template conf，在/etc/lxc/default.conf新增
+lxc.net.0.type = veth lxc.net.0.link = lxcbr0 lxc.net.0.flags = up lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx 安裝dnsmasq
+$ sudo pacman -Sy dnsmasq 開啟以及設定開機啟動：
+sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubuntu) 建previleged的container</p></div>
             <div class="post-footer">
             <time>March 9, 2018</time>
 
@@ -337,8 +323,8 @@ Michael Nyman最有名的配樂作品當屬&lt;鋼琴師與她的情人&gt;(The 
 發行：Sony Music
 
 CLOUD ATLAS ORIGINAL MOTION SOUNDTRACK
-二、心得感想 這部電影其實我沒看過，我當初是因為偶然聽到了這部電影的配樂和&lt;Prelude: The Atlas March&gt;後跑去找了這部電影的原著小說來看。這部電影小說的敘事手法十分有趣。她其實六段故事以A-B-C-D-E-F-F-E-D-C-B-A的方式敘述的，而且每段故事時間相差很久，但是前段的故事會有部份連結到下一段，表現出&quot;輪迴&quot;的感覺。當然這種敘事方式拍成電影爆炸機率相當高的，而電影得票房也真的炸了。
-如同敘事手法，配樂本身也是有A-B-C-D-E-F-F-E-D-C-B-A的曲目編排。有多首配樂的風格式成對的。不過其中最引人注目的仍是書中提到的&lt;雲圖六重奏&gt;，這首貫串整個故事的曲子。也就是&lt;Prelude: The Atlas March&gt;，之後包括、、和，我覺得光片尾幾首曲子的編排與交響編曲，這張專輯就很有收藏的價值了。當然片中的和也是我喜歡的曲子。不過剩下幾段的風格我不是很喜歡。
+二、心得感想 這部電影其實我沒看過，我當初是因為偶然聽到了這部電影的配樂&lt;Cloud Atlas Sextet&gt;和&lt;Prelude: The Atlas March&gt;後跑去找了這部電影的原著小說來看。這部電影小說的敘事手法十分有趣。她其實六段故事以A-B-C-D-E-F-F-E-D-C-B-A的方式敘述的，而且每段故事時間相差很久，但是前段的故事會有部份連結到下一段，表現出&quot;輪迴&quot;的感覺。當然這種敘事方式拍成電影爆炸機率相當高的，而電影得票房也真的炸了。
+如同敘事手法，配樂本身也是有A-B-C-D-E-F-F-E-D-C-B-A的曲目編排。有多首配樂的風格式成對的。不過其中最引人注目的仍是書中提到的&lt;雲圖六重奏&gt;，這首貫串整個故事的曲子。也就是&lt;Prelude: The Atlas March&gt;，之後包括&lt;Cloud Atlas Opening Title&gt;、&lt;Cloud Atlas Finale&gt;、&lt;The Cloud Atlas Sextet for Orchestra&gt;和&lt;Cloud Atlas End Title&gt;，我覺得光片尾幾首曲子的編排與交響編曲，這張專輯就很有收藏的價值了。當然片中的&lt;Templa of Sacrifice&gt;和&lt;All Boundaries Are Conventions&gt;也是我喜歡的曲子。不過剩下幾段的風格我不是很喜歡。
 不過這張專輯聽的時候有發現一個問題，最後幾首有時會有不名聲響，我不確定是不是錄音失誤，還是刻意的。
 三、曲目  Prelude: The Atlas March Cloud Atlas Opening Title Travel to Edinburgh Luisa’s Birthmark Cavendish In Distress Papa Song Sloosha’s Hollow Sonmi-451 Meets Chang Won’t Let Go Kesselring The Escape Temple Of Sacrifice Catacombs Adieu New Direction All Boundaries Are Conventions The Message Chasing Luisa Rey Sonmi’s Discovery Death Is Only A Door Cloud Atlas Finale The Cloud Atlas Sextet for Orchestra Cloud Atlas End Title  </p></div>
             <div class="post-footer">
@@ -368,7 +354,7 @@ CLOUD ATLAS ORIGINAL MOTION SOUNDTRACK
 
 THE IMITATION GAME
 二、心得感想 這部電影我本身蠻喜歡的，因為我是資訊背景，這故事本身就有親切感(讀過資工系的或多或少聽過圖零機吧)，雖然劇情魔改了Alan Turing的故事，但是改的還算流暢。唯一需要吐嘈的應該就是把發現德軍密碼會有固定內容，而這些內容可以用來剪枝(替除不可能發生的組合)部份改的太戲劇化了。
-音樂部份為了呈現Alan Turing數學家的特質，讓音符很離散，很像一群數字在舞動。尤其在、、會有一種問題被拆解被處理的感覺。當然主題旋律和&lt;Alan Turing&rsquo;s Legacy&gt;寫的很有味道。我當初在戲院看到這部電影時有被這兩首曲子觸動。、是片中圖靈生命最悲情的時刻，這些悲傷讓我們對圖靈，還有對同性戀的迫害起了反思。
+音樂部份為了呈現Alan Turing數學家的特質，讓音符很離散，很像一群數字在舞動。尤其在、、會有一種問題被拆解被處理的感覺。當然主題旋律&lt;The Imitation Game&gt;和&lt;Alan Turing's Legacy&gt;寫的很有味道。我當初在戲院看到這部電影時有被這兩首曲子觸動。&lt;The Apple&gt;、&lt;Farewell To Christopher&gt;是片中圖靈生命最悲情的時刻，這些悲傷讓我們對圖靈，還有對同性戀的迫害起了反思。
 由於我仍是學生，財力不是十分充足，當初看完這部電影後一直去spotify反覆聽這片原聲帶，最後才決定買實體的，以更好的音質品味這張專輯。
 三、曲目  The Imitation Game Enigma Alan U-Boats Carrots And Peas Mission Crosswords Night Research Joan Alone With Numbers The Machine Christopher Running Christopher Is Dead Decrypting A Different Equation Becoming A Spy The Apple Farewell To Christopher End Of War Because Of You Alan Turing’s Legacy  </p></div>
             <div class="post-footer">
@@ -404,18 +390,7 @@ TLC5940 Ardunio library 在Ardunio IDE中可以透過library manager找到。而
 https://github.com/PaulStoffregen/Tlc5940
 TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2560。
 
-TLC5940
-Ardunio Mega2560
-SIN(pin 26)
-MOSI(pin 51)
-SCK(pin 25)
-SCLK(pin 52)
-XLAT(pin 24)
-OC1A(pin 11)
-BLANK(pin 23)
-OC1B(pin 12) + 1K ohm上拉電阻
-GSCLK(pin 18)
-OC2B(pin 9)</p></div>
+   TLC5940 Arduino Mega2560     SIN(pin 26) MOSI(pin 51)   SCK(pin 25) SCLK(pin 52)   XLAT(pin 24) OC1A(pin 11)   BLANK(pin 23) OC1B(pin 12) + 1K ohm上拉電阻   GSCLK(pin 18) OC2B(pin 9)   VPRG(pin 27) VPRG(pin 50) or GND   XERR(pin 16) XERR(pin 10) or GND   SIN(pin 26) SIN(pin 51)   IREF(pin 20) 1K ohm下拉電阻   VCC(pin 21) 5V   GND(pin 22) GND    至於out0到out15的接法比較特別。</p></div>
             <div class="post-footer">
             <time>September 8, 2017</time>
 

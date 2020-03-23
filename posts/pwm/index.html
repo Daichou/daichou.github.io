@@ -137,7 +137,70 @@ if (!doNotTrack) {
 <p>PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。</p>
 <h3 id="硬體內建pwm模組">硬體內建PWM模組</h3>
 <p>MCU內常內建PWM模組，以PIC系列為例，有CCP(Capture/Compare/PWM)模組、Output Compare模組和PWM模組。透過設定timer和暫存去達成PWM輸出。以下以dsPIC30F4013的Output Compare做示範。</p>
-<p>由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;xc.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">// FOSC
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config FOSFPR = XT_PLL4         </span><span style="color:#75715e">// Oscillator (XT w/PLL 4x)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config FCKSMEN = CSW_FSCM_OFF   </span><span style="color:#75715e">// Clock Switching and Monitor (Sw Disabled, Mon Disabled)
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">// FWDT
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config FWPSB = WDTPSB_16        </span><span style="color:#75715e">// WDT Prescaler B (1:16)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config FWPSA = WDTPSA_512       </span><span style="color:#75715e">// WDT Prescaler A (1:512)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config WDT = WDT_OFF            </span><span style="color:#75715e">// Watchdog Timer (Disabled)
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">// FBORPOR
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config FPWRT = PWRT_64          </span><span style="color:#75715e">// POR Timer Value (64ms)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config BODENV = BORV20          </span><span style="color:#75715e">// Brown Out Voltage (Reserved)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config BOREN = PBOR_ON          </span><span style="color:#75715e">// PBOR Enable (Enabled)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config MCLRE = MCLR_EN          </span><span style="color:#75715e">// Master Clear Enable (Enabled)
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">// FGS
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config GWRP = GWRP_OFF          </span><span style="color:#75715e">// General Code Segment Write Protect (Disabled)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config GCP = CODE_PROT_OFF      </span><span style="color:#75715e">// General Segment Code Protection (Disabled)
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">// FICD
+</span><span style="color:#75715e"></span><span style="color:#75715e">#pragma config ICS = ICS_PGD            </span><span style="color:#75715e">// Comm Channel Select (Use PGC/EMUC and PGD/EMUD)
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#define Tcy 10000000            </span><span style="color:#75715e">//10MHz oscillator with 4xPLL -&gt; 10&#39;000&#39;000MIPS
+</span><span style="color:#75715e"></span>
+  
+<span style="color:#75715e">//------------------------------------------------------------------------------
+</span><span style="color:#75715e">//  main routine
+</span><span style="color:#75715e">//------------------------------------------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
+      
+<span style="color:#75715e">//------------------------------------------------------------------------------
+</span><span style="color:#75715e">//     IO Plan
+</span><span style="color:#75715e"></span>      
+    TRISA <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000</span>;
+    TRISB <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000</span>;
+    TRISC <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000</span>;
+    TRISD <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000</span>;     <span style="color:#75715e">//RD1,RD2,RD3,RD4 -&gt; PWM OC pin
+</span><span style="color:#75715e"></span>    TRISF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0000</span>;
+    ADPCFG <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xFFFF</span>;
+
+<span style="color:#75715e">//------------------------------------------------------------------------------
+</span><span style="color:#75715e">//   initialize PWM 
+</span><span style="color:#75715e"></span>      
+    <span style="color:#75715e">//PR2 = 50000;      1:256-&gt; 200 HZ
+</span><span style="color:#75715e"></span>    PR2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">25000</span>;
+    OC1RS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1875</span>;
+    OC1CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0006</span>;    <span style="color:#75715e">//Set PWM mode on OC1,Fault pin disable,Timer2 is source
+</span><span style="color:#75715e"></span>    OC2RS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1875</span>;
+    OC2CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0006</span>;    <span style="color:#75715e">//Set PWM mode on OC2,Fault pin disable,Timer2 is source
+</span><span style="color:#75715e"></span>    OC3RS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1875</span>;
+    OC3CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0006</span>;    <span style="color:#75715e">//Set PWM mode on OC3,Fault pin disable,Timer2 is source
+</span><span style="color:#75715e"></span>    OC4RS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1875</span>;
+    OC4CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0006</span>;    <span style="color:#75715e">//Set PWM mode on OC4,Fault pin disable,Timer2 is source
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//IEC0bits.T2IE = 1;  //enable Timer2 interrupt 
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">// T2CON = 0x8000;     //Configure Timer2(Timer on,continue in IDLE,not gate
+</span><span style="color:#75715e"></span>                        <span style="color:#75715e">//                      ,1:256 prescaler,internal clock)
+</span><span style="color:#75715e"></span>    T2CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x8010</span>;
+    TMR2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>);
+}
+}
+</code></pre></div><p>由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。<br>
 dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為&rsquo;110'或&rsquo;111&rsquo;。設定順序為:<br>
 1.設定PRy(Period register)表示PWM的週期。<br>
 2.再來設定OCxRS暫存器表示duty cycle。<br>
@@ -150,7 +213,92 @@ PWM 頻率為週期倒數。<br>
 <p>利用Timer中斷來切換PWM進入duty cycle，有兩種方法。</p>
 <p>一、用一個或兩個timer，先輸出high，計算PWM在high所需時間，設定好Timer 週期(中斷條件)，當Timer發生中斷，將輸出切為low，並在計算PWM在low所需時間，同樣設定好Timer週期，當Timer發生中斷回到一開始重頭來過。也可用兩個Timer一個設為high所需時間，一個為period，當high的timer 中斷發生，關閉其中斷與timer，並將輸出設為low，等待period 的Timer發生中斷，在開啟high 的timer中斷。</p>
 <p>二、用一個timer中斷，當其中斷將counter加一，一旦couner的值大於duty cycle則切為low，當counter的值大於period則歸零。以下為範例(使用PIC18F452)。</p>
-<p>此方法缺點為PWM頻率難以調整，不過對於本身PWM模組缺乏或過少之MCU，此法十分有效。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/*
+</span><span style="color:#75715e"> * File:   newmainXC16.c
+</span><span style="color:#75715e"> * Author: asus-h
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * Created on 2015?2?9?, ?? 9:49
+</span><span style="color:#75715e"> */</span>
+
+
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;xc.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#pragma config OSC = HS, WDT=OFF, LVP=OFF,PWRT = OFF
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> counter,pwm_val_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>,pwm_val_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>,pwm_val_3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>,pwm_val_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">int</span> change <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init_timer</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">do_PWM</span>();
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
+    TRISC <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xEF</span>;
+    TRISB <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b11111111</span>;
+    TRISD <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x00</span>;
+    <span style="color:#75715e">//TRISCbits.TRISC4 = 0;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//unsigned int duty = 500;
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">// T3CONbits.T3CCP2=0;
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">// T3CONbits.T3CCP1=0;
+</span><span style="color:#75715e"></span>    INTCON2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b00000001</span>;
+    
+    init_timer();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+
+
+<span style="color:#66d9ef">void</span> interrupt <span style="color:#a6e22e">ISR</span>()
+{
+    <span style="color:#66d9ef">if</span>(T0IF)
+    {
+
+        TMR0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">65530</span>;
+        counter<span style="color:#f92672">++</span>;
+
+        INTCON <span style="color:#f92672">&amp;=</span>  <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>T0IF);
+        <span style="color:#75715e">//INTCON = 0b11111110; //clear overflow bit;
+</span><span style="color:#75715e"></span>        T0IF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        do_PWM();
+    }
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init_timer</span>()
+{
+    TMR0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">65500</span>;
+    TMR1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    T0CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b10000001</span>;
+    T1CON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b10000000</span>;
+    <span style="color:#75715e">//OPTION = 0B00001000;
+</span><span style="color:#75715e"></span>    INTCON <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b11111110</span>;
+    PIR1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0b000000011</span>;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">do_PWM</span>()
+{
+    TMR0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">65530</span> ;
+        counter<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">if</span>(counter<span style="color:#f92672">&lt;=</span>pwm_val_1)
+           PORTDbits.RD4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span>
+          PORTDbits.RD4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">if</span>(counter<span style="color:#f92672">&lt;=</span>pwm_val_2)
+            PORTDbits.RD5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span>
+            PORTDbits.RD5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">if</span>(counter<span style="color:#f92672">&lt;=</span>pwm_val_3)
+            PORTDbits.RD6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span>
+            PORTDbits.RD6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">if</span>(counter<span style="color:#f92672">&lt;=</span>pwm_val_4)
+            PORTDbits.RD7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span>
+            PORTDbits.RD7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            
+        <span style="color:#66d9ef">if</span>(counter <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)
+            counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+         T0IF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>此方法缺點為PWM頻率難以調整，不過對於本身PWM模組缺乏或過少之MCU，此法十分有效。</p>
 <h3 id="迴圈產生pwm">迴圈產生PWM</h3>
 <p>以迴圈直接產生PWM，可以用一個counter當作現在情況，當迴圈執行次數超過duty cycle的值時，調整high low，這方法十分簡單，但如果要有準確的頻率需要將程式編成組語計算其所需時間，並用NOP指令挑整週期。這方法會佔走整個CPU，十分無效率，但其可以結合輪詢等固定時間需要執行的功能，對於低階，簡單的系統有其應用空間。</p>
 

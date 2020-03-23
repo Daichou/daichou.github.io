@@ -133,20 +133,14 @@ if (!doNotTrack) {
 <p>有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。</p>
 <h4 id="追加compiler-flags">追加Compiler flags</h4>
 <p>CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &hellip;&hellip;等。可以透過在產生Makefile時下：</p>
-<blockquote>
-<p>cmake -DCMAKE_BUILD_TYPE=value</p>
-</blockquote>
-<p>來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：</p>
-<blockquote>
-<p>SET(CMAKE_CONFIGURATION_TYPES  &ldquo;Release&rdquo;)</p>
-</blockquote>
-<p>來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_<!-- raw HTML omitted -->_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_<!-- raw HTML omitted -->_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚<a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html#cmake-build-type">reference</a>。</p>
-<p>若要自行追加flags也可以透過新增或是修改flags到CMAKE_<!-- raw HTML omitted -->_FLAGS中。例如：</p>
-<blockquote>
-<p>SET(GCC_COVERAGE_COMPILE_FLAGS &ldquo;-g&rdquo;)<br>
-SET( CMAKE_CXX_FLAGS  &ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&rdquo; )</p>
-</blockquote>
-<p>我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cmake -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>value
+</code></pre></div><p>來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">SET(<span style="color:#e6db74">CMAKE_CONFIGURATION_TYPES </span> <span style="color:#e6db74">&#34;Release&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&lt;LANG&gt;_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_&lt;LANG&gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚<a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html#cmake-build-type">reference</a>。</p>
+<p>若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">SET(<span style="color:#e6db74">GCC_COVERAGE_COMPILE_FLAGS</span> <span style="color:#e6db74">&#34;-g&#34;</span>)  <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>SET( <span style="color:#e6db74">CMAKE_CXX_FLAGS </span> <span style="color:#e6db74">&#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34;</span> )<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。</p>
 <p>此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：</p>
 <ul>
 <li>CMAKE_C_FLAGS -&gt; CFLAGS</li>
@@ -159,14 +153,10 @@ SET( CMAKE_CXX_FLAGS  &ldquo;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&r
 <h3 id="option">Option</h3>
 <p>下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。</p>
 <p>下在command line，只要用-D就好，ex：</p>
-<blockquote>
-<p>cmake -DCMAKE_BUILD_TYPE=value</p>
-</blockquote>
-<p>然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：</p>
-<blockquote>
-<p>cmake -L</p>
-</blockquote>
-<p>得到所有選項以及當前選擇。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cmake -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>value
+</code></pre></div><p>然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cmake -L
+</code></pre></div><p>得到所有選項以及當前選擇。<br>
 另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。</p>
 <p>當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt</p>
 <h3 id="cmake-debug">CMake debug</h3>
