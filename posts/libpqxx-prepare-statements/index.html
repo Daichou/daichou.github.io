@@ -1,35 +1,97 @@
 <!DOCTYPE html>
-
 <html lang="zh-tw">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no"/>
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.68.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Dai chou">
+<meta name="keywords" content="">
+<meta name="description" content="prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+connection C(/*user parameter*/); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); pqxx::result r = W.prepared(&#34;prepare_name&#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。">
 
-    <title>gattaca-ngin</title>
+
+<meta property="og:description" content="prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+connection C(/*user parameter*/); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); pqxx::result r = W.prepared(&#34;prepare_name&#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[筆記] libpqxx - prepare statements">
+<meta name="twitter:title" content="[筆記] libpqxx - prepare statements">
+<meta property="og:url" content="https://daichou.github.io/posts/libpqxx-prepare-statements/">
+<meta property="twitter:url" content="https://daichou.github.io/posts/libpqxx-prepare-statements/">
+<meta property="og:site_name" content="gattaca-ngin">
+<meta property="og:description" content="prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+connection C(/*user parameter*/); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); pqxx::result r = W.prepared(&#34;prepare_name&#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。">
+<meta name="twitter:description" content="prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+connection C(/*user parameter*/); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); pqxx::result r = W.prepared(&#34;prepare_name&#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="article:published_time" content="2016-05-08T09:16:00">
+  
+  
+    <meta property="article:modified_time" content="2016-05-08T09:16:00">
+  
+  
+  
+  
     
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
-    <meta name="theme-color" content="#ffffff">
+      <meta property="article:tag" content="C/C&#43;&#43;">
+    
+      <meta property="article:tag" content="postgresql">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
+
+
+    <title>[筆記] libpqxx - prepare statements</title>
+
+    <link rel="icon" href="https://daichou.github.io/favicon.png">
+    
 
     
-    
-    
-    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    <link rel="canonical" href="https://daichou.github.io/posts/libpqxx-prepare-statements/">
 
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
     
     
 
     
-    
- 
-    
-    
+      
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -43,93 +105,162 @@ if (!doNotTrack) {
 }
 </script>
 
-</head>
-    <body>
-        
-<nav>
-  <header>
-    <div class="site-title">
-        <a href="/">gattaca-ngin</a>
-    </div>  
-</header>
-  <div class="nav-menu">
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://daichou.github.io/">gattaca-ngin</a>
+  </div>
   
-  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
-</div>
-<footer class="footer">
-	<div class="social-icons">
+    
+      <a class="header-right-picture "
+         href="https://daichou.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://daichou.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Dai chou</h4>
         
-
+          <h5 class="sidebar-profile-bio">A student major in Computer science in National Chiao Tung University.</h5>
+        
+      </div>
     
-
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/posts">
     
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/categories">
     
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/tags">
     
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/archives">
     
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/#about">
     
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
 
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://github.com/Daichou" target="_blank" rel="noopener">
     
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
 
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/index.xml">
     
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-</div>
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
 
 
-
-
-	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
-	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
-
-	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
-</footer>
+    </ul>
+  </div>
 </nav>
-        <div id="content" class="content-container">
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      [筆記] libpqxx - prepare statements
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-05-08T09:16:00-07:00">
         
-<h1 class="post-title">[筆記] libpqxx - prepare statements</h1>
+   8, 2016
+
+      </time>
     
-    <time>May 8, 2016</time>
     
-    <div>
-        <p>
-        <p>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：<a href="http://www.postgresql.org/docs/9.1/static/sql-prepare.html">http://www.postgresql.org/docs/9.1/static/sql-prepare.html</a></p>
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：<a href="http://www.postgresql.org/docs/9.1/static/sql-prepare.html">http://www.postgresql.org/docs/9.1/static/sql-prepare.html</a></p>
 <p>而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">connection <span style="color:#a6e22e">C</span>(<span style="color:#75715e">/*user parameter*/</span>);
 
@@ -144,90 +275,260 @@ W.commit();
 </code></pre></div><p>其中傳變數方法還有其他寫法，請見：<a href="http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c">http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c</a></p>
 <p>prepare方法有時會降低效率，其他細節都在官方paper中。</p>
 
-        </p>
-    </div>
-    
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
 
-    <div class="page-footer">
+  <a class="tag tag--primary tag--small" href="https://daichou.github.io/tags/postgresql/">postgresql</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/pwm/" data-tooltip="PWM產生方式">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/maker/" data-tooltip="Maker常用開發板">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-        <hr class="footer-divider">
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/libpqxx-prepare-statements/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
         
-            <a class="tag" href="/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
-        
-            <a class="tag" href="/tags/postgresql">#postgresql</a>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/libpqxx-prepare-statements/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
         
       
-    </div>
-
-
+      
+      <li class="post-action">
         
-        </div>
-        <footer class="footer-mobile">
-	<div class="social-icons">
+          <a class="post-action-btn btn btn--default" href="#">
         
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
 </div>
 
-
-
-
-	<div class="footer-mobile-links">
-		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
-		<span class="divider-bar">|</span>
-		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
-	</div>
-
-	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Dai chou. 
+  </span>
 </footer>
-    </body>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/pwm/" data-tooltip="PWM產生方式">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/maker/" data-tooltip="Maker常用開發板">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/libpqxx-prepare-statements/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/libpqxx-prepare-statements/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="1">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdaichou.github.io%2Fposts%2Flibpqxx-prepare-statements%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fdaichou.github.io%2Fposts%2Flibpqxx-prepare-statements%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
+    
+    <h4 id="about-card-name">Dai chou</h4>
+    
+      <div id="about-card-bio">A student major in Computer science in National Chiao Tung University.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://daichou.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://daichou.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
 </html>
+

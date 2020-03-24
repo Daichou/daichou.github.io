@@ -1,35 +1,123 @@
 <!DOCTYPE html>
-
 <html lang="zh-tw">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no"/>
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.68.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Dai chou">
+<meta name="keywords" content="">
+<meta name="description" content="The Code * 系列為我修課時留下的心得
+* 摘要   Linus Torvarlds 的生平與Linux創作背景
+包括家庭背景與當時的社經環境(ex:蘇聯解體)。
+因為Minix僅限教育用途，加上當時其他的作業系統過於昂貴(SCO Unix要20000馬克)，還有just hobby等因素，開始著手開發Linux。
+  open source精神
+這裡直接節錄 Richard Mathhew Stallman 於片頭所說的話『開放原始碼就像是食譜，當有好的食譜，我們可以與他人分享，其他人可以對食譜加入自己的元素與口味，並將食譜回饋給原本的人或是繼續開放食譜下去。』，除此之外，open source不只是將程式原始碼開放下去這個動作，其背後可能同時創造了一個社群。
+  Free Software VS Open Source
+由 Richard Mathhew Stallman 提出的Free Software觀念與Free Software運動，還有Free Software Foundation對於自由軟體的推廣，讓人們認識到Free Software的意含，但是由於 Richard Mathhew Stallman 與 Free Software Foundation的言論通常較激進，導致齊備一些商人貶低，但是那群人們卻擁抱Open Source觀念(其實包括的軟體多有重疊)，所以Eric S.Raymond認為應該倡導Open Source讓人們接受。
+  GNU/Linux對世界的影響
+GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中國家的中國與印度的開發人員也對Linux有許多貢獻。Dot com風暴後影響開源軟體的發展與關注度，但是Linux作業系統卻開始進入小型裝置，如：電子鐘、手機等裝置，使一般使用者開始接觸到Linux。
+  * 心得 由於在高中時有在接觸Linux作業系統加上現在主要都以Linux作為我的筆電預設作業系統，對對於Linux的歷史本身就有一些了解，不過對於Linux創立前的歷史不甚熟悉，不知道有Richard Mathhew Stallman這位在Linux開發出來前就已經開始宣揚自由軟體理念的靈魂人物，還有BSD本身對於開源觀念的殿基，讓我們可以在現今不受拘束的宣揚Open Source與使用Open Source的軟體，而且由於這些Open Source軟體的出現，讓我們這些後人可以研究這些軟體的技術，還可以貢獻所學於這些軟體中，並讓世界更美好。
+* Qustion  Linus常說Linux kernel的開發人員的組織架構是十分扁平的，大家可以自由的提出意見，但是如果開發出Code，想要commit到Linux kernel中，到底是誰負責審理的？ 為什麼Linux社群最蓬勃發展？同樣是開源的BSD系統還有Minix等專案的能見度卻沒這麼高？ Linus說印度的基礎溝通較不好，所以可能會衍生出在地版的Linux，不知有沒有出現?">
 
-    <title>gattaca-ngin</title>
+
+<meta property="og:description" content="The Code * 系列為我修課時留下的心得
+* 摘要   Linus Torvarlds 的生平與Linux創作背景
+包括家庭背景與當時的社經環境(ex:蘇聯解體)。
+因為Minix僅限教育用途，加上當時其他的作業系統過於昂貴(SCO Unix要20000馬克)，還有just hobby等因素，開始著手開發Linux。
+  open source精神
+這裡直接節錄 Richard Mathhew Stallman 於片頭所說的話『開放原始碼就像是食譜，當有好的食譜，我們可以與他人分享，其他人可以對食譜加入自己的元素與口味，並將食譜回饋給原本的人或是繼續開放食譜下去。』，除此之外，open source不只是將程式原始碼開放下去這個動作，其背後可能同時創造了一個社群。
+  Free Software VS Open Source
+由 Richard Mathhew Stallman 提出的Free Software觀念與Free Software運動，還有Free Software Foundation對於自由軟體的推廣，讓人們認識到Free Software的意含，但是由於 Richard Mathhew Stallman 與 Free Software Foundation的言論通常較激進，導致齊備一些商人貶低，但是那群人們卻擁抱Open Source觀念(其實包括的軟體多有重疊)，所以Eric S.Raymond認為應該倡導Open Source讓人們接受。
+  GNU/Linux對世界的影響
+GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中國家的中國與印度的開發人員也對Linux有許多貢獻。Dot com風暴後影響開源軟體的發展與關注度，但是Linux作業系統卻開始進入小型裝置，如：電子鐘、手機等裝置，使一般使用者開始接觸到Linux。
+  * 心得 由於在高中時有在接觸Linux作業系統加上現在主要都以Linux作為我的筆電預設作業系統，對對於Linux的歷史本身就有一些了解，不過對於Linux創立前的歷史不甚熟悉，不知道有Richard Mathhew Stallman這位在Linux開發出來前就已經開始宣揚自由軟體理念的靈魂人物，還有BSD本身對於開源觀念的殿基，讓我們可以在現今不受拘束的宣揚Open Source與使用Open Source的軟體，而且由於這些Open Source軟體的出現，讓我們這些後人可以研究這些軟體的技術，還可以貢獻所學於這些軟體中，並讓世界更美好。
+* Qustion  Linus常說Linux kernel的開發人員的組織架構是十分扁平的，大家可以自由的提出意見，但是如果開發出Code，想要commit到Linux kernel中，到底是誰負責審理的？ 為什麼Linux社群最蓬勃發展？同樣是開源的BSD系統還有Minix等專案的能見度卻沒這麼高？ Linus說印度的基礎溝通較不好，所以可能會衍生出在地版的Linux，不知有沒有出現?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Code心得">
+<meta name="twitter:title" content="The Code心得">
+<meta property="og:url" content="https://daichou.github.io/posts/the-code/">
+<meta property="twitter:url" content="https://daichou.github.io/posts/the-code/">
+<meta property="og:site_name" content="gattaca-ngin">
+<meta property="og:description" content="The Code * 系列為我修課時留下的心得
+* 摘要   Linus Torvarlds 的生平與Linux創作背景
+包括家庭背景與當時的社經環境(ex:蘇聯解體)。
+因為Minix僅限教育用途，加上當時其他的作業系統過於昂貴(SCO Unix要20000馬克)，還有just hobby等因素，開始著手開發Linux。
+  open source精神
+這裡直接節錄 Richard Mathhew Stallman 於片頭所說的話『開放原始碼就像是食譜，當有好的食譜，我們可以與他人分享，其他人可以對食譜加入自己的元素與口味，並將食譜回饋給原本的人或是繼續開放食譜下去。』，除此之外，open source不只是將程式原始碼開放下去這個動作，其背後可能同時創造了一個社群。
+  Free Software VS Open Source
+由 Richard Mathhew Stallman 提出的Free Software觀念與Free Software運動，還有Free Software Foundation對於自由軟體的推廣，讓人們認識到Free Software的意含，但是由於 Richard Mathhew Stallman 與 Free Software Foundation的言論通常較激進，導致齊備一些商人貶低，但是那群人們卻擁抱Open Source觀念(其實包括的軟體多有重疊)，所以Eric S.Raymond認為應該倡導Open Source讓人們接受。
+  GNU/Linux對世界的影響
+GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中國家的中國與印度的開發人員也對Linux有許多貢獻。Dot com風暴後影響開源軟體的發展與關注度，但是Linux作業系統卻開始進入小型裝置，如：電子鐘、手機等裝置，使一般使用者開始接觸到Linux。
+  * 心得 由於在高中時有在接觸Linux作業系統加上現在主要都以Linux作為我的筆電預設作業系統，對對於Linux的歷史本身就有一些了解，不過對於Linux創立前的歷史不甚熟悉，不知道有Richard Mathhew Stallman這位在Linux開發出來前就已經開始宣揚自由軟體理念的靈魂人物，還有BSD本身對於開源觀念的殿基，讓我們可以在現今不受拘束的宣揚Open Source與使用Open Source的軟體，而且由於這些Open Source軟體的出現，讓我們這些後人可以研究這些軟體的技術，還可以貢獻所學於這些軟體中，並讓世界更美好。
+* Qustion  Linus常說Linux kernel的開發人員的組織架構是十分扁平的，大家可以自由的提出意見，但是如果開發出Code，想要commit到Linux kernel中，到底是誰負責審理的？ 為什麼Linux社群最蓬勃發展？同樣是開源的BSD系統還有Minix等專案的能見度卻沒這麼高？ Linus說印度的基礎溝通較不好，所以可能會衍生出在地版的Linux，不知有沒有出現?">
+<meta name="twitter:description" content="The Code * 系列為我修課時留下的心得
+* 摘要   Linus Torvarlds 的生平與Linux創作背景
+包括家庭背景與當時的社經環境(ex:蘇聯解體)。
+因為Minix僅限教育用途，加上當時其他的作業系統過於昂貴(SCO Unix要20000馬克)，還有just hobby等因素，開始著手開發Linux。
+  open source精神
+這裡直接節錄 Richard Mathhew Stallman 於片頭所說的話『開放原始碼就像是食譜，當有好的食譜，我們可以與他人分享，其他人可以對食譜加入自己的元素與口味，並將食譜回饋給原本的人或是繼續開放食譜下去。』，除此之外，open source不只是將程式原始碼開放下去這個動作，其背後可能同時創造了一個社群。
+  Free Software VS Open Source
+由 Richard Mathhew Stallman 提出的Free Software觀念與Free Software運動，還有Free Software Foundation對於自由軟體的推廣，讓人們認識到Free Software的意含，但是由於 Richard Mathhew Stallman 與 Free Software Foundation的言論通常較激進，導致齊備一些商人貶低，但是那群人們卻擁抱Open Source觀念(其實包括的軟體多有重疊)，所以Eric S.Raymond認為應該倡導Open Source讓人們接受。
+  GNU/Linux對世界的影響
+GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中國家的中國與印度的開發人員也對Linux有許多貢獻。Dot com風暴後影響開源軟體的發展與關注度，但是Linux作業系統卻開始進入小型裝置，如：電子鐘、手機等裝置，使一般使用者開始接觸到Linux。
+  * 心得 由於在高中時有在接觸Linux作業系統加上現在主要都以Linux作為我的筆電預設作業系統，對對於Linux的歷史本身就有一些了解，不過對於Linux創立前的歷史不甚熟悉，不知道有Richard Mathhew Stallman這位在Linux開發出來前就已經開始宣揚自由軟體理念的靈魂人物，還有BSD本身對於開源觀念的殿基，讓我們可以在現今不受拘束的宣揚Open Source與使用Open Source的軟體，而且由於這些Open Source軟體的出現，讓我們這些後人可以研究這些軟體的技術，還可以貢獻所學於這些軟體中，並讓世界更美好。
+* Qustion  Linus常說Linux kernel的開發人員的組織架構是十分扁平的，大家可以自由的提出意見，但是如果開發出Code，想要commit到Linux kernel中，到底是誰負責審理的？ 為什麼Linux社群最蓬勃發展？同樣是開源的BSD系統還有Minix等專案的能見度卻沒這麼高？ Linus說印度的基礎溝通較不好，所以可能會衍生出在地版的Linux，不知有沒有出現?">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="article:published_time" content="2017-07-09T01:29:00">
+  
+  
+    <meta property="article:modified_time" content="2017-07-09T01:29:00">
+  
+  
+  
+  
     
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
-    <meta name="theme-color" content="#ffffff">
+      <meta property="article:tag" content="讀書心得">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
+
+
+    <title>The Code心得</title>
+
+    <link rel="icon" href="https://daichou.github.io/favicon.png">
+    
 
     
-    
-    
-    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
+
+    <link rel="canonical" href="https://daichou.github.io/posts/the-code/">
 
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
     
     
 
     
-    
- 
-    
-    
+      
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -43,93 +131,162 @@ if (!doNotTrack) {
 }
 </script>
 
-</head>
-    <body>
-        
-<nav>
-  <header>
-    <div class="site-title">
-        <a href="/">gattaca-ngin</a>
-    </div>  
-</header>
-  <div class="nav-menu">
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://daichou.github.io/">gattaca-ngin</a>
+  </div>
   
-  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
-</div>
-<footer class="footer">
-	<div class="social-icons">
+    
+      <a class="header-right-picture "
+         href="https://daichou.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://daichou.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Dai chou</h4>
         
-
+          <h5 class="sidebar-profile-bio">A student major in Computer science in National Chiao Tung University.</h5>
+        
+      </div>
     
-
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/posts">
     
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/categories">
     
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/tags">
     
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/archives">
     
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
 
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/#about">
     
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
 
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://github.com/Daichou" target="_blank" rel="noopener">
     
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
 
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
     
-
+      <a class="sidebar-button-link " href="https://daichou.github.io/index.xml">
     
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-</div>
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
 
 
-
-
-	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
-	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
-
-	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
-</footer>
+    </ul>
+  </div>
 </nav>
-        <div id="content" class="content-container">
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      The Code心得
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-07-09T01:29:00-07:00">
         
-<h1 class="post-title">The Code心得</h1>
+   9, 2017
+
+      </time>
     
-    <time>July 9, 2017</time>
     
-    <div>
-        <p>
-        <h2 id="the-codehttpsfossapchackpadcomc2-tmmvkw0utb1"><a href="https://fossapc.hackpad.com/C2-tMmvkW0UtB1">The Code</a></h2>
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h2 id="the-codehttpsfossapchackpadcomc2-tmmvkw0utb1"><a href="https://fossapc.hackpad.com/C2-tMmvkW0UtB1">The Code</a></h2>
 <p>* 系列為我修課時留下的心得</p>
 <h3 id="-摘要">* <strong>摘要</strong></h3>
 <ul>
@@ -161,88 +318,258 @@ GNU/Linux影響著許多開發者，還有業界一些公司，同時開發中�
 <li>另外印度網路不發達，他們如何養出這麼多軟體工程師？難道是人口基數多造成的錯覺？</li>
 </ul>
 
-        </p>
-    </div>
-    
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a>
 
-    <div class="page-footer">
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/revolution-os/" data-tooltip="Revolution OS 心得">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/i2c-microchip-plib/" data-tooltip="I2C 使用Microchip plib">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-        <hr class="footer-divider">
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/the-code/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
         
-            <a class="tag" href="/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97">#讀書心得</a>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/the-code/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
         
       
-    </div>
-
-
+      
+      <li class="post-action">
         
-        </div>
-        <footer class="footer-mobile">
-	<div class="social-icons">
+          <a class="post-action-btn btn btn--default" href="#">
         
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
 </div>
 
-
-
-
-	<div class="footer-mobile-links">
-		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
-		<span class="divider-bar">|</span>
-		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
-	</div>
-
-	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Dai chou. 
+  </span>
 </footer>
-    </body>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/revolution-os/" data-tooltip="Revolution OS 心得">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/i2c-microchip-plib/" data-tooltip="I2C 使用Microchip plib">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/the-code/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/the-code/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="1">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdaichou.github.io%2Fposts%2Fthe-code%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fdaichou.github.io%2Fposts%2Fthe-code%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
+    
+    <h4 id="about-card-name">Dai chou</h4>
+    
+      <div id="about-card-bio">A student major in Computer science in National Chiao Tung University.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://daichou.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://daichou.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
 </html>
+
