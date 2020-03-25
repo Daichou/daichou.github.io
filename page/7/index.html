@@ -163,22 +163,21 @@ if (!doNotTrack) {
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/the-legend-of-pianist-la-leggenda-del/">
-                    The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)
+                <a href="https://daichou.github.io/posts/compiler-explorercc/">
+                    用Compiler Explorer學習C/C&#43;&#43;的效能與實做
                 </a>
             </h2>
-            <div><p>The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師) 一、資訊 電影：海上鋼琴師
-配樂作家： Ennio Morricone
-發行廠商：Sony Music
-
-The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)
- 二、心得感想
-這張基本上有名到我都不想寫什麼介紹了XD，不過秉持著紀錄所有我買過得專輯，所以還是隨手打一篇。這片在買之前裡面的音樂幾乎都已經在各個角落聽過了，即使電影只看過一次，在音樂課，在其他專輯(Yo-Yo Ma Plays Ennio Morricone)或多或少經典曲目包括&lt;Playing Love&gt;、&lt;Magic Waltz&gt;、&lt;A Mozart Reincarnated&gt;還是有名又有梗的鬥琴&lt;Enduring Movement&gt;有在接觸電影配樂的朋友都聽過。其中最喜歡的是&lt;Playing Love&gt;、&lt;Magic Waltz&gt;、&lt;A Mozart Reincarnated&gt;，至於鬥琴那首我到覺得還好。其他也有一些較為不有名曲目如帶有爵士風情的&lt;A Goodbye To Friends&gt;等，還有&lt;Tarantella In 3rd Class&gt;也都十分動聽。我覺得這張真的必收。
-三、曲目  Playing Love The Legend Of The Pianist On The Ocean The Crisis Peacherine Rag A Goodbye To Friends Study For Three Hands Tarantella In 3rd Class Enduring Movement Police Trailer Thanks Danny A Mozart Reincarnated Child Magic Waltz The Goodbye Between 1990 And Max Goodbye Duet Nineteen Hundred’s Madness N.</p></div>
+            <div><p>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。
+支援 這個網站支援ARM、MIPS、X86、AVR等指令集的compiler，支援度甚廣，且網頁本身也開源(使用node.js)，連結:https://github.com/mattgodbolt/gcc-explorer
+操作畫面</p></div>
             <div class="post-footer">
-            <time>July 22, 2018</time>
+            <time>August 16, 2016</time>
 
             
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
             
             </div> 
            
@@ -186,24 +185,123 @@ The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Ver
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/arduino-high-resolution-pwm-more-than/">
-                    Arduino: High resolution PWM (more than 8bits),Arduino提高PWM resolution
+                <a href="https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/">
+                    使用Ardunio Atmega2560 連接 nRF24L01&#43;
                 </a>
             </h2>
-            <div><p>Arduino PWM(analogWrite) Arduino PWM是使用analogWrite，但是其有一個限制，也就是PWM resolution只有256，PWM duty cycle的值只能介於0~255，對於一般的應用來說，這個值還可以應付，但是對於高精度的Servo或是馬達，這個值實在是太小了。(請參考analogWrite)。雖然在有些板子Arduino提供analogWriteResolution這個函式(Zero, Due &amp; MKR Family、參閱：analogWriteResolution)可以將PWM resolution提高至12，更高的值內部會做mapping到比較低解析度。至於其他板子(例如:Arduino Mega 2560)，則需要第三方library支援(或是自己寫)。
-Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其datasheet(link)中提到其&quot;Six/Twelve PWM Channels with Programmable Resolution from 2 to 16 Bits&rdquo;，ATmega2560有12個PWM channel，resolution可為2~16bits。所以其實Arduino Mega 2560硬體可以比Arduino Framework設計的resolution高很多。至於為什麼Arduino官方不用16bits呢，我猜是因為為了保證0~255的限制是可以達成。Arduino Framework的PWM frequency是固定的(16 MHz / 64 / 255 / 2 = 490.196Hz，見Secrets Of Arduino PWM)。
-而PWM resolution並不是你想要16bits就可以有16bits的resolution，PWM resolution跟PWM frequency息息相關。在ATmega2560中，Frequecy與系統頻率、timer prescaler(除頻器)，還有最常使用的TOP值(限定Timer counter的最大上限)有關。TOP值的大小即為PWM resolution。依據Atmel PWM resolution公式：
- PWM resolution = log(TOP + 1) / log 2
-  通常要把PWM resolution拉到最高，PWM frequency會很小，這主要看設計時的選擇。其他細部詳情請見ATmega640/V-1280/V-1281/V-2560/V-2561/V [DATASHEET]第17章。</p></div>
+            <div><p>使用Ardunio Atmega2560 連接 nRF24L01+ 關於library 目前主流有https://github.com/maniacbug/RF24與https://github.com/TMRh20/RF24這兩個。
+其中TMRh20大大做的這個還可支援linux(Raspberry pi)，支援度較廣。不過本篇文章選用maniacbug大大的library。
+mega2560連接nRF24L01 以下是nRF24L01 模組的照片與pinout。
+
+從左上開始，右下結束。
+         1.GND 2.VDD(3.6V以下)   3.CE 4.CSN   5.SCLK 6.MOSI   7.MISO 8.IRQ    Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。
+Mega2560的部份需要其上頭內建的SPI BUS，才能使用這個函式庫(TMRh20的library有提供Software SPI應用)。以下是Mega2560的SPI接腳對應。
+
+SCK要接nRF24L01的SCLK，MOSI接MOSI，MISO接MISO，CE和CSN可自行定義腳位。
+程式碼部份直接利用官往提供的example來做測試。
+http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html
+原始碼中RF24物件建構子這行
+RF24 radio(9,10); 9表示CE接腳，10表示CSN接腳。
+程式運行時可以開啟Serial port monitor來觀察其運作，其中他在radio.printDetails();部份印出的細節可以多留意，尤其是收發兩端的address，在TX_ADDR那項兩邊要不同。接下來就可開心的看著她發送了。
+連不上的一些解法 地址錯誤 兩邊的地址要可對到，一邊RX_ADDR要為另一邊TX_ADDR，這樣才可收到。
+雜訊 有些nRF24L01模組的電源供應沒有電容濾波，可以自行用電容跨接GND和VCC兩端，建議選擇10uF到50uF的電容，另外模組的GND要和Ardunio的GND共地(從Ardunio直接拉GND是好選擇)。
+傳輸速率過快 example預設為2Mbps，可自行降為1Mbps，有機會收到較佳的訊號。</p></div>
             <div class="post-footer">
-            <time>July 22, 2018</time>
+            <time>August 5, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/pwm/">
+                    PWM產生方式
+                </a>
+            </h2>
+            <div><p>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
+
+duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。
+PWM產生方式 PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。
+硬體內建PWM模組 MCU內常內建PWM模組，以PIC系列為例，有CCP(Capture/Compare/PWM)模組、Output Compare模組和PWM模組。透過設定timer和暫存去達成PWM輸出。以下以dsPIC30F4013的Output Compare做示範。
+#include &lt;xc.h&gt;  // FOSC #pragma config FOSFPR = XT_PLL4 // Oscillator (XT w/PLL 4x) #pragma config FCKSMEN = CSW_FSCM_OFF // Clock Switching and Monitor (Sw Disabled, Mon Disabled)  // FWDT #pragma config FWPSB = WDTPSB_16 // WDT Prescaler B (1:16) #pragma config FWPSA = WDTPSA_512 // WDT Prescaler A (1:512) #pragma config WDT = WDT_OFF // Watchdog Timer (Disabled)  // FBORPOR #pragma config FPWRT = PWRT_64 // POR Timer Value (64ms) #pragma config BODENV = BORV20 // Brown Out Voltage (Reserved) #pragma config BOREN = PBOR_ON // PBOR Enable (Enabled) #pragma config MCLRE = MCLR_EN // Master Clear Enable (Enabled)  // FGS #pragma config GWRP = GWRP_OFF // General Code Segment Write Protect (Disabled) #pragma config GCP = CODE_PROT_OFF // General Segment Code Protection (Disabled)  // FICD #pragma config ICS = ICS_PGD // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)  #define Tcy 10000000 //10MHz oscillator with 4xPLL -&gt; 10&#39;000&#39;000MIPS  //------------------------------------------------------------------------------ // main routine //------------------------------------------------------------------------------ int main(int argc, char** argv) { //------------------------------------------------------------------------------ // IO Plan  TRISA = 0x0000; TRISB = 0x0000; TRISC = 0x0000; TRISD = 0x0000; //RD1,RD2,RD3,RD4 -&gt; PWM OC pin  TRISF = 0x0000; ADPCFG = 0xFFFF; //------------------------------------------------------------------------------ // initialize PWM  //PR2 = 50000; 1:256-&gt; 200 HZ  PR2 = 25000; OC1RS = 1875; OC1CON = 0x0006; //Set PWM mode on OC1,Fault pin disable,Timer2 is source  OC2RS = 1875; OC2CON = 0x0006; //Set PWM mode on OC2,Fault pin disable,Timer2 is source  OC3RS = 1875; OC3CON = 0x0006; //Set PWM mode on OC3,Fault pin disable,Timer2 is source  OC4RS = 1875; OC4CON = 0x0006; //Set PWM mode on OC4,Fault pin disable,Timer2 is source  //IEC0bits.</p></div>
+            <div class="post-footer">
+            <time>July 31, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/libpqxx-prepare-statements/">
+                    [筆記] libpqxx - prepare statements
+                </a>
+            </h2>
+            <div><p>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。
+connection C(/*user parameter*/); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); 再來是傳遞變數進入prepare的框架。
+connection C(/*user parameter*/); pqxx::work W(C); C.prepare(&#34;prepare_name&#34;,&#34;SELECT NAME FROM TESTTABLE WHERE id = $1&#34;); pqxx::result r = W.prepared(&#34;prepare_name&#34;)(ID).exec(); W.commit(); 其中傳變數方法還有其他寫法，請見：http://stackoverflow.com/questions/31833322/how-to-prepare-statements-and-bind-parameters-in-postgresql-for-c
+prepare方法有時會降低效率，其他細節都在官方paper中。</p></div>
+            <div class="post-footer">
+            <time>May 8, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/postgresql">#postgresql</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/maker/">
+                    Maker常用開發板
+                </a>
+            </h2>
+            <div><p>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
+入門款
+** Ardunio系列：**
+ 基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO  &gt;&raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。
+&gt;&raquo; 適合入門玩家學習操作I/O(DigitalWrtie),PWM(AnalogWrite),ADC(analogRead)。適合小專案與空間較小之專案。
+ 進階板(Enhanced feature):Ardunio MEGA,Ardunio ZERO,Ardunio DUE  &gt;&raquo; Ardunio MEGA腳位很多，PWM腳多達15隻，對於需要大量馬達或servo的專案來說十分適合，而且其UART多達四組，還有一組SPI和一組I2C可方便擴充。
+&gt;&raquo; Ardunio ZERO是小型低電壓板Ardunio。
+&gt;&raquo; Ardunio DUE 是ARM-based的Ardunio，腳位很多，同時還有兩個DAC，和USB-OTG，為MEGA板所沒有的。
+ IOT板：Ardunio YUN  &gt;&raquo;Ardunio YUN是一塊同時擁有MCU(Ardunio)和SOC(OS為linux)的開發板，基本連網功能透過linux部份，其餘操作在Ardunio部份上，可支援wifi(IEEE 802.11b/g/n)和ethernet(IEEE 802.11b/g/n)，想當然爾，當然是一塊面向物連網的開發板。
+ 其他module  很多，去找吧，我把他們全都放在那了。對於入門者來說，最重要的是有library和API支援，不然自己看datasheet來刻是很困難的。
+ 其他類Ardunio開發板  這裏指得是支援Ardunio語法(library)的開發板，常見的如Picdunio,linkit Smart 7688和linkit 7688 DUO系列等。
+進階款
+** Raspberry Pi**
+ Pi 1,Pi 2 Pi3 , Pi zero:  基本上都是使用Broadcom的單板電腦，都是ARM以處理器為核心，當然ARM系列的優點都有(如省電)，支援USB、ethernet、RCA、I2S、SD卡、相機模組。
+作業系統有Raspbian(Debian系，論壇資源最多，問題易找到解答)、Arch Linux Arm(Arch linux十分輕量，而且十分先進，其套件管理佳，但難度叫高)、OpenELEC、Pidora(Fedora)等。</p></div>
+            <div class="post-footer">
+            <time>May 1, 2016</time>
 
             
             
                 
                     <a class="tag" href="https://daichou.github.io/tags/maker">#Maker</a>
                 
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
                 
             
             </div> 
@@ -212,140 +310,30 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/mplab-x-idegit/">
-                    對MPLAB X IDE產生之專案導入git
+                <a href="https://daichou.github.io/posts/libpqxx-postgresql-c-library/">
+                    libpqxx - postgresql c&#43;&#43; library 基本教學
                 </a>
             </h2>
-            <div><p>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.</p></div>
+            <div><p>簡介  libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。
+libpqxx官網：http://pqxx.org/
+ linux上安裝方式  請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。
+link:https://wiki.archlinux.org/index.php/PostgreSQL
+libray link:http://pqxx.org/download/software/libpqxx/
+$ wget http://pqxx.org/download/software/libpqxx/libpqxx-4.0.tar.gz $ tar -zxvf libpqxx-4.0-tar.gz $ cd libpqxx-4.0 $ ./configure $ make $ make install arch linux上安裝方式，libpqxx為Extra package。
+link:https://www.archlinux.org/packages/extra/i686/libpqxx/
+$ sudo pacman -Sy libpqxx 安裝完成後，於postgresql安裝目錄下。
+$ cp pg_hba.conf.sample pg_hba.conf 於pg_hba.conf新增
+# IPv4 local connections: host all all 127.0.0.1/32 md5 啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理
+$ sudo systemctl start postgresql.service $ sudo systemctl stop postgresql.service  基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例</p></div>
             <div class="post-footer">
-            <time>July 18, 2018</time>
+            <time>May 1, 2016</time>
 
             
             
                 
-                    <a class="tag" href="https://daichou.github.io/tags/pic">#PIC</a>
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
                 
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/">
-                    CMake: find_package and custom find cmake (findXXX.cmake)
-                </a>
-            </h2>
-            <div><p>CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
-https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
-find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
-cmake --help-module-lists 查詢。
-在CMake中使用find_package通常會使用類似下列參數。
-find_package(OpenCV 3.4.1 REQUIRED) find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
-find_package(OpenMP) if (OPENMP_FOUND)  set (CMAKE_C_FLAGS &#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&#34;)  set (CMAKE_CXX_FLAGS &#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&#34;) endif()透過find_package 定義的-FOUND判斷是否存在。
-find_package通常會定義下列四種變數：
-  _FOUND : 是否找到
-  _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
-  _LIBRARIES or _LIBRARIES or _LIBS : link library 類似 gcc -L/path -l library</p></div>
-            <div class="post-footer">
-            <time>July 14, 2018</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/cmake">#CMake</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/cmake-tricks/">
-                    CMake Tricks: 一些小技巧
-                </a>
-            </h2>
-            <div><p>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
-追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &hellip;&hellip;等。可以透過在產生Makefile時下：
-$ cmake -DCMAKE_BUILD_TYPE=value 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
-SET(CMAKE_CONFIGURATION_TYPES  &#34;Release&#34;)來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&lt;LANG&gt;_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_&lt;LANG&gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
-若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：
-SET(GCC_COVERAGE_COMPILE_FLAGS &#34;-g&#34;) SET( CMAKE_CXX_FLAGS  &#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34; )我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
-此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
- CMAKE_C_FLAGS -&gt; CFLAGS CMAKE_CXX_FLAGS -&gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
-
-Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
-下在command line，只要用-D就好，ex：
-$ cmake -DCMAKE_BUILD_TYPE=value 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
-$ cmake -L 得到所有選項以及當前選擇。
-另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。
-當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt
-CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，經過運行後會變什麼。可以透過查看CMakeCache.txt或是下cmake -LAH來查看值。</p></div>
-            <div class="post-footer">
-            <time>July 13, 2018</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/cmake">#CMake</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/blogger-syntax-highlight-over-https/">
-                    Blogger Syntax highlight over https
-                </a>
-            </h2>
-            <div><p>Blogger Syntax highlight over https 由於現在blogger要求https，以往的常用的scripts：
- http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js
- 會因為是http而造成瀏覽器報錯，而且載入的code通常會失敗。因此這裡提供一個新的解法。
-改用以下cdn由cloudflare提供的。就可以讓你的code在https下漂漂亮亮的。
-打開blogger-&gt;theme-&gt;編輯HTML，在&lt;head&gt;&lt;/head&gt;中新增以下code。
-&lt;link href=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt; &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js&#34; type=&#34;text/javascript&#34;&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.</p></div>
-            <div class="post-footer">
-            <time>July 13, 2018</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/">
-                    使用LXC建立USB以及X-forward環境(deprecated)
-                </a>
-            </h2>
-            <div><p>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
-環境  OS: Arch Linux (4.15.7-1-ARCH) LXC ubuntu on LXC  步驟 LXC準備 安裝 LXC $ sudo pacman -Sy lxc arch-install-scripts debootstap 建立 Host Network (NAT bridge) (Arch Wiki寫得很好看Arch Wiki) 建立/etc/default/lxc-net(詳情見Arch Wiki)
-USE_LXC_BRIDGE=&#34;true&#34; LXC_BRIDGE=&#34;lxcbr0&#34; LXC_ADDR=&#34;10.0.3.1&#34; LXC_NETMASK=&#34;255.255.255.0&#34; LXC_NETWORK=&#34;10.0.3.0/24&#34; LXC_DHCP_RANGE=&#34;10.0.3.2,10.0.3.254&#34; LXC_DHCP_MAX=&#34;253&#34; 修改lxc template conf，在/etc/lxc/default.conf新增
-lxc.net.0.type = veth lxc.net.0.link = lxcbr0 lxc.net.0.flags = up lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx 安裝dnsmasq
-$ sudo pacman -Sy dnsmasq 開啟以及設定開機啟動：
-sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubuntu) 建previleged的container</p></div>
-            <div class="post-footer">
-            <time>March 9, 2018</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                    <a class="tag" href="https://daichou.github.io/tags/postgresql">#postgresql</a>
                 
             
             </div> 
@@ -357,10 +345,10 @@ sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubun
         <div class="paginator">
         
         
-        <p>Page 2 of 7</p>
+        <p>Page 7 of 7</p>
         <div class="paginator-group">
             
-            <a class="color-link" href="https://daichou.github.io/">
+            <a class="color-link" href="https://daichou.github.io/page/6/">
                     <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
                         <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
                             <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
@@ -370,17 +358,6 @@ sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubun
                 Newer          
             </a>
             
-            
-                <a class="color-link older" href="https://daichou.github.io/page/3/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
             
         </div>
         

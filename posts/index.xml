@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on gattaca-ngin</title>
+    <title>Posts on Daichou&#39;s blog</title>
     <link>https://daichou.github.io/posts/</link>
-    <description>Recent content in Posts on gattaca-ngin</description>
+    <description>Recent content in Posts on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sun, 22 Mar 2020 02:38:00 -0700</lastBuildDate>
@@ -856,12 +856,12 @@ libpqxx官網：http://pqxx.org/
  linux上安裝方式  請先安裝postgresql，方便起見可安裝php,phppgadmin和apache以利測試。
 link:https://wiki.archlinux.org/index.php/PostgreSQL
 libray link:http://pqxx.org/download/software/libpqxx/
-$ wget http://pqxx.org/download/software/libpqxx/libpqxx-4.0.tar.gz $ tar -zxvf libpqxx-4.0-tar.gz $ cd libpqxx-4.0 $ ./configure $ make $ make install arch linux上安裝方式，libpqxx為Extra package。link:https://www.archlinux.org/packages/extra/i686/libpqxx/
+$ wget http://pqxx.org/download/software/libpqxx/libpqxx-4.0.tar.gz $ tar -zxvf libpqxx-4.0-tar.gz $ cd libpqxx-4.0 $ ./configure $ make $ make install arch linux上安裝方式，libpqxx為Extra package。
+link:https://www.archlinux.org/packages/extra/i686/libpqxx/
 $ sudo pacman -Sy libpqxx 安裝完成後，於postgresql安裝目錄下。
 $ cp pg_hba.conf.sample pg_hba.conf 於pg_hba.conf新增
 # IPv4 local connections: host all all 127.0.0.1/32 md5 啟動與停止postgresql，基本上使用systemd的linux distro都可用以下方式來處理
-$ sudo systemctl start postgresql.service $ sudo systemctl stop postgresql.service  基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例
-#include&amp;lt;iostream&amp;gt;#include&amp;lt;pqxx/pqxx&amp;gt;#include&amp;lt;string&amp;gt; using namespace std; using namespace pqxx; int main() { string sql; try{ connection C(&amp;#34;dbname=testdb user=postgres password=pqsswd \ hostaddr=127.</description>
+$ sudo systemctl start postgresql.service $ sudo systemctl stop postgresql.service  基本用法  libpqxx通常需要透過pqxx::connection來建立連線，接著以transaction物件pqxx::work執行sql操作。以下為基本範例</description>
     </item>
     
   </channel>

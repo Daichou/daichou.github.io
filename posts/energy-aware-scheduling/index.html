@@ -1,131 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="zh-tw">
-  <head>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>Daichou&#39;s blog</title>
     
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.68.0 with theme Tranquilpeak 0.4.7-BETA">
-<meta name="author" content="Dai chou">
-<meta name="keywords" content="">
-<meta name="description" content="Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency
- 公式將OPP轉成mW、frequency以及cost組合存入em_cap_state，其中cost計算方式為:
- Cost = max_cpu_frequency * em_cap_state.">
-
-
-<meta property="og:description" content="Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency
- 公式將OPP轉成mW、frequency以及cost組合存入em_cap_state，其中cost計算方式為:
- Cost = max_cpu_frequency * em_cap_state.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux kernel: Energy Aware scheduling (EAS)">
-<meta name="twitter:title" content="Linux kernel: Energy Aware scheduling (EAS)">
-<meta property="og:url" content="https://daichou.github.io/posts/energy-aware-scheduling/">
-<meta property="twitter:url" content="https://daichou.github.io/posts/energy-aware-scheduling/">
-<meta property="og:site_name" content="gattaca-ngin">
-<meta property="og:description" content="Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency
- 公式將OPP轉成mW、frequency以及cost組合存入em_cap_state，其中cost計算方式為:
- Cost = max_cpu_frequency * em_cap_state.">
-<meta name="twitter:description" content="Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency
- 公式將OPP轉成mW、frequency以及cost組合存入em_cap_state，其中cost計算方式為:
- Cost = max_cpu_frequency * em_cap_state.">
-<meta property="og:locale" content="en">
-
-  
-    <meta property="article:published_time" content="2019-07-04T00:32:00">
-  
-  
-    <meta property="article:modified_time" content="2019-07-04T00:32:00">
-  
-  
-  
-  
-    
-      <meta property="article:tag" content="Linux">
-    
-  
-
-
-<meta name="twitter:card" content="summary">
-
-
-
-
-
-
-
-
-
-
-
-  <meta property="og:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
-  <meta property="twitter:image" content="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=640">
-
-
-    <title>Linux kernel: Energy Aware scheduling (EAS)</title>
-
-    <link rel="icon" href="https://daichou.github.io/favicon.png">
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="https://daichou.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://daichou.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://daichou.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://daichou.github.io/manifest.json">
+    <link rel="mask-icon" href="https://daichou.github.io/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
 
     
+    
+    
+    <link rel="stylesheet" href="https://daichou.github.io/css/main.min.03322cbe6bddfc28e7b17b84bc5446282a510b14b57be3371ba1f68ef1ab9ce8.css"/>
 
-    <link rel="canonical" href="https://daichou.github.io/posts/energy-aware-scheduling/">
-
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
-    
-    
-    <link rel="stylesheet" href="https://daichou.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
     
     
 
     
-      
+    
+ 
+    
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -134,167 +38,124 @@ if (!doNotTrack) {
 	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-161437179-1', 'auto');
-	
+	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
 
-    
-    
-  </head>
-
-  <body>
-    <div id="blog">
-      <header id="header" data-behavior="1">
-  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-  <div class="header-title">
-    <a class="header-title-link" href="https://daichou.github.io/">gattaca-ngin</a>
-  </div>
-  
-    
-      <a class="header-right-picture "
-         href="https://daichou.github.io/#about">
-    
-    
-    
-      
-        <img class="header-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=90" alt="" />
-      
-    
-    </a>
-  
+</head>
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="https://daichou.github.io/">Daichou&#39;s blog</a>
+    </div>  
 </header>
-
-      <nav id="sidebar" data-behavior="1">
-  <div class="sidebar-container">
-    
-      <div class="sidebar-profile">
-        <a href="https://daichou.github.io/#about">
-          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
-        </a>
-        <h4 class="sidebar-profile-name">Dai chou</h4>
-        
-          <h5 class="sidebar-profile-bio">A student major in Computer science in National Chiao Tung University.</h5>
-        
-      </div>
-    
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/posts">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
-      
-      <span class="sidebar-button-desc">Home</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/categories">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
-      
-      <span class="sidebar-button-desc">Categories</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/tags">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
-      
-      <span class="sidebar-button-desc">Tags</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/archives">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
-      
-      <span class="sidebar-button-desc">Archives</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/#about">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
-      
-      <span class="sidebar-button-desc">About</span>
-    </a>
-  </li>
-
-
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://github.com/Daichou" target="_blank" rel="noopener">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
-      
-      <span class="sidebar-button-desc">GitHub</span>
-    </a>
-  </li>
-
-
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://daichou.github.io/index.xml">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
-      
-      <span class="sidebar-button-desc">RSS</span>
-    </a>
-  </li>
-
-
-    </ul>
-  </div>
-</nav>
-
-      
-
-      <div id="main" data-behavior="1"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+  <div class="nav-menu">
   
-    <h1 class="post-title" itemprop="headline">
-      Linux kernel: Energy Aware scheduling (EAS)
-    </h1>
+    <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
-  
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-07-04T00:32:00-07:00">
+  <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
         
-   4, 2019
+    <a class="social-icon" href="mailto:tommy0705c@gmail.com" target="_blank" rel="noopener" title="Email">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M25.2794292,5.59128519 L14,16.8707144 L2.72057081,5.59128519 C3.06733103,5.30237414 3.51336915,5.12857603 4,5.12857603 L24,5.12857603 C24.4866308,5.12857603 24.932669,5.30237414 25.2794292,5.59128519 Z M25.9956978,6.99633695 C25.998551,7.04004843 26,7.08414302 26,7.12857603 L26,20.871424 C26,21.0798433 25.9681197,21.2808166 25.9089697,21.4697335 L18.7156355,14.2763993 L25.9956978,6.99633695 Z M24.9498374,22.6319215 C24.6672737,22.7846939 24.3437653,22.871424 24,22.871424 L4,22.871424 C3.5268522,22.871424 3.09207889,22.7071233 2.74962118,22.432463 L10.0950247,15.0870594 L13.9848068,18.9768415 L14.1878486,18.7737996 L14.2030419,18.7889929 L17.6549753,15.3370594 L24.9498374,22.6319215 Z M2.00810114,21.0526627 C2.00273908,20.9929669 2,20.9325153 2,20.871424 L2,7.12857603 C2,7.08414302 2.00144896,7.04004843 2.00430222,6.99633695 L9.03436454,14.0263993 L2.00810114,21.0526627 Z"></path>
+        </svg>
+    </a>
+    
 
-      </time>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <a class="social-icon" href="https://gattacangin.blogspot.com/" target="_blank" rel="noopener" title="Blogger">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M16.4225354,15.183099 C16.7605636,15.183099 17.0422536,15.3145545 17.2676055,15.5774654 C17.4929581,15.8028172 17.6056345,16.0845072 17.6056345,16.4225354 C17.6056345,16.7605636 17.4929581,17.0422536 17.2676055,17.2676055 C17.0422536,17.4929581 16.7605636,17.6056345 16.4225354,17.6056345 L11.5211272,17.6056345 C11.183099,17.6056345 10.9014088,17.4929581 10.6760564,17.2676055 C10.4507043,17.0422536 10.3380283,16.7605636 10.3380283,16.4225354 C10.3380283,16.0845072 10.4507043,15.8028172 10.6760564,15.5774654 C10.9014088,15.3145545 11.183099,15.183099 11.5211272,15.183099 L16.4225354,15.183099 Z M11.5211272,11.5774646 C11.183099,11.5774646 10.9014088,11.4647886 10.6760564,11.2394368 C10.4507043,11.0140849 10.3380283,10.7323948 10.3380283,10.3943664 C10.3380283,10.0563382 10.4507043,9.77464807 10.6760564,9.54929597 C10.9014088,9.3239438 11.183099,9.21126771 11.5211272,9.21126771 L14.6760568,9.21126771 C15.0140849,9.21126771 15.295775,9.3239438 15.5211268,9.54929597 C15.7464787,9.77464807 15.8591546,10.0563382 15.8591546,10.3943664 C15.8591546,10.7323948 15.7464787,11.0140849 15.5211268,11.2394368 C15.295775,11.4647886 15.0140849,11.5774646 14.6760568,11.5774646 L11.5211272,11.5774646 Z M18.7887323,11.5774646 L18.7887323,9.21126771 C18.7887323,8.23474189 18.431925,7.38967148 17.7183104,6.67605648 C17.004695,5.9624414 16.1596245,5.60563386 15.183099,5.60563386 L10.3943663,5.60563386 C9.41784045,5.60563386 8.57277003,5.9624414 7.85915503,6.67605648 C7.14553995,7.38967148 6.78873241,8.23474189 6.78873241,9.21126771 L6.78873241,17.6056345 C6.78873241,18.58216 7.14553995,19.4272304 7.85915503,20.1408458 C8.57277003,20.8544604 9.41784045,21.2112677 10.3943663,21.2112677 L17.6056345,21.2112677 C18.58216,21.2112677 19.4272304,20.8544604 20.1408458,20.1408458 C20.8544604,19.4272304 21.2112677,18.58216 21.2112677,17.6056345 L21.2112677,14 C21.2112677,13.6619718 21.0985918,13.3802818 20.8732399,13.1549299 C20.6478873,12.9295781 20.3661969,12.8169022 20.0281687,12.8169022 C19.6901405,12.8169022 19.3896714,12.7042258 19.1267613,12.4788732 C18.9014086,12.2159623 18.7887323,11.9154928 18.7887323,11.5774646 L18.7887323,11.5774646 Z M23.6338031,2 C24.2723005,2 24.8169014,2.24413145 25.2676059,2.73239436 C25.7558686,3.18309863 26,3.72769958 26,4.36619722 L26,23.6338031 C26,24.2723005 25.7558686,24.8356809 25.2676059,25.3239444 C24.8169014,25.7746481 24.2723005,26 23.6338031,26 L4.36619722,26 C3.7276995,26 3.16431919,25.7746481 2.67605628,25.3239444 C2.22535209,24.8356809 2,24.2723005 2,23.6338031 L2,4.36619722 C2,3.72769958 2.22535209,3.18309863 2.67605628,2.73239436 C3.16431919,2.24413145 3.7276995,2 4.36619722,2 L23.6338031,2 Z"></path>
+        </svg>
+    </a>
+    
+
+    
+
+    
+
+    
+
+    
+
     
     
-  </div>
+    
+    <a class="social-icon" href="https://github.com/Daichou" target="_blank" rel="noopener" title="GitHub">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M13.9988029,1.32087331 C6.82105037,1.32087331 1,7.14112562 1,14.3212723 C1,20.0649109 4.72454649,24.9370678 9.89038951,26.6560892 C10.5408085,26.7757983 10.7778323,26.374374 10.7778323,26.0296121 C10.7778323,25.7215609 10.7666595,24.9035493 10.760275,23.8189856 C7.14426471,24.6042767 6.38131925,22.0760223 6.38131925,22.0760223 C5.78995672,20.5740732 4.93762853,20.1742451 4.93762853,20.1742451 C3.75729765,19.3682044 5.02701126,19.3841656 5.02701126,19.3841656 C6.33183953,19.4759425 7.01817121,20.7241085 7.01817121,20.7241085 C8.17775254,22.7104801 10.0611744,22.1366749 10.8017741,21.8038838 C10.919887,20.9643246 11.2558703,20.3913175 11.6269683,20.066507 C8.74038491,19.7385043 5.70536235,18.6228163 5.70536235,13.6413251 C5.70536235,12.2223743 6.21213051,11.0611968 7.04370914,10.1530044 C6.90963504,9.82420367 6.46351945,8.50181809 7.17139875,6.71256734 C7.17139875,6.71256734 8.26234691,6.36301702 10.7459099,8.04532771 C11.78259,7.75642995 12.8950858,7.61277914 14.000399,7.60719272 C15.1049142,7.61277914 16.2166119,7.75642995 17.2548881,8.04532771 C19.736855,6.36301702 20.8262071,6.71256734 20.8262071,6.71256734 C21.5356825,8.50181809 21.0895669,9.82420367 20.9562909,10.1530044 C21.7894656,11.0611968 22.2922435,12.2223743 22.2922435,13.6413251 C22.2922435,18.6355852 19.2524325,19.734514 16.3570705,20.0561322 C16.8231376,20.4575564 17.2389269,21.2508282 17.2389269,22.4638795 C17.2389269,24.2012564 17.2229657,25.603448 17.2229657,26.0296121 C17.2229657,26.3775663 17.4575954,26.7821827 18.116793,26.6552912 C23.2786458,24.9322794 27,20.0633148 27,14.3212723 C27,7.14112562 21.1789496,1.32087331 13.9988029,1.32087331"></path>
+        </svg>
+    </a>
+    
+
+    
+    <a class="social-icon" href="#ZgotmplZ" target="_blank" rel="noopener" title="Stack Overflow">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M20.8863636,23.7090909 L20.8863636,17.3818182 L22.9863636,17.3818182 L22.9863636,25.8090909 L4.03181818,25.8090909 L4.03181818,17.3818182 L6.13181818,17.3818182 L6.13181818,23.7090909 L20.8863636,23.7090909 Z M8.45,16.7818182 L8.88636364,14.7090909 L19.1954545,16.8636364 L18.7590909,18.9363636 L8.45,16.7818182 Z M9.81363636,11.8727273 L10.6863636,9.93636364 L20.2318182,14.4090909 L19.3590909,16.3181818 L9.81363636,11.8727273 Z M12.4590909,7.18181818 L13.7954545,5.57272727 L21.8954545,12.3090909 L20.5590909,13.9181818 L12.4590909,7.18181818 Z M17.6954545,2.19090909 L23.9681818,10.6454545 L22.2772727,11.9 L16.0045455,3.44545455 L17.6954545,2.19090909 Z M8.23181818,21.5818182 L8.23181818,19.4818182 L18.7590909,19.4818182 L18.7590909,21.5818182 L8.23181818,21.5818182 Z"></path>
+        </svg>
+    </a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
 
 </div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <h1 id="energy-aware-scheduling">Energy Aware scheduling</h1>
+
+
+
+
+	<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">Linux kernel: Energy Aware scheduling (EAS)</h1>
+    
+    <time>July 4, 2019</time>
+    
+    <div>
+        <p>
+        <h1 id="energy-aware-scheduling">Energy Aware scheduling</h1>
 <p>之前寫的作業報告，我覺得可以分享出來<br>
 hackmd版：<a href="https://hackmd.io/@Daichou/ByzK-S60E">https://hackmd.io/@Daichou/ByzK-S60E</a><br>
 主要文章：<a href="https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/">https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/</a></p>
@@ -427,258 +288,117 @@ CPU3: 700 / 768 * 800 = 729
 </li>
 </ul>
 
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small"></span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://daichou.github.io/tags/linux/">Linux</a>
+        </p>
+    </div>
+    
 
-                  </div>
-                
-              
-            
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/verilog-diagram-generator/" data-tooltip="Verilog Diagram generator">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml"></span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/" data-tooltip="AArch64 Linux kernel on Qemu">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr"></span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
+    <div class="page-footer">
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/energy-aware-scheduling/">
-              <i class="fa fa-facebook-official"></i>
-            </a>
-          </li>
+        <hr class="footer-divider">
         
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/energy-aware-scheduling/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
+            <a class="tag" href="https://daichou.github.io/tags/linux">#Linux</a>
         
       
-      
-      <li class="post-action">
+    </div>
+
+
         
-          <a class="post-action-btn btn btn--default" href="#">
+
+<link rel="stylesheet" type="text/css" href="https://daichou.github.io/css/katex.min.css">
+<script type="text/javascript" src="https://daichou.github.io/js/katex.min.js"></script>
+<script type="text/javascript" src="https://daichou.github.io/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
         
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  
+    <a class="social-icon" href="mailto:tommy0705c@gmail.com" target="_blank" rel="noopener" title="Email">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M25.2794292,5.59128519 L14,16.8707144 L2.72057081,5.59128519 C3.06733103,5.30237414 3.51336915,5.12857603 4,5.12857603 L24,5.12857603 C24.4866308,5.12857603 24.932669,5.30237414 25.2794292,5.59128519 Z M25.9956978,6.99633695 C25.998551,7.04004843 26,7.08414302 26,7.12857603 L26,20.871424 C26,21.0798433 25.9681197,21.2808166 25.9089697,21.4697335 L18.7156355,14.2763993 L25.9956978,6.99633695 Z M24.9498374,22.6319215 C24.6672737,22.7846939 24.3437653,22.871424 24,22.871424 L4,22.871424 C3.5268522,22.871424 3.09207889,22.7071233 2.74962118,22.432463 L10.0950247,15.0870594 L13.9848068,18.9768415 L14.1878486,18.7737996 L14.2030419,18.7889929 L17.6549753,15.3370594 L24.9498374,22.6319215 Z M2.00810114,21.0526627 C2.00273908,20.9929669 2,20.9325153 2,20.871424 L2,7.12857603 C2,7.08414302 2.00144896,7.04004843 2.00430222,6.99633695 L9.03436454,14.0263993 L2.00810114,21.0526627 Z"></path>
+        </svg>
+    </a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <a class="social-icon" href="https://gattacangin.blogspot.com/" target="_blank" rel="noopener" title="Blogger">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M16.4225354,15.183099 C16.7605636,15.183099 17.0422536,15.3145545 17.2676055,15.5774654 C17.4929581,15.8028172 17.6056345,16.0845072 17.6056345,16.4225354 C17.6056345,16.7605636 17.4929581,17.0422536 17.2676055,17.2676055 C17.0422536,17.4929581 16.7605636,17.6056345 16.4225354,17.6056345 L11.5211272,17.6056345 C11.183099,17.6056345 10.9014088,17.4929581 10.6760564,17.2676055 C10.4507043,17.0422536 10.3380283,16.7605636 10.3380283,16.4225354 C10.3380283,16.0845072 10.4507043,15.8028172 10.6760564,15.5774654 C10.9014088,15.3145545 11.183099,15.183099 11.5211272,15.183099 L16.4225354,15.183099 Z M11.5211272,11.5774646 C11.183099,11.5774646 10.9014088,11.4647886 10.6760564,11.2394368 C10.4507043,11.0140849 10.3380283,10.7323948 10.3380283,10.3943664 C10.3380283,10.0563382 10.4507043,9.77464807 10.6760564,9.54929597 C10.9014088,9.3239438 11.183099,9.21126771 11.5211272,9.21126771 L14.6760568,9.21126771 C15.0140849,9.21126771 15.295775,9.3239438 15.5211268,9.54929597 C15.7464787,9.77464807 15.8591546,10.0563382 15.8591546,10.3943664 C15.8591546,10.7323948 15.7464787,11.0140849 15.5211268,11.2394368 C15.295775,11.4647886 15.0140849,11.5774646 14.6760568,11.5774646 L11.5211272,11.5774646 Z M18.7887323,11.5774646 L18.7887323,9.21126771 C18.7887323,8.23474189 18.431925,7.38967148 17.7183104,6.67605648 C17.004695,5.9624414 16.1596245,5.60563386 15.183099,5.60563386 L10.3943663,5.60563386 C9.41784045,5.60563386 8.57277003,5.9624414 7.85915503,6.67605648 C7.14553995,7.38967148 6.78873241,8.23474189 6.78873241,9.21126771 L6.78873241,17.6056345 C6.78873241,18.58216 7.14553995,19.4272304 7.85915503,20.1408458 C8.57277003,20.8544604 9.41784045,21.2112677 10.3943663,21.2112677 L17.6056345,21.2112677 C18.58216,21.2112677 19.4272304,20.8544604 20.1408458,20.1408458 C20.8544604,19.4272304 21.2112677,18.58216 21.2112677,17.6056345 L21.2112677,14 C21.2112677,13.6619718 21.0985918,13.3802818 20.8732399,13.1549299 C20.6478873,12.9295781 20.3661969,12.8169022 20.0281687,12.8169022 C19.6901405,12.8169022 19.3896714,12.7042258 19.1267613,12.4788732 C18.9014086,12.2159623 18.7887323,11.9154928 18.7887323,11.5774646 L18.7887323,11.5774646 Z M23.6338031,2 C24.2723005,2 24.8169014,2.24413145 25.2676059,2.73239436 C25.7558686,3.18309863 26,3.72769958 26,4.36619722 L26,23.6338031 C26,24.2723005 25.7558686,24.8356809 25.2676059,25.3239444 C24.8169014,25.7746481 24.2723005,26 23.6338031,26 L4.36619722,26 C3.7276995,26 3.16431919,25.7746481 2.67605628,25.3239444 C2.22535209,24.8356809 2,24.2723005 2,23.6338031 L2,4.36619722 C2,3.72769958 2.22535209,3.18309863 2.67605628,2.73239436 C3.16431919,2.24413145 3.7276995,2 4.36619722,2 L23.6338031,2 Z"></path>
+        </svg>
+    </a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <a class="social-icon" href="https://github.com/Daichou" target="_blank" rel="noopener" title="GitHub">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M13.9988029,1.32087331 C6.82105037,1.32087331 1,7.14112562 1,14.3212723 C1,20.0649109 4.72454649,24.9370678 9.89038951,26.6560892 C10.5408085,26.7757983 10.7778323,26.374374 10.7778323,26.0296121 C10.7778323,25.7215609 10.7666595,24.9035493 10.760275,23.8189856 C7.14426471,24.6042767 6.38131925,22.0760223 6.38131925,22.0760223 C5.78995672,20.5740732 4.93762853,20.1742451 4.93762853,20.1742451 C3.75729765,19.3682044 5.02701126,19.3841656 5.02701126,19.3841656 C6.33183953,19.4759425 7.01817121,20.7241085 7.01817121,20.7241085 C8.17775254,22.7104801 10.0611744,22.1366749 10.8017741,21.8038838 C10.919887,20.9643246 11.2558703,20.3913175 11.6269683,20.066507 C8.74038491,19.7385043 5.70536235,18.6228163 5.70536235,13.6413251 C5.70536235,12.2223743 6.21213051,11.0611968 7.04370914,10.1530044 C6.90963504,9.82420367 6.46351945,8.50181809 7.17139875,6.71256734 C7.17139875,6.71256734 8.26234691,6.36301702 10.7459099,8.04532771 C11.78259,7.75642995 12.8950858,7.61277914 14.000399,7.60719272 C15.1049142,7.61277914 16.2166119,7.75642995 17.2548881,8.04532771 C19.736855,6.36301702 20.8262071,6.71256734 20.8262071,6.71256734 C21.5356825,8.50181809 21.0895669,9.82420367 20.9562909,10.1530044 C21.7894656,11.0611968 22.2922435,12.2223743 22.2922435,13.6413251 C22.2922435,18.6355852 19.2524325,19.734514 16.3570705,20.0561322 C16.8231376,20.4575564 17.2389269,21.2508282 17.2389269,22.4638795 C17.2389269,24.2012564 17.2229657,25.603448 17.2229657,26.0296121 C17.2229657,26.3775663 17.4575954,26.7821827 18.116793,26.6552912 C23.2786458,24.9322794 27,20.0633148 27,14.3212723 C27,7.14112562 21.1789496,1.32087331 13.9988029,1.32087331"></path>
+        </svg>
+    </a>
+    
+
+    
+    <a class="social-icon" href="#ZgotmplZ" target="_blank" rel="noopener" title="Stack Overflow">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M20.8863636,23.7090909 L20.8863636,17.3818182 L22.9863636,17.3818182 L22.9863636,25.8090909 L4.03181818,25.8090909 L4.03181818,17.3818182 L6.13181818,17.3818182 L6.13181818,23.7090909 L20.8863636,23.7090909 Z M8.45,16.7818182 L8.88636364,14.7090909 L19.1954545,16.8636364 L18.7590909,18.9363636 L8.45,16.7818182 Z M9.81363636,11.8727273 L10.6863636,9.93636364 L20.2318182,14.4090909 L19.3590909,16.3181818 L9.81363636,11.8727273 Z M12.4590909,7.18181818 L13.7954545,5.57272727 L21.8954545,12.3090909 L20.5590909,13.9181818 L12.4590909,7.18181818 Z M17.6954545,2.19090909 L23.9681818,10.6454545 L22.2772727,11.9 L16.0045455,3.44545455 L17.6954545,2.19090909 Z M8.23181818,21.5818182 L8.23181818,19.4818182 L18.7590909,19.4818182 L18.7590909,21.5818182 L8.23181818,21.5818182 Z"></path>
+        </svg>
+    </a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
 </div>
 
-            
-              
-            
-          </div>
-        </article>
-        <footer id="footer" class="main-content-wrap">
-  <span class="copyrights">
-    &copy; 2020 Dai chou. 
-  </span>
+
+
+
+	<div class="footer-mobile-links">
+		<p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://daichou.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
 </footer>
-
-      </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/verilog-diagram-generator/" data-tooltip="Verilog Diagram generator">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml"></span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/" data-tooltip="AArch64 Linux kernel on Qemu">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr"></span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://daichou.github.io/posts/energy-aware-scheduling/">
-              <i class="fa fa-facebook-official"></i>
-            </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://daichou.github.io/posts/energy-aware-scheduling/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
-      
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  
-</div>
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="1">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdaichou.github.io%2Fposts%2Fenergy-aware-scheduling%2F">
-          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
-        </a>
-      </li>
-    
-      <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fdaichou.github.io%2Fposts%2Fenergy-aware-scheduling%2F">
-          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
-        </a>
-      </li>
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-    </div>
-    
-    <div id="about">
-  <div id="about-card">
-    <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
-    </div>
-    
-      <img id="about-card-picture" src="https://www.gravatar.com/avatar/b4129e5955793d76911ddfa9909e0f60?s=110" alt="" />
-    
-    <h4 id="about-card-name">Dai chou</h4>
-    
-      <div id="about-card-bio">A student major in Computer science in National Chiao Tung University.</div>
-    
-    
-      <div id="about-card-job">
-        <i class="fa fa-briefcase"></i>
-        <br/>
-        Student
-      </div>
-    
-    
-      <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
-        <br/>
-        Taiwan
-      </div>
-    
-  </div>
-</div>
-
-    
-
-    
-  
-    
-      <div id="cover" style="background-image:url('https://daichou.github.io/images/cover.jpg');"></div>
-    
-  
-
-
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="https://daichou.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
-
-
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
-
-<script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight > code, pre > code').each(function(i, block) {
-    if (!$(this).hasClass('codeblock')) {
-      $(this).addClass('codeblock');
-    }
-    hljs.highlightBlock(block);
-  });
-});
-</script>
-
-
-  
-    
-  
-
-
-
-
-    
-  </body>
+    </body>
 </html>
-
