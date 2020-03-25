@@ -18,18 +18,7 @@
       
       <guid>https://daichou.github.io/posts/sw4stm32stm32-hal/</guid>
       <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。
-步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。
-
-當選擇完板子時不要急著案完成，繼續按下一步。
-
-下一步後，勾選Hardware Abstraction Layer(HAL)，即可導入ST官方提供之HAL library。其他還有一些第三方library如FreeRTOS等，也可在這裡新增。
-結果 SW4STM32會建立如下專案：
-
-其中HAL會獨立在HAL_Driver下。有幾個檔案要特別注意。
-src/stm32l4xx_it.c和inc/stm32l4xx_it.h這兩個檔案為放置Interrupt handler用的檔案，如有新增的Interrupt handler最好是放在這裡。
-src/system_stm32l4xx.c：這個檔案放置系統開機時的初始化(clock和RCC)。
-src/syscalls.c：這個檔案放置syscall，如果需要將printf的輸出導到UART，就需要在這個檔案動手腳。如下重新定義_io_putchar(int ch)
-其他 若要將其他的STM32CubeMX產生出的檔案放入SW4STM32產生之HAL專案，編譯時可能會遇到一些問題。如：void HAL_MspInit(void) redefination。原因是HAL_Driver/Src/stm32l4xx_hal_msp_template.c這個檔案會有衝突，處理方法即是刪除此檔。</description>
+步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</description>
     </item>
     
     <item>
@@ -38,29 +27,7 @@ src/syscalls.c：這個檔案放置syscall，如果需要將printf的輸出導�
       <pubDate>Thu, 07 Sep 2017 08:03:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</guid>
-      <description>STM32 LCD 使用 BSP 與STM32CubeMX 本文以STM32F469NI Discovery為範例。目標是以STM32F469的BSP lib操作STM32F469 Discovery的TFT-LCD。
-STM32CubeMX configuration 先將周邊開啟如以下設定。
-
-LTDC : LCD-TFT Display Controller，硬體優化的LCD控制介面。
-DSIHOST: Display Serial Interface Host，由MIPI alliance建立的行動顯示protocol。提供高速的LCD framrate。
-DMA2D : Chrom-Art Accelerator™ 用來做圖像操作的DMA，可以做出限定範圍的填滿等記憶體操作。適用AHB bus，可以將結果導入AHB slave端(DSI HOST)。
-RCC : LTDC , DSI HOST需要時序。
-I2C : 觸控需要。(stm32f469_discovery.c需要I2C)。
-FMC : 用BSP時可以選擇使用SDRAM存儲資料。
-
-時脈控制，由於開啟HSE，所以DSI有了clock source。(這部分要注意STM32CubeMX產生出來的程式碼是否會讓clock超過硬體限制)。
-
-選擇RGB565為color mode。
-
-Pixel format選用ARGB8888。
- 引入Driver
-在專案資料夾下的Drivers/BSP/Components/otm8009a 中，將該路徑下的otm8009a.c 加入keil專案。otm8009a為STM32F469_Discovery上的觸控顯示螢幕。
-在專案資料夾下的Drivers/BSP/STM32469I_Discovey中，將該路徑下的stm32469i_discovery.c、stm32469i_discovery_lcd.c、stm32469i_sdram.c加入keil專案中。
-去下載STM32CubeMX STM32F4 firmware link: http://www.st.com/content/st_com/en/products/embedded-software/mcus-embedded-software/stm32-embedded-software/stm32cube-embedded-software/stm32cubef4.html
-解開來，將Utilities資料夾放入project根目錄。
-新增好的檔案架構如下。
-
-在options for target -&amp;gt; C/C++ -&amp;gt; include path中加入那兩個資料夾。如下:</description>
+      <description>STM32 LCD 使用 BSP 與STM32CubeMX 本文以STM32F469NI Discovery為範例。目標是以STM32F469的BSP lib操作STM32F469 Discovery的TFT-LCD。</description>
     </item>
     
     <item>
@@ -69,35 +36,7 @@ Pixel format選用ARGB8888。
       <pubDate>Mon, 04 Sep 2017 07:31:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/posts/stm32cubemx/</guid>
-      <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;rdquo;，產生的專案會更有組織。
-一、安裝與更新 安裝網址如下:http://www.st.com/en/development-tools/stm32cubemx.html
-下載完成後，桌面會產生兩個icon，一個是STM32CubeMX，一個是STM32CubeUpdater。
-開啟STM32CubeUpdater，選擇所需的STM32系列library，即可完成相依library建設。更新也是透過此工具。
-二、基本使用(以STM32F469NI_Discovery為範例) 開啟STM32CubeMX，選擇New Project-&amp;gt;選擇晶片或是開發版即可進入。如下圖畫面。
-
-# pinout 左邊為周邊模組(peripheral)綠色為已經啟用。左邊為腳位設定(綠色為已規劃，橘色為開發版已經硬體連接的腳位但未啟用)。左鍵點選腳位可以開啟小選單選擇所需腳位定義。
-透過上方tab進入進階規劃。
-
-#Clock Configuration 
-這個tab將STM32的所有時序和PLL、prescaler列出整理成流。
-幾乎所有設定都可以修改。後方藍色框框中可以直接鍵入所需Clock值，系統會幫你調整整個流。當然有硬體限制，STM32cubeMX會提醒你，當你出現錯誤設定會有警示。
- #Configuration
-
-這個tab將前面所開啟的周邊模組列出，每個都可點選以進階設定。更詳細的設定之後文章會介紹。 #power consumption calculator 
-這個tab可以幫助計算能源消耗，還可以計算各個環境下的情況(就是把datasheet後面的數據列出)，不過無法計算開發版的能源消耗，僅限晶片本身。
-# project Settings 點選上方menu-&amp;gt;Project-&amp;gt;Project Settings，開啟以下專案設定。
-
-基本上就按照環境選了。不過這裏特別提一個選項，我覺得對後續開發很以幫助。
-
-紅框中選項可以將周邊裝置的初始化函式(以MX_為前綴的函式)產生成獨立的.c/.h配對，避免全部Init函式都在main中，造成main function很肥大，而且當你有多個source檔(並非主要程序都集中在main.c)時，可以讓其他函式更方便引用這些初始程序。
- #產生Project與報告
-
-紅框中這兩個東西可以產生Project 與報告。
-#結果與檔案樹(以ARM MDK keil為例) 
-User裡面是初始化函式和main.c。可以發現main.c中有一堆USER code begin和USER code end的註解，這些註解是希望user將自己的code加入其中，因為如果要重新使用STM32CubeMX產生code到同一專案時，可以確保user code不會被覆蓋。
-Drivers/STM32F_4xx_HAL_Driver是STM官方在推的HAL函式庫，現在的主流，這部分引用都是由STM32CubeMX完成，其中若是想要自行開啟周邊模組，可以在這個資料夾中的stm32f4xx_hal_conf.h中解除註解或新增註解(外面檔案樹的Inc中)。若有新增模組需要手動將該周邊的HAL的.c新增進專案中。
-# 小結 STM32CubeMX的有點是可以讓開發工程化，開發速度加快，可以用高層級的方式思考整個系統架構，而且不用去一直翻閱datasheet(最好還是要了解整個周邊的架構與使用)。
-缺點是一些官方套件，例如:STemWin和BSP要自行新增進入專案中，有點可惜。</description>
+      <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;rdquo;，產生的專案會更有組織。</description>
     </item>
     
   </channel>

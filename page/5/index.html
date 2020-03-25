@@ -61,6 +61,8 @@ if (!doNotTrack) {
   
     <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
+    <a class="color-link nav-link" href="https://daichou.github.io/archives/">Archives</a>
+  
   <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
 </div>
 <footer class="footer">
@@ -165,23 +167,19 @@ if (!doNotTrack) {
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/note-gdb/">
-                    [Note] GDB 一些指令功能速查
+                <a href="https://daichou.github.io/posts/hackntu2016/">
+                    HackNTU2016小小心得
                 </a>
             </h2>
-            <div><p>[Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。
-常用功能  backtrace breakpoint watchpoint stopwatch dump register dump variable continue and stop disasmmebly return  指令速查  backtrace  bt   breakpoint  b br   watchpoint  watch variable_name or watch variable_address   stopwatch  maint link   dump register  info r   dump variable  print variable_name print &amp;variable_name =&gt; get address print *variable_address =&gt; get address contents info display   continue and stop  c =&gt; continue r= &gt; run stop =&gt; Ctrl+c   disasmmebly  disassemble (func…) link layout asm layout src   return  return (return this stack)     Written with StackEdit.</p></div>
+            <div><p>HackNTU2016小小心得 其實我本身已經去過去年(2015)的HackNTU了，所以這篇文章會稍微比較這兩年。HackNTU為台灣規模最大的hackthon，但其核心價值已經逐漸遠離黑客松的&quot;合作&rdquo;、&ldquo;效率&rdquo;、&ldquo;有用&rdquo;、&ldquo;有趣&quot;的精神了。hackNTU逐漸變成一種比賽，創業比賽。我個人認為有好有壞。好處讓hacker可以更有商業頭腦，除了設計搞怪小東西外，還可以走進市場，同時，由於評審來自商業界，有種吸引創投的fu。壞處當然就是過度商業化得黑客松已經變成創業松，一堆人拿早就跑很久的專案進來投，失去了黑客松該有的短期高效合作模式，另外過度傾向賺錢，偏離了其實這是一個技術性活動，一些不好的事情就這樣發生了:&ldquo;簡報松&rdquo;、&ldquo;不會coding只做簡報拿獎&rdquo;、&ldquo;SetTimeout&rdquo;。這樣失去了hacker們自我實現與實做的目標了。
+今年由於受到COSCUP的撞期影響，人數大減3~4成，加上去年的風評不佳(評審問了『你怎麼賺錢』、『你怎麼make money』、『你的business model是什麼』)造成在社群間不好的名聲流傳。不過今年其實沒這個問題，評審都問一些本質與技術，這是一個好現象。可能因為人數大減的原因，使得今年食物較少(食物也是黑客松的精華阿)，肥宅我的心得試吃不飽。</p></div>
             <div class="post-footer">
-            <time>March 3, 2017</time>
+            <time>August 24, 2016</time>
 
             
             
                 
-                    <a class="tag" href="https://daichou.github.io/tags/tricks">#tricks</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                    <a class="tag" href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97">#活動心得</a>
                 
             
             </div> 
@@ -190,72 +188,13 @@ if (!doNotTrack) {
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/l3g4200-gyroscope/">
-                    L3G4200 gyroscope使用筆記
+                <a href="https://daichou.github.io/posts/toolsgnu-nm/">
+                    [tools]GNU 開發工具：nm
                 </a>
             </h2>
-            <div><p>L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.4V ~3.6V 模組(GY50)電壓：3~5V 其他特色：有內建high pass filter和low pass filter可供程式選擇，還有中斷信號選擇 通信方式：I2C/SPIs 晶片datasheet:連結在此 模組(GY50)購買網頁：連結在此  用此模組量測當前姿態方式 軟體部份 Ardunio先安裝wire library和L3G4200D
-用這個網站上的code和library即可。
-角速度轉成角度 由於該感測器輸出為角速度(離散資料)，所以我們須將角速度做離散積分得到角度。
- 角度 ＝ 初始角度 + (角速度*取樣時間的總和)
- 下圖為利用QT自製的視覺化工具。其中若要得到角度責須得到線與0軸的面積。
-
-下圖為L3G4200 datasheet p.10 一小部份，其中Sensitivity代表精度，以FS=200dps為例，代表從感測器輸出的數字1代表8.75mdps，如果輸出為兩千時，當前角速度為2000*8.75/1000000dps = 0.0175 dps。
-
-應用限制與誤差處理 由於是作離散積分所以會有誤差，最好使用濾波器(有內建)。
-另外由於它需要一直取樣，對Master CPU來說是很大的負擔。
- Written with StackEdit.
- </p></div>
+            <div><p>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。</p></div>
             <div class="post-footer">
-            <time>February 18, 2017</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/valgrindcc/">
-                    Valgrind:C/C&#43;&#43;分析工具
-                </a>
-            </h2>
-            <div><p>Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
-安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args 首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
-#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } 然後我們來看一下分析結果。
-==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.</p></div>
-            <div class="post-footer">
-            <time>January 13, 2017</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/stackedit/">
-                    方便的網站：stackedit
-                </a>
-            </h2>
-            <div><p>**
-方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。
- Written with StackEdit.
- </p></div>
-            <div class="post-footer">
-            <time>December 14, 2016</time>
+            <time>August 16, 2016</time>
 
             
             
@@ -269,68 +208,39 @@ if (!doNotTrack) {
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/notemicrocontroller/">
-                    [Note]Microcontroller的排程方式
+                <a href="https://daichou.github.io/posts/compiler-explorercc/">
+                    用Compiler Explorer學習C/C&#43;&#43;的效能與實做
                 </a>
             </h2>
-            <div><p>[Note]Microcontroller的排程方式 這篇為我看完Microchip Technology 20024 FRM4 - Interrupt and Task Scheduling - No RTOS Required後所作的筆記。
-Race condition與Synchronization Race condition的觀念在恐龍書已經說很多了，所以就不提了。而Synchronization部份，Microcontroller常用interupt disabling和spin lock來做處理，而用到sempahore的部份也是有。另外值得注意的一點是，由於MCU同時有許多peripheral component(Timer,ADC,SPI,UART&hellip;)再運作，這些元件也會改變SFR(special function register)的值，所以建算你的程式是但執行序，仍可能會有race consition發生，例如：在PIC的 16 bit timer中，他是分成兩個register控制timer的值(TMR1L,TMR1H)，也就是說你要更動timer的值時，需要大於兩個cycle，才可辦到，但是如果在存取值的時候你的timer仍在運作，則可能發生，不合理的狀況。比方說你想要讀取TMR1的值(TMR1H + TMR1L)，原本TMR1H = 0x00,TMR1L = 0xFF，第一部份，你讀到了TMR1H的值為0x00，但在第二部份時你要讀TMR1L的時候，因為timer仍在計時，經過一個cycle，TMR1L的值已經加1並進位到TMR1H，所以TMR1L的值現在為0x00，你讀到的值就是0x00，在這個case中，你預期你會得到(0x00,0xFF)，但你實際上拿到(0x00,0x00)，這是在MCU常有的情況。避免的方法為暫停timer然後再去取值。
- Review interrupt
-在MCU中硬體發生的中斷會已硬體的context switch實做，也就是她會將當前的core register複製一份到shadow register儲存，保留狀態，當離開ISR後，CPU會將shadow register載回core register中。
-在interupt中，對於跨ISR與main line的變數，可以考慮使用Volatile修飾字(一個資源有多個process使用時，透過這個修飾字可以告訴編譯器，不要對這個值做值域判斷優化)，以免編譯器編出你無法預期的行為。
-interrupt在context switch時會有所謂的interrupt latency(在IVT中尋找對應的interrupt vector+context switch+當前指令的完成(例如說MUL))，這是MCU的效能指標之一，不過對於多層的interrupt，在第二層以後失去了硬體context swtich的優化，所以速度會慢很多。
-Jitter injection為main line在被中斷後所暫停執行的時間，通常要盡量讓Jitter 愈小愈好。
-interupt priority:MCU中的interrupt有priority，規範誰可以中斷誰，例如說PIC18F系列有兩個level，dsPIC30F系列有八個level，此外MCU中透過interrupt 在IVT的順序，有所謂的natural order priority，來處理相同level intertupt同時發生的問題。另外，ISR裡可以包裹多個interrupt handler，這部份一樣是透過IVT先後和priority還有發生時間決定進入點。(其他:可重入程序)。
-一些ISR設計的注意細節:
-1.盡量ISR短，減少jitter
-2.避免無限的等待
-3.盡量避免ISR與mainline使用相同的全域變數(有的話記的要加volatile)
-Review scheduler(非Real time)與相關技術 有cooperative與preemptive兩大類，恐龍書有詳盡描述。此外還有兼容兩種特性的(hybird)。
-常見排程方式與技術有：</p></div>
+            <div><p>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。
+支援 這個網站支援ARM、MIPS、X86、AVR等指令集的compiler，支援度甚廣，且網頁本身也開源(使用node.</p></div>
             <div class="post-footer">
-            <time>December 7, 2016</time>
-
-            
-            
-                
-                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
-                
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://daichou.github.io/posts/c99-fast-data-type/">
-                    C99 fast data type
-                </a>
-            </h2>
-            <div><p>C99 fast data type 這個主題是我在看完Efficient C Tip #13 – use the modulus (%) operator with caution這篇文章發現的C99在stdint.h新規範的一些資料型態，所作的小小理解。
-C99 fast data type，為一種針對硬體CPU架構所提出的資料型態。主要有這下列八種型態：
-uint_fast8_t 
-uint_fast16_t
-uint_fast32_t
-uint_fast64_t
-int_fast8_t 
-int_fast16_t
-int_fast32_t
-int_fast64_t
-在C99 7.18.1.3是這樣做定義的：
-1 Each of the following types designates an integer type that is usually fastest 219) to operate
-with among all integer types that have at least the specified width.
-2 The typedef name int_fastN_t designates the fastest signed integer type with a width</p></div>
-            <div class="post-footer">
-            <time>December 6, 2016</time>
+            <time>August 16, 2016</time>
 
             
             
                 
                     <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
                 
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/">
+                    使用Ardunio Atmega2560 連接 nRF24L01&#43;
+                </a>
+            </h2>
+            <div><p>使用Ardunio Atmega2560 連接 nRF24L01+ 關於library 目前主流有https://github.</p></div>
+            <div class="post-footer">
+            <time>August 5, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
                 
             
             </div> 
@@ -339,23 +249,90 @@ with among all integer types that have at least the specified width.
         
         <article>
             <h2>
-                <a href="https://daichou.github.io/posts/notevim/">
-                    『note』目前的vim
+                <a href="https://daichou.github.io/posts/pwm/">
+                    PWM產生方式
                 </a>
             </h2>
-            <div><p>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
-首先.vimrc
-https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &#39;!python &#39;.shellescape(&#39;%&#39;) autocmd filetype c nnoremap :w exec &#39;!clear&amp;&amp;gcc &#39;.shellescape(&#39;%&#39;).&#39; -o &#39;.shellescape(&#39;%:r&#39;).&#39;&amp;&amp;./&#39;.shellescape(&#39;%:r&#39;) autocmd filetype cpp nnoremap :w exec &#39;!clear;echo -n &#34;====================&#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &#34;g++ &#39;.</p></div>
+            <div><p>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</p></div>
             <div class="post-footer">
-            <time>September 28, 2016</time>
+            <time>July 31, 2016</time>
 
             
             
                 
-                    <a class="tag" href="https://daichou.github.io/tags/utility">#utility</a>
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
                 
-                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/libpqxx-prepare-statements/">
+                    [筆記] libpqxx - prepare statements
+                </a>
+            </h2>
+            <div><p>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
+而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</p></div>
+            <div class="post-footer">
+            <time>May 8, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/postgresql">#postgresql</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/maker/">
+                    Maker常用開發板
+                </a>
+            </h2>
+            <div><p>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
+入門款
+** Ardunio系列：**
+ 基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO  &gt;&raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。</p></div>
+            <div class="post-footer">
+            <time>May 1, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/maker">#Maker</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/hardware">#hardware</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/libpqxx-postgresql-c-library/">
+                    libpqxx - postgresql c&#43;&#43; library 基本教學
+                </a>
+            </h2>
+            <div><p>簡介  libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。</p></div>
+            <div class="post-footer">
+            <time>May 1, 2016</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/c/c&#43;&#43;">#C/C&#43;&#43;</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/postgresql">#postgresql</a>
                 
             
             </div> 
@@ -367,7 +344,7 @@ https://github.com/Daichou/environment/blob/master/.vimrc
         <div class="paginator">
         
         
-        <p>Page 5 of 7</p>
+        <p>Page 5 of 5</p>
         <div class="paginator-group">
             
             <a class="color-link" href="https://daichou.github.io/page/4/">
@@ -380,17 +357,6 @@ https://github.com/Daichou/environment/blob/master/.vimrc
                 Newer          
             </a>
             
-            
-                <a class="color-link older" href="https://daichou.github.io/page/6/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
             
         </div>
         

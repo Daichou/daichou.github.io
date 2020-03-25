@@ -60,6 +60,8 @@ if (!doNotTrack) {
   
     <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
+    <a class="color-link nav-link" href="https://daichou.github.io/archives/">Archives</a>
+  
   <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
 </div>
 <footer class="footer">
@@ -168,16 +170,6 @@ if (!doNotTrack) {
                 <p>
                 一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
 當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。
-這時有兩個解法。
- void cast  例如:
-void f(void * argc) { (void) argc; } 這會無害的去用到這個變數。
-2.自己等於自己
-例如:
-void f(void * argc) { argc = argc; } 這兩招就是欺騙compiler這些變數已經被使用。
-我第一次看到這寫法真的嚇到了。
-以下是stackoverflow的討論。
-https://stackoverflow.com/questions/21045615/what-does-voidvar-actually-do
-https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1
                 </p>
             </div>
             <div class="post-footer">
@@ -196,7 +188,6 @@ https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1
             <div>
                 <p>
                 [Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。
-常用功能  backtrace breakpoint watchpoint stopwatch dump register dump variable continue and stop disasmmebly return  指令速查  backtrace  bt   breakpoint  b br   watchpoint  watch variable_name or watch variable_address   stopwatch  maint link   dump register  info r   dump variable  print variable_name print &amp;variable_name =&gt; get address print *variable_address =&gt; get address contents info display   continue and stop  c =&gt; continue r= &gt; run stop =&gt; Ctrl+c   disasmmebly  disassemble (func…) link layout asm layout src   return  return (return this stack)     Written with StackEdit.
                 </p>
             </div>
             <div class="post-footer">
@@ -216,9 +207,6 @@ https://stackoverflow.com/questions/8052091/void-cast-of-argc-and-argv?rq=1
                 <p>
                 在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
 首先，以arch linux 為例，winusb是在aur裡，所以只要下：
-$ yaourt -Sy winusb 即可安裝。
-接著開始製作live usb，先找到win10 ISO 檔的路徑，還有你的隨身碟隨身碟掛載路徑，下以下指令：
-$ winusb --install &lt;iso path&gt; &lt;partition&gt; 記得要用root or sudo來做。即可完成。
                 </p>
             </div>
             <div class="post-footer">
@@ -238,15 +226,6 @@ $ winusb --install &lt;iso path&gt; &lt;partition&gt; 記得要用root or sudo�
                 <p>
                 用github架Jekyll 一些問題解法 當一開始使用
 $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
-jekyll serve not found 這是一個很好處理的問題，因爲你的~/.gem/ruby/{version}/bin資料夾沒有在$PATH路徑下。加上去就可解決了。
-缺少bundler
-kernel_require.rb:55:in `require&#39;: cannot load such file -- bundler (LoadError) 大概的error如上。處理方式很簡單，就是安裝bundler。
-$ gem install bundler 這樣就解決了。
-如果還有以下錯誤：
-resolver.rb:356:in `block in verify_gemfile_dependencies_are_found!': Could not find gem &lsquo;jekyll-sitemap&rsquo; in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
-則多下一行指令：
-$ bundle install --path vendor/bundle invalid date &hellip;YAML.. 跑jekyll serve的時候可能會有噴出一堆如下的錯誤。
-Invalid date &#39;&lt;%= Time.now.strftime(&#39;%Y-%m-%d %H:%M:%S %z&#39;) %&gt;&#39;: Document &#39;vendor/bundle/ruby/2.
                 </p>
             </div>
             <div class="post-footer">

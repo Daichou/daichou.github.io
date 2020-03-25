@@ -19,8 +19,7 @@
       <guid>https://daichou.github.io/posts/notevim/</guid>
       <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
-https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &amp;#39;!python &amp;#39;.shellescape(&amp;#39;%&amp;#39;) autocmd filetype c nnoremap :w exec &amp;#39;!clear&amp;amp;&amp;amp;gcc &amp;#39;.shellescape(&amp;#39;%&amp;#39;).&amp;#39; -o &amp;#39;.shellescape(&amp;#39;%:r&amp;#39;).&amp;#39;&amp;amp;&amp;amp;./&amp;#39;.shellescape(&amp;#39;%:r&amp;#39;) autocmd filetype cpp nnoremap :w exec &amp;#39;!clear;echo -n &amp;#34;====================&amp;#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &amp;#34;g++ &amp;#39;.</description>
+https://github.com/Daichou/environment/blob/master/.vimrc</description>
     </item>
     
   </channel>

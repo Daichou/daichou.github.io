@@ -60,6 +60,8 @@ if (!doNotTrack) {
   
     <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
+    <a class="color-link nav-link" href="https://daichou.github.io/archives/">Archives</a>
+  
   <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
 </div>
 <footer class="footer">
@@ -167,10 +169,6 @@ if (!doNotTrack) {
             <div>
                 <p>
                 Arduino PWM(analogWrite) Arduino PWM是使用analogWrite，但是其有一個限制，也就是PWM resolution只有256，PWM duty cycle的值只能介於0~255，對於一般的應用來說，這個值還可以應付，但是對於高精度的Servo或是馬達，這個值實在是太小了。(請參考analogWrite)。雖然在有些板子Arduino提供analogWriteResolution這個函式(Zero, Due &amp; MKR Family、參閱：analogWriteResolution)可以將PWM resolution提高至12，更高的值內部會做mapping到比較低解析度。至於其他板子(例如:Arduino Mega 2560)，則需要第三方library支援(或是自己寫)。
-Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其datasheet(link)中提到其&quot;Six/Twelve PWM Channels with Programmable Resolution from 2 to 16 Bits&rdquo;，ATmega2560有12個PWM channel，resolution可為2~16bits。所以其實Arduino Mega 2560硬體可以比Arduino Framework設計的resolution高很多。至於為什麼Arduino官方不用16bits呢，我猜是因為為了保證0~255的限制是可以達成。Arduino Framework的PWM frequency是固定的(16 MHz / 64 / 255 / 2 = 490.196Hz，見Secrets Of Arduino PWM)。
-而PWM resolution並不是你想要16bits就可以有16bits的resolution，PWM resolution跟PWM frequency息息相關。在ATmega2560中，Frequecy與系統頻率、timer prescaler(除頻器)，還有最常使用的TOP值(限定Timer counter的最大上限)有關。TOP值的大小即為PWM resolution。依據Atmel PWM resolution公式：
- PWM resolution = log(TOP + 1) / log 2
-  通常要把PWM resolution拉到最高，PWM frequency會很小，這主要看設計時的選擇。其他細部詳情請見ATmega640/V-1280/V-1281/V-2560/V-2561/V [DATASHEET]第17章。
                 </p>
             </div>
             <div class="post-footer">
@@ -188,8 +186,7 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
             </h2>
             <div>
                 <p>
-                MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.
+                MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.
                 </p>
             </div>
             <div class="post-footer">
@@ -207,17 +204,7 @@ Arduino的硬體PWM極限(Arduino Mega 2560) 以Arduino Mega 2560為例，在其
             </h2>
             <div>
                 <p>
-                CMake: find_package and custom find cmake (findXXX.cmake) 我個人覺得這主題寫最好的是這篇，我會建議大家可以看這篇，不要看我寫的XD
-https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-To-Find-Libraries
-find_package find_package是CMake中用來找第三方package的command。這command功能是去找到所需第三方package的資訊(版本、include path、library path等)，並將資訊存入定好的variable中。find_package會曲找尋CMakeLists.txt所在資料夾下的FindXXX.cmake，或是cmake本身定義好的FindXXX.cmake，通常系統路徑是/usr/share/cmake/Modules下(Arch Linux是放在/usr/share/cmake-版本號/Modules下)。基本上有名的package都已經被定義好了。若是想要知道有哪些可用可以自行去路徑下找，或是用:
-cmake --help-module-lists 查詢。
-在CMake中使用find_package通常會使用類似下列參數。
-find_package(OpenCV 3.4.1 REQUIRED) find_package(package_name version [REQUIRED] [QUIET] )，Version非必要，主要看package敘述。REQUIRED和QUIET主要用於相依性，若package為必要用REQUIRED，若沒找到直接報錯。選擇性用QUIET，通常會用類似下列方式達成選擇性。若沒找到package不會報任何錯誤。
-find_package(OpenMP) if (OPENMP_FOUND)  set (CMAKE_C_FLAGS &#34;${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}&#34;)  set (CMAKE_CXX_FLAGS &#34;${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}&#34;) endif()透過find_package 定義的-FOUND判斷是否存在。
-find_package通常會定義下列四種變數：
-  _FOUND : 是否找到
-  _INCLUDE_DIRS or _INCLUDES : include path，類似gcc -I/path
-  _LIBRARIES or _LIBRARIES or _LIBS : link library 類似 gcc -L/path -l library
+                CMake: find_package and custom find cmake (findXXX.
                 </p>
             </div>
             <div class="post-footer">
@@ -237,20 +224,6 @@ find_package通常會定義下列四種變數：
                 <p>
                 CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &hellip;&hellip;等。可以透過在產生Makefile時下：
-$ cmake -DCMAKE_BUILD_TYPE=value 來指定BUILD_TYPE，也可以在CMakeLists.txt中修改或是新增：
-SET(CMAKE_CONFIGURATION_TYPES  &#34;Release&#34;)來給定。而BUILD_TYPE會使得該BUILD_TYPE中所定義的CMAKE_&lt;LANG&gt;_FLAGS_&lt;BUILD_TYPE&gt;被加入CMAKE_&lt;LANG&gt;_FLAGS中，例如：把build type設為Debug，會使得CMAKE_C_FLAGS_DEBUG被加入CMAKE_C_FLAGS中。這裡cmake官方文件寫得很清楚reference。
-若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：
-SET(GCC_COVERAGE_COMPILE_FLAGS &#34;-g&#34;) SET( CMAKE_CXX_FLAGS  &#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34; )我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。
-此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：
- CMAKE_C_FLAGS -&gt; CFLAGS CMAKE_CXX_FLAGS -&gt; CXXFLAGS  CMAKE_CUDA_FLAGS -&gt; CUDAFLAGS CMAKE_Fortran_FLAGS -&gt; FFLAGS  而若是使用ccmake來產生Makefile，可以在視窗中輸入t開啟進階選項。直接在選單中修改即可。ex:
-
-Option 下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。
-下在command line，只要用-D就好，ex：
-$ cmake -DCMAKE_BUILD_TYPE=value 然而用這個很難知道，有什麼選項可以下，而且很麻煩，不過如果你build project是用script只能用這招。至於要知道有哪些選項可以透過：
-$ cmake -L 得到所有選項以及當前選擇。
-另外一種下option的方式是ccmake， 在Arch中安裝cmake套件，Ubuntu中安裝cmake-curses-gui即可，用法就是把所有cmake的指令改成ccmake。
-當更新選項重新build時，會因為路徑下有CMakeCache.txt造成build成上一個版本的設定。可以把CMakeCache.txt刪除，或是透過make rebuild_cache重新建立CMakeCache.txt
-CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，經過運行後會變什麼。可以透過查看CMakeCache.txt或是下cmake -LAH來查看值。
                 </p>
             </div>
             <div class="post-footer">
@@ -269,11 +242,6 @@ CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，�
             <div>
                 <p>
                 Blogger Syntax highlight over https 由於現在blogger要求https，以往的常用的scripts：
- http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js
- 會因為是http而造成瀏覽器報錯，而且載入的code通常會失敗。因此這裡提供一個新的解法。
-改用以下cdn由cloudflare提供的。就可以讓你的code在https下漂漂亮亮的。
-打開blogger-&gt;theme-&gt;編輯HTML，在&lt;head&gt;&lt;/head&gt;中新增以下code。
-&lt;link href=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt; &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js&#34; type=&#34;text/javascript&#34;&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushAS3.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushBash.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushColdFusion.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCSharp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDelphi.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushDiff.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushErlang.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushGroovy.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJavaFX.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPerl.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPlain.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPowerShell.js&#39; type=&#39;text/javascript&#39;/&gt; &lt;script src=&#39;https://cdnjs.
                 </p>
             </div>
             <div class="post-footer">
@@ -292,11 +260,7 @@ CMake debug 如果要撰寫cmake最大問題是不知道cmake variable的值，�
             <div>
                 <p>
                 使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
-環境  OS: Arch Linux (4.15.7-1-ARCH) LXC ubuntu on LXC  步驟 LXC準備 安裝 LXC $ sudo pacman -Sy lxc arch-install-scripts debootstap 建立 Host Network (NAT bridge) (Arch Wiki寫得很好看Arch Wiki) 建立/etc/default/lxc-net(詳情見Arch Wiki)
-USE_LXC_BRIDGE=&#34;true&#34; LXC_BRIDGE=&#34;lxcbr0&#34; LXC_ADDR=&#34;10.0.3.1&#34; LXC_NETMASK=&#34;255.255.255.0&#34; LXC_NETWORK=&#34;10.0.3.0/24&#34; LXC_DHCP_RANGE=&#34;10.0.3.2,10.0.3.254&#34; LXC_DHCP_MAX=&#34;253&#34; 修改lxc template conf，在/etc/lxc/default.conf新增
-lxc.net.0.type = veth lxc.net.0.link = lxcbr0 lxc.net.0.flags = up lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx 安裝dnsmasq
-$ sudo pacman -Sy dnsmasq 開啟以及設定開機啟動：
-sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubuntu) 建previleged的container
+環境  OS: Arch Linux (4.
                 </p>
             </div>
             <div class="post-footer">
@@ -315,18 +279,6 @@ sudo systemctl start lxc-net sudo systemctl enable lxc-net 建立container (ubun
             <div>
                 <p>
                 Arduino TLC5940與伺服馬達 TLC5940介紹 TLC5940是TI的16 channel LED驅動晶片。可以支援同時16通道的PWM灰階輸出，解析度為4096階。同時有兩種模式 12 bit (4096 Steps) Grayscale PWM Control 和 Dot Correction。
-重要參數：
-供應電壓：Vcc =&gt; 3V ~ 5.5V
-操作界面：Serial Data
-資料傳輸速率：~30MHz
-LED可驅動最大電壓：~17V
-LED可驅動電流：0~60mA(Vcc &lt; 3.6V ) 0~120mA(Vcc &gt; 3.6V)
-由於是輸出PWM，也可以拿來做PWM擴充。所以也可以拿來推Servo摟。
-TLC5940 Ardunio library 在Ardunio IDE中可以透過library manager找到。而github上也有連結：
-https://github.com/PaulStoffregen/Tlc5940
-TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2560。
-
-   TLC5940 Arduino Mega2560     SIN(pin 26) MOSI(pin 51)   SCK(pin 25) SCLK(pin 52)   XLAT(pin 24) OC1A(pin 11)   BLANK(pin 23) OC1B(pin 12) + 1K ohm上拉電阻   GSCLK(pin 18) OC2B(pin 9)   VPRG(pin 27) VPRG(pin 50) or GND   XERR(pin 16) XERR(pin 10) or GND   SIN(pin 26) SIN(pin 51)   IREF(pin 20) 1K ohm下拉電阻   VCC(pin 21) 5V   GND(pin 22) GND    至於out0到out15的接法比較特別。
                 </p>
             </div>
             <div class="post-footer">
@@ -344,7 +296,7 @@ TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2
             </h2>
             <div>
                 <p>
-                MPU6050 Gyroscope/Accelerometer 使用筆記 特性與參數  用途：量測姿態 精度：  Gyro : 250/500/1000/2000 dps (degree per second) Accel : +-2/4/6/16 g   輸出資料：為angular rate(角速度) ，16bit , LSB/g 原始感應器電壓VDD(僅有晶片)：2.375V-3.46V 原始晶片通訊電氣參數：  Vlogic = 1.8V (+-5%) OR VDD VIH(Voltage high level) : 必須超過0.7*Vlogic(MPU6050) VIL(Voltage low level):必須低於0.3*Vlogic(MPU6050) Ci(Input Capacitance): &lt;5pF I2C address: 1101000(when AD0 = 0),1101001(when AD0 = 1) I2C最快頻率：400KHZ   模組(GY521)電壓：3~5V 其他特色：  有內建low pass filter可供程式選擇 中斷信號選擇 Auxiliary I2C port可與其他模組串接 可作自我校正 可透過FSYNC pin與外部模組做synchronization (Gyro) On-chip DIgital motion processor 有內建FIFO   通信方式：I2C(MPU6050,MPU6000)/SPI(MPU6000) 晶片datasheet:連結在此  資料單位換算 Gyroscope 首先先看下表為MPU6050 datasheet。
+                MPU6050 Gyroscope/Accelerometer 使用筆記 特性與參數  用途：量測姿態 精度：  Gyro : 250/500/1000/2000 dps (degree per second) Accel : +-2/4/6/16 g   輸出資料：為angular rate(角速度) ，16bit , LSB/g 原始感應器電壓VDD(僅有晶片)：2.
                 </p>
             </div>
             <div class="post-footer">
@@ -363,7 +315,6 @@ TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2
             <div>
                 <p>
                 [Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。
-常用功能  backtrace breakpoint watchpoint stopwatch dump register dump variable continue and stop disasmmebly return  指令速查  backtrace  bt   breakpoint  b br   watchpoint  watch variable_name or watch variable_address   stopwatch  maint link   dump register  info r   dump variable  print variable_name print &amp;variable_name =&gt; get address print *variable_address =&gt; get address contents info display   continue and stop  c =&gt; continue r= &gt; run stop =&gt; Ctrl+c   disasmmebly  disassemble (func…) link layout asm layout src   return  return (return this stack)     Written with StackEdit.
                 </p>
             </div>
             <div class="post-footer">
@@ -381,18 +332,7 @@ TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2
             </h2>
             <div>
                 <p>
-                L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.4V ~3.6V 模組(GY50)電壓：3~5V 其他特色：有內建high pass filter和low pass filter可供程式選擇，還有中斷信號選擇 通信方式：I2C/SPIs 晶片datasheet:連結在此 模組(GY50)購買網頁：連結在此  用此模組量測當前姿態方式 軟體部份 Ardunio先安裝wire library和L3G4200D
-用這個網站上的code和library即可。
-角速度轉成角度 由於該感測器輸出為角速度(離散資料)，所以我們須將角速度做離散積分得到角度。
- 角度 ＝ 初始角度 + (角速度*取樣時間的總和)
- 下圖為利用QT自製的視覺化工具。其中若要得到角度責須得到線與0軸的面積。
-
-下圖為L3G4200 datasheet p.10 一小部份，其中Sensitivity代表精度，以FS=200dps為例，代表從感測器輸出的數字1代表8.75mdps，如果輸出為兩千時，當前角速度為2000*8.75/1000000dps = 0.0175 dps。
-
-應用限制與誤差處理 由於是作離散積分所以會有誤差，最好使用濾波器(有內建)。
-另外由於它需要一直取樣，對Master CPU來說是很大的負擔。
- Written with StackEdit.
- 
+                L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.
                 </p>
             </div>
             <div class="post-footer">
@@ -411,9 +351,7 @@ TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2
             <div>
                 <p>
                 Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
-安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1. Memcheck:記憶體錯誤分析工具。 2.Cachegrind:預測你的cache使用。 3.Callgrind:分析程式的function call次數，還有call graph，可以幫助快取分析。 4.Helgrind:多執行序錯誤分析工具，有race condition檢測功能。 5.DRD:另一個多執行序分析工具。 6.Massif:分析heap的使用，在一個程式執行中她會測量多次。 7.DHAT:另一種heap分析工具。 8.SGcheck:實驗性的全域變數與stack分析工具。 9.BBV:實驗性SimPoint相關工具。 這些工具比較常用的是前七個。接下來看一下個別的使用。 memcheck $ valgrind --tool=memcheck 程式名稱 args 首先我先寫一個廢物code來做實驗。以下code new完之後沒有delete。
-#include&lt;iostream&gt; using namespace std; int main() { int *ptr; ptr = new int; *ptr = 2; cout &lt;&lt; *ptr &lt;&lt; endl; } 然後我們來看一下分析結果。
-==12313== Memcheck, a memory error detector ==12313== Copyright (C) 2002-2015, and GNU GPL&#39;d, by Julian Seward et al.
+安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1.
                 </p>
             </div>
             <div class="post-footer">
@@ -432,19 +370,6 @@ TLC5940電路接法 以下以PDIP封裝的TLC5940為例還有使用Arduino Mega2
             <div>
                 <p>
                 [Note]Microcontroller的排程方式 這篇為我看完Microchip Technology 20024 FRM4 - Interrupt and Task Scheduling - No RTOS Required後所作的筆記。
-Race condition與Synchronization Race condition的觀念在恐龍書已經說很多了，所以就不提了。而Synchronization部份，Microcontroller常用interupt disabling和spin lock來做處理，而用到sempahore的部份也是有。另外值得注意的一點是，由於MCU同時有許多peripheral component(Timer,ADC,SPI,UART&hellip;)再運作，這些元件也會改變SFR(special function register)的值，所以建算你的程式是但執行序，仍可能會有race consition發生，例如：在PIC的 16 bit timer中，他是分成兩個register控制timer的值(TMR1L,TMR1H)，也就是說你要更動timer的值時，需要大於兩個cycle，才可辦到，但是如果在存取值的時候你的timer仍在運作，則可能發生，不合理的狀況。比方說你想要讀取TMR1的值(TMR1H + TMR1L)，原本TMR1H = 0x00,TMR1L = 0xFF，第一部份，你讀到了TMR1H的值為0x00，但在第二部份時你要讀TMR1L的時候，因為timer仍在計時，經過一個cycle，TMR1L的值已經加1並進位到TMR1H，所以TMR1L的值現在為0x00，你讀到的值就是0x00，在這個case中，你預期你會得到(0x00,0xFF)，但你實際上拿到(0x00,0x00)，這是在MCU常有的情況。避免的方法為暫停timer然後再去取值。
- Review interrupt
-在MCU中硬體發生的中斷會已硬體的context switch實做，也就是她會將當前的core register複製一份到shadow register儲存，保留狀態，當離開ISR後，CPU會將shadow register載回core register中。
-在interupt中，對於跨ISR與main line的變數，可以考慮使用Volatile修飾字(一個資源有多個process使用時，透過這個修飾字可以告訴編譯器，不要對這個值做值域判斷優化)，以免編譯器編出你無法預期的行為。
-interrupt在context switch時會有所謂的interrupt latency(在IVT中尋找對應的interrupt vector+context switch+當前指令的完成(例如說MUL))，這是MCU的效能指標之一，不過對於多層的interrupt，在第二層以後失去了硬體context swtich的優化，所以速度會慢很多。
-Jitter injection為main line在被中斷後所暫停執行的時間，通常要盡量讓Jitter 愈小愈好。
-interupt priority:MCU中的interrupt有priority，規範誰可以中斷誰，例如說PIC18F系列有兩個level，dsPIC30F系列有八個level，此外MCU中透過interrupt 在IVT的順序，有所謂的natural order priority，來處理相同level intertupt同時發生的問題。另外，ISR裡可以包裹多個interrupt handler，這部份一樣是透過IVT先後和priority還有發生時間決定進入點。(其他:可重入程序)。
-一些ISR設計的注意細節:
-1.盡量ISR短，減少jitter
-2.避免無限的等待
-3.盡量避免ISR與mainline使用相同的全域變數(有的話記的要加volatile)
-Review scheduler(非Real time)與相關技術 有cooperative與preemptive兩大類，恐龍書有詳盡描述。此外還有兼容兩種特性的(hybird)。
-常見排程方式與技術有：
                 </p>
             </div>
             <div class="post-footer">
@@ -462,20 +387,7 @@ Review scheduler(非Real time)與相關技術 有cooperative與preemptive兩大�
             </h2>
             <div>
                 <p>
-                C99 fast data type 這個主題是我在看完Efficient C Tip #13 – use the modulus (%) operator with caution這篇文章發現的C99在stdint.h新規範的一些資料型態，所作的小小理解。
-C99 fast data type，為一種針對硬體CPU架構所提出的資料型態。主要有這下列八種型態：
-uint_fast8_t 
-uint_fast16_t
-uint_fast32_t
-uint_fast64_t
-int_fast8_t 
-int_fast16_t
-int_fast32_t
-int_fast64_t
-在C99 7.18.1.3是這樣做定義的：
-1 Each of the following types designates an integer type that is usually fastest 219) to operate
-with among all integer types that have at least the specified width.
-2 The typedef name int_fastN_t designates the fastest signed integer type with a width
+                C99 fast data type 這個主題是我在看完Efficient C Tip #13 – use the modulus (%) operator with caution這篇文章發現的C99在stdint.
                 </p>
             </div>
             <div class="post-footer">
@@ -496,7 +408,6 @@ with among all integer types that have at least the specified width.
                 『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
 https://github.com/Daichou/environment/blob/master/.vimrc
-  基本設定  set shiftwidth=4 set expandtab set softtabstop=4 set laststatus=2 set noshowmode set number set modeline set t\_Co=256 set tabstop=2 set fileencodings=utf-8,big5 set cursorline set mouse=a syntax on   編譯快捷鍵  autocmd filetype python nnoremap :w exec &#39;!python &#39;.shellescape(&#39;%&#39;) autocmd filetype c nnoremap :w exec &#39;!clear&amp;&amp;gcc &#39;.shellescape(&#39;%&#39;).&#39; -o &#39;.shellescape(&#39;%:r&#39;).&#39;&amp;&amp;./&#39;.shellescape(&#39;%:r&#39;) autocmd filetype cpp nnoremap :w exec &#39;!clear;echo -n &#34;====================&#34;;TEMP=\`mktemp\`;script $TEMP -e -q -c &#34;g++ &#39;.
                 </p>
             </div>
             <div class="post-footer">

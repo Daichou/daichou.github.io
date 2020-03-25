@@ -61,6 +61,8 @@ if (!doNotTrack) {
   
     <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
+    <a class="color-link nav-link" href="https://daichou.github.io/archives/">Archives</a>
+  
   <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
 </div>
 <footer class="footer">
@@ -169,14 +171,7 @@ if (!doNotTrack) {
                     使用Vivado Xilinx AXI verification IP進行AXI ip開發驗證
                 </a>
             </h2>
-            <div><p>Xilinx AXI Verification IP tutorial 前情提要 一般來說開發Xilinx FPGA上的AXI master/slave ip都是透過C/C++ 轉成HLS或是直接撰寫Verilog。透過C/C++ 轉成的HLS可以自己寫簡單的C/C++ 程式作為testbench，驗證結果可以直接看C/C++ testbench的結果而定，Verilog細節、AXI操作等問題Vivado HLS會幫你完全處理(如果這些部份出現問題，你也沒輒了)。但是透過Verilog直接寫成的IP，通常需要CPU還有記憶體界面(eg. mig)之類的進行全系統測試，而獲取波形等資訊需要透過合成ILA在板子上實際測試。這流程十分繁瑣，合成ILA會浪費大量syntesis和implementation時間，而且可以debug的的訊號數量受限於晶片上的block ram以及LUT數量。然而很多人忽略了Xilinx其實提供了AXI verification IP，可以簡單快速撰寫testbench直接進行behavior simulation，這對於縮短演算法邏輯開發的時間有益。
-本文主要以 CPU &lt;-&gt; AXI slave &lt;=&gt; AXI master &lt;-&gt; memory此模式為主。
-完整文件請看AXI Verification IP v1.0。
-AXI Verification IP 簡介 Xilinx AXI Verification IP主要提供的功能為:
-  產生AXI master command與資料(可自訂) 產生AXI slave進行資料讀取與回覆(也可以模擬mig記憶體界面) 檢查AXI protocol  而Xilinx AXI Verification IP (VIP)主要有三種模式：
-  作為AXI master
-  用來測試AXI slave ip
-  作為AXI slave</p></div>
+            <div><p>Xilinx AXI Verification IP tutorial 前情提要 一般來說開發Xilinx FPGA上的AXI master/slave ip都是透過C/C++ 轉成HLS或是直接撰寫Verilog。透過C/C++ 轉成的HLS可以自己寫簡單的C/C++ 程式作為testbench，驗證結果可以直接看C/C++ testbench的結果而定，Verilog細節、AXI操作等問題Vivado HLS會幫你完全處理(如果這些部份出現問題，你也沒輒了)。但是透過Verilog直接寫成的IP，通常需要CPU還有記憶體界面(eg.</p></div>
             <div class="post-footer">
             <time>March 22, 2020</time>
 
@@ -192,14 +187,7 @@ AXI Verification IP 簡介 Xilinx AXI Verification IP主要提供的功能為:
                     Verilog Diagram generator
                 </a>
             </h2>
-            <div><p>Verilog Diagram generator 最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。
-用法先去clone該專案，進行安裝。
-$ git clone https://github.com/YosysHQ/yosys 安裝相依工具：
-$ sudo apt-get install build-essential clang bison flex \  libreadline-dev gawk tcl-dev libffi-dev git \  graphviz xdot pkg-config python3 libboost-system-dev \  libboost-python-dev libboost-filesystem-dev zlib1g-dev 進去yosys資料夾後，選擇compiler:
-$ make config-clang $ make config-gcc 然後make &amp;&amp; make install
-$ make $ sudo make install 這些步驟都跟readme寫的一樣。
-這工具的command和vcs蠻相似的，執行yosys會進到command shell，透過read_verilog載入verilog module，或是read -sv載入verilog module同時elaborate。之後指定top module。她會產生檔案的AST。
-yosys&gt; read -sv folder/*.v yosys&gt; hierarchy -top top_module 接下來可以用show指令顯示diagram。</p></div>
+            <div><p>Verilog Diagram generator 最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。</p></div>
             <div class="post-footer">
             <time>March 6, 2020</time>
 
@@ -216,20 +204,7 @@ yosys&gt; read -sv folder/*.v yosys&gt; hierarchy -top top_module 接下來可�
                 </a>
             </h2>
             <div><p>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 
-整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency</p></div>
+hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</p></div>
             <div class="post-footer">
             <time>July 4, 2019</time>
 
@@ -249,18 +224,7 @@ Performance domain(perf_domain)
                     AArch64 Linux kernel on Qemu
                 </a>
             </h2>
-            <div><p>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.linaro.org/downloads/，進行下載。以最新第七版為例https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/，下載linux版本即可，然後找個地方解壓縮。
-三、下載或編譯Qemu 在arch linux中用pacman安裝qemu。
-$sudo pacman -Sy qemu 或是去https://www.qemu.org/下載qemu，或是用git clone。
-$ git clone git://git.qemu.org/qemu.git qemu.git $ cd qemu.git $ ./configure --target-list=aarch64-softmmu $ make 之後執行檔會放在qemu.git/aarch64-softmmu/qemu-system-aarch64。
-Arch Linux的package預設包含aarch64-softmmu這個target。
-四、建立rootfs 其實有很多方法可以建立(busybox)，而這裡用buildroot來做。
-首先取得buildroot。
-git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig 在target option中選擇架構與CPU。
-以下為範例：
-
-在System configuration &mdash;&gt; 點選[*]Run a getty (login prompt) after boot &mdash;&gt;並將TTY port設成ttyAMA0。
-在Target Packages &mdash;&gt;選取busybox與[*] Show packages that are also provided by busybox 。</p></div>
+            <div><p>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.</p></div>
             <div class="post-footer">
             <time>June 17, 2019</time>
 
@@ -280,13 +244,7 @@ git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ m
                     2018 COSCUP Day2
                 </a>
             </h2>
-            <div><p>flatpak vs. snap  https://hackmd.io/c/coscup18-gnome/%2Fcoscup18-gnome301-flatpak-snap 按照官網說法，flatpak就是一種container，透過OCI format和cgroups等科技達成sandbox，snap也是類似的東西。https://flatpak.org/faq/ flatpak的app比較多，但是也比較雜，不過其支援ROS打包未來應可以應用。    回望踏入 Linux 内核之旅  https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-linux-kernel https://mp.weixin.qq.com/s/Dgq35AUIBy5nMUKPBwR5ag 中國人很喜歡哲學again XD 我覺得對岸的OS教得比較深入(西安交大)，教授會要求學生進去看sub module。同時也會與學生組織讀書會一起討論。 Understanding the Linux Kernel(ULK)難，深入屬於進階 Linux kernel development(LKD)簡單，適合入門。 Linux device driver屬於實做型    uTensor: AI on Microcontroller   https://hackmd.io/c/coscup18-data/%2Fcoscup18-data-utensor
-  https://github.com/uTensor/uTensor
-  在MCU上跑Tensor，由於MCU功耗極低，而且超便宜，若能將部份機器學習推論部份搬至MCU上會在應用上更有幫助。然而MCU有其限制，例如code size,ram size小，而且又很慢，因此僅適合做推論。為了克服ram太小問題，可以將資料存於SD卡中(SDTensor)或是ROM（ROMTensor），其中ROM tensor可以不需要SD卡。在編譯期的優化需要判斷哪個Tensor最常被Reference，讓其停留於MCU的data memory中。至於應用，可以用在Sensor Fusion，對資料做前處理，減少傳遞的資料量。也可以做輸入辨識。
-  uTensor建立在ARM mbed平台上。即便如此，程式碼須撰寫的數量仍多，因此有了utensor_cgen的專案，將python tensor轉為uTensor。
-  uTensor專案下方有對於edge computing做介紹。
-  其他：同場加映-山嵐拉麵   
-湯濃，但是略油，料豐，但是略貴</p></div>
+            <div><p>flatpak vs. snap  https://hackmd.</p></div>
             <div class="post-footer">
             <time>August 19, 2018</time>
 
@@ -306,7 +264,7 @@ git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ m
                     2018 COSCUP day 1
                 </a>
             </h2>
-            <div><p>Introduction to Julia 308  https://hackmd.io/c/coscup18-julia/%2Fcoscup18-julia-introduction-to-julia https://www.slideshare.net/ssuserd6984b/coscup-introduction-to-julia 『Write like Python, run like C.』沒什麼比這句或更有吸引力了，這個語言一本上是語法融合R+Python的動態型別語言，不過她速度實測上接近C和Lua，不過按照講者說法Julia需要在宣告時給定變數型別才可獲得最佳效能。 pass by sharing，function內變數指向原本的參數位置 語法上有趣的部份是他的陣列Index是從1開始的，陣列支援comprehension展開，此外支援複數型別和有理數型別，而且在有UTF-8，可以輕易的打出希臘字母，對於學術界來說時的親切。也因此金融界，和科學運算界用這個語言比較多。我覺得她可以取代Scipy和Numpy在這些領域的地位。 有內建的profile tool，不用像C/C++需要prof或是valgrind。可以用@time產生火焰圖。 有平行語法@parallel修飾字，基本上就是openmp的#pragma parallel for之類的包裝。 @code_native與@code_llvm的修飾字可以方便了解當時程式的組語以及LLVM IR。 Machine Learning,Deep Learning和web full stack均有套件，還也史上最強大微分方程套件。    小鴨城 (Duckietown)，一個基於 Raspberry Pi 和 ROS 的開源無人小車專案介紹  https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc307-duckietown Ubutu + ROS + OpenCV + Raspberry Pi用來訓練學生對於無人車的設計基本了解。 主要注重車子與雙黃線的距離估計，圖像與真實世界的投影轉換，光影的補完與校正。 交大也有開課歐(軟體創意專題)。 Puyuma    在 RISC-V 上的 ftrace 及 perf 工具移植經驗  https://hackmd.io/c/coscup18-kernel/%2Fcoscup18-kernel-risc-v-ftrace-perf kernel是黑盒子，需要透過ftrace和perf來了解kernel效能。 流程:開發者使用效能監控工具-&gt;改變kernel設定，進入開發模式-&gt;產生監控資料-&gt;離開監控模式-&gt;開發者存取資料 Ftrace:以 function 為等級的監控，進入每個函數，綁架正流執行流程，產生執行與離開的時間戳記，使用者透過透過 tracefs 檔案系統取的 trace 內容。 Perf ： 以 process 為等級的監控，排程器在排入形成時啟動、形成離開時移除 perf 機制，產生包括軟體組態，以及硬體counter，甚至cache miss資料。透過一些gui tool 或是 CLI 獲得perf解碼資料。 均須在compile時加入 -pg flag，插入_mcount _mcount 如何運作，透過更改call stack中當前的return address，讓其進入_mcount產生資料進行計算。https://github.</p></div>
+            <div><p>Introduction to Julia 308  https://hackmd.</p></div>
             <div class="post-footer">
             <time>August 19, 2018</time>
 
@@ -326,21 +284,71 @@ git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ m
                     Perlman / Film Music - Cinema Serenade (帕爾曼的電影琴聲)
                 </a>
             </h2>
-            <div><p>Perlman / Film Music - Cinema Serenade (帕爾曼的電影琴聲) 一、資訊 電影：請見曲目
-配樂作家： 很多
-演奏：Perlman, Itzhak
-發行廠商：Sony Music
-
-Perlman / Film Music - Cinema Serenade
- 二、心得感想
-這張基本上沒什麼好說的，帕爾曼加上John Williams還有其他經典電影等於&quot;買買買&rdquo;。
-尤其是辛德勒的名單，還是帕爾曼最對味。
-這張的第二首應該算是很常聽到(每次電視跳tango都是拿這首)，不過不知道曲名，而這張剛好有機會讓我重新認識這首。第四首的郵差讓我驚豔，害我特別去spotify找整張來聽，以後有機會應該會入手。
-三、曲目  紫色姐妹花(The Color Purple: Main Title) 女人香(Scent of a Woman: Tango (Por Una Cabeza)) 楊朵(Yentl: Papa, Can You Hear Me?) 郵差(Il Postino: Theme) 純真年代(The Age of Innocence: Theme) 遠離家園(Theme from Far and Away) 秋水伊人(The Umbrellas of Cherbourg: I Will Wait for You) 末日四騎士(Four Horsemen of the Apocalypse: Theme) 新龍鳳配(Sabrina: Theme) 遠離非洲(Out of Africa: Main Title) 黑色奧菲歐(Black Orpheus: Manha de Carnaval) 辛德勒的名單(Theme From Schindler&rsquo;s List) 新天堂樂園(Cinema Paradiso: Love Theme)  </p></div>
+            <div><p>Perlman / Film Music - Cinema Serenade (帕爾曼的電影琴聲) 一、資訊 電影：請見曲目</p></div>
             <div class="post-footer">
             <time>July 25, 2018</time>
 
             
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/the-legend-of-pianist-la-leggenda-del/">
+                    The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)
+                </a>
+            </h2>
+            <div><p>The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師) 一、資訊 電影：海上鋼琴師</p></div>
+            <div class="post-footer">
+            <time>July 22, 2018</time>
+
+            
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/arduino-high-resolution-pwm-more-than/">
+                    Arduino: High resolution PWM (more than 8bits),Arduino提高PWM resolution
+                </a>
+            </h2>
+            <div><p>Arduino PWM(analogWrite) Arduino PWM是使用analogWrite，但是其有一個限制，也就是PWM resolution只有256，PWM duty cycle的值只能介於0~255，對於一般的應用來說，這個值還可以應付，但是對於高精度的Servo或是馬達，這個值實在是太小了。(請參考analogWrite)。雖然在有些板子Arduino提供analogWriteResolution這個函式(Zero, Due &amp; MKR Family、參閱：analogWriteResolution)可以將PWM resolution提高至12，更高的值內部會做mapping到比較低解析度。至於其他板子(例如:Arduino Mega 2560)，則需要第三方library支援(或是自己寫)。</p></div>
+            <div class="post-footer">
+            <time>July 22, 2018</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/maker">#Maker</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
+                <a href="https://daichou.github.io/posts/mplab-x-idegit/">
+                    對MPLAB X IDE產生之專案導入git
+                </a>
+            </h2>
+            <div><p>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.</p></div>
+            <div class="post-footer">
+            <time>July 18, 2018</time>
+
+            
+            
+                
+                    <a class="tag" href="https://daichou.github.io/tags/pic">#PIC</a>
+                
+                    <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+                
             
             </div> 
            
@@ -351,7 +359,7 @@ Perlman / Film Music - Cinema Serenade
         <div class="paginator">
         
         
-        <p>Page 1 of 7</p>
+        <p>Page 1 of 5</p>
         <div class="paginator-group">
             
             

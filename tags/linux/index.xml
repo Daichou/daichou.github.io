@@ -18,20 +18,7 @@
       
       <guid>https://daichou.github.io/posts/energy-aware-scheduling/</guid>
       <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E
-主要文章：https://www.linaro.org/blog/energy-aware-scheduling-eas-progress-update/
-背景 本文主要以linaro 於2015年提出之EAS(Energy aware scheduling)框架看當今Linux kernel 5.0以後從EAS與Android端整合回kernel的EAS與EM(energy model)。
-自從Arm big.LITTLE 從原本的硬體切換叢集大小核，到後來的HMP(heterogeneous multi-processing)，傳統Linux的SMP排程方式不敷使用，由於傳統Linux kernel的CFS(Completely Fair Scheduler)是以吞吐量(throughput)為主，對於移動平台的功耗掌控不甚理想。因此Arm與Linaro團隊提出了EAS作為對於HMP下Linux CFS,cpuidle,cpufreq子系統的加強。後來導入EM 框架，作為EAS與driver與其他Linux子系統，如：device tree與Thermal(目前仍未連接)的介面。
-Energy Model Framework Interface EM(energy model Framework)是Linux kernel特別抽出的介面，用來讓子系統或是driver可以透過em_register_perf_domain()函式註冊一個特別情況下的時脈與功耗的關係(performance domain)。
-
-如上圖可見driver透過em_register_perf_domain註冊效能資料，Kernel透過em_pd_energy()取得功耗估計，而em_cpu_get()用以取得EM中的energy model table的資料。目前僅有Scheduler需要這些資料，不過Linux kernel預期會有更多子系統需要這些資料，因此將特別抽出建立一層抽象化。
-OPP(operating performance points) 由於當前SOC盛行，SOC有許多子模塊(例如：CPU cluster)，這些子模塊可以依照使用情境給予不同的頻率與電壓組合，並不一定需要整個SOC依照相同頻率運作，這些子模塊通常被分為domain，各domain可以有多組頻率與電壓組合被稱為operating performance points(OPP)。OPP透過device tree source(dts)由開發者建立，通常於開機時初始化。
-
-(資料來源:https://www.linaro.org/assets/blog/EAS-image-11-f4a331f605b5adbd4d8330917f421070c2b0fc0e7d4fd2e22de1cbe2bf8e83c5.jpg)
-以上圖為例由於CPU的算力與功率是曲線而非直線，因此透過OPP可以增加EM推算未來功耗的準確度，這項設計可讓EM預測功耗的線性內插運算更為精準。
-Performance domain(perf_domain) 
-整個performance domain結構如上圖。每個cpu run queue會指向一個root_domain（用以表達一個cpu set），每個root_domain會用linked list儲存多個perf_domain，每個performace domain中的CPU必須是相同的microarchitecture(例如均為Cortex-A53)且當調整一個perf_domain的物理參數(如電壓等)，整個perf_domain中的硬體均會一起被調整，每個perf_domain對應的em_perf_domain會透過em_register_perf_domain()與對應的callback function建立em_cap_state。以從device tree建立的方式為例，em_register_perf_domain()會透過OPP的_get_cpu_power()依照：
- Power = Capacity * Voltage^2 * frequency</description>
+hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
     </item>
     
     <item>
@@ -40,18 +27,7 @@ Performance domain(perf_domain)
       <pubDate>Mon, 17 Jun 2019 05:55:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/</guid>
-      <description>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.linaro.org/downloads/，進行下載。以最新第七版為例https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/，下載linux版本即可，然後找個地方解壓縮。
-三、下載或編譯Qemu 在arch linux中用pacman安裝qemu。
-$sudo pacman -Sy qemu 或是去https://www.qemu.org/下載qemu，或是用git clone。
-$ git clone git://git.qemu.org/qemu.git qemu.git $ cd qemu.git $ ./configure --target-list=aarch64-softmmu $ make 之後執行檔會放在qemu.git/aarch64-softmmu/qemu-system-aarch64。
-Arch Linux的package預設包含aarch64-softmmu這個target。
-四、建立rootfs 其實有很多方法可以建立(busybox)，而這裡用buildroot來做。
-首先取得buildroot。
-git clone git://git.buildroot.net/buildroot buildroot.git $ cd buildroot.git $ make menuconfig 在target option中選擇架構與CPU。
-以下為範例：
-
-在System configuration &amp;mdash;&amp;gt; 點選[*]Run a getty (login prompt) after boot &amp;mdash;&amp;gt;並將TTY port設成ttyAMA0。
-在Target Packages &amp;mdash;&amp;gt;選取busybox與[*] Show packages that are also provided by busybox 。</description>
+      <description>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.</description>
     </item>
     
   </channel>

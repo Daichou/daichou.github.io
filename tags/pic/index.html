@@ -60,6 +60,8 @@ if (!doNotTrack) {
   
     <a class="color-link nav-link" href="https://daichou.github.io/tags/">Tags</a>
   
+    <a class="color-link nav-link" href="https://daichou.github.io/archives/">Archives</a>
+  
   <a class="color-link nav-link" href="https://daichou.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
 </div>
 <footer class="footer">
@@ -166,8 +168,7 @@ if (!doNotTrack) {
             </h2>
             <div>
                 <p>
-                MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.x以.x做結尾。常見的檔案樹如下：
-. ├── build │ └── default │ └── production │ ├── main.o │ └── main.o.d ├── debug │ └── default ├── dist │ └── default │ └── production │ ├── 4013_test.X.production.elf │ ├── 4013_test.X.production.hex │ └── 4013_test.X.production.map ├── main.c ├── Makefile └── nbproject ├── configurations.xml ├── Makefile-default.mk ├── Makefile-genesis.properties ├── Makefile-impl.mk ├── Makefile-local-default.mk ├── Makefile-variables.mk ├── Package-default.bash ├── private │ ├── configurations.xml │ └── private.
+                MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.
                 </p>
             </div>
             <div class="post-footer">
@@ -187,40 +188,6 @@ if (!doNotTrack) {
                 <p>
                 I2C 使用Microchip plib 本篇以dsPIC30F為主。
 plib 安裝 到Legacy PIC24 MCU &amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。
-函式概覽 安裝後文件會在xc16 complier的docs/periph_libs下。
-其中plib提供以下函式。
- AckI2C
-CloseI2C
-ConfigIntI2C
-DataRdyI2C
-IdleI2C
-MastergetsI2C
-MasterputsI2C
-MasterReadI2C
-MasterWriteI2C
-NotAckI2C
-OpenI2C
-RestartI2C
-SlavegetsI2C
-SlaveputsI2C
-SlaveReadI2C
-SlaveWriteI2C
-StartI2C
-StopI2C
- 還有一些MARCO
- EnableIntMI2C
-DiableIntMI2C
-SetPriorityIntMI2C
-EnableIntSI2C
-DisableIntSI2C
-SetPriorityIntSI2C
- 這份文件16 bit language tools第191頁開始有詳述這些函式的介面。所以本文主要會面向如何運用這些函式達成master與slave溝通。
-I2C (dsPIC30F as Master with 7bit address) reception 以下圖片來自於http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf
-
-對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。
-請先透過ConfigIntI2C和OpenI2C設定好硬體參數。
-值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。
-transmission transmission只要全部都由Master端給資料即可。
                 </p>
             </div>
             <div class="post-footer">
