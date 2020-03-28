@@ -1,349 +1,487 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://daichou.github.io/posts/</loc>
     <lastmod>2020-03-22T02:38:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/vivado-xilinx-axi-verification-ipaxi-ip/</loc>
     <lastmod>2020-03-22T02:38:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/verilog-diagram-generator/</loc>
     <lastmod>2020-03-06T18:25:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/linux/</loc>
     <lastmod>2019-07-04T00:32:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/energy-aware-scheduling/</loc>
     <lastmod>2019-07-04T00:32:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/</loc>
     <lastmod>2019-07-04T00:32:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/</loc>
     <lastmod>2019-06-17T05:55:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/2018-coscup-day2/</loc>
     <lastmod>2018-08-19T02:28:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2018-08-19T02:28:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/2018-coscup-day-1/</loc>
     <lastmod>2018-08-19T02:18:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/perlman-film-music-cinema-serenade/</loc>
     <lastmod>2018-07-25T07:24:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/the-legend-of-pianist-la-leggenda-del/</loc>
     <lastmod>2018-07-22T07:29:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/arduino-high-resolution-pwm-more-than/</loc>
     <lastmod>2018-07-22T01:34:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/maker/</loc>
     <lastmod>2018-07-22T01:34:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/note/</loc>
     <lastmod>2018-07-22T01:34:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/pic/</loc>
     <lastmod>2018-07-18T07:25:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/mplab-x-idegit/</loc>
     <lastmod>2018-07-18T07:25:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/cmake/</loc>
     <lastmod>2018-07-14T02:06:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</loc>
     <lastmod>2018-07-14T02:06:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/cmake-tricks/</loc>
     <lastmod>2018-07-13T23:19:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/blogger-syntax-highlight-over-https/</loc>
     <lastmod>2018-07-13T20:56:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/</loc>
     <lastmod>2018-03-09T18:51:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/stm/</loc>
     <lastmod>2018-02-03T01:13:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/sw4stm32stm32-hal/</loc>
     <lastmod>2018-02-03T01:13:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/</loc>
     <lastmod>2018-02-03T00:30:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/chasing-pianos-piano-music-of-michael/</loc>
     <lastmod>2018-02-03T00:30:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/ost/</loc>
     <lastmod>2018-02-03T00:30:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/cloud-atlas-original-soundtrack/</loc>
     <lastmod>2017-10-06T09:37:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/the-imitation-game-original-soundtrack/</loc>
     <lastmod>2017-10-04T10:38:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/arduino-tlc5940/</loc>
     <lastmod>2017-09-08T22:39:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</loc>
     <lastmod>2017-09-07T08:03:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/stm32cubemx/</loc>
     <lastmod>2017-09-04T07:31:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/ccunused-variablevoid-cast-of-argcargv/</loc>
     <lastmod>2017-07-13T01:21:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/tricks/</loc>
     <lastmod>2017-07-13T01:21:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/a-narrative-history-of-bsd/</loc>
     <lastmod>2017-07-09T01:36:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2017-07-09T01:36:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/the-unix-system-making-computers-easier/</loc>
     <lastmod>2017-07-09T01:35:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/revolution-os/</loc>
     <lastmod>2017-07-09T01:32:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/the-code/</loc>
     <lastmod>2017-07-09T01:29:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/hardware/</loc>
     <lastmod>2017-04-29T21:13:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/i2c-microchip-plib/</loc>
     <lastmod>2017-04-29T21:13:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/mpu6050-gyroscopeaccelerometer/</loc>
     <lastmod>2017-04-27T04:38:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/note-gdb/</loc>
     <lastmod>2017-03-03T21:09:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/l3g4200-gyroscope/</loc>
     <lastmod>2017-02-18T17:50:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/valgrindcc/</loc>
     <lastmod>2017-01-13T22:05:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/tools/</loc>
     <lastmod>2016-12-14T00:49:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/stackedit/</loc>
     <lastmod>2016-12-14T00:49:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/notemicrocontroller/</loc>
     <lastmod>2016-12-07T03:06:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/c99-fast-data-type/</loc>
     <lastmod>2016-12-06T20:05:00-08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/utility/</loc>
     <lastmod>2016-09-28T23:16:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/notevim/</loc>
     <lastmod>2016-09-28T23:16:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/john-murphy/</loc>
     <lastmod>2016-09-24T08:55:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/music/</loc>
     <lastmod>2016-09-24T08:55:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/review-solitude/</loc>
     <lastmod>2016-09-20T08:21:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/linuxwin10-live-usb/</loc>
     <lastmod>2016-09-10T20:22:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/review-flash-trade/</loc>
     <lastmod>2016-09-09T18:39:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/jekyll/</loc>
     <lastmod>2016-08-31T07:58:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/hackntu2016/</loc>
     <lastmod>2016-08-24T08:22:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/toolsgnu-nm/</loc>
     <lastmod>2016-08-16T07:46:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/compiler-explorercc/</loc>
     <lastmod>2016-08-16T02:30:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/</loc>
     <lastmod>2016-08-05T06:30:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/pwm/</loc>
     <lastmod>2016-07-31T02:22:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/libpqxx-prepare-statements/</loc>
     <lastmod>2016-05-08T09:16:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/postgresql/</loc>
     <lastmod>2016-05-08T09:16:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/maker/</loc>
     <lastmod>2016-05-01T08:00:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</loc>
     <lastmod>2016-05-01T02:33:00-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/c/c&#43;&#43;/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
   
 </urlset>
