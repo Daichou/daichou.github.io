@@ -155,57 +155,30 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
-<h1 class="post-title">2018 COSCUP Day2</h1>
-    
-    <time>August 19, 2018</time>
+<h1 class="post-title"></h1>
     
     <div>
         <p>
-        <ul>
-<li>
-<h3 id="flatpak-vs-snap"><strong>flatpak vs. snap</strong></h3>
-<ul>
-<li><a href="https://hackmd.io/c/coscup18-gnome/%2Fcoscup18-gnome301-flatpak-snap">https://hackmd.io/c/coscup18-gnome/%2Fcoscup18-gnome301-flatpak-snap</a></li>
-<li>按照官網說法，flatpak就是一種container，透過OCI format和cgroups等科技達成sandbox，snap也是類似的東西。<a href="https://flatpak.org/faq/">https://flatpak.org/faq/</a></li>
-<li>flatpak的app比較多，但是也比較雜，不過其支援ROS打包未來應可以應用。</li>
-</ul>
-</li>
-<li>
-<h3 id="回望踏入-linux-内核之旅"><strong>回望踏入 Linux 内核之旅</strong></h3>
-<ul>
-<li><a href="https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-linux-kernel">https://hackmd.io/c/coscup18-misc/%2Fcoscup18-misc101-linux-kernel</a></li>
-<li><a href="https://mp.weixin.qq.com/s/Dgq35AUIBy5nMUKPBwR5ag">https://mp.weixin.qq.com/s/Dgq35AUIBy5nMUKPBwR5ag</a></li>
-<li>中國人很喜歡哲學again XD</li>
-<li>我覺得對岸的OS教得比較深入(西安交大)，教授會要求學生進去看sub module。同時也會與學生組織讀書會一起討論。</li>
-<li>Understanding the Linux Kernel(ULK)難，深入屬於進階</li>
-<li>Linux kernel development(LKD)簡單，適合入門。</li>
-<li>Linux device driver屬於實做型</li>
-</ul>
-</li>
-<li>
-<h3 id="utensor-ai-on-microcontroller"><strong>uTensor: AI on Microcontroller</strong></h3>
-</li>
-<li>
-<p><a href="https://hackmd.io/c/coscup18-data/%2Fcoscup18-data-utensor">https://hackmd.io/c/coscup18-data/%2Fcoscup18-data-utensor</a></p>
-</li>
-<li>
-<p><a href="https://github.com/uTensor/uTensor">https://github.com/uTensor/uTensor</a></p>
-</li>
-<li>
-<p>在MCU上跑Tensor，由於MCU功耗極低，而且超便宜，若能將部份機器學習推論部份搬至MCU上會在應用上更有幫助。然而MCU有其限制，例如code size,ram size小，而且又很慢，因此僅適合做推論。為了克服ram太小問題，可以將資料存於SD卡中(SDTensor)或是ROM（ROMTensor），其中ROM tensor可以不需要SD卡。在編譯期的優化需要判斷哪個Tensor最常被Reference，讓其停留於MCU的data memory中。至於應用，可以用在Sensor Fusion，對資料做前處理，減少傳遞的資料量。也可以做輸入辨識。</p>
-</li>
-<li>
-<p>uTensor建立在ARM mbed平台上。即便如此，程式碼須撰寫的數量仍多，因此有了utensor_cgen的專案，將python tensor轉為uTensor。</p>
-</li>
-<li>
-<p>uTensor專案下方有對於edge computing做介紹。</p>
-</li>
-<li>
-<h3 id="其他同場加映-山嵐拉麵"><strong>其他：同場加映-山嵐拉麵</strong></h3>
-</li>
-</ul>
-<p><a href="https://1.bp.blogspot.com/-GtAysHgXtqw/W3k35yh5vUI/AAAAAAAACxw/biyZNTDHoascpAxASwNAvtlWbviMcV29wCEwYBhgL/s1600/39442681_1547109432059578_6309615834692059136_n.jpg"><img src="https://1.bp.blogspot.com/-GtAysHgXtqw/W3k35yh5vUI/AAAAAAAACxw/biyZNTDHoascpAxASwNAvtlWbviMcV29wCEwYBhgL/s320/39442681_1547109432059578_6309615834692059136_n.jpg" alt=""></a></p>
-<p>湯濃，但是略油，料豐，但是略貴</p>
+        <h1 id="about-me">About me</h1>
+<p>I am a graduate student at National Chiao Tung University. I major in computer science. My research area focuses on Computer Architecture and Operating Systems.</p>
+<h1 id="about-this-blog">About this blog</h1>
+<p>This blog contains some of my notes and reviews about computer science and some other music, books, and film reviews. Sometimes, I just write down something about my thought. This blog currently only writes in Chinese.</p>
+<h1 id="關於我">關於我</h1>
+<p>我目前是交大資工碩士生，主要研究領域為計算機架構(RISC-V)與一些作業系統。平常除了寫code、耍宅，剩下就是打排球與聽音樂。
+</br>
+</br>
+程式啟蒙主要是高中社團，後來因為想自己做些東西開始自學玩MCU (PIC系列、AVR、Ardunio等)，雖然沒搞出什麼很厲害東西，但也是影響我蠻深的，包括自行推敲Datasheet，研究tool用法等(也因此這個部落格前面有些關於MCU的東西)。
+</br>
+</br>
+在高中被同學推坑Arch Linux後，就離不開Linux，後來在上交大資工後、修SA/NA 以及當CSCC助教，搞了蠻多server side以及系統管理的東西。而系上一些課以及研究等因素，偶爾也會看點kernel，不過目前我還蠻廢的(部落格裡也有些關於Linux的東西)。
+</br>
+</br>
+後來開始做一些關於軟硬整合、硬體加速，還有計算機系統，所以開始弄些Xilinx FPGA以及Verilog的東西。未來主要也是希望朝這方向前進。希望RISC-V可以逆風高飛XD。
+</br>
+</br>
+音樂部份主要聽古典、配樂(電影、各國電視劇、動畫)，從配樂衍生出一些對於當代簡約主義(以及受其影響的類型)我也十分喜歡。由於受到&lt;坂道上的阿波羅&gt;影響開始聽爵士，之後不小心聽到&lt;The Köln Concert&gt;開始聽ECM。現在發現ECM簡直是大秘寶，偶爾就會發現些有趣的。</p>
+<h1 id="關於這個部落格">關於這個部落格</h1>
+<p>基本上就是放些以前的有整理過的筆記、一些心得(音樂、書、電影之類的)。以前的文章還在摸索部落格該放什麼，所以有些文其實寫不大好。原本試想定位在技術類，後來還是多了些比較輕鬆的部份。希望之後可以克服懶癌把近來有趣的東西整理出來。</p>
 
         </p>
     </div>
@@ -213,11 +186,6 @@ if (!doNotTrack) {
 
     <div class="page-footer">
         
-        <hr class="footer-divider">
-        
-            <a class="tag" href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97">#活動心得</a>
-        
-      
     </div>
 
 
