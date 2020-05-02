@@ -13,298 +13,298 @@
     
     <item>
       <title>使用Vivado Xilinx AXI verification IP進行AXI ip開發驗證</title>
-      <link>https://daichou.github.io/posts/vivado-xilinx-axi-verification-ipaxi-ip/</link>
+      <link>https://daichou.github.io/2020/03/%E4%BD%BF%E7%94%A8vivado-xilinx-axi-verification-ip%E9%80%B2%E8%A1%8Caxi-ip%E9%96%8B%E7%99%BC%E9%A9%97%E8%AD%89/</link>
       <pubDate>Sun, 22 Mar 2020 02:38:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/vivado-xilinx-axi-verification-ipaxi-ip/</guid>
+      <guid>https://daichou.github.io/2020/03/%E4%BD%BF%E7%94%A8vivado-xilinx-axi-verification-ip%E9%80%B2%E8%A1%8Caxi-ip%E9%96%8B%E7%99%BC%E9%A9%97%E8%AD%89/</guid>
       <description>Xilinx AXI Verification IP tutorial 前情提要 一般來說開發Xilinx FPGA上的AXI master/slave ip都是透過C/C++ 轉成HLS或是直接撰寫Verilog。透過C/C++ 轉成的HLS可以自己寫簡單的C/C++ 程式作為testbench，驗證結果可以直接看C/C++ testbench的結果而定，Verilog細節、AXI操作等問題Vivado HLS會幫你完全處理(如果這些部份出現問題，你也沒輒了)。但是透過Verilog直接寫成的IP，通常需要CPU還有記憶體界面(eg.</description>
     </item>
     
     <item>
       <title>Verilog Diagram generator</title>
-      <link>https://daichou.github.io/posts/verilog-diagram-generator/</link>
+      <link>https://daichou.github.io/2020/03/verilog-diagram-generator/</link>
       <pubDate>Fri, 06 Mar 2020 18:25:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/verilog-diagram-generator/</guid>
+      <guid>https://daichou.github.io/2020/03/verilog-diagram-generator/</guid>
       <description>Verilog Diagram generator 最近剛好看到chisel/FIRRTL專案下有一個子專案叫做diagrammer，可以把FIRRTL進行dependency分析後，產生graphiz的dot檔案，包括其中的submodule都可以一併產生，想說看一下verilog開源的專案有沒有類似的工具。後來找到yosys這個synthesis tool可以達到類似的功能。yosys主要針對verilog-2005，systemverilog之類的沒有支援有點可惜。</description>
     </item>
     
     <item>
       <title>Linux kernel: Energy Aware scheduling (EAS)</title>
-      <link>https://daichou.github.io/posts/energy-aware-scheduling/</link>
+      <link>https://daichou.github.io/2019/07/linux-kernel-energy-aware-scheduling-eas/</link>
       <pubDate>Thu, 04 Jul 2019 00:32:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/energy-aware-scheduling/</guid>
+      <guid>https://daichou.github.io/2019/07/linux-kernel-energy-aware-scheduling-eas/</guid>
       <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
 hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
     </item>
     
     <item>
       <title>AArch64 Linux kernel on Qemu</title>
-      <link>https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/</link>
+      <link>https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/</link>
       <pubDate>Mon, 17 Jun 2019 05:55:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/aarch64-linux-kernel-on-qemu/</guid>
+      <guid>https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/</guid>
       <description>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.</description>
     </item>
     
     <item>
       <title>2018 COSCUP Day2</title>
-      <link>https://daichou.github.io/posts/2018-coscup-day2/</link>
+      <link>https://daichou.github.io/2018/08/2018-coscup-day2/</link>
       <pubDate>Sun, 19 Aug 2018 02:28:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/2018-coscup-day2/</guid>
+      <guid>https://daichou.github.io/2018/08/2018-coscup-day2/</guid>
       <description>flatpak vs. snap  https://hackmd.</description>
     </item>
     
     <item>
       <title>2018 COSCUP day 1</title>
-      <link>https://daichou.github.io/posts/2018-coscup-day-1/</link>
+      <link>https://daichou.github.io/2018/08/2018-coscup-day-1/</link>
       <pubDate>Sun, 19 Aug 2018 02:18:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/2018-coscup-day-1/</guid>
+      <guid>https://daichou.github.io/2018/08/2018-coscup-day-1/</guid>
       <description>Introduction to Julia 308  https://hackmd.</description>
     </item>
     
     <item>
       <title>Perlman / Film Music - Cinema Serenade (帕爾曼的電影琴聲)</title>
-      <link>https://daichou.github.io/posts/perlman-film-music-cinema-serenade/</link>
+      <link>https://daichou.github.io/2018/07/perlman-/-film-music-cinema-serenade-%E5%B8%95%E7%88%BE%E6%9B%BC%E7%9A%84%E9%9B%BB%E5%BD%B1%E7%90%B4%E8%81%B2/</link>
       <pubDate>Wed, 25 Jul 2018 07:24:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/perlman-film-music-cinema-serenade/</guid>
+      <guid>https://daichou.github.io/2018/07/perlman-/-film-music-cinema-serenade-%E5%B8%95%E7%88%BE%E6%9B%BC%E7%9A%84%E9%9B%BB%E5%BD%B1%E7%90%B4%E8%81%B2/</guid>
       <description>Perlman / Film Music - Cinema Serenade (帕爾曼的電影琴聲) 一、資訊 電影：請見曲目</description>
     </item>
     
     <item>
       <title>The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師)</title>
-      <link>https://daichou.github.io/posts/the-legend-of-pianist-la-leggenda-del/</link>
+      <link>https://daichou.github.io/2018/07/the-legend-of-the-pianist-la-leggenda-del-pianista-sulloceano-italy-version-%E6%B5%B7%E4%B8%8A%E9%8B%BC%E7%90%B4%E5%B8%AB/</link>
       <pubDate>Sun, 22 Jul 2018 07:29:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/the-legend-of-pianist-la-leggenda-del/</guid>
+      <guid>https://daichou.github.io/2018/07/the-legend-of-the-pianist-la-leggenda-del-pianista-sulloceano-italy-version-%E6%B5%B7%E4%B8%8A%E9%8B%BC%E7%90%B4%E5%B8%AB/</guid>
       <description>The Legend of The Pianist ( la Leggenda del Pianista sull’Oceano ) - Italy Version (海上鋼琴師) 一、資訊 電影：海上鋼琴師</description>
     </item>
     
     <item>
       <title>Arduino: High resolution PWM (more than 8bits),Arduino提高PWM resolution</title>
-      <link>https://daichou.github.io/posts/arduino-high-resolution-pwm-more-than/</link>
+      <link>https://daichou.github.io/2018/07/arduino-high-resolution-pwm-more-than-8bitsarduino%E6%8F%90%E9%AB%98pwm-resolution/</link>
       <pubDate>Sun, 22 Jul 2018 01:34:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/arduino-high-resolution-pwm-more-than/</guid>
+      <guid>https://daichou.github.io/2018/07/arduino-high-resolution-pwm-more-than-8bitsarduino%E6%8F%90%E9%AB%98pwm-resolution/</guid>
       <description>Arduino PWM(analogWrite) Arduino PWM是使用analogWrite，但是其有一個限制，也就是PWM resolution只有256，PWM duty cycle的值只能介於0~255，對於一般的應用來說，這個值還可以應付，但是對於高精度的Servo或是馬達，這個值實在是太小了。(請參考analogWrite)。雖然在有些板子Arduino提供analogWriteResolution這個函式(Zero, Due &amp;amp; MKR Family、參閱：analogWriteResolution)可以將PWM resolution提高至12，更高的值內部會做mapping到比較低解析度。至於其他板子(例如:Arduino Mega 2560)，則需要第三方library支援(或是自己寫)。</description>
     </item>
     
     <item>
       <title>對MPLAB X IDE產生之專案導入git</title>
-      <link>https://daichou.github.io/posts/mplab-x-idegit/</link>
+      <link>https://daichou.github.io/2018/07/%E5%B0%8Dmplab-x-ide%E7%94%A2%E7%94%9F%E4%B9%8B%E5%B0%88%E6%A1%88%E5%B0%8E%E5%85%A5git/</link>
       <pubDate>Wed, 18 Jul 2018 07:25:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/mplab-x-idegit/</guid>
+      <guid>https://daichou.github.io/2018/07/%E5%B0%8Dmplab-x-ide%E7%94%A2%E7%94%9F%E4%B9%8B%E5%B0%88%E6%A1%88%E5%B0%8E%E5%85%A5git/</guid>
       <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.</description>
     </item>
     
     <item>
       <title>CMake: find_package and custom find cmake (findXXX.cmake)</title>
-      <link>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</link>
+      <link>https://daichou.github.io/2018/07/cmake-find_package-and-custom-find-cmake-findxxx.cmake/</link>
       <pubDate>Sat, 14 Jul 2018 02:06:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</guid>
+      <guid>https://daichou.github.io/2018/07/cmake-find_package-and-custom-find-cmake-findxxx.cmake/</guid>
       <description>CMake: find_package and custom find cmake (findXXX.</description>
     </item>
     
     <item>
       <title>CMake Tricks: 一些小技巧</title>
-      <link>https://daichou.github.io/posts/cmake-tricks/</link>
+      <link>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Fri, 13 Jul 2018 23:19:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/cmake-tricks/</guid>
+      <guid>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
       <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：</description>
     </item>
     
     <item>
       <title>Blogger Syntax highlight over https</title>
-      <link>https://daichou.github.io/posts/blogger-syntax-highlight-over-https/</link>
+      <link>https://daichou.github.io/2018/07/blogger-syntax-highlight-over-https/</link>
       <pubDate>Fri, 13 Jul 2018 20:56:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/blogger-syntax-highlight-over-https/</guid>
+      <guid>https://daichou.github.io/2018/07/blogger-syntax-highlight-over-https/</guid>
       <description>Blogger Syntax highlight over https 由於現在blogger要求https，以往的常用的scripts：</description>
     </item>
     
     <item>
       <title>使用LXC建立USB以及X-forward環境(deprecated)</title>
-      <link>https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/</link>
+      <link>https://daichou.github.io/2018/03/%E4%BD%BF%E7%94%A8lxc%E5%BB%BA%E7%AB%8Busb%E4%BB%A5%E5%8F%8Ax-forward%E7%92%B0%E5%A2%83deprecated/</link>
       <pubDate>Fri, 09 Mar 2018 18:51:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/lxcusbx-forward-debiandebianarch/</guid>
+      <guid>https://daichou.github.io/2018/03/%E4%BD%BF%E7%94%A8lxc%E5%BB%BA%E7%AB%8Busb%E4%BB%A5%E5%8F%8Ax-forward%E7%92%B0%E5%A2%83deprecated/</guid>
       <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
 環境  OS: Arch Linux (4.</description>
     </item>
     
     <item>
       <title>使用SW4STM32建置STM32 HAL專案</title>
-      <link>https://daichou.github.io/posts/sw4stm32stm32-hal/</link>
+      <link>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</link>
       <pubDate>Sat, 03 Feb 2018 01:13:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/sw4stm32stm32-hal/</guid>
+      <guid>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</guid>
       <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。
 步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</description>
     </item>
     
     <item>
       <title>Chasing Pianos: The Piano Music Of Michael Nyman / Valentina Lisitsa Soundtrack Collection</title>
-      <link>https://daichou.github.io/posts/chasing-pianos-piano-music-of-michael/</link>
+      <link>https://daichou.github.io/2018/02/chasing-pianos-the-piano-music-of-michael-nyman-/-valentina-lisitsa-soundtrack-collection/</link>
       <pubDate>Sat, 03 Feb 2018 00:30:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/chasing-pianos-piano-music-of-michael/</guid>
+      <guid>https://daichou.github.io/2018/02/chasing-pianos-the-piano-music-of-michael-nyman-/-valentina-lisitsa-soundtrack-collection/</guid>
       <description>Chasing Pianos: The Piano Music Of Michael Nyman / Valentina Lisitsa 一、資訊  電影：鋼琴與他的情人（The Piano）、《奇異果夢遊仙境》（Wonderland）、《繪圖師的合約》（The Draughtsman’s Contract）、《千鈞一髮》（Gattaca）、《一加二的故事》（A Zed &amp;amp; Two Noughts）、安妮日記(The Diary of Anne Frank) 、Drowning by Numbers 、Carrington、The End of The Affair 、Man With a Movie Camera、The Claim 配樂作家： Michael Nyman</description>
     </item>
     
     <item>
       <title>Cloud Atlas Original Soundtrack</title>
-      <link>https://daichou.github.io/posts/cloud-atlas-original-soundtrack/</link>
+      <link>https://daichou.github.io/2017/10/cloud-atlas-original-soundtrack/</link>
       <pubDate>Fri, 06 Oct 2017 09:37:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/cloud-atlas-original-soundtrack/</guid>
+      <guid>https://daichou.github.io/2017/10/cloud-atlas-original-soundtrack/</guid>
       <description>Cloud Atlas Original Soundtrack 一、資訊 電影：雲圖(Cloud Atlas)</description>
     </item>
     
     <item>
       <title>The Imitation Game Original Soundtrack </title>
-      <link>https://daichou.github.io/posts/the-imitation-game-original-soundtrack/</link>
+      <link>https://daichou.github.io/2017/10/the-imitation-game-original-soundtrack/</link>
       <pubDate>Wed, 04 Oct 2017 10:38:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/the-imitation-game-original-soundtrack/</guid>
+      <guid>https://daichou.github.io/2017/10/the-imitation-game-original-soundtrack/</guid>
       <description>The Imitation Game Original Soundtrack  一、資訊 電影：模仿遊戲(The Imitation Game)</description>
     </item>
     
     <item>
       <title>Arduino TLC5940與伺服馬達</title>
-      <link>https://daichou.github.io/posts/arduino-tlc5940/</link>
+      <link>https://daichou.github.io/2017/09/arduino-tlc5940%E8%88%87%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/</link>
       <pubDate>Fri, 08 Sep 2017 22:39:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/arduino-tlc5940/</guid>
+      <guid>https://daichou.github.io/2017/09/arduino-tlc5940%E8%88%87%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/</guid>
       <description>Arduino TLC5940與伺服馬達 TLC5940介紹 TLC5940是TI的16 channel LED驅動晶片。可以支援同時16通道的PWM灰階輸出，解析度為4096階。同時有兩種模式 12 bit (4096 Steps) Grayscale PWM Control 和 Dot Correction。</description>
     </item>
     
     <item>
       <title>STM32 LCD 使用 BSP 與STM32CubeMX</title>
-      <link>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</link>
+      <link>https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/</link>
       <pubDate>Thu, 07 Sep 2017 08:03:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</guid>
+      <guid>https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/</guid>
       <description>STM32 LCD 使用 BSP 與STM32CubeMX 本文以STM32F469NI Discovery為範例。目標是以STM32F469的BSP lib操作STM32F469 Discovery的TFT-LCD。</description>
     </item>
     
     <item>
       <title>STM32CubeMX初探</title>
-      <link>https://daichou.github.io/posts/stm32cubemx/</link>
+      <link>https://daichou.github.io/2017/09/stm32cubemx%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Mon, 04 Sep 2017 07:31:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/stm32cubemx/</guid>
+      <guid>https://daichou.github.io/2017/09/stm32cubemx%E5%88%9D%E6%8E%A2/</guid>
       <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;rdquo;，產生的專案會更有組織。</description>
     </item>
     
     <item>
       <title>C/C&#43;&#43;中避免unused variable造成報錯的方法(void cast of argc/argv)</title>
-      <link>https://daichou.github.io/posts/ccunused-variablevoid-cast-of-argcargv/</link>
+      <link>https://daichou.github.io/2017/07/c/c-%E4%B8%AD%E9%81%BF%E5%85%8Dunused-variable%E9%80%A0%E6%88%90%E5%A0%B1%E9%8C%AF%E7%9A%84%E6%96%B9%E6%B3%95void-cast-of-argc/argv/</link>
       <pubDate>Thu, 13 Jul 2017 01:21:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/ccunused-variablevoid-cast-of-argcargv/</guid>
+      <guid>https://daichou.github.io/2017/07/c/c-%E4%B8%AD%E9%81%BF%E5%85%8Dunused-variable%E9%80%A0%E6%88%90%E5%A0%B1%E9%8C%AF%E7%9A%84%E6%96%B9%E6%B3%95void-cast-of-argc/argv/</guid>
       <description>一些Signal handler或是Thread(CMSIS-RTOS)的建立會要求你的的函數強制吃一些argument。
 當你的compiler開 -Werror -Wall -Wunused-variable選項時,這些未被使用的變數會報錯。</description>
     </item>
     
     <item>
       <title>A Narrative History of BSD 心得</title>
-      <link>https://daichou.github.io/posts/a-narrative-history-of-bsd/</link>
+      <link>https://daichou.github.io/2017/07/a-narrative-history-of-bsd-%E5%BF%83%E5%BE%97/</link>
       <pubDate>Sun, 09 Jul 2017 01:36:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/a-narrative-history-of-bsd/</guid>
+      <guid>https://daichou.github.io/2017/07/a-narrative-history-of-bsd-%E5%BF%83%E5%BE%97/</guid>
       <description>A Narrative History of BSD 這篇文為我修課時做的心得,由於原文是用hackmd寫的,在這裡版型會有差異(原文)</description>
     </item>
     
     <item>
       <title>The Unix System: Making Computers Easier to Use 心得</title>
-      <link>https://daichou.github.io/posts/the-unix-system-making-computers-easier/</link>
+      <link>https://daichou.github.io/2017/07/the-unix-system-making-computers-easier-to-use-%E5%BF%83%E5%BE%97/</link>
       <pubDate>Sun, 09 Jul 2017 01:35:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/the-unix-system-making-computers-easier/</guid>
+      <guid>https://daichou.github.io/2017/07/the-unix-system-making-computers-easier-to-use-%E5%BF%83%E5%BE%97/</guid>
       <description>The Unix System: Making Computers Easier to Use 這篇文為我修課時作的心得</description>
     </item>
     
     <item>
       <title>Revolution OS 心得</title>
-      <link>https://daichou.github.io/posts/revolution-os/</link>
+      <link>https://daichou.github.io/2017/07/revolution-os-%E5%BF%83%E5%BE%97/</link>
       <pubDate>Sun, 09 Jul 2017 01:32:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/revolution-os/</guid>
+      <guid>https://daichou.github.io/2017/07/revolution-os-%E5%BF%83%E5%BE%97/</guid>
       <description>Revolution OS 這篇文為我修課時做的心得
   摘要</description>
     </item>
     
     <item>
       <title>The Code心得</title>
-      <link>https://daichou.github.io/posts/the-code/</link>
+      <link>https://daichou.github.io/2017/07/the-code%E5%BF%83%E5%BE%97/</link>
       <pubDate>Sun, 09 Jul 2017 01:29:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/the-code/</guid>
+      <guid>https://daichou.github.io/2017/07/the-code%E5%BF%83%E5%BE%97/</guid>
       <description>The Code * 系列為我修課時留下的心得
 * 摘要   Linus Torvarlds 的生平與Linux創作背景</description>
     </item>
     
     <item>
       <title>I2C 使用Microchip plib</title>
-      <link>https://daichou.github.io/posts/i2c-microchip-plib/</link>
+      <link>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</link>
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/i2c-microchip-plib/</guid>
+      <guid>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</guid>
       <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
 plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</description>
     </item>
     
     <item>
       <title>MPU6050 Gyroscope/Accelerometer 使用筆記</title>
-      <link>https://daichou.github.io/posts/mpu6050-gyroscopeaccelerometer/</link>
+      <link>https://daichou.github.io/2017/04/mpu6050-gyroscope/accelerometer-%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</link>
       <pubDate>Thu, 27 Apr 2017 04:38:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/mpu6050-gyroscopeaccelerometer/</guid>
+      <guid>https://daichou.github.io/2017/04/mpu6050-gyroscope/accelerometer-%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</guid>
       <description>MPU6050 Gyroscope/Accelerometer 使用筆記 特性與參數  用途：量測姿態 精度：  Gyro : 250/500/1000/2000 dps (degree per second) Accel : +-2/4/6/16 g   輸出資料：為angular rate(角速度) ，16bit , LSB/g 原始感應器電壓VDD(僅有晶片)：2.</description>
     </item>
     
     <item>
       <title>[Note] GDB 一些指令功能速查</title>
-      <link>https://daichou.github.io/posts/note-gdb/</link>
+      <link>https://daichou.github.io/2017/03/note-gdb-%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E5%8A%9F%E8%83%BD%E9%80%9F%E6%9F%A5/</link>
       <pubDate>Fri, 03 Mar 2017 21:09:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/note-gdb/</guid>
+      <guid>https://daichou.github.io/2017/03/note-gdb-%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E5%8A%9F%E8%83%BD%E9%80%9F%E6%9F%A5/</guid>
       <description>[Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。</description>
     </item>
     
     <item>
       <title>L3G4200 gyroscope使用筆記</title>
-      <link>https://daichou.github.io/posts/l3g4200-gyroscope/</link>
+      <link>https://daichou.github.io/2017/02/l3g4200-gyroscope%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</link>
       <pubDate>Sat, 18 Feb 2017 17:50:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/l3g4200-gyroscope/</guid>
+      <guid>https://daichou.github.io/2017/02/l3g4200-gyroscope%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</guid>
       <description>L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.</description>
     </item>
     
     <item>
       <title>Valgrind:C/C&#43;&#43;分析工具</title>
-      <link>https://daichou.github.io/posts/valgrindcc/</link>
+      <link>https://daichou.github.io/2017/01/valgrindc/c-%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Fri, 13 Jan 2017 22:05:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/valgrindcc/</guid>
+      <guid>https://daichou.github.io/2017/01/valgrindc/c-%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</guid>
       <description>Valgrind:C/C++分析工具 Valgrind是開源的測試框架，可以用來動態分析記憶體配置、快取使用、多執行序bug。
 安裝 $ sudo pacman -Sy valgrind 基本用法 $ valgrind 程式名稱 args 預設會是用memcheck工具分析，在這個工具下她會匯出heap使用、memory leak、還有記憶體使用錯誤的部份backtrace。 進階用法 $ valgrind --tool=toolname 程式名稱 args 這是valgrind最有方便的地方，valgrind旗下有九個使用者端的工具，和幾個開發者工具。 1.</description>
     </item>
     
     <item>
       <title>方便的網站：stackedit</title>
-      <link>https://daichou.github.io/posts/stackedit/</link>
+      <link>https://daichou.github.io/2016/12/%E6%96%B9%E4%BE%BF%E7%9A%84%E7%B6%B2%E7%AB%99stackedit/</link>
       <pubDate>Wed, 14 Dec 2016 00:49:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/stackedit/</guid>
+      <guid>https://daichou.github.io/2016/12/%E6%96%B9%E4%BE%BF%E7%9A%84%E7%B6%B2%E7%AB%99stackedit/</guid>
       <description>**
 方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。
  Written with StackEdit.</description>
@@ -312,28 +312,28 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
     
     <item>
       <title>[Note]Microcontroller的排程方式</title>
-      <link>https://daichou.github.io/posts/notemicrocontroller/</link>
+      <link>https://daichou.github.io/2016/12/notemicrocontroller%E7%9A%84%E6%8E%92%E7%A8%8B%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Wed, 07 Dec 2016 03:06:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/notemicrocontroller/</guid>
+      <guid>https://daichou.github.io/2016/12/notemicrocontroller%E7%9A%84%E6%8E%92%E7%A8%8B%E6%96%B9%E5%BC%8F/</guid>
       <description>[Note]Microcontroller的排程方式 這篇為我看完Microchip Technology 20024 FRM4 - Interrupt and Task Scheduling - No RTOS Required後所作的筆記。</description>
     </item>
     
     <item>
       <title>C99 fast data type</title>
-      <link>https://daichou.github.io/posts/c99-fast-data-type/</link>
+      <link>https://daichou.github.io/2016/12/c99-fast-data-type/</link>
       <pubDate>Tue, 06 Dec 2016 20:05:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/c99-fast-data-type/</guid>
+      <guid>https://daichou.github.io/2016/12/c99-fast-data-type/</guid>
       <description>C99 fast data type 這個主題是我在看完Efficient C Tip #13 – use the modulus (%) operator with caution這篇文章發現的C99在stdint.</description>
     </item>
     
     <item>
       <title>『note』目前的vim</title>
-      <link>https://daichou.github.io/posts/notevim/</link>
+      <link>https://daichou.github.io/2016/09/note%E7%9B%AE%E5%89%8D%E7%9A%84vim/</link>
       <pubDate>Wed, 28 Sep 2016 23:16:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/notevim/</guid>
+      <guid>https://daichou.github.io/2016/09/note%E7%9B%AE%E5%89%8D%E7%9A%84vim/</guid>
       <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
 首先.vimrc
 https://github.com/Daichou/environment/blob/master/.vimrc</description>
@@ -341,10 +341,10 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
     
     <item>
       <title>John Murphy:特殊風格的電影配樂家</title>
-      <link>https://daichou.github.io/posts/john-murphy/</link>
+      <link>https://daichou.github.io/2016/09/john-murphy%E7%89%B9%E6%AE%8A%E9%A2%A8%E6%A0%BC%E7%9A%84%E9%9B%BB%E5%BD%B1%E9%85%8D%E6%A8%82%E5%AE%B6/</link>
       <pubDate>Sat, 24 Sep 2016 08:55:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/john-murphy/</guid>
+      <guid>https://daichou.github.io/2016/09/john-murphy%E7%89%B9%E6%AE%8A%E9%A2%A8%E6%A0%BC%E7%9A%84%E9%9B%BB%E5%BD%B1%E9%85%8D%E6%A8%82%E5%AE%B6/</guid>
       <description>John Murphy:異軍突起的電影配樂家 首先先貼他的個人網站http://johnmurphyofficial.com/。
 本文的音樂都在這：http://www.johnmurphyofficial.com/tunesbox_1.html
 他最有名的三首配樂是『28天毀滅倒數(28 days later)』的『In the house,In the heartbeat』把活屍的壓迫感形容的很好，有興趣還可以聽聽看續集『28周毀滅倒數(28 weeks Later)』的開頭男主角的爸爸被追趕的那段，十分精彩，循環覆呇的節奏與逐漸加強的重音，就像一隻隻活屍在你身後快速的逼近你，即使你逃過當時，你有遠也不知道牆後是否還有另一隻在伺機而動。</description>
@@ -352,10 +352,10 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
     
     <item>
       <title>[偷書賊]偷書賊與過於喧囂的孤獨</title>
-      <link>https://daichou.github.io/posts/review-solitude/</link>
+      <link>https://daichou.github.io/2016/09/%E5%81%B7%E6%9B%B8%E8%B3%8A%E5%81%B7%E6%9B%B8%E8%B3%8A%E8%88%87%E9%81%8E%E6%96%BC%E5%96%A7%E5%9B%82%E7%9A%84%E5%AD%A4%E7%8D%A8/</link>
       <pubDate>Tue, 20 Sep 2016 08:21:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/review-solitude/</guid>
+      <guid>https://daichou.github.io/2016/09/%E5%81%B7%E6%9B%B8%E8%B3%8A%E5%81%B7%E6%9B%B8%E8%B3%8A%E8%88%87%E9%81%8E%E6%96%BC%E5%96%A7%E5%9B%82%E7%9A%84%E5%AD%A4%E7%8D%A8/</guid>
       <description>[偷書賊]偷書賊與過於喧囂的孤獨 偷書賊講述的是一個二戰時期一個德國小女孩靠著文字豐富自己心靈的故事，其中穿插著二戰時期生活環境的疲敝，還有人性的本質。
 而赫拉巴爾的&amp;lt;過於喧囂的孤獨&amp;gt;則是以一個在廢紙回收廠的老員工，在工作之餘將書中知識收入自己的腦海，然而，其身處於社會的角落，還做著將書本壓成廢紙的工作，雖然學識涵養豐富，但作著一般人鄙視、無視的工作。其內心是過於喧囂的孤獨。
 這兩本書一個是從剛識字的小孩角度看待文字的影響力，一個是從滿腹學識的老人在知識的翻騰中對比自身的孤獨感。同樣都是以文字的力量出發，但在人生起始階段與人生終老階段，文字以不同的方式影響著人們。
@@ -364,20 +364,20 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
     
     <item>
       <title>在linux上製作win10 live USB</title>
-      <link>https://daichou.github.io/posts/linuxwin10-live-usb/</link>
+      <link>https://daichou.github.io/2016/09/%E5%9C%A8linux%E4%B8%8A%E8%A3%BD%E4%BD%9Cwin10-live-usb/</link>
       <pubDate>Sat, 10 Sep 2016 20:22:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/linuxwin10-live-usb/</guid>
+      <guid>https://daichou.github.io/2016/09/%E5%9C%A8linux%E4%B8%8A%E8%A3%BD%E4%BD%9Cwin10-live-usb/</guid>
       <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
 首先，以arch linux 為例，winusb是在aur裡，所以只要下：</description>
     </item>
     
     <item>
       <title>快閃大對決：一場華爾街起義</title>
-      <link>https://daichou.github.io/posts/review-flash-trade/</link>
+      <link>https://daichou.github.io/2016/09/%E5%BF%AB%E9%96%83%E5%A4%A7%E5%B0%8D%E6%B1%BA%E4%B8%80%E5%A0%B4%E8%8F%AF%E7%88%BE%E8%A1%97%E8%B5%B7%E7%BE%A9/</link>
       <pubDate>Fri, 09 Sep 2016 18:39:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/review-flash-trade/</guid>
+      <guid>https://daichou.github.io/2016/09/%E5%BF%AB%E9%96%83%E5%A4%A7%E5%B0%8D%E6%B1%BA%E4%B8%80%E5%A0%B4%E8%8F%AF%E7%88%BE%E8%A1%97%E8%B5%B7%E7%BE%A9/</guid>
       <description>快閃大對決：一場華爾街起義 我會找到這本書完全是因為這本書的作者是&amp;lt;魔球&amp;gt;、&amp;lt;攻其不備&amp;gt;、&amp;lt;大賣空&amp;gt;的作者，我蠻喜歡他的寫作風格。這本書算是他在台最新的(雖然是2014年的)。
 ***
 這本書主要探討近年來美國股市興起的高頻交易如何危害市場，雖然我以前就有聽過『高頻交易』這個詞，但我沒想到它的實際運作方式這麼恐怖。美國現在有13個交易所交易所(還有60幾個暗池)之間彼此都有一些距離，有些在紐約，有些在芝加哥，即便現在通訊技術發達，但這些交易系統否此間的資訊仍有幾毫秒的差距，所以如果你能在資訊從一個交易所到另一個交易所之間提前買賣股票，就等於是在買樂透時提前知道結果然後進行下注。或者是在別人買股票前提前插隊將股票買走，然後用更高的價格賣回給買家。基本上所有交易操作都在毫秒內快速來回。這造成了股市成交量爆增、波動劇烈、還有快閃崩盤，在加上股票是一個趨近於零和的賽局，當有人在你買賣間先進行了一次交易，等於是從你身上扒了一層皮。
@@ -386,77 +386,77 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
     
     <item>
       <title>Jekyll 一些問題解法</title>
-      <link>https://daichou.github.io/posts/jekyll/</link>
+      <link>https://daichou.github.io/2016/08/jekyll-%E4%B8%80%E4%BA%9B%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B3%95/</link>
       <pubDate>Wed, 31 Aug 2016 07:58:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/jekyll/</guid>
+      <guid>https://daichou.github.io/2016/08/jekyll-%E4%B8%80%E4%BA%9B%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B3%95/</guid>
       <description>用github架Jekyll 一些問題解法 當一開始使用
 $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)</description>
     </item>
     
     <item>
       <title>HackNTU2016小小心得</title>
-      <link>https://daichou.github.io/posts/hackntu2016/</link>
+      <link>https://daichou.github.io/2016/08/hackntu2016%E5%B0%8F%E5%B0%8F%E5%BF%83%E5%BE%97/</link>
       <pubDate>Wed, 24 Aug 2016 08:22:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/hackntu2016/</guid>
+      <guid>https://daichou.github.io/2016/08/hackntu2016%E5%B0%8F%E5%B0%8F%E5%BF%83%E5%BE%97/</guid>
       <description>HackNTU2016小小心得 其實我本身已經去過去年(2015)的HackNTU了，所以這篇文章會稍微比較這兩年。HackNTU為台灣規模最大的hackthon，但其核心價值已經逐漸遠離黑客松的&amp;quot;合作&amp;rdquo;、&amp;ldquo;效率&amp;rdquo;、&amp;ldquo;有用&amp;rdquo;、&amp;ldquo;有趣&amp;quot;的精神了。hackNTU逐漸變成一種比賽，創業比賽。我個人認為有好有壞。好處讓hacker可以更有商業頭腦，除了設計搞怪小東西外，還可以走進市場，同時，由於評審來自商業界，有種吸引創投的fu。壞處當然就是過度商業化得黑客松已經變成創業松，一堆人拿早就跑很久的專案進來投，失去了黑客松該有的短期高效合作模式，另外過度傾向賺錢，偏離了其實這是一個技術性活動，一些不好的事情就這樣發生了:&amp;ldquo;簡報松&amp;rdquo;、&amp;ldquo;不會coding只做簡報拿獎&amp;rdquo;、&amp;ldquo;SetTimeout&amp;rdquo;。這樣失去了hacker們自我實現與實做的目標了。
 今年由於受到COSCUP的撞期影響，人數大減3~4成，加上去年的風評不佳(評審問了『你怎麼賺錢』、『你怎麼make money』、『你的business model是什麼』)造成在社群間不好的名聲流傳。不過今年其實沒這個問題，評審都問一些本質與技術，這是一個好現象。可能因為人數大減的原因，使得今年食物較少(食物也是黑客松的精華阿)，肥宅我的心得試吃不飽。</description>
     </item>
     
     <item>
       <title>[tools]GNU 開發工具：nm</title>
-      <link>https://daichou.github.io/posts/toolsgnu-nm/</link>
+      <link>https://daichou.github.io/2016/08/toolsgnu-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7nm/</link>
       <pubDate>Tue, 16 Aug 2016 07:46:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/toolsgnu-nm/</guid>
+      <guid>https://daichou.github.io/2016/08/toolsgnu-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7nm/</guid>
       <description>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。</description>
     </item>
     
     <item>
       <title>用Compiler Explorer學習C/C&#43;&#43;的效能與實做</title>
-      <link>https://daichou.github.io/posts/compiler-explorercc/</link>
+      <link>https://daichou.github.io/2016/08/%E7%94%A8compiler-explorer%E5%AD%B8%E7%BF%92c/c-%E7%9A%84%E6%95%88%E8%83%BD%E8%88%87%E5%AF%A6%E5%81%9A/</link>
       <pubDate>Tue, 16 Aug 2016 02:30:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/compiler-explorercc/</guid>
+      <guid>https://daichou.github.io/2016/08/%E7%94%A8compiler-explorer%E5%AD%B8%E7%BF%92c/c-%E7%9A%84%E6%95%88%E8%83%BD%E8%88%87%E5%AF%A6%E5%81%9A/</guid>
       <description>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。
 支援 這個網站支援ARM、MIPS、X86、AVR等指令集的compiler，支援度甚廣，且網頁本身也開源(使用node.</description>
     </item>
     
     <item>
       <title>使用Ardunio Atmega2560 連接 nRF24L01&#43;</title>
-      <link>https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/</link>
+      <link>https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01-/</link>
       <pubDate>Fri, 05 Aug 2016 06:30:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/</guid>
+      <guid>https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01-/</guid>
       <description>使用Ardunio Atmega2560 連接 nRF24L01+ 關於library 目前主流有https://github.</description>
     </item>
     
     <item>
       <title>PWM產生方式</title>
-      <link>https://daichou.github.io/posts/pwm/</link>
+      <link>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Sun, 31 Jul 2016 02:22:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/pwm/</guid>
+      <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</description>
     </item>
     
     <item>
       <title>[筆記] libpqxx - prepare statements</title>
-      <link>https://daichou.github.io/posts/libpqxx-prepare-statements/</link>
+      <link>https://daichou.github.io/2016/05/%E7%AD%86%E8%A8%98-libpqxx-prepare-statements/</link>
       <pubDate>Sun, 08 May 2016 09:16:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/libpqxx-prepare-statements/</guid>
+      <guid>https://daichou.github.io/2016/05/%E7%AD%86%E8%A8%98-libpqxx-prepare-statements/</guid>
       <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
 而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</description>
     </item>
     
     <item>
       <title>Maker常用開發板</title>
-      <link>https://daichou.github.io/posts/maker/</link>
+      <link>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</link>
       <pubDate>Sun, 01 May 2016 08:00:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/maker/</guid>
+      <guid>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</guid>
       <description>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
 入門款
 ** Ardunio系列：**
@@ -465,10 +465,10 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
     
     <item>
       <title>libpqxx - postgresql c&#43;&#43; library 基本教學</title>
-      <link>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</link>
+      <link>https://daichou.github.io/2016/05/libpqxx-postgresql-c-library-%E5%9F%BA%E6%9C%AC%E6%95%99%E5%AD%B8/</link>
       <pubDate>Sun, 01 May 2016 02:33:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</guid>
+      <guid>https://daichou.github.io/2016/05/libpqxx-postgresql-c-library-%E5%9F%BA%E6%9C%AC%E6%95%99%E5%AD%B8/</guid>
       <description>簡介  libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。</description>
     </item>
     

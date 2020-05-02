@@ -13,56 +13,56 @@
     
     <item>
       <title>I2C 使用Microchip plib</title>
-      <link>https://daichou.github.io/posts/i2c-microchip-plib/</link>
+      <link>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</link>
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/i2c-microchip-plib/</guid>
+      <guid>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</guid>
       <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
 plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</description>
     </item>
     
     <item>
       <title>L3G4200 gyroscope使用筆記</title>
-      <link>https://daichou.github.io/posts/l3g4200-gyroscope/</link>
+      <link>https://daichou.github.io/2017/02/l3g4200-gyroscope%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</link>
       <pubDate>Sat, 18 Feb 2017 17:50:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/l3g4200-gyroscope/</guid>
+      <guid>https://daichou.github.io/2017/02/l3g4200-gyroscope%E4%BD%BF%E7%94%A8%E7%AD%86%E8%A8%98/</guid>
       <description>L3G4200 gyroscope使用筆記 特性與參數  用途：量測姿態 精度：250/500/2000 dps (degree per second) 輸出資料：為angular rate(角速度) ，16bit 原始感應器電壓(僅有晶片)：2.</description>
     </item>
     
     <item>
       <title>[Note]Microcontroller的排程方式</title>
-      <link>https://daichou.github.io/posts/notemicrocontroller/</link>
+      <link>https://daichou.github.io/2016/12/notemicrocontroller%E7%9A%84%E6%8E%92%E7%A8%8B%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Wed, 07 Dec 2016 03:06:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/notemicrocontroller/</guid>
+      <guid>https://daichou.github.io/2016/12/notemicrocontroller%E7%9A%84%E6%8E%92%E7%A8%8B%E6%96%B9%E5%BC%8F/</guid>
       <description>[Note]Microcontroller的排程方式 這篇為我看完Microchip Technology 20024 FRM4 - Interrupt and Task Scheduling - No RTOS Required後所作的筆記。</description>
     </item>
     
     <item>
       <title>使用Ardunio Atmega2560 連接 nRF24L01&#43;</title>
-      <link>https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/</link>
+      <link>https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01-/</link>
       <pubDate>Fri, 05 Aug 2016 06:30:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/ardunio-atmega2560-nrf24l01/</guid>
+      <guid>https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01-/</guid>
       <description>使用Ardunio Atmega2560 連接 nRF24L01+ 關於library 目前主流有https://github.</description>
     </item>
     
     <item>
       <title>PWM產生方式</title>
-      <link>https://daichou.github.io/posts/pwm/</link>
+      <link>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Sun, 31 Jul 2016 02:22:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/pwm/</guid>
+      <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</description>
     </item>
     
     <item>
       <title>Maker常用開發板</title>
-      <link>https://daichou.github.io/posts/maker/</link>
+      <link>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</link>
       <pubDate>Sun, 01 May 2016 08:00:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/maker/</guid>
+      <guid>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</guid>
       <description>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
 入門款
 ** Ardunio系列：**

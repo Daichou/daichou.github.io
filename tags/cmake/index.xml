@@ -13,19 +13,19 @@
     
     <item>
       <title>CMake: find_package and custom find cmake (findXXX.cmake)</title>
-      <link>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</link>
+      <link>https://daichou.github.io/2018/07/cmake-find_package-and-custom-find-cmake-findxxx.cmake/</link>
       <pubDate>Sat, 14 Jul 2018 02:06:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/cmake-findpackage-and-custom-find-cmake/</guid>
+      <guid>https://daichou.github.io/2018/07/cmake-find_package-and-custom-find-cmake-findxxx.cmake/</guid>
       <description>CMake: find_package and custom find cmake (findXXX.</description>
     </item>
     
     <item>
       <title>CMake Tricks: 一些小技巧</title>
-      <link>https://daichou.github.io/posts/cmake-tricks/</link>
+      <link>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Fri, 13 Jul 2018 23:19:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/cmake-tricks/</guid>
+      <guid>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
       <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
 追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：</description>
     </item>

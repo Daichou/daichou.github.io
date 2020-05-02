@@ -13,29 +13,29 @@
     
     <item>
       <title>使用SW4STM32建置STM32 HAL專案</title>
-      <link>https://daichou.github.io/posts/sw4stm32stm32-hal/</link>
+      <link>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</link>
       <pubDate>Sat, 03 Feb 2018 01:13:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/sw4stm32stm32-hal/</guid>
+      <guid>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</guid>
       <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。
 步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</description>
     </item>
     
     <item>
       <title>STM32 LCD 使用 BSP 與STM32CubeMX</title>
-      <link>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</link>
+      <link>https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/</link>
       <pubDate>Thu, 07 Sep 2017 08:03:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/stm32-lcd-bsp-stm32cubemx/</guid>
+      <guid>https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/</guid>
       <description>STM32 LCD 使用 BSP 與STM32CubeMX 本文以STM32F469NI Discovery為範例。目標是以STM32F469的BSP lib操作STM32F469 Discovery的TFT-LCD。</description>
     </item>
     
     <item>
       <title>STM32CubeMX初探</title>
-      <link>https://daichou.github.io/posts/stm32cubemx/</link>
+      <link>https://daichou.github.io/2017/09/stm32cubemx%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Mon, 04 Sep 2017 07:31:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/stm32cubemx/</guid>
+      <guid>https://daichou.github.io/2017/09/stm32cubemx%E5%88%9D%E6%8E%A2/</guid>
       <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;rdquo;，產生的專案會更有組織。</description>
     </item>
     

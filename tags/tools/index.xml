@@ -13,10 +13,10 @@
     
     <item>
       <title>方便的網站：stackedit</title>
-      <link>https://daichou.github.io/posts/stackedit/</link>
+      <link>https://daichou.github.io/2016/12/%E6%96%B9%E4%BE%BF%E7%9A%84%E7%B6%B2%E7%AB%99stackedit/</link>
       <pubDate>Wed, 14 Dec 2016 00:49:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/stackedit/</guid>
+      <guid>https://daichou.github.io/2016/12/%E6%96%B9%E4%BE%BF%E7%9A%84%E7%B6%B2%E7%AB%99stackedit/</guid>
       <description>**
 方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。
  Written with StackEdit.</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>[tools]GNU 開發工具：nm</title>
-      <link>https://daichou.github.io/posts/toolsgnu-nm/</link>
+      <link>https://daichou.github.io/2016/08/toolsgnu-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7nm/</link>
       <pubDate>Tue, 16 Aug 2016 07:46:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/toolsgnu-nm/</guid>
+      <guid>https://daichou.github.io/2016/08/toolsgnu-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7nm/</guid>
       <description>[tools]GNU 開發工具：nm nm nm這東西是來列出object files(binary file)的符號(symbol)，包括列出地址(address)、類型、名稱。</description>
     </item>
     

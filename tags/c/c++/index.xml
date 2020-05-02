@@ -12,57 +12,57 @@
     
     <item>
       <title>[Note] GDB 一些指令功能速查</title>
-      <link>https://daichou.github.io/posts/note-gdb/</link>
+      <link>https://daichou.github.io/2017/03/note-gdb-%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E5%8A%9F%E8%83%BD%E9%80%9F%E6%9F%A5/</link>
       <pubDate>Fri, 03 Mar 2017 21:09:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/note-gdb/</guid>
+      <guid>https://daichou.github.io/2017/03/note-gdb-%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E5%8A%9F%E8%83%BD%E9%80%9F%E6%9F%A5/</guid>
       <description>[Note] GDB 一些指令功能速查 前情提要 這篇主要是介紹gdb的一些常用功能，遇到的時候方便google。</description>
     </item>
     
     <item>
       <title>C99 fast data type</title>
-      <link>https://daichou.github.io/posts/c99-fast-data-type/</link>
+      <link>https://daichou.github.io/2016/12/c99-fast-data-type/</link>
       <pubDate>Tue, 06 Dec 2016 20:05:00 -0800</pubDate>
       
-      <guid>https://daichou.github.io/posts/c99-fast-data-type/</guid>
+      <guid>https://daichou.github.io/2016/12/c99-fast-data-type/</guid>
       <description>C99 fast data type 這個主題是我在看完Efficient C Tip #13 – use the modulus (%) operator with caution這篇文章發現的C99在stdint.</description>
     </item>
     
     <item>
       <title>用Compiler Explorer學習C/C&#43;&#43;的效能與實做</title>
-      <link>https://daichou.github.io/posts/compiler-explorercc/</link>
+      <link>https://daichou.github.io/2016/08/%E7%94%A8compiler-explorer%E5%AD%B8%E7%BF%92c/c-%E7%9A%84%E6%95%88%E8%83%BD%E8%88%87%E5%AF%A6%E5%81%9A/</link>
       <pubDate>Tue, 16 Aug 2016 02:30:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/compiler-explorercc/</guid>
+      <guid>https://daichou.github.io/2016/08/%E7%94%A8compiler-explorer%E5%AD%B8%E7%BF%92c/c-%E7%9A%84%E6%95%88%E8%83%BD%E8%88%87%E5%AF%A6%E5%81%9A/</guid>
       <description>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。
 支援 這個網站支援ARM、MIPS、X86、AVR等指令集的compiler，支援度甚廣，且網頁本身也開源(使用node.</description>
     </item>
     
     <item>
       <title>PWM產生方式</title>
-      <link>https://daichou.github.io/posts/pwm/</link>
+      <link>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Sun, 31 Jul 2016 02:22:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/pwm/</guid>
+      <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</description>
     </item>
     
     <item>
       <title>[筆記] libpqxx - prepare statements</title>
-      <link>https://daichou.github.io/posts/libpqxx-prepare-statements/</link>
+      <link>https://daichou.github.io/2016/05/%E7%AD%86%E8%A8%98-libpqxx-prepare-statements/</link>
       <pubDate>Sun, 08 May 2016 09:16:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/libpqxx-prepare-statements/</guid>
+      <guid>https://daichou.github.io/2016/05/%E7%AD%86%E8%A8%98-libpqxx-prepare-statements/</guid>
       <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
 而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</description>
     </item>
     
     <item>
       <title>libpqxx - postgresql c&#43;&#43; library 基本教學</title>
-      <link>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</link>
+      <link>https://daichou.github.io/2016/05/libpqxx-postgresql-c-library-%E5%9F%BA%E6%9C%AC%E6%95%99%E5%AD%B8/</link>
       <pubDate>Sun, 01 May 2016 02:33:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/posts/libpqxx-postgresql-c-library/</guid>
+      <guid>https://daichou.github.io/2016/05/libpqxx-postgresql-c-library-%E5%9F%BA%E6%9C%AC%E6%95%99%E5%AD%B8/</guid>
       <description>簡介  libpqxx是postgrsql 官方所推出的函式庫，基本上包裝得很好，用起來十分簡便。</description>
     </item>
     
