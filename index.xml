@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>RISCV Open Source Verification and Simulation Strategy</title>
+      <link>https://daichou.github.io/2020/06/riscv-open-source-verification-and-simulation-strategy/</link>
+      <pubDate>Mon, 01 Jun 2020 20:58:24 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2020/06/riscv-open-source-verification-and-simulation-strategy/</guid>
+      <description>RISCV Core模擬驗證策略開源方案 RISC-V Core verification and simulation with OpenSource solution 最近看了比較多core，而自己也有為了測試跑了很多core的模擬，之前也因為實驗室需求搞了一些簡易的純模擬測試平台。所以把一些心得整理一下。</description>
+    </item>
+    
+    <item>
       <title>使用Vivado Xilinx AXI verification IP進行AXI ip開發驗證</title>
       <link>https://daichou.github.io/2020/03/%E4%BD%BF%E7%94%A8vivado-xilinx-axi-verification-ip%E9%80%B2%E8%A1%8Caxi-ip%E9%96%8B%E7%99%BC%E9%A9%97%E8%AD%89/</link>
       <pubDate>Sun, 22 Mar 2020 02:38:00 -0700</pubDate>

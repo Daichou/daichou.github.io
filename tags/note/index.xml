@@ -6,10 +6,19 @@
     <description>Recent content in Note on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 22 Jul 2018 01:34:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 20:58:24 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/tags/note/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RISCV Open Source Verification and Simulation Strategy</title>
+      <link>https://daichou.github.io/2020/06/riscv-open-source-verification-and-simulation-strategy/</link>
+      <pubDate>Mon, 01 Jun 2020 20:58:24 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2020/06/riscv-open-source-verification-and-simulation-strategy/</guid>
+      <description>RISCV Core模擬驗證策略開源方案 RISC-V Core verification and simulation with OpenSource solution 最近看了比較多core，而自己也有為了測試跑了很多core的模擬，之前也因為實驗室需求搞了一些簡易的純模擬測試平台。所以把一些心得整理一下。</description>
+    </item>
     
     <item>
       <title>Arduino: High resolution PWM (more than 8bits),Arduino提高PWM resolution</title>
