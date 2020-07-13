@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>對MPLAB X IDE產生之專案導入git</title>
+      <link>https://daichou.github.io/tech/mplab-x-idegit/</link>
+      <pubDate>Wed, 18 Jul 2018 07:25:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/tech/mplab-x-idegit/</guid>
+      <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.</description>
+    </item>
+    
+    <item>
       <title>I2C 使用Microchip plib</title>
       <link>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</link>
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>

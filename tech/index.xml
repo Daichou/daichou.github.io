@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Teches on Daichou&#39;s blog</title>
+    <link>https://daichou.github.io/tech/</link>
+    <description>Recent content in Teches on Daichou&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 18 Jul 2018 07:25:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://daichou.github.io/tech/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>對MPLAB X IDE產生之專案導入git</title>
+      <link>https://daichou.github.io/tech/mplab-x-idegit/</link>
+      <pubDate>Wed, 18 Jul 2018 07:25:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/tech/mplab-x-idegit/</guid>
+      <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.</description>
+    </item>
+    
+  </channel>
+</rss>

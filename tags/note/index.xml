@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>對MPLAB X IDE產生之專案導入git</title>
+      <link>https://daichou.github.io/tech/mplab-x-idegit/</link>
+      <pubDate>Wed, 18 Jul 2018 07:25:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/tech/mplab-x-idegit/</guid>
+      <description>MPLAB X IDE產生之專案架構 MPLAB X IDE產生之專案會XXX.</description>
+    </item>
+    
+    <item>
       <title>CMake: find_package and custom find cmake (findXXX.cmake)</title>
       <link>https://daichou.github.io/2018/07/cmake-find_package-and-custom-find-cmake-findxxx.cmake/</link>
       <pubDate>Sat, 14 Jul 2018 02:06:00 -0700</pubDate>

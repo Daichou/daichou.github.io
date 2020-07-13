@@ -30,20 +30,10 @@
  
     
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-161437179-1', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-
+        
+    
 </head>
+
     <body>
         
 <nav>
@@ -174,7 +164,7 @@ if (!doNotTrack) {
 <li>特性</li>
 </ul>
 <p>cycle accurate模擬使她比一般商用模擬還要快(因為不用考慮timing)，在此架構下，verilator可以讓執行檔pthread，進行多線程支援。但Verilator在verilog或是SystemVerilog上仍有一些支援與不支援的地方。基本上可以被合成電路的語法她都支援。在SystemVerilog下還部份支援C/C++與SystemVerilog溝通的Verilog Procedural Interface(VPI)語法與Direct Programming Interface (DPI)語法。而因為其會將Verilog編成C/C++，所以可以用一些C/C++的方法直接更改邏輯中的值，這些方法讓我們用C/C++寫testbench可以更加快速。</p>
-<p>而Verilator只支援2-state(0和1)，還有一點tristate，所以verilog中的&rsquo;x'和&rsquo;z'她會直接給入random值，這好處是會造成結果錯誤，可以更快debug，因為一般這些&rsquo;x'和&rsquo;z'訊號不該被拿來運算。</p>
+<p>而Verilator只支援2-state(0和1)，還有一點tristate，所以verilog中的&rsquo;x&rsquo;和&rsquo;z&rsquo;她會直接給入random值，這好處是會造成結果錯誤，可以更快debug，因為一般這些&rsquo;x&rsquo;和&rsquo;z&rsquo;訊號不該被拿來運算。</p>
 <ul>
 <li>限制
 <ul>

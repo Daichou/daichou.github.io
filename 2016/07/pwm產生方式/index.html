@@ -30,20 +30,10 @@
  
     
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-161437179-1', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-
+        
+    
 </head>
+
     <body>
         
 <nav>
@@ -233,7 +223,7 @@ if (!doNotTrack) {
 }
 }
 </code></pre></div><p>由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。<br>
-dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為&rsquo;110'或&rsquo;111&rsquo;。設定順序為:<br>
+dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為'110&rsquo;或'111&rsquo;。設定順序為:<br>
 1.設定PRy(Period register)表示PWM的週期。<br>
 2.再來設定OCxRS暫存器表示duty cycle。<br>
 3.設定OCM。<br>
