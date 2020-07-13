@@ -6,10 +6,21 @@
     <description>Recent content on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 01 Jun 2020 20:58:24 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2020 20:02:49 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2020_first_half_year_books</title>
+      <link>https://daichou.github.io/2020/07/2020_first_half_year_books/</link>
+      <pubDate>Wed, 01 Jul 2020 20:02:49 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2020/07/2020_first_half_year_books/</guid>
+      <description>2019~2020上半年的有趣閱讀書目 從去年下半年到今年秉持著:
+ 白天工作，晚上讀書，假日批判
+ 的目標，所以在晚上睡前撥一點時間看了些有趣的書，以下就紀錄一下看了哪些有趣的書。</description>
+    </item>
     
     <item>
       <title>RISCV Open Source Verification and Simulation Strategy</title>

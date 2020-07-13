@@ -3,21 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://daichou.github.io/</loc>
-    <lastmod>2020-06-01T20:58:24+08:00</lastmod>
+    <loc>https://daichou.github.io/2020/07/2020_first_half_year_books/</loc>
+    <lastmod>2020-07-01T20:02:49+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
-    <loc>https://daichou.github.io/tags/note/</loc>
-    <lastmod>2020-06-01T20:58:24+08:00</lastmod>
+    <loc>https://daichou.github.io/</loc>
+    <lastmod>2020-07-01T20:02:49+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/</loc>
+    <lastmod>2020-07-01T20:02:49+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
+    <loc>https://daichou.github.io/tags/note/</loc>
     <lastmod>2020-06-01T20:58:24+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
