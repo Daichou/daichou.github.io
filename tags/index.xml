@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 01 Jun 2020 20:58:24 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 21:53:59 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>活動心得</title>
+      <link>https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/</link>
+      <pubDate>Sun, 09 Aug 2020 21:53:59 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>books</title>
+      <link>https://daichou.github.io/tags/books/</link>
+      <pubDate>Wed, 01 Jul 2020 20:02:49 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/tags/books/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Note</title>
@@ -48,11 +66,20 @@
     </item>
     
     <item>
-      <title>活動心得</title>
-      <link>https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/</link>
-      <pubDate>Sun, 19 Aug 2018 02:28:00 -0700</pubDate>
+      <title>CD收藏</title>
+      <link>https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/</link>
+      <pubDate>Wed, 25 Jul 2018 07:24:00 -0700</pubDate>
       
-      <guid>https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/</guid>
+      <guid>https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OST</title>
+      <link>https://daichou.github.io/tags/ost/</link>
+      <pubDate>Wed, 25 Jul 2018 07:24:00 -0700</pubDate>
+      
+      <guid>https://daichou.github.io/tags/ost/</guid>
       <description></description>
     </item>
     
@@ -89,24 +116,6 @@
       <pubDate>Sat, 03 Feb 2018 01:13:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/tags/stm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CD收藏</title>
-      <link>https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/</link>
-      <pubDate>Sat, 03 Feb 2018 00:30:00 -0800</pubDate>
-      
-      <guid>https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>OST</title>
-      <link>https://daichou.github.io/tags/ost/</link>
-      <pubDate>Sat, 03 Feb 2018 00:30:00 -0800</pubDate>
-      
-      <guid>https://daichou.github.io/tags/ost/</guid>
       <description></description>
     </item>
     
