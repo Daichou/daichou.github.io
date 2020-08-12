@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 09 Aug 2020 21:53:59 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 19:39:23 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Note</title>
+      <link>https://daichou.github.io/tags/note/</link>
+      <pubDate>Wed, 12 Aug 2020 19:39:23 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/tags/note/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>活動心得</title>
@@ -26,15 +35,6 @@
       <pubDate>Wed, 01 Jul 2020 20:02:49 +0800</pubDate>
       
       <guid>https://daichou.github.io/tags/books/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Note</title>
-      <link>https://daichou.github.io/tags/note/</link>
-      <pubDate>Mon, 01 Jun 2020 20:58:24 +0800</pubDate>
-      
-      <guid>https://daichou.github.io/tags/note/</guid>
       <description></description>
     </item>
     

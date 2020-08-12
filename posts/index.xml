@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 09 Aug 2020 21:53:59 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 19:39:23 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vivado 中 Verilog與VHDL模組相連</title>
+      <link>https://daichou.github.io/2020/08/vivado-%E4%B8%AD-verilog%E8%88%87vhdl%E6%A8%A1%E7%B5%84%E7%9B%B8%E9%80%A3/</link>
+      <pubDate>Wed, 12 Aug 2020 19:39:23 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2020/08/vivado-%E4%B8%AD-verilog%E8%88%87vhdl%E6%A8%A1%E7%B5%84%E7%9B%B8%E9%80%A3/</guid>
+      <description>當要在Verilog中instantiate一個VHDL模組時，需要考慮Mixed Language Boundary以及Mapping Rules，簡單來說就是兩者間的介面，以及port之間的對接。
+port對接可以透過port connect by ordering list 或是 port connect by name方式對接。 然而必須注意只有VHDL基礎的type才可以當成對接介面，這些type包含:</description>
+    </item>
     
     <item>
       <title>2020 COSCUP</title>

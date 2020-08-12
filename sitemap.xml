@@ -3,28 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://daichou.github.io/2020/08/2020-coscup/</loc>
-    <lastmod>2020-08-09T21:53:59+08:00</lastmod>
+    <loc>https://daichou.github.io/</loc>
+    <lastmod>2020-08-12T19:39:23+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
-    <loc>https://daichou.github.io/</loc>
-    <lastmod>2020-08-09T21:53:59+08:00</lastmod>
+    <loc>https://daichou.github.io/tags/note/</loc>
+    <lastmod>2020-08-12T19:39:23+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/posts/</loc>
-    <lastmod>2020-08-09T21:53:59+08:00</lastmod>
+    <lastmod>2020-08-12T19:39:23+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/</loc>
+    <lastmod>2020-08-12T19:39:23+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
+    <loc>https://daichou.github.io/2020/08/vivado-%E4%B8%AD-verilog%E8%88%87vhdl%E6%A8%A1%E7%B5%84%E7%9B%B8%E9%80%A3/</loc>
+    <lastmod>2020-08-12T19:39:23+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
+    <loc>https://daichou.github.io/2020/08/2020-coscup/</loc>
     <lastmod>2020-08-09T21:53:59+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
@@ -47,13 +61,6 @@
   <url>
     <loc>https://daichou.github.io/tags/books/</loc>
     <lastmod>2020-07-01T20:02:49+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
-    <loc>https://daichou.github.io/tags/note/</loc>
-    <lastmod>2020-06-01T20:58:24+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
