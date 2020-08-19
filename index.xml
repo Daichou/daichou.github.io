@@ -6,10 +6,19 @@
     <description>Recent content on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 12 Aug 2020 19:39:23 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate>
     
 	<atom:link href="https://daichou.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</title>
+      <link>https://daichou.github.io/2020/08/%E5%9C%A8ubuntu-18.04-%E4%B8%8A%E5%9F%B7%E8%A1%8Criscv-torture-run-riscv-torture-on-ubuntu-18.04/</link>
+      <pubDate>Wed, 19 Aug 2020 19:59:18 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2020/08/%E5%9C%A8ubuntu-18.04-%E4%B8%8A%E5%9F%B7%E8%A1%8Criscv-torture-run-riscv-torture-on-ubuntu-18.04/</guid>
+      <description>riscv-torture介紹 基本上就是一個個產生類隨機組合語言的RISCV測試工具。主要流程為產生random test 組合語言程式，接下來透過riscv-isa-sim先執行過取得signature(general purpose register的結果)，然後與待測核心(DUT)的general purpose register執行結果做比較來驗證核心的正確性。</description>
+    </item>
     
     <item>
       <title>Vivado 中 Verilog與VHDL模組相連</title>

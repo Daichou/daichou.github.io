@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Tags | Daichou&#39;s blog</title>
+    <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04) | Daichou&#39;s blog</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="https://daichou.github.io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://daichou.github.io/favicon-32x32.png">
@@ -28,8 +28,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://daichou.github.io/tags/index.xml" title="Daichou's blog" />
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -161,50 +159,120 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 
-<h1>Tags</h1>
-<ul>
+<h1 class="post-title">在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</h1>
     
-        <li><a href="https://daichou.github.io/tags/books/">books</a> 1</li>
+    <time>August 19, 2020</time>
     
-        <li><a href="https://daichou.github.io/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/cd%E6%94%B6%E8%97%8F/">CD收藏</a> 5</li>
-    
-        <li><a href="https://daichou.github.io/tags/cmake/">CMake</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/hardware/">hardware</a> 6</li>
-    
-        <li><a href="https://daichou.github.io/tags/linux/">Linux</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/maker/">Maker</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/music/">Music</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/note/">Note</a> 18</li>
-    
-        <li><a href="https://daichou.github.io/tags/ost/">OST</a> 5</li>
-    
-        <li><a href="https://daichou.github.io/tags/pic/">PIC</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/postgresql/">postgresql</a> 2</li>
-    
-        <li><a href="https://daichou.github.io/tags/riscv/">RISCV</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/stm/">STM</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tools/">tools</a> 3</li>
-    
-        <li><a href="https://daichou.github.io/tags/tricks/">tricks</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/utility/">utility</a> 1</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E6%B4%BB%E5%8B%95%E5%BF%83%E5%BE%97/">活動心得</a> 4</li>
-    
-        <li><a href="https://daichou.github.io/tags/%E8%AE%80%E6%9B%B8%E5%BF%83%E5%BE%97/">讀書心得</a> 6</li>
-    
-</ul>
+    <div>
+        <p>
+        <h3 id="riscv-torture介紹">riscv-torture介紹</h3>
+<p>基本上就是一個個產生類隨機組合語言的RISCV測試工具。主要流程為產生random test 組合語言程式，接下來透過riscv-isa-sim先執行過取得signature(general purpose register的結果)，然後與待測核心(DUT)的general purpose register執行結果做比較來驗證核心的正確性。</p>
+<p>riscv-torture在riscv發展史上算是偏早期的工具，因此他的相依性有時會遇到點問題。他master上的sbt版本還是0.3.8版，現在sbt已經出到1.3.x版了，此外他的執行方式相依於java，這算是意料之內，因為他是透過scala寫成的。</p>
+<h3 id="在ubuntu-1804執行riscv-torture">在Ubuntu 18.04執行riscv-torture</h3>
+<p>首先先安裝openjdk-8-jdk和openjdk-8-jre用以執行sbt。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo apt install openjdk-8-jre openjdk-8-jdk
+</code></pre></div><p>若有版本多個java版本可以透過以下指令選擇到openjdk-8:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo update-alternatives --config java
+</code></pre></div><p>若有java key的問題，可以更新ca：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo update-ca-certificates -f
+</code></pre></div><p>接下來下載riscv-torture</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/ucb-bar/riscv-torture --recursive
+</code></pre></div><p>在執行後可能會遇到一些問題，例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">java -Xmx1G -Xss8M -XX:MaxPermSize<span style="color:#f92672">=</span>128M -jar sbt-launch.jar <span style="color:#e6db74">&#39;generator/run &#39;</span>
+OpenJDK 64-Bit Server VM warning: ignoring option MaxPermSize<span style="color:#f92672">=</span>128M; support was removed in 8.0
+Getting org.scala-sbt sbt 0.13.8 ...
 
-<div class="page-footer"></div>
+:: problems summary ::
+:::: WARNINGS
+		module not found: org.scala-sbt#sbt;0.13.8
+
+	<span style="color:#f92672">====</span> local: tried
+
+	  /home/user/.ivy2/local/org.scala-sbt/sbt/0.13.8/ivys/ivy.xml
+
+	<span style="color:#f92672">====</span> typesafe-ivy-releases: tried
+
+	  http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.8/ivys/ivy.xml
+
+	<span style="color:#f92672">====</span> Maven Central: tried
+
+	  http://repo1.maven.org/maven2/org/scala-sbt/sbt/0.13.8/sbt-0.13.8.pom
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		::          UNRESOLVED DEPENDENCIES         ::
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+		:: org.scala-sbt#sbt;0.13.8: not found
+
+		::::::::::::::::::::::::::::::::::::::::::::::
+
+
+:::: ERRORS
+	Server access Error: Connection refused <span style="color:#f92672">(</span>Connection refused<span style="color:#f92672">)</span> url<span style="color:#f92672">=</span>http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.8/ivys/ivy.xml
+
+	SERVER ERROR: HTTPS Required url<span style="color:#f92672">=</span>http://repo1.maven.org/maven2/org/scala-sbt/sbt/0.13.8/sbt-0.13.8.pom
+
+
+:: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+unresolved dependency: org.scala-sbt#sbt;0.13.8: not found
+Error during sbt execution: Error retrieving required libraries
+  <span style="color:#f92672">(</span>see /home/user/.sbt/boot/update.log <span style="color:#66d9ef">for</span> complete log<span style="color:#f92672">)</span>
+Error: Could not retrieve sbt 0.13.8
+Makefile:23: recipe <span style="color:#66d9ef">for</span> target <span style="color:#e6db74">&#39;gen&#39;</span> failed
+make: *** <span style="color:#f92672">[</span>gen<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">1</span>
+</code></pre></div><p>這是因為他會去http://repo1.maven.org/maven2找sbt來下載，但是riscv-torture的sbt版本太舊，http://repo1.maven.org/maven2這個repo沒有(只有0.99版以上)，因此無法取得。此外這個repo現在只接受https，因此會有問題(https是世界潮流阿)。這時需要在家目錄下的<code>.sbt</code>資料夾中新增repositories檔案如下：</p>
+<pre><code class="language-=" data-lang="=">[repositories]
+  typesafe-ivy-releases: https://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[module]/[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+  maven-central: https://repo1.maven.org/maven2/
+  sonatype-snapshots: https://oss.sonatype.org/content/repositories/snapshots
+</code></pre><p>這樣可以讓他下載相依性時去找https://repo.typesafe.com/typesafe/ivy-releases 這repo下載較舊版本的sbt。
+接下來在riscv-torture 資料夾下make產生測試資料：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ make gen
+</code></pre></div><p>或是產生完整的測試資料與對應正解，此target必須先安裝riscv64-unknown-elf-gcc：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ make igentest
+</code></pre></div><h3 id="產生riscv32的測試資料">產生riscv32的測試資料</h3>
+<p>由於riscv-torture預設只支援riscv64，因此要使用其產生riscv32的測試資料必須修改原始碼，這部份可以參考picorv32的patch來修改，patch在此連結：<a href="https://github.com/cliffordwolf/picorv32/blob/master/scripts/torture/riscv-torture-rv32.diff">https://github.com/cliffordwolf/picorv32/blob/master/scripts/torture/riscv-torture-rv32.diff</a>，若是對內容有興趣也可以參考picorv32作者cliffordwolf與ucb-bar的團隊討論：<a href="https://github.com/ucb-bar/riscv-torture/issues/6">https://github.com/ucb-bar/riscv-torture/issues/6</a></p>
+<h3 id="arch-linux上安裝">Arch Linux上安裝</h3>
+<p>基本上裝完java和jdk後就可以直接跑了，不會有什麼問題，如果有問題也可以按照以上方法更改repositories。</p>
+<h3 id="reference">Reference</h3>
+<p><a href="https://www.scala-sbt.org/1.x/docs/Launcher-Configuration.html#Example">https://www.scala-sbt.org/1.x/docs/Launcher-Configuration.html#Example</a></p>
+
+        </p>
+    </div>
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "daichou-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="https://daichou.github.io/tags/note">#Note</a>
+        
+      
+    </div>
+
 
         
 
