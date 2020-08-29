@@ -367,7 +367,13 @@ sending command status internal to pid 6989
    [34]   2,558,187,439 _start (1 x)  
    [35]               . 0x0000000000000d70 
 </code></pre></div><p>可以看到執行當下的遞迴到哪裡，不過由於費氏數列浮動快，這用callgrind_control -e -b的深度會不同。要看到整個function的呼叫次數，可以透過callgrind執行完產生的calgrind.out.pid檔案，這時有兩種分析這個檔案的方式，一是透過<code>callgrind_annotate callgrind.out.pid</code> 來看結果，另一是用KCachegrind (KDE應用程式)。以下是KCachegrind結果，可以看到左下角的框框，fb被call了1+331160280次(第一層call+第二層以上call)。</p>
-<p><a href="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s1600/Kcachegrind.png"><img src="https://3.bp.blogspot.com/-YtNcOQY3fGA/WQHQhFGyhsI/AAAAAAAABik/Yz0Fpbrpxz0tOQnWkla-hoTo18z_WZv3ACLcB/s640/Kcachegrind.png" alt=""></a></p>
+
+
+
+
+
+<img src="https://daichou.github.io/2017/01/valgrindc/c-%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/Kcachegrind_huf5ae8278d15e0a02afd184e4c24bb1da_110091_600x600_fit_box_2.png" width="600" height="327" alt="">
+
 <h3 id="heading"></h3>
 <h3 id="helgrind"><strong>helgrind</strong></h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$valgrind --tool<span style="color:#f92672">=</span>helgrind

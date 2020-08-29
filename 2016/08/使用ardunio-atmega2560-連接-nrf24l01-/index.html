@@ -171,7 +171,13 @@ if (!doNotTrack) {
 <p>其中TMRh20大大做的這個還可支援linux(Raspberry pi)，支援度較廣。不過本篇文章選用maniacbug大大的library。</p>
 <h3 id="mega2560連接nrf24l01">mega2560連接nRF24L01</h3>
 <p>以下是nRF24L01 模組的照片與pinout。</p>
-<p><a href="https://2.bp.blogspot.com/-gDtlnsIDTFE/V6SJ0u_PZ8I/AAAAAAAABbY/9whZxrb_jNY-zBKucgED5gKy4GnEjNd8gCLcB/s1600/13898668_876557445781450_1058279310_o.jpg"><img src="https://2.bp.blogspot.com/-gDtlnsIDTFE/V6SJ0u_PZ8I/AAAAAAAABbY/9whZxrb_jNY-zBKucgED5gKy4GnEjNd8gCLcB/s320/13898668_876557445781450_1058279310_o.jpg" alt=""></a></p>
+
+
+
+
+
+<img src="https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01/nrf24l01_huaef0ad3456a964361c4836e5f3144d80_18754_500x500_fit_q75_box.jpg" width="320" height="179" alt="">
+
 <p>從左上開始，右下結束。</p>
 <table>
 <thead>
@@ -201,7 +207,13 @@ if (!doNotTrack) {
 </table>
 <p>Mega2560部份，我們不需要接IRQ，因為library沒有實做，讀者有興趣可以修改library中關於nRF24L01一個名叫config的暫存器，將mask中斷的部份歸零。</p>
 <p>Mega2560的部份需要其上頭內建的SPI BUS，才能使用這個函式庫(TMRh20的library有提供Software SPI應用)。以下是Mega2560的SPI接腳對應。</p>
-<p><a href="https://3.bp.blogspot.com/-kREZ2eXZ8EY/V6SQbAv4vJI/AAAAAAAABbs/pz_-f2VjW7kpGTKRfpiVOJNRMV3-fjWEwCLcB/s1600/Screenshot%2Bfrom%2B2016-08-05%2B21-08-32.png"><img src="https://3.bp.blogspot.com/-kREZ2eXZ8EY/V6SQbAv4vJI/AAAAAAAABbs/pz_-f2VjW7kpGTKRfpiVOJNRMV3-fjWEwCLcB/s640/Screenshot%2Bfrom%2B2016-08-05%2B21-08-32.png" alt=""></a></p>
+
+
+
+
+
+<img src="https://daichou.github.io/2016/08/%E4%BD%BF%E7%94%A8ardunio-atmega2560-%E9%80%A3%E6%8E%A5-nrf24l01/atmega2560_pinout_hu11de24f6f09c8f00109d030db6054a2c_17488_500x500_fit_box_2.png" width="500" height="72" alt="">
+
 <p>SCK要接nRF24L01的SCLK，MOSI接MOSI，MISO接MISO，CE和CSN可自行定義腳位。</p>
 <p>程式碼部份直接利用官往提供的example來做測試。<br>
 <a href="http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html">http://maniacbug.github.io/RF24/GettingStarted_8pde-example.html</a><br>

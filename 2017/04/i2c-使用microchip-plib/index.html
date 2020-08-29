@@ -205,7 +205,13 @@ SetPriorityIntSI2C</p>
 <h2 id="i2c-dspic30f-as-master-with-7bit-address">I2C (dsPIC30F as Master with 7bit address)</h2>
 <h3 id="reception">reception</h3>
 <p>以下圖片來自於<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf">http://ww1.microchip.com/downloads/en/DeviceDoc/70046E.pdf</a></p>
-<p><a href="https://3.bp.blogspot.com/-cCko4X7GsZ8/WQVktiCsF7I/AAAAAAAABjU/Fh6xDmef530WpFugTpTOqdcjlJK4wDUtACLcB/s1600/dsPIC30F_7bit_I2C.png"><img src="https://3.bp.blogspot.com/-cCko4X7GsZ8/WQVktiCsF7I/AAAAAAAABjU/Fh6xDmef530WpFugTpTOqdcjlJK4wDUtACLcB/s640/dsPIC30F_7bit_I2C.png" alt=""></a></p>
+
+
+
+
+
+<img src="https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/dsPIC30F_7bit_I2C_hu83971eccbf2581a506777bdc3cd3899d_123371_800x800_fit_box_2.png" width="800" height="632" alt="">
+
 <p>對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。</p>
 <p>請先透過ConfigIntI2C和OpenI2C設定好硬體參數。<br>
 值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。</p>
