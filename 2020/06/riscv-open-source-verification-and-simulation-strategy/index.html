@@ -355,7 +355,7 @@ VL_MODULE(Vtestharness_dp_ram) {
 <h5 id="host-target-interfacehtif">Host Target Interface(HTIF)</h5>
 <p>HTIF（software）是一個Host跟測試hardware溝通的手段，主要是透過存取<em>tohost</em>和<em>fromhost</em>這兩個CSR (雖說是CSR，其實是記憶體位址，在riscv-test中存取方式是透過sw/lw，<a href="https://github.com/riscv/riscv-test-env/blob/master/p/riscv_test.h#L259">https://github.com/riscv/riscv-test-env/blob/master/p/riscv_test.h#L259</a>)來溝通，fesvr載入elf程式時會特別找到tohost和fromhost label(<a href="https://github.com/riscv/riscv-isa-sim/blob/master/fesvr/htif.cc#L126">https://github.com/riscv/riscv-isa-sim/blob/master/fesvr/htif.cc#L126</a>)，然後執行過程中監看與讀寫這兩個CSR，這其實是一個非官方的手段，不過在riscv的ecosystem中很常使用這手段進行溝通，例如riscv-pk，也使用這方式與host溝通(<a href="https://github.com/riscv/riscv-pk/blob/master/machine/htif.c">https://github.com/riscv/riscv-pk/blob/master/machine/htif.c</a>)。</p>
 <h5 id="debug-transport-moduledtm">Debug Transport Module(DTM)</h5>
-<p><img src="https://daichou.github.io/img/RISCV_opensource_verification_strategy/riscv_debug_module.png" alt="riscv-debug-release.pdf"></p>
+<p><img src="riscv_debug_module.png" alt="riscv-debug-release.pdf"></p>
 <ul>
 <li>圖片擷取至riscv-debug-spec</li>
 </ul>
@@ -363,7 +363,7 @@ VL_MODULE(Vtestharness_dp_ram) {
 Debug Transport Module現在在RISCV debug spec中有詳細的定義。</p>
 <h4 id="連接verilator-model與fesvr">連接verilator model與fesvr</h4>
 <p>為了連接Design Under Test(DUT,這裡是core)，verilator model必須透過DPI來與Core的JTAG和DTM相連，這邊可以參考rocket-chip的作法( <a href="https://github.com/chipsalliance/rocket-chip/tree/master/src/main/resources">https://github.com/chipsalliance/rocket-chip/tree/master/src/main/resources</a>)，在這資料夾的vsrc下有SimJTAG.v和SimDTM.v，在csrc下有SimJTAG.cc和 SimDTM.cc，進去看原始碼就會看到DPI的寫法。為了使用JTAG必須使用軟體實做bit-bang(csrc下的remote_bitbang.cc)，好讓HTIF和fesvr thread可以與其相連。最後就可以透過開啟remote bit-bang，接下來讓host的openocd連上verilator model，再開啟讓gdb連接完成完整的debug環境。</p>
-<p><img src="https://daichou.github.io/img/RISCV_opensource_verification_strategy/RV_SW_test_platform.svg" alt=""></p>
+<p><img src="RV_SW_test_platform.svg" alt=""></p>
 <h4 id="代表專案">代表專案</h4>
 <ul>
 <li>rocket-chip:
