@@ -206,7 +206,13 @@ if (!doNotTrack) {
 </code></pre><p>至少需拔掉編譯時期會產生檔案。此外nbproject下的Makefile相依檔案，如Makefile*, XXX.mk等一定要進入git。</p>
 <h3 id="跨os-issue">跨OS issue</h3>
 <p>雖然MPLAB X IDE產生的專案可以輕易在LINUX上與Windows上運行，不過為了紀錄OS資訊，MPLAB X IDE會在Makefile-genesis.properties這些properties檔案中存入作業系統資訊。因此git在這些區域容易出現問題(confilct)。比較好的辦法就是不要跨平台。然而若是仍須跨平台，Makefile-genesis.properties5這檔案可能會造成MPLAB X IDE找不到compiler或是toolchain。因此可以透過MPLAB X IDE  GUI界面，選擇project properties，重新創立properties。</p>
-<p><a href="https://3.bp.blogspot.com/-oFXfrc6qf6U/W09Nyn2DFhI/AAAAAAAACoY/pnrX-2-Pwjg8uIS6Avwo-DLAy9NIJIT2wCLcBGAs/s1600/Screenshot%2Bfrom%2B2018-07-18%2B22-18-51.png"><img src="https://3.bp.blogspot.com/-oFXfrc6qf6U/W09Nyn2DFhI/AAAAAAAACoY/pnrX-2-Pwjg8uIS6Avwo-DLAy9NIJIT2wCLcBGAs/s320/Screenshot%2Bfrom%2B2018-07-18%2B22-18-51.png" alt=""></a></p>
+
+
+
+
+
+<img src="https://daichou.github.io/2018/07/%E5%B0%8Dmplab-x-ide%E7%94%A2%E7%94%9F%E4%B9%8B%E5%B0%88%E6%A1%88%E5%B0%8E%E5%85%A5git/mplab_hua4ddab4a4925bbc5cf06d30d286d59b5_56985_400x400_fit_box_2.png" width="400" height="323" alt="">
+
 <h3 id="netbeans-git-plugin">NetBeans git plugin</h3>
 <p>MPLAB X IDE是以NetBeans為基礎，所以也可以使用NetBeans的git plugin。</p>
 
