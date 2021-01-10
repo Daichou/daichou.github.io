@@ -17,6 +17,13 @@
   </url>
   
   <url>
+    <loc>https://daichou.github.io/tags/mood/</loc>
+    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
     <loc>https://daichou.github.io/posts/</loc>
     <lastmod>2021-01-01T13:45:04+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -24,14 +31,14 @@
   </url>
   
   <url>
-    <loc>https://daichou.github.io/tags/note/</loc>
-    <lastmod>2020-08-19T19:59:18+08:00</lastmod>
+    <loc>https://daichou.github.io/tags/</loc>
+    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
-    <loc>https://daichou.github.io/tags/</loc>
+    <loc>https://daichou.github.io/tags/note/</loc>
     <lastmod>2020-08-19T19:59:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
