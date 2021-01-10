@@ -6,10 +6,17 @@
     <description>Recent content on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://daichou.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 01 Jan 2021 13:45:04 +0800</lastBuildDate><atom:link href="https://daichou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2020回顧</title>
+      <link>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</link>
+      <pubDate>Fri, 01 Jan 2021 13:45:04 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</guid>
+      <description>也許也包含一點2019的事情。
+2020對我來說算是進入社會的前哨戰，以前我總是專注在做自己喜歡做的事情(寫程式、做東西、打球)，但是碩班之後即將進入社會，要如何轉換也是我現在面對的課題。如何繼續做自己喜歡而且想做的事情？是否因此忽略很多其他的事情？如果人生之後不寫程式會發生什麼事情？人生是否沒有這麼單純？
+變化 ▲ 2020 3月16道瓊大崩盤 （圖：擷取至三竹股市App若有疑慮歡迎聯絡）  還記得去年(2019)我因為看到一部很喜歡的電影兒無法自拔，在校園散步時，早晨熹微的光線穿透樹林，微風帶著早上的濕氣，對於天上的藍天白雲，我腦中有大量無法計數形容詞來擬合天空的藍，描訴雲的流轉。那時是我第一次開始留心於日常的景物、光線的變化。日常的停車塔、斑駁的路邊腳踏車、飽滿的光線，那是我第一次開始重新認識這世界。過去我總是在虛擬世界，拼命的寫code，讓虛擬世界驅動真實。時常想要透過寫程式、認真向上、來做出一些有趣的事情，不一定要對世界帶起多大的波瀾，但至少也要讓我自我滿足。但是2020世界開始不是這麼的單純，疫情貫串了整年，還記得農曆年完3月開始，除了台灣以外的世界國家開始意識到COVID-19嚴重性，我睡前看的bloomberg Live每天都是看道瓊創下歷史跌點;一生不會遇到的熔斷，幾周內遇到四次。美國脫口秀不搞笑，開始講起認真嚴肅的話題，底下沒有觀眾沒有罐頭笑聲，只有主持人沈重的說些事情。再來就是worldometers.</description>
+    </item>
     
     <item>
       <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</title>
@@ -267,7 +274,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Mon, 04 Sep 2017 07:31:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/09/stm32cubemx%E5%88%9D%E6%8E%A2/</guid>
-      <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;rdquo;，產生的專案會更有組織。</description>
+      <description>STM32CubeMX初探 STM32CubeMX是code generator(程式碼產生器)，與Microchip code configurator一樣。目標是用圖形化方式規劃MCU的外部模組與內部Middlewares設定。我個人覺得使用STM32cubeMX可以讓整個開發更加&amp;quot;工程化&amp;quot;，產生的專案會更有組織。</description>
     </item>
     
     <item>
@@ -466,7 +473,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       <pubDate>Wed, 24 Aug 2016 08:22:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/08/hackntu2016%E5%B0%8F%E5%B0%8F%E5%BF%83%E5%BE%97/</guid>
-      <description>HackNTU2016小小心得 其實我本身已經去過去年(2015)的HackNTU了，所以這篇文章會稍微比較這兩年。HackNTU為台灣規模最大的hackthon，但其核心價值已經逐漸遠離黑客松的&amp;quot;合作&amp;rdquo;、&amp;ldquo;效率&amp;rdquo;、&amp;ldquo;有用&amp;rdquo;、&amp;ldquo;有趣&amp;quot;的精神了。hackNTU逐漸變成一種比賽，創業比賽。我個人認為有好有壞。好處讓hacker可以更有商業頭腦，除了設計搞怪小東西外，還可以走進市場，同時，由於評審來自商業界，有種吸引創投的fu。壞處當然就是過度商業化得黑客松已經變成創業松，一堆人拿早就跑很久的專案進來投，失去了黑客松該有的短期高效合作模式，另外過度傾向賺錢，偏離了其實這是一個技術性活動，一些不好的事情就這樣發生了:&amp;ldquo;簡報松&amp;rdquo;、&amp;ldquo;不會coding只做簡報拿獎&amp;rdquo;、&amp;ldquo;SetTimeout&amp;rdquo;。這樣失去了hacker們自我實現與實做的目標了。
+      <description>HackNTU2016小小心得 其實我本身已經去過去年(2015)的HackNTU了，所以這篇文章會稍微比較這兩年。HackNTU為台灣規模最大的hackthon，但其核心價值已經逐漸遠離黑客松的&amp;quot;合作&amp;quot;、&amp;ldquo;效率&amp;rdquo;、&amp;ldquo;有用&amp;rdquo;、&amp;ldquo;有趣&amp;quot;的精神了。hackNTU逐漸變成一種比賽，創業比賽。我個人認為有好有壞。好處讓hacker可以更有商業頭腦，除了設計搞怪小東西外，還可以走進市場，同時，由於評審來自商業界，有種吸引創投的fu。壞處當然就是過度商業化得黑客松已經變成創業松，一堆人拿早就跑很久的專案進來投，失去了黑客松該有的短期高效合作模式，另外過度傾向賺錢，偏離了其實這是一個技術性活動，一些不好的事情就這樣發生了:&amp;ldquo;簡報松&amp;rdquo;、&amp;ldquo;不會coding只做簡報拿獎&amp;rdquo;、&amp;ldquo;SetTimeout&amp;rdquo;。這樣失去了hacker們自我實現與實做的目標了。
 今年由於受到COSCUP的撞期影響，人數大減3~4成，加上去年的風評不佳(評審問了『你怎麼賺錢』、『你怎麼make money』、『你的business model是什麼』)造成在社群間不好的名聲流傳。不過今年其實沒這個問題，評審都問一些本質與技術，這是一個好現象。可能因為人數大減的原因，使得今年食物較少(食物也是黑客松的精華阿)，肥宅我的心得試吃不飽。</description>
     </item>
     
@@ -505,7 +512,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       
       <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
-duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
+   duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
     </item>
     
     <item>

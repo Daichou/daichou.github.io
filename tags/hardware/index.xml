@@ -6,11 +6,7 @@
     <description>Recent content in hardware on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 29 Apr 2017 21:13:00 -0700</lastBuildDate>
-    
-	<atom:link href="https://daichou.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 29 Apr 2017 21:13:00 -0700</lastBuildDate><atom:link href="https://daichou.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>I2C 使用Microchip plib</title>
       <link>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</link>
@@ -55,7 +51,7 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
       
       <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
-duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
+   duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
     </item>
     
     <item>

@@ -238,13 +238,13 @@ lxc.mount.entry = tmpfs tmp tmpfs defaults
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo lxc-console -n UbuntuBuild <span style="color:#f92672">[</span> -P /path<span style="color:#f92672">]</span>  
 
 </code></pre></div><p>進到ubuntu lxc</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># sudo apt-get install xauth x11-apps</span>  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># sudo apt-get install xauth x11-apps  </span>
 
 </code></pre></div><p>使用ssh -X進入LXC</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># /usr/bin/xclock</span>  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># /usr/bin/xclock  </span>
 </code></pre></div><p>應該要有windows跑出來<br>
 其他app可能會需要裝dbus</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># sudo apt-get install dbus dbus-x11</span>  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># sudo apt-get install dbus dbus-x11  </span>
 </code></pre></div><p>其他部份可以看以連結<a href="https://newspaint.wordpress.com/2015/09/14/how-do-i-get-x11-applications-running-in-a-lxc-container/">How Do I Get X11 Applications Running in a LXC Container?</a></p>
 <h3 id="lxc-usb">LXC USB</h3>
 <p>修改container的config(同上位置)</p>

@@ -6,11 +6,7 @@
     <description>Recent content in Note on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://daichou.github.io/tags/note/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate><atom:link href="https://daichou.github.io/tags/note/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</title>
       <link>https://daichou.github.io/2020/08/%E5%9C%A8ubuntu-18.04-%E4%B8%8A%E5%9F%B7%E8%A1%8Criscv-torture-run-riscv-torture-on-ubuntu-18.04/</link>

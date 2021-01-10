@@ -174,16 +174,20 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/STM32CubeMX_cpp_target_huecd96c2298b1f107e918913bb935fdaa_170162_700x700_fit_box_2.png" width="700" height="394" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>當選擇完板子時不要急著案完成，繼續按下一步。</p>
 
 
 
 
 
+<figure>
 <img src="https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/STM32CubeMX_CPP_projext_hud83e6db715a11530e6658f8376476bba_85488_700x700_fit_box_2.png" width="579" height="700" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>下一步後，勾選Hardware Abstraction Layer(HAL)，即可導入ST官方提供之HAL library。其他還有一些第三方library如FreeRTOS等，也可在這裡新增。</p>
 <h3 id="結果">結果</h3>
 <p>SW4STM32會建立如下專案：</p>
@@ -192,8 +196,10 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/STM32CubeMX_folder_huc00c94b6a5dc892435bd2eb6f9fba08b_135973_700x700_fit_box_2.png" width="700" height="382" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>其中HAL會獨立在HAL_Driver下。有幾個檔案要特別注意。</p>
 <p>src/stm32l4xx_it.c和inc/stm32l4xx_it.h這兩個檔案為放置Interrupt handler用的檔案，如有新增的Interrupt handler最好是放在這裡。</p>
 <p>src/system_stm32l4xx.c：這個檔案放置系統開機時的初始化(clock和RCC)。</p>

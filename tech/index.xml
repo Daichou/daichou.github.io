@@ -6,11 +6,7 @@
     <description>Recent content in Teches on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 18 Jul 2018 07:25:00 -0700</lastBuildDate>
-    
-	<atom:link href="https://daichou.github.io/tech/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 18 Jul 2018 07:25:00 -0700</lastBuildDate><atom:link href="https://daichou.github.io/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>對MPLAB X IDE產生之專案導入git</title>
       <link>https://daichou.github.io/tech/mplab-x-idegit/</link>

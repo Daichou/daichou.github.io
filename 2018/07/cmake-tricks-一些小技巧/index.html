@@ -176,7 +176,7 @@ if (!doNotTrack) {
 <p>若要自行追加flags也可以透過新增或是修改flags到CMAKE_&lt;LANG&gt;_FLAGS中。例如：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">SET(<span style="color:#e6db74">GCC_COVERAGE_COMPILE_FLAGS</span> <span style="color:#e6db74">&#34;-g&#34;</span>)  <span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>SET( <span style="color:#e6db74">CMAKE_CXX_FLAGS </span> <span style="color:#e6db74">&#34;${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}&#34;</span> )<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&rdquo;-g&rdquo;，然後把她加入CMAKE_CXX_FLAGS中。</p>
+</span></code></pre></div><p>我這裡的作法是新創一個變數GCC_COVERAGE_COMPILE_FLAGS，將其設為&quot;-g&quot;，然後把她加入CMAKE_CXX_FLAGS中。</p>
 <p>此外還有一個簡單有效的作法。由於CMAKE_C_FLAGS會依照環境變數CFLAGS初始化，所以只要修改CFLAGS這個環境變數就好。其他常見的對應如下：</p>
 <ul>
 <li>CMAKE_C_FLAGS -&gt; CFLAGS</li>
@@ -190,8 +190,10 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/cmake_tricks_hu67d6750c07c0e9fe94f7164ea0a5760b_75165_600x600_fit_box_2.png" width="600" height="252" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <h3 id="option">Option</h3>
 <p>下選項分為兩種，一是直接下在command line中，另一種則是用ccmake。</p>
 <p>下在command line，只要用-D就好，ex：</p>

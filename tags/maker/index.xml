@@ -6,11 +6,7 @@
     <description>Recent content in Maker on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 22 Jul 2018 01:34:00 -0700</lastBuildDate>
-    
-	<atom:link href="https://daichou.github.io/tags/maker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 22 Jul 2018 01:34:00 -0700</lastBuildDate><atom:link href="https://daichou.github.io/tags/maker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arduino: High resolution PWM (more than 8bits),Arduino提高PWM resolution</title>
       <link>https://daichou.github.io/2018/07/arduino-high-resolution-pwm-more-than-8bitsarduino%E6%8F%90%E9%AB%98pwm-resolution/</link>

@@ -210,8 +210,10 @@ SetPriorityIntSI2C</p>
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/dsPIC30F_7bit_I2C_hu83971eccbf2581a506777bdc3cd3899d_123371_800x800_fit_box_2.png" width="800" height="632" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>對應到plib的流程為。(以下為我在i2cdevlib中所新增的片段，為一次讀多個bytes)。</p>
 <p>請先透過ConfigIntI2C和OpenI2C設定好硬體參數。<br>
 值得注意的是在dsPIC30F manual中第5步驟。要透過StartI2C再次產生start condition。而讀入多個data bytes可用MastergetsI2C函式。</p>

@@ -174,16 +174,20 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_Config1_hu4737eaa19447505aed17f31424a0da7d_79869_600x600_fit_box_2.png" width="275" height="600" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <br/>
 
 
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_Config2_hu48867b9c5aebad2e8a287ffe65b52d4c_70254_600x600_fit_box_2.png" width="278" height="600" alt="">
-</p>
+<figcaption><I></I></figcaption>
+</figure></p>
 <p>LTDC : LCD-TFT Display Controller，硬體優化的LCD控制介面。</p>
 <p>DSIHOST: Display Serial Interface Host，由MIPI alliance建立的行動顯示protocol。提供高速的LCD framrate。</p>
 <p>DMA2D : Chrom-Art Accelerator™ 用來做圖像操作的DMA，可以做出限定範圍的填滿等記憶體操作。適用AHB bus，可以將結果導入AHB slave端(DSI HOST)。</p>
@@ -195,24 +199,30 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_clk_config_hu8c337976e271802ef6af8e234f894bcd_128262_700x700_fit_box_2.png" width="640" height="512" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>時脈控制，由於開啟HSE，所以DSI有了clock source。(這部分要注意STM32CubeMX產生出來的程式碼是否會讓clock超過硬體限制)。</p>
 
 
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_DMA2D_CONFIG_huff9d6e3160acbe249878d600ddec4558_14642_700x700_fit_box_2.png" width="465" height="626" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>選擇RGB565為color mode。</p>
 
 
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_LTDC_CONFIG_hu668cbf3cdf39db2472f719be0e9cbf68_94782_700x700_fit_box_2.png" width="640" height="612" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>Pixel format選用ARGB8888。</p>
 <h3 id="heading"></h3>
 <p>引入Driver</p>
@@ -226,16 +236,20 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_fs_hu17a4b5cbc172d7b498c9884930ade9e9_60358_700x700_fit_box_2.png" width="314" height="400" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>在options for target -&gt; C/C++ -&gt; include path中加入那兩個資料夾。如下:</p>
 
 
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/BSP_LCD_includepath_hud33b55ba4f4e60ed490e5809572c1d92_31124_700x700_fit_box_2.png" width="400" height="273" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <h3 id="程式撰寫">程式撰寫</h3>
 <p>main.c中include &ldquo;stm32469i_discovery_lcd.h&rdquo;<br>
 其中的初始流程為:</p>
@@ -252,8 +266,10 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2017/09/stm32-lcd-%E4%BD%BF%E7%94%A8-bsp-%E8%88%87stm32cubemx/LCD_ex_hub7f83610d679cee84a8fe85ae1097839_46203_700x700_fit_q75_box.jpg" width="640" height="360" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>上面印的文字是宅梗，歡迎探究XD</p>
 <p>延伸閱讀: <a href="http://www.st.com/content/ccc/resource/technical/document/application_note/85/ad/ef/0f/a3/a6/49/9a/CD00201397.pdf/files/CD00201397.pdf/jcr:content/translations/en.CD00201397.pdf">http://www.st.com/content/ccc/resource/technical/document/application_note/85/ad/ef/0f/a3/a6/49/9a/CD00201397.pdf/files/CD00201397.pdf/jcr:content/translations/en.CD00201397.pdf</a></p>
 

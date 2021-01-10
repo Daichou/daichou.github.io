@@ -5,11 +5,7 @@
     <link>https://daichou.github.io/tags/c/c&#43;&#43;/</link>
     <description>Recent content in C/C&#43;&#43; on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language>
-    
-	<atom:link href="https://daichou.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-tw</language><atom:link href="https://daichou.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Note] GDB 一些指令功能速查</title>
       <link>https://daichou.github.io/2017/03/note-gdb-%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4%E5%8A%9F%E8%83%BD%E9%80%9F%E6%9F%A5/</link>
@@ -45,7 +41,7 @@
       
       <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
       <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
-duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
+   duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
     </item>
     
     <item>

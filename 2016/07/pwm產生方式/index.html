@@ -172,8 +172,10 @@ if (!doNotTrack) {
 
 
 
+<figure>
 <img src="https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/PWM_hu8e29413186bd3d495f65d444c0903bcf_15957_600x600_fit_box_2.png" width="600" height="245" alt="">
-
+<figcaption><I></I></figcaption>
+</figure>
 <p>duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</p>
 <h2 id="pwm產生方式">PWM產生方式</h2>
 <p>PWM主要又三種方式產生：硬體內建PWM模組、中斷產生、迴圈。</p>
@@ -243,7 +245,7 @@ if (!doNotTrack) {
 }
 }
 </code></pre></div><p>由於每個MCU的PWM實際細節都不一樣，所以讀者請自行閱讀datasheet來應用硬體內建的PWM。<br>
-dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為'110&rsquo;或'111&rsquo;。設定順序為:<br>
+dsPIC30F系列的Output Compare PWM模組要應用時須將OCxCON 暫存器中的OCM設為'110&rsquo;或'111'。設定順序為:<br>
 1.設定PRy(Period register)表示PWM的週期。<br>
 2.再來設定OCxRS暫存器表示duty cycle。<br>
 3.設定OCM。<br>
