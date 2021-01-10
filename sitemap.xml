@@ -566,4 +566,10 @@
     <priority>1</priority>
   </url>
   
+  <url>
+    <loc>https://daichou.github.io/series/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
 </urlset>
