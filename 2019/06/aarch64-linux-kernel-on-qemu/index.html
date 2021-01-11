@@ -217,6 +217,7 @@ $ make menuconfig
 <img src="https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/linux_aarch_hudaddf6322adca758b994f507c5c185b2_54074_600x600_fit_box_2.png" width="600" height="92" alt="">
 <figcaption><I></I></figcaption>
 </figure>
+
 <p>在System configuration  &mdash;&gt; 點選[*]Run a getty (login prompt) after boot  &mdash;&gt;並將TTY port設成ttyAMA0。<br>
 在Target Packages &mdash;&gt;選取busybox與[*]   Show packages that are also provided by busybox 。<br>
 在Filesystem images中選擇[*] cpio the root filesystem (for use as an initial RAM filesystem)。<br>
@@ -230,6 +231,7 @@ $ make menuconfig
 <img src="https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/linux_aarch_toolchain_hu9910204b54c643888b7d312175131ccb_157239_600x600_fit_box_2.png" width="600" height="300" alt="">
 <figcaption><I></I></figcaption>
 </figure>
+
 <p>設好外部toolchain路徑gcc版本與linux header版本，必將SSP和RPC開啟。可以檢查.config中是否有：<br>
 BR2_TOOLCHAIN_EXTERNAL_HAS_SSP=y<br>
 BR2_TOOLCHAIN_EXTERNAL_INET_RPC=y</p>
