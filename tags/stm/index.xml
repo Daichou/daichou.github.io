@@ -13,8 +13,7 @@
       <pubDate>Sat, 03 Feb 2018 01:13:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</guid>
-      <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。
-步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</description>
+      <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。</description>
     </item>
     
     <item>

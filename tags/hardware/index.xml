@@ -13,8 +13,7 @@
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</guid>
-      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
-plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</description>
+      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。</description>
     </item>
     
     <item>
@@ -50,8 +49,7 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
       <pubDate>Sun, 31 Jul 2016 02:22:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
-      <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
-   duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
+      <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</description>
     </item>
     
     <item>
@@ -62,8 +60,7 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
       <guid>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</guid>
       <description>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
 入門款
-** Ardunio系列：**
- 基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO  &amp;gt;&amp;raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。</description>
+** Ardunio系列：**</description>
     </item>
     
   </channel>

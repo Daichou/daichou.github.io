@@ -13,8 +13,7 @@
       <pubDate>Thu, 04 Jul 2019 00:32:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2019/07/linux-kernel-energy-aware-scheduling-eas/</guid>
-      <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
+      <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來</description>
     </item>
     
     <item>
@@ -23,7 +22,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Mon, 17 Jun 2019 05:55:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/</guid>
-      <description>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.</description>
+      <description>一、需求  Linux kernel:以5.</description>
     </item>
     
   </channel>

@@ -31,8 +31,7 @@
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</guid>
-      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
-plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</description>
+      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。</description>
     </item>
     
   </channel>

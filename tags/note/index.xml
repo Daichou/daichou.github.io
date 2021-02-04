@@ -22,8 +22,7 @@
       <pubDate>Wed, 12 Aug 2020 19:39:23 +0800</pubDate>
       
       <guid>https://daichou.github.io/2020/08/vivado-%E4%B8%AD-verilog%E8%88%87vhdl%E6%A8%A1%E7%B5%84%E7%9B%B8%E9%80%A3/</guid>
-      <description>當要在Verilog中instantiate一個VHDL模組時，需要考慮Mixed Language Boundary以及Mapping Rules，簡單來說就是兩者間的介面，以及port之間的對接。
-port對接可以透過port connect by ordering list 或是 port connect by name方式對接。 然而必須注意只有VHDL基礎的type才可以當成對接介面，這些type包含:</description>
+      <description>當要在Verilog中instantiate一個VHDL模組時，需要考慮Mixed Language Boundary以及Mapping Rules，簡單來說就是兩者間的介面，以及port之間的對接。</description>
     </item>
     
     <item>
@@ -77,8 +76,7 @@ port對接可以透過port connect by ordering list 或是 port connect by name�
       <pubDate>Fri, 13 Jul 2018 23:19:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
-      <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
-追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：</description>
+      <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。</description>
     </item>
     
     <item>
@@ -96,8 +94,7 @@ port對接可以透過port connect by ordering list 或是 port connect by name�
       <pubDate>Fri, 09 Mar 2018 18:51:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/2018/03/%E4%BD%BF%E7%94%A8lxc%E5%BB%BA%E7%AB%8Busb%E4%BB%A5%E5%8F%8Ax-forward%E7%92%B0%E5%A2%83deprecated/</guid>
-      <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
-環境  OS: Arch Linux (4.</description>
+      <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。</description>
     </item>
     
     <item>
@@ -170,9 +167,7 @@ port對接可以透過port connect by ordering list 或是 port connect by name�
       <pubDate>Wed, 28 Sep 2016 23:16:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/09/note%E7%9B%AE%E5%89%8D%E7%9A%84vim/</guid>
-      <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
-首先.vimrc
-https://github.com/Daichou/environment/blob/master/.vimrc</description>
+      <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。</description>
     </item>
     
   </channel>

@@ -3,42 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</loc>
-    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
     <loc>https://daichou.github.io/</loc>
-    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
-    <loc>https://daichou.github.io/tags/mood/</loc>
-    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
-    <loc>https://daichou.github.io/posts/</loc>
-    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
-    <loc>https://daichou.github.io/tags/</loc>
-    <lastmod>2021-01-01T13:45:04+08:00</lastmod>
+    <lastmod>2020-08-19T19:59:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   
   <url>
     <loc>https://daichou.github.io/tags/note/</loc>
+    <lastmod>2020-08-19T19:59:18+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
+    <loc>https://daichou.github.io/posts/</loc>
+    <lastmod>2020-08-19T19:59:18+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
+    <loc>https://daichou.github.io/tags/</loc>
     <lastmod>2020-08-19T19:59:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>

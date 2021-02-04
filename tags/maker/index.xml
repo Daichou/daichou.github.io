@@ -24,8 +24,7 @@
       <guid>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</guid>
       <description>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
 入門款
-** Ardunio系列：**
- 基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO  &amp;gt;&amp;raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。</description>
+** Ardunio系列：**</description>
     </item>
     
   </channel>

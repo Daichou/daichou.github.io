@@ -6,18 +6,7 @@
     <description>Recent content in Posts on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 01 Jan 2021 13:45:04 +0800</lastBuildDate><atom:link href="https://daichou.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>2020回顧</title>
-      <link>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</link>
-      <pubDate>Fri, 01 Jan 2021 13:45:04 +0800</pubDate>
-      
-      <guid>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</guid>
-      <description>也許也包含一點2019的事情。
-2020對我來說算是進入社會的前哨戰，以前我總是專注在做自己喜歡做的事情(寫程式、做東西、打球)，但是碩班之後即將進入社會，要如何轉換也是我現在面對的課題。如何繼續做自己喜歡而且想做的事情？是否因此忽略很多其他的事情？如果人生之後不寫程式會發生什麼事情？人生是否沒有這麼單純？
-變化  ▲ 2020 3月16道瓊大崩盤 （圖：擷取至三竹股市App若有疑慮歡迎聯絡）   還記得去年(2019)我因為看到一部很喜歡的電影兒無法自拔，在校園散步時，早晨熹微的光線穿透樹林，微風帶著早上的濕氣，對於天上的藍天白雲，我腦中有大量無法計數形容詞來擬合天空的藍，描訴雲的流轉。那時是我第一次開始留心於日常的景物、光線的變化。日常的停車塔、斑駁的路邊腳踏車、飽滿的光線，那是我第一次開始重新認識這世界。過去我總是在虛擬世界，拼命的寫code，讓虛擬世界驅動真實。時常想要透過寫程式、認真向上、來做出一些有趣的事情，不一定要對世界帶起多大的波瀾，但至少也要讓我自我滿足。但是2020世界開始不是這麼的單純，疫情貫串了整年，還記得農曆年完3月開始，除了台灣以外的世界國家開始意識到COVID-19嚴重性，我睡前看的bloomberg Live每天都是看道瓊創下歷史跌點;一生不會遇到的熔斷，幾周內遇到四次。美國脫口秀不搞笑，開始講起認真嚴肅的話題，底下沒有觀眾沒有罐頭笑聲，只有主持人沈重的說些事情。再來就是worldometers.</description>
-    </item>
-    
+    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate><atom:link href="https://daichou.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</title>
       <link>https://daichou.github.io/2020/08/%E5%9C%A8ubuntu-18.04-%E4%B8%8A%E5%9F%B7%E8%A1%8Criscv-torture-run-riscv-torture-on-ubuntu-18.04/</link>
@@ -33,8 +22,7 @@
       <pubDate>Wed, 12 Aug 2020 19:39:23 +0800</pubDate>
       
       <guid>https://daichou.github.io/2020/08/vivado-%E4%B8%AD-verilog%E8%88%87vhdl%E6%A8%A1%E7%B5%84%E7%9B%B8%E9%80%A3/</guid>
-      <description>當要在Verilog中instantiate一個VHDL模組時，需要考慮Mixed Language Boundary以及Mapping Rules，簡單來說就是兩者間的介面，以及port之間的對接。
-port對接可以透過port connect by ordering list 或是 port connect by name方式對接。 然而必須注意只有VHDL基礎的type才可以當成對接介面，這些type包含:</description>
+      <description>當要在Verilog中instantiate一個VHDL模組時，需要考慮Mixed Language Boundary以及Mapping Rules，簡單來說就是兩者間的介面，以及port之間的對接。</description>
     </item>
     
     <item>
@@ -53,8 +41,7 @@ port對接可以透過port connect by ordering list 或是 port connect by name�
       
       <guid>https://daichou.github.io/2020/07/2020-first-half-year-books/</guid>
       <description>2019~2020上半年的有趣閱讀書目 從去年下半年到今年秉持著:
- 白天工作，晚上讀書，假日批判
- 的目標，所以在晚上睡前撥一點時間看了些有趣的書，以下就紀錄一下看了哪些有趣的書。</description>
+ 白天工作，晚上讀書，假日批判</description>
     </item>
     
     <item>
@@ -90,8 +77,7 @@ port對接可以透過port connect by ordering list 或是 port connect by name�
       <pubDate>Thu, 04 Jul 2019 00:32:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2019/07/linux-kernel-energy-aware-scheduling-eas/</guid>
-      <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來
-hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
+      <description>Energy Aware scheduling 之前寫的作業報告，我覺得可以分享出來</description>
     </item>
     
     <item>
@@ -100,7 +86,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Mon, 17 Jun 2019 05:55:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2019/06/aarch64-linux-kernel-on-qemu/</guid>
-      <description>一、需求  Linux kernel:以5.1.7為例 buildroot qemu toolchain:以linaro為例也可使用Arch linux aarch64-linux-gnu-gcc來編譯(但需要linaro)  二、下載toolchain 在linaro官網的下載區https://www.</description>
+      <description>一、需求  Linux kernel:以5.</description>
     </item>
     
     <item>
@@ -109,7 +95,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Sun, 19 Aug 2018 02:28:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2018/08/2018-coscup-day2/</guid>
-      <description>flatpak vs. snap  https://hackmd.</description>
+      <description>flatpak vs.</description>
     </item>
     
     <item>
@@ -172,8 +158,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Fri, 13 Jul 2018 23:19:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2018/07/cmake-tricks-%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
-      <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。
-追加Compiler flags CMake裡面有一些變數是用來pass compiler flag給compiler，例如：CMAKE_CXX_FLAGS是用來給g++之類的C++ Compiler。這些變數當然是可以修改的。常見比較好的作法按依照該專案開發者定義的BUILD_TYPE來編，CMake裡面有一些常見的BUILD_TYPE，例如：Debug, Release, RelWithDebInfo &amp;hellip;&amp;hellip;等。可以透過在產生Makefile時下：</description>
+      <description>CMake Tricks: 一些小技巧 有常在編一些opensource的專案的應該都對CMake不陌生。這篇文章就整理些我在編使用CMake的專案時遇到的一些問題與解法。</description>
     </item>
     
     <item>
@@ -191,8 +176,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Fri, 09 Mar 2018 18:51:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/2018/03/%E4%BD%BF%E7%94%A8lxc%E5%BB%BA%E7%AB%8Busb%E4%BB%A5%E5%8F%8Ax-forward%E7%92%B0%E5%A2%83deprecated/</guid>
-      <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。
-環境  OS: Arch Linux (4.</description>
+      <description>使用LXC建立USB以及X forward環境(deprecated) 因為修課需要一些debian系的工具，不過我不想讓debian系的和Arch Linux混在一起，所以LXC看起來是一個不錯的解。</description>
     </item>
     
     <item>
@@ -201,8 +185,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Sat, 03 Feb 2018 01:13:00 -0800</pubDate>
       
       <guid>https://daichou.github.io/2018/02/%E4%BD%BF%E7%94%A8sw4stm32%E5%BB%BA%E7%BD%AEstm32-hal%E5%B0%88%E6%A1%88/</guid>
-      <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。
-步驟 其實滿簡單的，只要在建立新專案時多勾選一個選項即可。</description>
+      <description>使用SW4STM32建置STM32 HAL專案 上學期修課時需要的一些小技巧紀錄一下。有人蠻多人問過我，所以打一篇文章。</description>
     </item>
     
     <item>
@@ -293,8 +276,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Sun, 09 Jul 2017 01:32:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/07/revolution-os-%E5%BF%83%E5%BE%97/</guid>
-      <description>Revolution OS 這篇文為我修課時做的心得
-  摘要</description>
+      <description>Revolution OS 這篇文為我修課時做的心得</description>
     </item>
     
     <item>
@@ -303,8 +285,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Sun, 09 Jul 2017 01:29:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/07/the-code%E5%BF%83%E5%BE%97/</guid>
-      <description>The Code * 系列為我修課時留下的心得
-* 摘要   Linus Torvarlds 的生平與Linux創作背景</description>
+      <description>The Code * 系列為我修課時留下的心得</description>
     </item>
     
     <item>
@@ -313,8 +294,7 @@ hackmd版：https://hackmd.io/@Daichou/ByzK-S60E</description>
       <pubDate>Sat, 29 Apr 2017 21:13:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2017/04/i2c-%E4%BD%BF%E7%94%A8microchip-plib/</guid>
-      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。
-plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最新的plib，然後她會要求將plib安裝到你電腦中xc16 complier的資料夾下(linux在”/opt/microchip/xc16”下)。</description>
+      <description>I2C 使用Microchip plib 本篇以dsPIC30F為主。</description>
     </item>
     
     <item>
@@ -361,8 +341,7 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
       
       <guid>https://daichou.github.io/2016/12/%E6%96%B9%E4%BE%BF%E7%9A%84%E7%B6%B2%E7%AB%99stackedit/</guid>
       <description>**
-方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。
- Written with StackEdit.</description>
+方便的網站：stackedit *在CMS風行一段時間之際，傳統的部落格文書編輯器已經顯得過時無用，調字體大小等這些基本功能用傳統文書編輯器還可以接受，但表格等則還需要動用html，這顯得十分麻煩，這時運用markdown方式撰寫文件的功能的網站如與後出筍般出現，包括hackmd:https://hackmd.io/專案的成功。而部落格方面，除了wordpress的markdown插件，logdown以markdown為訴求的網站平台外，如果使用傳統google所提供的blogger功能的話，首推stackedit:https://stackedit.io，他的功能十分強大，可以幫你管理你的文章還可以串連多個blog平台，包括blogger,wordpress,github,gist,tumblr等，而且畫面簡潔明亮，害我都跳槽了哈哈。</description>
     </item>
     
     <item>
@@ -389,9 +368,7 @@ plib 安裝 到Legacy PIC24 MCU &amp;amp; dsPIC DSC Peripheral Library下載最�
       <pubDate>Wed, 28 Sep 2016 23:16:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/09/note%E7%9B%AE%E5%89%8D%E7%9A%84vim/</guid>
-      <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。
-首先.vimrc
-https://github.com/Daichou/environment/blob/master/.vimrc</description>
+      <description>『note』目前的vim 本文僅僅紀錄我用了什麼vim plugin。</description>
     </item>
     
     <item>
@@ -400,9 +377,7 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
       <pubDate>Sat, 24 Sep 2016 08:55:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/09/john-murphy%E7%89%B9%E6%AE%8A%E9%A2%A8%E6%A0%BC%E7%9A%84%E9%9B%BB%E5%BD%B1%E9%85%8D%E6%A8%82%E5%AE%B6/</guid>
-      <description>John Murphy:異軍突起的電影配樂家 首先先貼他的個人網站http://johnmurphyofficial.com/。
-本文的音樂都在這：http://www.johnmurphyofficial.com/tunesbox_1.html
-他最有名的三首配樂是『28天毀滅倒數(28 days later)』的『In the house,In the heartbeat』把活屍的壓迫感形容的很好，有興趣還可以聽聽看續集『28周毀滅倒數(28 weeks Later)』的開頭男主角的爸爸被追趕的那段，十分精彩，循環覆呇的節奏與逐漸加強的重音，就像一隻隻活屍在你身後快速的逼近你，即使你逃過當時，你有遠也不知道牆後是否還有另一隻在伺機而動。</description>
+      <description>John Murphy:異軍突起的電影配樂家 首先先貼他的個人網站http://johnmurphyofficial.com/。</description>
     </item>
     
     <item>
@@ -412,9 +387,7 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
       
       <guid>https://daichou.github.io/2016/09/%E5%81%B7%E6%9B%B8%E8%B3%8A%E5%81%B7%E6%9B%B8%E8%B3%8A%E8%88%87%E9%81%8E%E6%96%BC%E5%96%A7%E5%9B%82%E7%9A%84%E5%AD%A4%E7%8D%A8/</guid>
       <description>[偷書賊]偷書賊與過於喧囂的孤獨 偷書賊講述的是一個二戰時期一個德國小女孩靠著文字豐富自己心靈的故事，其中穿插著二戰時期生活環境的疲敝，還有人性的本質。
-而赫拉巴爾的&amp;lt;過於喧囂的孤獨&amp;gt;則是以一個在廢紙回收廠的老員工，在工作之餘將書中知識收入自己的腦海，然而，其身處於社會的角落，還做著將書本壓成廢紙的工作，雖然學識涵養豐富，但作著一般人鄙視、無視的工作。其內心是過於喧囂的孤獨。
-這兩本書一個是從剛識字的小孩角度看待文字的影響力，一個是從滿腹學識的老人在知識的翻騰中對比自身的孤獨感。同樣都是以文字的力量出發，但在人生起始階段與人生終老階段，文字以不同的方式影響著人們。
-這兩本書都蠻推薦的(偷書賊較淺白)。</description>
+而赫拉巴爾的&amp;lt;過於喧囂的孤獨&amp;gt;則是以一個在廢紙回收廠的老員工，在工作之餘將書中知識收入自己的腦海，然而，其身處於社會的角落，還做著將書本壓成廢紙的工作，雖然學識涵養豐富，但作著一般人鄙視、無視的工作。其內心是過於喧囂的孤獨。</description>
     </item>
     
     <item>
@@ -423,8 +396,7 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
       <pubDate>Sat, 10 Sep 2016 20:22:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/09/%E5%9C%A8linux%E4%B8%8A%E8%A3%BD%E4%BD%9Cwin10-live-usb/</guid>
-      <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
-首先，以arch linux 為例，winusb是在aur裡，所以只要下：</description>
+      <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。</description>
     </item>
     
     <item>
@@ -434,8 +406,6 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
       
       <guid>https://daichou.github.io/2016/09/%E5%BF%AB%E9%96%83%E5%A4%A7%E5%B0%8D%E6%B1%BA%E4%B8%80%E5%A0%B4%E8%8F%AF%E7%88%BE%E8%A1%97%E8%B5%B7%E7%BE%A9/</guid>
       <description>快閃大對決：一場華爾街起義 我會找到這本書完全是因為這本書的作者是&amp;lt;魔球&amp;gt;、&amp;lt;攻其不備&amp;gt;、&amp;lt;大賣空&amp;gt;的作者，我蠻喜歡他的寫作風格。這本書算是他在台最新的(雖然是2014年的)。
-***
-這本書主要探討近年來美國股市興起的高頻交易如何危害市場，雖然我以前就有聽過『高頻交易』這個詞，但我沒想到它的實際運作方式這麼恐怖。美國現在有13個交易所交易所(還有60幾個暗池)之間彼此都有一些距離，有些在紐約，有些在芝加哥，即便現在通訊技術發達，但這些交易系統否此間的資訊仍有幾毫秒的差距，所以如果你能在資訊從一個交易所到另一個交易所之間提前買賣股票，就等於是在買樂透時提前知道結果然後進行下注。或者是在別人買股票前提前插隊將股票買走，然後用更高的價格賣回給買家。基本上所有交易操作都在毫秒內快速來回。這造成了股市成交量爆增、波動劇烈、還有快閃崩盤，在加上股票是一個趨近於零和的賽局，當有人在你買賣間先進行了一次交易，等於是從你身上扒了一層皮。
 ***</description>
     </item>
     
@@ -445,8 +415,7 @@ https://github.com/Daichou/environment/blob/master/.vimrc</description>
       <pubDate>Wed, 31 Aug 2016 07:58:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/08/jekyll-%E4%B8%80%E4%BA%9B%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B3%95/</guid>
-      <description>用github架Jekyll 一些問題解法 當一開始使用
-$ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)</description>
+      <description>用github架Jekyll 一些問題解法 當一開始使用</description>
     </item>
     
     <item>
@@ -474,8 +443,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       <pubDate>Tue, 16 Aug 2016 02:30:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/08/%E7%94%A8compiler-explorer%E5%AD%B8%E7%BF%92c/c-%E7%9A%84%E6%95%88%E8%83%BD%E8%88%87%E5%AF%A6%E5%81%9A/</guid>
-      <description>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。
-支援 這個網站支援ARM、MIPS、X86、AVR等指令集的compiler，支援度甚廣，且網頁本身也開源(使用node.</description>
+      <description>用Compiler Explorer學習C/C++的效能與實做 今天我發現一個網站:compiler explorer，這個網站可以將C和C++即時編譯為組語，而且寒可以選AT&amp;amp;T語法的nasm和INTEL語法的nasm，對於底層學習很有幫助。</description>
     </item>
     
     <item>
@@ -493,8 +461,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       <pubDate>Sun, 31 Jul 2016 02:22:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/07/pwm%E7%94%A2%E7%94%9F%E6%96%B9%E5%BC%8F/</guid>
-      <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。
-   duty cycle(占空比)為整個high時間除以週期時間(D = DT/T)。</description>
+      <description>PWM簡述 PWM為Pulse Width Modulation的縮寫，對於只有high和low的數位訊號來說，如何用high,low比率調整出類似類比訊號為PWM的用處，另外大多數馬達也透過PWM來驅動轉速，LED由於只吃固定電壓，所以常用PWM來調整亮度。</description>
     </item>
     
     <item>
@@ -503,8 +470,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       <pubDate>Sun, 08 May 2016 09:16:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/05/%E7%AD%86%E8%A8%98-libpqxx-prepare-statements/</guid>
-      <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html
-而libpqxx中也有prepare method。這個prepare框架一旦被定義後，它會存活於connetion物件存活期間(連線期間)。底下是範例，其中prepare_name爲使用者自定(case sensitive)，之後會用到。</description>
+      <description>prepare語法是現今SQL主要防止SQL injection的方法(另一種是字串處理)，prepare語法主要是限定SQL query語句中的變數，以防資料庫其他資料遭受破壞等。postgresSQL也有prepare語法。請見：http://www.postgresql.org/docs/9.1/static/sql-prepare.html</description>
     </item>
     
     <item>
@@ -515,8 +481,7 @@ $ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)
       <guid>https://daichou.github.io/2016/05/maker%E5%B8%B8%E7%94%A8%E9%96%8B%E7%99%BC%E6%9D%BF/</guid>
       <description>對於Maker來說，選擇適合的開發板可以加速make的時間。本文會依照難度特色來做分類。
 入門款
-** Ardunio系列：**
- 基本款(Entry level):Ardunio UNO,Ardunio 101,Ardunio PRO  &amp;gt;&amp;raquo; 特色：pin腳少(少於20隻)，PWM port少(不多於6隻)，Analog輸入腳位少(少於6)。</description>
+** Ardunio系列：**</description>
     </item>
     
     <item>

@@ -32,8 +32,7 @@
       <pubDate>Sat, 10 Sep 2016 20:22:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/09/%E5%9C%A8linux%E4%B8%8A%E8%A3%BD%E4%BD%9Cwin10-live-usb/</guid>
-      <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。
-首先，以arch linux 為例，winusb是在aur裡，所以只要下：</description>
+      <description>在linux上製作win10 live USB 這部份很簡單，只要記住一個重要的程式『winusb』，安裝這個程式，一切都簡單。</description>
     </item>
     
     <item>
@@ -42,8 +41,7 @@
       <pubDate>Wed, 31 Aug 2016 07:58:00 -0700</pubDate>
       
       <guid>https://daichou.github.io/2016/08/jekyll-%E4%B8%80%E4%BA%9B%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B3%95/</guid>
-      <description>用github架Jekyll 一些問題解法 當一開始使用
-$ jekyll serve 的時候，可能會遇到一些問題(其實是我遇到的啦)</description>
+      <description>用github架Jekyll 一些問題解法 當一開始使用</description>
     </item>
     
   </channel>
