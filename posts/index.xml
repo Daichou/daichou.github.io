@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Daichou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 19 Aug 2020 19:59:18 +0800</lastBuildDate><atom:link href="https://daichou.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jan 2021 13:45:04 +0800</lastBuildDate><atom:link href="https://daichou.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2020回顧</title>
+      <link>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</link>
+      <pubDate>Fri, 01 Jan 2021 13:45:04 +0800</pubDate>
+      
+      <guid>https://daichou.github.io/2021/01/2020%E5%9B%9E%E9%A1%A7/</guid>
+      <description>也許也包含一點2019的事情。
+2020對我來說算是進入社會的前哨戰，以前我總是專注在做自己喜歡做的事情(寫程式、做東西、打球)，但是碩班之後即將進入社會，要如何轉換也是我現在面對的課題。 如何繼續做自己喜歡而且想做的事情？是否因此忽略很多其他的事情？如果人生之後不寫程式會發生什麼事情？人生是否沒有這麼單純？</description>
+    </item>
+    
     <item>
       <title>在Ubuntu 18.04 上執行riscv-torture (run riscv-torture on Ubuntu 18.04)</title>
       <link>https://daichou.github.io/2020/08/%E5%9C%A8ubuntu-18.04-%E4%B8%8A%E5%9F%B7%E8%A1%8Criscv-torture-run-riscv-torture-on-ubuntu-18.04/</link>
